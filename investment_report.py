@@ -27,10 +27,10 @@ from reportlab.pdfbase.ttfonts import TTFont
 
 load_dotenv()
 
-TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
-TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
-REPORT_TYPE = os.getenv("REPORT_TYPE", "auto")
+TELEGRAM_BOT_TOKEN = (os.getenv("TELEGRAM_BOT_TOKEN") or "").strip()
+TELEGRAM_CHAT_ID = (os.getenv("TELEGRAM_CHAT_ID") or "").strip()
+GROQ_API_KEY = (os.getenv("GROQ_API_KEY") or "").strip()
+REPORT_TYPE = (os.getenv("REPORT_TYPE") or "auto").strip()
 
 # ─── 블로그 목록 ─────────────────────────────────────────────────────────
 # 블로그 추가 방법: "블로그ID": "https://rss.blog.naver.com/블로그ID.xml"
@@ -223,28 +223,33 @@ def summarize_post(client, post):
         f"종목: 종목명1, 종목명2 (없으면 '없음')"
     )
 
-    try:
-        resp = client.chat.completions.create(
-            model="llama-3.1-8b-instant",
-            messages=[{"role": "user", "content": prompt}],
-            max_tokens=250,
-        )
-        result = resp.choices[0].message.content
+    for attempt in range(2):
+        try:
+            resp = client.chat.completions.create(
+                model="llama-3.1-8b-instant",
+                messages=[{"role": "user", "content": prompt}],
+                max_tokens=250,
+            )
+            result = resp.choices[0].message.content
 
-        summary, stocks = "", []
-        for line in result.split("\n"):
-            if line.startswith("요약:"):
-                summary = line.replace("요약:", "").strip()
-            elif line.startswith("종목:"):
-                s = line.replace("종목:", "").strip()
-                if s and s != "없음":
-                    stocks = [x.strip() for x in s.split(",") if x.strip() and x.strip() != "없음"]
+            summary, stocks = "", []
+            for line in result.split("\n"):
+                if line.startswith("요약:"):
+                    summary = line.replace("요약:", "").strip()
+                elif line.startswith("종목:"):
+                    s = line.replace("종목:", "").strip()
+                    if s and s != "없음":
+                        stocks = [x.strip() for x in s.split(",") if x.strip() and x.strip() != "없음"]
 
-        return summary or result[:150], stocks
+            return summary or result[:150], stocks
 
-    except Exception as e:
-        print(f"    [Groq 오류] {e}")
-        return post["title"][:80], []
+        except Exception as e:
+            print(f"    [Groq 오류] {e}")
+            if attempt == 0:
+                time.sleep(5)
+
+    # Groq 실패 시 제목만 반환
+    return post["title"][:80], []
 
 
 # ─── 종목 빈도 분석 ─────────────────────────────────────────────────────
