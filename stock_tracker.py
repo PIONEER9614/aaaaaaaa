@@ -26,9 +26,11 @@ from reportlab.pdfbase.ttfonts import TTFont
 
 load_dotenv()
 
-BOT_TOKEN    = (os.getenv("TELEGRAM_BOT_TOKEN") or "").strip()
-CHAT_ID      = (os.getenv("TELEGRAM_CHAT_ID") or "").strip()
-GROQ_API_KEY = (os.getenv("GROQ_API_KEY") or "").strip()
+BOT_TOKEN     = (os.getenv("TELEGRAM_BOT_TOKEN") or "").strip()
+CHAT_ID       = (os.getenv("TELEGRAM_CHAT_ID") or "").strip()
+GROQ_API_KEY  = (os.getenv("GROQ_API_KEY") or "").strip()
+NOTION_TOKEN  = (os.getenv("NOTION_TOKEN") or "").strip()
+NOTION_PAGE_ID = (os.getenv("NOTION_PAGE_ID") or "").strip()
 
 # ─── 추적 종목 목록 ────────────────────────────────────────────────────
 # 종목명: 네이버 증권 검색 코드
@@ -318,6 +320,104 @@ def generate_tracker_pdf(stock_results, report_date):
     return buf
 
 
+# ─── 노션 저장 ─────────────────────────────────────────────────────────
+NOTION_HEADERS = {
+    "Authorization": f"Bearer {NOTION_TOKEN}",
+    "Content-Type": "application/json",
+    "Notion-Version": "2022-06-28",
+}
+
+def get_or_create_notion_db():
+    """노션 페이지 안에 데이터베이스 찾거나 생성"""
+    # 기존 DB 검색
+    search_resp = requests.post(
+        "https://api.notion.com/v1/search",
+        headers=NOTION_HEADERS,
+        json={"query": "증권사 리포트 추적", "filter": {"property": "object", "value": "database"}},
+        timeout=15,
+    )
+    if search_resp.ok:
+        results = search_resp.json().get("results", [])
+        if results:
+            return results[0]["id"]
+
+    # 없으면 새로 생성
+    db_resp = requests.post(
+        "https://api.notion.com/v1/databases",
+        headers=NOTION_HEADERS,
+        json={
+            "parent": {"type": "page_id", "page_id": NOTION_PAGE_ID},
+            "title": [{"type": "text", "text": {"content": "증권사 리포트 추적"}}],
+            "properties": {
+                "종목명":    {"title": {}},
+                "리포트 제목": {"rich_text": {}},
+                "증권사":    {"rich_text": {}},
+                "목표주가":  {"rich_text": {}},
+                "날짜":      {"date": {}},
+                "변화 사항": {"rich_text": {}},
+                "AI 분석":   {"rich_text": {}},
+                "링크":      {"url": {}},
+            },
+        },
+        timeout=15,
+    )
+    if db_resp.ok:
+        db_id = db_resp.json()["id"]
+        print(f"  노션 DB 생성 완료: {db_id}")
+        return db_id
+    else:
+        print(f"  [노션 DB 오류] {db_resp.text}")
+        return None
+
+
+def save_to_notion(db_id, stock_name, new_reports, changes, analysis, today):
+    """새 리포트와 분석 결과를 노션에 저장"""
+    if not db_id:
+        return
+
+    change_text = " | ".join(changes) if changes else "변화 없음"
+    analysis_short = analysis[:1900] if analysis else ""
+
+    # 종목별 오늘 요약 페이지 1개 저장
+    page_data = {
+        "parent": {"database_id": db_id},
+        "properties": {
+            "종목명":    {"title": [{"text": {"content": stock_name}}]},
+            "변화 사항": {"rich_text": [{"text": {"content": change_text[:500]}}]},
+            "AI 분석":   {"rich_text": [{"text": {"content": analysis_short}}]},
+            "날짜":      {"date": {"start": today.strftime("%Y-%m-%d")}},
+        },
+        "children": [],
+    }
+
+    # 새 리포트 목록을 페이지 본문에 추가
+    if new_reports:
+        blocks = [
+            {"object": "block", "type": "heading_2",
+             "heading_2": {"rich_text": [{"text": {"content": f"새 리포트 ({len(new_reports)}건)"}}]}},
+        ]
+        for r in new_reports[:10]:
+            price = f" | 목표주가: {int(r['target_price']):,}원" if r.get("target_price") else ""
+            blocks.append({
+                "object": "block", "type": "bulleted_list_item",
+                "bulleted_list_item": {
+                    "rich_text": [{"text": {"content": f"[{r.get('firm','')}] {r.get('title','')[:80]}{price}"}}]
+                }
+            })
+        page_data["children"] = blocks
+
+    resp = requests.post(
+        "https://api.notion.com/v1/pages",
+        headers=NOTION_HEADERS,
+        json=page_data,
+        timeout=15,
+    )
+    if resp.ok:
+        print(f"  노션 저장 완료: {stock_name}")
+    else:
+        print(f"  [노션 저장 오류] {resp.text[:200]}")
+
+
 # ─── 텔레그램 전송 ──────────────────────────────────────────────────────
 def send_message(text):
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
@@ -375,6 +475,16 @@ def main():
         }
 
     save_history(history)
+
+    # 노션 저장
+    print("  노션 저장 중...")
+    db_id = get_or_create_notion_db()
+    for stock_name, result in stock_results.items():
+        save_to_notion(
+            db_id, stock_name,
+            result["new_reports"], result["changes"], result["analysis"], today
+        )
+        time.sleep(1)
 
     # PDF 생성
     print("  PDF 생성 중...")
