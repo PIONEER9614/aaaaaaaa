@@ -1,0 +1,28 @@
+name: 글로벌 뉴스 요약
+
+on:
+  schedule:
+    - cron: "0 23 * * 1-5"  # 평일 오전 8시 KST (UTC 23:00 전날)
+    - cron: "0 9 * * 1-5"   # 평일 오후 6시 KST (UTC 09:00)
+  workflow_dispatch:
+
+jobs:
+  news:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 패키지 설치
+        run: pip install feedparser python-dotenv requests groq
+
+      - name: 뉴스 요약 실행
+        env:
+          ARTICLE_BOT_TOKEN: ${{ secrets.ARTICLE_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: python news_summary.py
