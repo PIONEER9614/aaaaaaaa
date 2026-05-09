@@ -111,6 +111,47 @@ def fetch_disclosures(days=1):
 
 
 # ─── AI 요약 ────────────────────────────────────────────────────────────
+def explain_items(client, items):
+    """공시 항목별 1줄 설명 생성 (최대 25건)"""
+    if not items:
+        return {}
+
+    targets = items[:25]
+    lines = "\n".join(
+        f"{i+1}. [{it.get('corp_name','')}] {it.get('report_nm','')}"
+        for i, it in enumerate(targets)
+    )
+    prompt = (
+        f"다음 기업 공시 목록을 각각 1줄(30자 이내)로 핵심만 설명해주세요.\n"
+        f"형식: 번호. 핵심 설명 (예: 1. 300억 규모 유상증자 결정)\n\n"
+        f"{lines}"
+    )
+    for attempt in range(2):
+        try:
+            resp = client.chat.completions.create(
+                model="llama-3.1-8b-instant",
+                messages=[{"role": "user", "content": prompt}],
+                max_tokens=600,
+            )
+            result = resp.choices[0].message.content.strip()
+            # 번호별로 파싱
+            explanations = {}
+            for line in result.split("\n"):
+                line = line.strip()
+                if not line:
+                    continue
+                for i in range(1, len(targets)+1):
+                    if line.startswith(f"{i}."):
+                        explanations[i-1] = line[len(f"{i}."):].strip()
+                        break
+            return explanations
+        except Exception as e:
+            print(f"  [Groq 오류] {e}")
+            if attempt == 0:
+                time.sleep(5)
+    return {}
+
+
 def summarize_type(client, type_name, items):
     """공시 유형별 AI 요약"""
     if not items:
@@ -122,7 +163,8 @@ def summarize_type(client, type_name, items):
     )
     prompt = (
         f"다음은 오늘 나온 '{type_name}' 관련 기업 공시 목록입니다.\n"
-        f"투자자 관점에서 주목할 만한 내용을 3~5줄로 한국어로 요약해주세요.\n\n"
+        f"투자자 관점에서 주목할 만한 내용을 5줄 이상으로 한국어로 요약해주세요.\n"
+        f"어떤 기업이 어떤 결정을 했는지, 시장에 어떤 의미인지 포함해주세요.\n\n"
         f"{titles}"
     )
     for attempt in range(2):
@@ -130,7 +172,7 @@ def summarize_type(client, type_name, items):
             resp = client.chat.completions.create(
                 model="llama-3.1-8b-instant",
                 messages=[{"role": "user", "content": prompt}],
-                max_tokens=300,
+                max_tokens=500,
             )
             return resp.choices[0].message.content.strip()
         except Exception as e:
@@ -141,7 +183,7 @@ def summarize_type(client, type_name, items):
 
 
 # ─── PDF 생성 ───────────────────────────────────────────────────────────
-def generate_dart_pdf(grouped, summaries, report_date, total):
+def generate_dart_pdf(grouped, summaries, item_explanations, report_date, total):
     register_fonts()
     fn  = "KR"      if FONT_OK else "Helvetica"
     fnb = "KR-Bold" if FONT_OK else "Helvetica-Bold"
@@ -216,7 +258,8 @@ def generate_dart_pdf(grouped, summaries, report_date, total):
             story.append(Spacer(1, 0.15*cm))
 
         # 공시 목록
-        for item in items[:30]:
+        expls = item_explanations.get(ty, {})
+        for idx, item in enumerate(items[:30]):
             corp = item.get("corp_name", "")
             report = item.get("report_nm", "")
             rcept_no = item.get("rcept_no", "")
@@ -224,9 +267,12 @@ def generate_dart_pdf(grouped, summaries, report_date, total):
                 item.get("corp_cls", ""), ""
             )
             link = f"https://dart.fss.or.kr/dsaf001/main.do?rcpNo={rcept_no}" if rcept_no else ""
+            explanation = expls.get(idx, "")
 
             story.append(Paragraph(f"▸ {corp}  [{corp_cls}]", s["corp"]))
             story.append(Paragraph(f"   {report}", s["report"]))
+            if explanation:
+                story.append(Paragraph(f"   → {explanation}", s["summary"]))
             if link:
                 story.append(Paragraph(link, s["link"]))
             story.append(Spacer(1, 0.1*cm))
@@ -289,14 +335,18 @@ def main():
     # AI 요약
     client = Groq(api_key=GROQ_API_KEY)
     summaries = {}
-    for ty in ["B", "I", "C"]:  # 중요 유형만 요약
+    item_explanations = {}
+
+    for ty in ["B", "I", "C"]:
         if grouped.get(ty):
             time.sleep(4)
             summaries[ty] = summarize_type(client, DISCLOSURE_TYPES.get(ty, ty), grouped[ty])
+            time.sleep(4)
+            item_explanations[ty] = explain_items(client, grouped[ty])
 
     # PDF 생성
     print("  PDF 생성 중...")
-    pdf = generate_dart_pdf(grouped, summaries, report_date, total)
+    pdf = generate_dart_pdf(grouped, summaries, item_explanations, report_date, total)
 
     # 주요 공시 요약 메시지
     highlights = []
