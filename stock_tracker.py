@@ -155,6 +155,37 @@ def fetch_stock_reports(stock_code, stock_name, pages=3):
     return reports
 
 
+def fetch_report_detail(link):
+    """리포트 상세 페이지에서 본문 내용 추출"""
+    if not link:
+        return ""
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+        "Accept-Language": "ko-KR,ko;q=0.9",
+        "Referer": "https://finance.naver.com/research/",
+    }
+    try:
+        resp = requests.get(link, headers=headers, timeout=15)
+        resp.encoding = "euc-kr"
+        soup = BeautifulSoup(resp.text, "html.parser")
+
+        # 본문 텍스트 추출 (여러 선택자 시도)
+        content = ""
+        for selector in ["div.view_cnt", "div#content", "td.view_cnt", "div.report_txt", "td"]:
+            tag = soup.select_one(selector)
+            if tag:
+                text = tag.get_text(separator=" ", strip=True)
+                if len(text) > 100:
+                    content = text
+                    break
+
+        # HTML 정리
+        content = re.sub(r"\s+", " ", content).strip()
+        return content[:1500]
+    except Exception as e:
+        return ""
+
+
 # ─── 변화 분석 ─────────────────────────────────────────────────────────
 def analyze_changes(stock_name, new_reports, prev_data):
     """이전 데이터와 비교해 변화 사항 추출"""
@@ -188,27 +219,37 @@ def analyze_changes(stock_name, new_reports, prev_data):
 
 
 # ─── AI 분석 ────────────────────────────────────────────────────────────
-def analyze_with_ai(client, stock_name, new_reports, changes):
-    """신규 리포트와 변화 사항을 AI로 분석"""
+def analyze_with_ai(client, stock_name, new_reports, changes, report_contents):
+    """신규 리포트 실제 내용 기반 심층 분석"""
     if not new_reports and not changes:
         return "오늘 새 리포트 없음"
 
-    new_titles = "\n".join(
-        f"- [{r['firm']}] {r['title']} ({r['date']})"
-        for r in new_reports[:10]
-    )
+    # 리포트 메타 + 본문 내용 합치기
+    reports_detail = ""
+    for r in new_reports[:5]:
+        content = report_contents.get(r["title"], "")
+        price = f" | 목표주가: {int(r['target_price']):,}원" if r.get("target_price") else ""
+        opinion = f" | {r['opinion']}" if r.get("opinion") else ""
+        reports_detail += (
+            f"\n[{r['firm']}] {r['title']}{price}{opinion}\n"
+            f"날짜: {r['date']}\n"
+            f"본문: {content if content else '(본문 없음)'}\n"
+            f"{'─'*40}\n"
+        )
+
     change_text = "\n".join(f"- {c}" for c in changes) if changes else "없음"
 
     prompt = (
         f"종목: {stock_name}\n\n"
-        f"[오늘 새로 나온 리포트]\n{new_titles if new_titles else '없음'}\n\n"
+        f"[오늘 새 리포트 상세]\n{reports_detail if reports_detail else '없음'}\n"
         f"[감지된 변화]\n{change_text}\n\n"
-        f"투자자 관점에서 아래 내용을 포함해 5줄 이상 분석해주세요:\n"
-        f"1. 오늘 리포트의 핵심 메시지\n"
-        f"2. 목표주가/투자의견 변화 의미\n"
-        f"3. 증권사들이 주목하는 포인트\n"
-        f"4. 이전 대비 달라진 시각\n"
-        f"5. 투자자가 주의할 점"
+        f"증권사 애널리스트 관점에서 아래를 포함해 상세히 분석해주세요:\n"
+        f"1. 오늘 리포트들의 핵심 투자 포인트\n"
+        f"2. 목표주가·투자의견 변화와 그 배경\n"
+        f"3. 증권사들이 공통으로 주목하는 리스크/기회\n"
+        f"4. 실적·사업·시장 관련 주요 언급 사항\n"
+        f"5. 이전과 달라진 시각 또는 새로운 이슈\n"
+        f"6. 투자자가 단기·중기적으로 주의할 점"
     )
 
     for attempt in range(2):
@@ -216,7 +257,7 @@ def analyze_with_ai(client, stock_name, new_reports, changes):
             resp = client.chat.completions.create(
                 model="llama-3.1-8b-instant",
                 messages=[{"role": "user", "content": prompt}],
-                max_tokens=600,
+                max_tokens=800,
             )
             return resp.choices[0].message.content.strip()
         except Exception as e:
@@ -458,8 +499,16 @@ def main():
         prev_data = history.get(stock_name, {})
         new_reports, changes = analyze_changes(stock_name, reports, prev_data)
 
+        # 새 리포트 상세 내용 수집 (최대 5건)
+        report_contents = {}
+        for r in new_reports[:5]:
+            print(f"    상세 수집: {r['title'][:30]}...")
+            content = fetch_report_detail(r.get("link", ""))
+            report_contents[r["title"]] = content
+            time.sleep(2)
+
         time.sleep(4)
-        analysis = analyze_with_ai(client, stock_name, new_reports, changes)
+        analysis = analyze_with_ai(client, stock_name, new_reports, changes, report_contents)
 
         stock_results[stock_name] = {
             "new_reports": new_reports,
