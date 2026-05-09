@@ -148,67 +148,98 @@ def fetch_blog_posts(rss_url, hours=24):
 
 
 # ─── 네이버 증권 리서치 리포트 스크래핑 ─────────────────────────────────
-def fetch_naver_research(report_type="company"):
+def fetch_naver_research(report_type="company", pages=1, days=1):
+    """pages: 가져올 페이지 수, days: 최근 며칠치 (0=오늘만)"""
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
         "Accept": "text/html,application/xhtml+xml",
         "Accept-Language": "ko-KR,ko;q=0.9",
     }
-    url = f"https://finance.naver.com/research/{report_type}_list.nhn"
 
-    try:
-        resp = requests.get(url, headers=headers, timeout=15)
-        resp.encoding = "euc-kr"
-        soup = BeautifulSoup(resp.text, "html.parser")
+    cutoff = datetime.now() - timedelta(days=days)
+    reports = []
 
-        today = datetime.now().strftime("%Y.%m.%d")
-        reports = []
+    for page in range(1, pages + 1):
+        url = f"https://finance.naver.com/research/{report_type}_list.nhn?&page={page}"
+        try:
+            resp = requests.get(url, headers=headers, timeout=15)
+            resp.encoding = "euc-kr"
+            soup = BeautifulSoup(resp.text, "html.parser")
 
-        table = soup.find("table", class_="type_1")
-        if not table:
-            print(f"  [경고] 리서치 테이블을 찾지 못함 ({report_type})")
-            return []
+            table = soup.find("table", class_="type_1")
+            if not table:
+                break
 
-        for row in table.find_all("tr"):
-            cells = row.find_all("td")
-            if len(cells) < 3:
-                continue
-            try:
-                if report_type == "company":
-                    stock_name = cells[0].get_text(strip=True)
-                    title_tag = cells[1].find("a")
-                    firm = cells[2].get_text(strip=True)
-                    date = cells[3].get_text(strip=True) if len(cells) > 3 else ""
-                else:
-                    stock_name = ""
-                    title_tag = cells[0].find("a")
-                    firm = cells[1].get_text(strip=True)
-                    date = cells[2].get_text(strip=True) if len(cells) > 2 else ""
-
-                if not title_tag:
+            stop = False
+            for row in table.find_all("tr"):
+                cells = row.find_all("td")
+                if len(cells) < 3:
                     continue
-                title = title_tag.get_text(strip=True)
-                href = title_tag.get("href", "")
-                link = ("https://finance.naver.com" + href) if href.startswith("/") else href
+                try:
+                    if report_type == "company":
+                        stock_name = cells[0].get_text(strip=True)
+                        title_tag = cells[1].find("a")
+                        firm = cells[2].get_text(strip=True)
+                        date_str = cells[3].get_text(strip=True) if len(cells) > 3 else ""
+                    else:
+                        stock_name = ""
+                        title_tag = cells[0].find("a")
+                        firm = cells[1].get_text(strip=True)
+                        date_str = cells[2].get_text(strip=True) if len(cells) > 2 else ""
 
-                # 오늘 날짜 필터
-                if title and (date == today or not date):
-                    reports.append({
-                        "stock": stock_name,
-                        "title": title,
-                        "firm": firm,
-                        "date": date,
-                        "link": link,
-                    })
-            except Exception:
-                continue
+                    if not title_tag:
+                        continue
+                    title = title_tag.get_text(strip=True)
+                    href = title_tag.get("href", "")
+                    link = ("https://finance.naver.com" + href) if href.startswith("/") else href
 
-        print(f"  네이버 {report_type} 리포트: {len(reports)}건")
-        return reports
+                    # 날짜 파싱
+                    report_date = None
+                    try:
+                        report_date = datetime.strptime(date_str, "%Y.%m.%d")
+                    except Exception:
+                        pass
 
-    except Exception as e:
-        print(f"  [오류] 리서치 스크래핑 실패 ({report_type}): {e}")
-        return []
+                    # cutoff보다 오래된 리포트면 중단
+                    if report_date and report_date < cutoff:
+                        stop = True
+                        break
+
+                    if title:
+                        reports.append({
+                            "stock": stock_name,
+                            "title": title,
+                            "firm": firm,
+                            "date": date_str,
+                            "date_obj": report_date,
+                            "link": link,
+                        })
+                except Exception:
+                    continue
+
+            if stop:
+                break
+
+        except Exception as e:
+            print(f"  [오류] 리서치 스크래핑 실패 ({report_type} p{page}): {e}")
+            break
+
+    print(f"  네이버 {report_type} 리포트: {len(reports)}건")
+    return reports
+
+
+def group_research_by_day(reports):
+    """리포트를 요일별로 그룹화"""
+    DAY_KR = ["월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일"]
+    grouped = {}
+    for r in reports:
+        d = r.get("date_obj")
+        if d:
+            key = f"{d.strftime('%m/%d')} ({DAY_KR[d.weekday()]})"
+        else:
+            key = r.get("date", "날짜미상")
+        grouped.setdefault(key, []).append(r)
+    return grouped
 
 
 # ─── AI 요약 (Groq) ─────────────────────────────────────────────────────
@@ -483,8 +514,22 @@ def generate_summary_pdf(label, period_label, freq_data, grouped_posts, all_rese
             story.append(Spacer(1, 0.4 * cm))
             story.append(HRFlowable(width="100%", thickness=1, color=colors.HexColor("#cccccc")))
 
+    # 요일별 증권사 리포트
+    if all_research:
+        story.append(Paragraph("📋 요일별 증권사 리포트", s["h2"]))
+        grouped_r = group_research_by_day(all_research)
+        for day_key in sorted(grouped_r.keys(), reverse=True):
+            day_reports = grouped_r[day_key]
+            story.append(Paragraph(f"▶ {day_key}  ({len(day_reports)}건)", s["h3"]))
+            for r in day_reports:
+                stock = f"[{r['stock']}] " if r.get("stock") else ""
+                story.append(Paragraph(f"• {stock}{r.get('title', '')[:65]}", s["body"]))
+                story.append(Paragraph(f"  {r.get('firm', '')}", s["small"]))
+            story.append(Spacer(1, 0.2 * cm))
+        story.append(HRFlowable(width="100%", thickness=1, color=colors.HexColor("#cccccc")))
+
     # 기간별 주요 포스트
-    story.append(Paragraph("📝 기간별 주요 포스트", s["h2"]))
+    story.append(Paragraph("📝 기간별 주요 블로그 포스트", s["h2"]))
     for period_key in sorted(grouped_posts.keys()):
         posts = grouped_posts[period_key]
         story.append(Paragraph(f"▶ {period_key}", s["h3"]))
@@ -609,8 +654,10 @@ def run_weekly():
             day_key = post["published"].strftime("%m/%d (%a)")
             grouped.setdefault(day_key, []).append(post)
 
-    # 리서치 (오늘 기준 일주일치 - 오늘 것만 수집 가능)
-    research = fetch_naver_research("company") + fetch_naver_research("industry")
+    # 리서치 - 5페이지씩, 최근 7일치
+    print("  네이버 증권 리서치 수집 중 (주간)...")
+    research = (fetch_naver_research("company", pages=5, days=7) +
+                fetch_naver_research("industry", pages=5, days=7))
 
     freq = analyze_frequency(all_stocks, 20)
     register_fonts()
