@@ -1,0 +1,26 @@
+name: 블로그 일일 요약
+
+on:
+  schedule:
+    - cron: "0 3 * * *"  # 매일 오후 12시 KST (UTC 03:00)
+  workflow_dispatch:       # 수동 실행 버튼
+
+jobs:
+  summarize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 패키지 설치
+        run: pip install feedparser python-dotenv requests groq
+
+      - name: 블로그 요약 실행
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: python blog_summary.py
