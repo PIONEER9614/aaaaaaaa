@@ -2,7 +2,7 @@ name: 투자 인텔리전스 리포트
 
 on:
   schedule:
-    - cron: "0 3 * * *"   # 매일 오후 12시 KST (UTC 03:00)
+    - cron: "0 13 * * *"  # 매일 오후 10시 KST (UTC 13:00)
   workflow_dispatch:
     inputs:
       report_type:
