@@ -39,6 +39,8 @@ BLOG_RSS_FEEDS = {
     "audistar": "https://rss.blog.naver.com/audistar.xml",
     "doctordk": "https://rss.blog.naver.com/doctordk.xml",
     "going_tothe_moon": "https://rss.blog.naver.com/going_tothe_moon.xml",
+    "chamberine3": "https://rss.blog.naver.com/chamberine3.xml",
+    "gangnam_0208": "https://rss.blog.naver.com/gangnam_0208.xml",
     # 아래에 블로그 ID 추가:
     # "blogger5": "https://rss.blog.naver.com/blogger5.xml",
     # "blogger6": "https://rss.blog.naver.com/blogger6.xml",
