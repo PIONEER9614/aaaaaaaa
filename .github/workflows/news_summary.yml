@@ -17,11 +17,8 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: 한국어 폰트 설치
-        run: sudo apt-get install -y fonts-nanum
-
       - name: 패키지 설치
-        run: pip install feedparser python-dotenv requests groq reportlab
+        run: pip install feedparser python-dotenv requests groq
 
       - name: 뉴스 요약 실행
         env:
