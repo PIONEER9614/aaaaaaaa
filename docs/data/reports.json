@@ -74,7 +74,7 @@
   {
     "id": "stock_20260508_HD현대중공_한화투자",
     "type": "stock",
-    "sector": "조선",
+    "sector": "로봇",
     "company": "HD현대중공업",
     "firm": "한화투자증권",
     "title": "[1Q26 Review] 견조한 상선에 더해지는 DC 엔..",
@@ -122,7 +122,7 @@
   {
     "id": "stock_20260508_HD현대중공_DS투자",
     "type": "stock",
-    "sector": "조선",
+    "sector": "로봇",
     "company": "HD현대중공업",
     "firm": "DS투자증권",
     "title": "본업도 잘하는데 새로운 기회까지 선점",
@@ -134,7 +134,7 @@
   {
     "id": "stock_20260508_넷마블_DS투자",
     "type": "stock",
-    "sector": "기타",
+    "sector": "플랫폼",
     "company": "넷마블",
     "firm": "DS투자증권",
     "title": "예상한 비수기, 성수기 폭은 하반기 신작에 ..",
@@ -314,7 +314,7 @@
   {
     "id": "stock_20260508_넷마블_하나증권",
     "type": "stock",
-    "sector": "기타",
+    "sector": "플랫폼",
     "company": "넷마블",
     "firm": "하나증권",
     "title": "PLC 관리 역량 증명 필요",
@@ -338,7 +338,7 @@
   {
     "id": "stock_20260508_HD현대중공_하나증권",
     "type": "stock",
-    "sector": "조선",
+    "sector": "로봇",
     "company": "HD현대중공업",
     "firm": "하나증권",
     "title": "일회성 요인 없이 실적 서프라이즈",
@@ -350,7 +350,7 @@
   {
     "id": "stock_20260508_HD현대마린_하나증권",
     "type": "stock",
-    "sector": "기타",
+    "sector": "로봇",
     "company": "HD현대마린엔진",
     "firm": "하나증권",
     "title": "비수기에도 이익률 추가 개선",
@@ -434,7 +434,7 @@
   {
     "id": "stock_20260508_HD현대중공_유안타증",
     "type": "stock",
-    "sector": "조선",
+    "sector": "로봇",
     "company": "HD현대중공업",
     "firm": "유안타증권",
     "title": "1Q26 Re: 1H25 이익을 한 분기에 달성",
@@ -554,7 +554,7 @@
   {
     "id": "stock_20260508_넷마블_미래에셋",
     "type": "stock",
-    "sector": "기타",
+    "sector": "플랫폼",
     "company": "넷마블",
     "firm": "미래에셋증권",
     "title": "다소 아쉬운 신작 성과",
@@ -698,7 +698,7 @@
   {
     "id": "stock_20260508_HD현대마린_SK증권",
     "type": "stock",
-    "sector": "기타",
+    "sector": "로봇",
     "company": "HD현대마린엔진",
     "firm": "SK증권",
     "title": "안정적인 이익 개선",
@@ -758,7 +758,7 @@
   {
     "id": "stock_20260508_HD현대중공_SK증권",
     "type": "stock",
-    "sector": "조선",
+    "sector": "로봇",
     "company": "HD현대중공업",
     "firm": "SK증권",
     "title": "안 좋은 사업부문 없고, 더 좋아질 가능성 높..",
@@ -962,7 +962,7 @@
   {
     "id": "stock_20260508_HD현대중공_키움증권",
     "type": "stock",
-    "sector": "조선",
+    "sector": "로봇",
     "company": "HD현대중공업",
     "firm": "키움증권",
     "title": "상선, 군함, 엔진을 다 갖춘 만능 조선사",
@@ -1142,7 +1142,7 @@
   {
     "id": "ind_20260508_하나증권_5월: 계속되는",
     "type": "industry",
-    "sector": "기타",
+    "sector": "건설",
     "company": "[건설] 산업분석",
     "firm": "하나증권",
     "title": "5월: 계속되는 중동 재건 테마",
@@ -1166,7 +1166,7 @@
   {
     "id": "ind_20260508_신한투자_신한 자동차/철",
     "type": "industry",
-    "sector": "기타",
+    "sector": "자동차",
     "company": "[철강금속] 산업분석",
     "firm": "신한투자증권",
     "title": "신한 자동차/철강금속 Weekly(2026.05.08)",
@@ -1178,7 +1178,7 @@
   {
     "id": "ind_20260508_유진투자_현대차/기아 4",
     "type": "industry",
-    "sector": "기타",
+    "sector": "자동차",
     "company": "[자동차] 산업분석",
     "firm": "유진투자증권",
     "title": "현대차/기아 4월 글로벌 판매",
@@ -1838,7 +1838,7 @@
   {
     "id": "stock_20260507_POSCO홀_키움증권",
     "type": "stock",
-    "sector": "기타",
+    "sector": "2차전지",
     "company": "POSCO홀딩스",
     "firm": "키움증권",
     "title": "리튬사업에 동이 튼다!",
@@ -1898,7 +1898,7 @@
   {
     "id": "ind_20260507_하나증권_외국인 순매수 ",
     "type": "industry",
-    "sector": "기타",
+    "sector": "금융",
     "company": "[증권] 산업분석",
     "firm": "하나증권",
     "title": "외국인 순매수 확대 가능성에 주목해야 할 시..",
@@ -1946,7 +1946,7 @@
   {
     "id": "ind_20260507_신한투자_선택과 집중 시",
     "type": "industry",
-    "sector": "기타",
+    "sector": "건설",
     "company": "[건설] 산업분석",
     "firm": "신한투자증권",
     "title": "선택과 집중 시기",
@@ -1994,7 +1994,7 @@
   {
     "id": "ind_20260507_iM증권_패러다임의 확장",
     "type": "industry",
-    "sector": "기타",
+    "sector": "금융",
     "company": "[은행] 산업분석",
     "firm": "iM증권",
     "title": "패러다임의 확장 1Q26 Fundamental Scorecard",
@@ -2054,7 +2054,7 @@
   {
     "id": "ind_20260506_하나증권_외국인 순매수 ",
     "type": "industry",
-    "sector": "기타",
+    "sector": "금융",
     "company": "[증권] 산업분석",
     "firm": "하나증권",
     "title": "외국인 순매수 확대 가능성에 주목해야 할 시..",
@@ -2090,7 +2090,7 @@
   {
     "id": "ind_20260506_하나증권_독일 주둔 미군",
     "type": "industry",
-    "sector": "기타",
+    "sector": "철강",
     "company": "[기타] 산업분석",
     "firm": "하나증권",
     "title": "독일 주둔 미군 일부 철수 보도: 글로벌 국방..",
@@ -2102,7 +2102,7 @@
   {
     "id": "ind_20260506_하나증권_건설 Weekl",
     "type": "industry",
-    "sector": "기타",
+    "sector": "건설",
     "company": "[건설] 산업분석",
     "firm": "하나증권",
     "title": "건설 Weekly: 26년 1분기 실적 정리",
@@ -2114,7 +2114,7 @@
   {
     "id": "ind_20260506_한화투자_EV Track",
     "type": "industry",
-    "sector": "기타",
+    "sector": "2차전지",
     "company": "[기타] 산업분석",
     "firm": "한화투자증권",
     "title": "EV Tracker 80",
@@ -2138,7 +2138,7 @@
   {
     "id": "ind_20260506_유안타증_증권업종 4월 ",
     "type": "industry",
-    "sector": "기타",
+    "sector": "금융",
     "company": "[증권] 산업분석",
     "firm": "유안타증권",
     "title": "증권업종 4월 Monthly",
@@ -2150,7 +2150,7 @@
   {
     "id": "ind_20260506_유안타증_우주는 우리 안",
     "type": "industry",
-    "sector": "기타",
+    "sector": "방산",
     "company": "[기타] 산업분석",
     "firm": "유안타증권",
     "title": "우주는 우리 안에",
@@ -2222,7 +2222,7 @@
   {
     "id": "ind_20260506_유진투자_정유화학 Wee",
     "type": "industry",
-    "sector": "기타",
+    "sector": "에너지",
     "company": "[석유화학] 산업분석",
     "firm": "유진투자증권",
     "title": "정유화학 Weekly - UAE의 OPEC 탈퇴: 배경과 ..",
@@ -2234,7 +2234,7 @@
   {
     "id": "ind_20260506_SK증권_4월 거래대금 ",
     "type": "industry",
-    "sector": "기타",
+    "sector": "금융",
     "company": "[증권] 산업분석",
     "firm": "SK증권",
     "title": "4월 거래대금 지표 견조. 외국인 통합계좌 효..",
@@ -2246,7 +2246,7 @@
   {
     "id": "ind_20260506_유진투자_4월 미국 신차",
     "type": "industry",
-    "sector": "기타",
+    "sector": "자동차",
     "company": "[자동차] 산업분석",
     "firm": "유진투자증권",
     "title": "4월 미국 신차 판매",
@@ -2282,7 +2282,7 @@
   {
     "id": "ind_20260506_iM증권_삼성증권 - I",
     "type": "industry",
-    "sector": "기타",
+    "sector": "금융",
     "company": "[증권] 산업분석",
     "firm": "iM증권",
     "title": "삼성증권 - IBKR 제휴 관련 Comment",
@@ -2330,7 +2330,7 @@
   {
     "id": "ind_20260506_키움증권_그냥 빨리 타",
     "type": "industry",
-    "sector": "기타",
+    "sector": "금융",
     "company": "[증권] 산업분석",
     "firm": "키움증권",
     "title": "그냥 빨리 타",
@@ -2402,7 +2402,7 @@
   {
     "id": "ind_20260504_하나증권_4월 중국 철강",
     "type": "industry",
-    "sector": "기타",
+    "sector": "철강",
     "company": "[철강금속] 산업분석",
     "firm": "하나증권",
     "title": "4월 중국 철강 PMI 위축",
@@ -2414,7 +2414,7 @@
   {
     "id": "ind_20260504_하나증권_유가 상승분을 ",
     "type": "industry",
-    "sector": "기타",
+    "sector": "에너지",
     "company": "[에너지] 산업분석",
     "firm": "하나증권",
     "title": "유가 상승분을 전가하지 못하는 환경",
@@ -2438,7 +2438,7 @@
   {
     "id": "ind_20260504_하나증권_5월에는 시장 ",
     "type": "industry",
-    "sector": "기타",
+    "sector": "금융",
     "company": "[은행] 산업분석",
     "firm": "하나증권",
     "title": "5월에는 시장 대비 은행주 초과상승세 예상",
@@ -2474,7 +2474,7 @@
   {
     "id": "ind_20260504_교보증권_Re-NEWab",
     "type": "industry",
-    "sector": "기타",
+    "sector": "에너지",
     "company": "[에너지] 산업분석",
     "firm": "교보증권",
     "title": "Re-NEWable weekly [5월 1주차]",
@@ -2558,7 +2558,7 @@
   {
     "id": "ind_20260504_유진투자_Next Ene",
     "type": "industry",
-    "sector": "기타",
+    "sector": "에너지",
     "company": "[에너지] 산업분석",
     "firm": "유진투자증권",
     "title": "Next Energy(Power & Battery Weekly) - 영화..",
@@ -2570,7 +2570,7 @@
   {
     "id": "ind_20260504_유진투자_건설/부동산 W",
     "type": "industry",
-    "sector": "기타",
+    "sector": "건설",
     "company": "[건설] 산업분석",
     "firm": "유진투자증권",
     "title": "건설/부동산 Weekly - 양도세 중과 유예 종료..",
@@ -2606,7 +2606,7 @@
   {
     "id": "ind_20260504_iM증권_Steel We",
     "type": "industry",
-    "sector": "기타",
+    "sector": "철강",
     "company": "[철강금속] 산업분석",
     "firm": "iM증권",
     "title": "Steel Weekly (5월 1주차)",
@@ -2642,7 +2642,7 @@
   {
     "id": "ind_20260504_신한투자_신한 자동차/철",
     "type": "industry",
-    "sector": "기타",
+    "sector": "자동차",
     "company": "[철강금속] 산업분석",
     "firm": "신한투자증권",
     "title": "신한 자동차/철강금속 Weekly(2026.04.30)",
@@ -2654,7 +2654,7 @@
   {
     "id": "ind_20260504_iM증권_기름뿜뿜 Wee",
     "type": "industry",
-    "sector": "기타",
+    "sector": "에너지",
     "company": "[에너지] 산업분석",
     "firm": "iM증권",
     "title": "기름뿜뿜 Weekly: UAE, OPEC 탈퇴와 에너지 ..",
@@ -2702,7 +2702,7 @@
   {
     "id": "ind_20260430_하나증권_따라 살 것인가",
     "type": "industry",
-    "sector": "기타",
+    "sector": "에너지",
     "company": "[에너지] 산업분석",
     "firm": "하나증권",
     "title": "따라 살 것인가, 더 좋은 기회를 노릴 것인가",
@@ -2750,7 +2750,7 @@
   {
     "id": "ind_20260430_유진투자_시험대에 오른 ",
     "type": "industry",
-    "sector": "기타",
+    "sector": "방산",
     "company": "[항공운송] 산업분석",
     "firm": "유진투자증권",
     "title": "시험대에 오른 항공사들",
@@ -2774,7 +2774,7 @@
   {
     "id": "ind_20260430_신한투자_3월 은행 여수",
     "type": "industry",
-    "sector": "기타",
+    "sector": "금융",
     "company": "[은행] 산업분석",
     "firm": "신한투자증권",
     "title": "3월 은행 여수신금리 동향",
@@ -2786,7 +2786,7 @@
   {
     "id": "ind_20260429_한화투자_3월 은행 금리",
     "type": "industry",
-    "sector": "기타",
+    "sector": "금융",
     "company": "[은행] 산업분석",
     "firm": "한화투자증권",
     "title": "3월 은행 금리: 당분간 긍정적인 흐름을 전망",
@@ -2810,7 +2810,7 @@
   {
     "id": "ind_20260429_신한투자_General ",
     "type": "industry",
-    "sector": "기타",
+    "sector": "자동차",
     "company": "[자동차] 산업분석",
     "firm": "신한투자증권",
     "title": "General Motors(GM): 2026년 1분기 실적 분석",
@@ -2834,7 +2834,7 @@
   {
     "id": "ind_20260429_하나증권_터널의 끝을 향",
     "type": "industry",
-    "sector": "기타",
+    "sector": "금융",
     "company": "[보험] 산업분석",
     "firm": "하나증권",
     "title": "터널의 끝을 향해",
@@ -2846,7 +2846,7 @@
   {
     "id": "ind_20260429_하나증권_알아두면 쓸모있",
     "type": "industry",
-    "sector": "기타",
+    "sector": "플랫폼",
     "company": "[기타] 산업분석",
     "firm": "하나증권",
     "title": "알아두면 쓸모있는 콘텐츠 캘린더",
