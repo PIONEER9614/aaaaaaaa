@@ -314,7 +314,11 @@ def build_pdf(news_data, hot_topics, overall_analysis, date_str, label):
             summary3 = a.get("summary3", "")
 
             story.append(Spacer(1, 0.15*cm))
-            story.append(Paragraph(f"▶ {title}", styles["art_title"]))
+            link = a.get("link", "")
+            if link:
+                story.append(Paragraph(f'<a href="{link}" color="#1a6fb5"><u>▶ {title}</u></a>', styles["art_title"]))
+            else:
+                story.append(Paragraph(f"▶ {title}", styles["art_title"]))
 
             if summary3:
                 for line in summary3.split("\n"):
