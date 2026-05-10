@@ -128,26 +128,30 @@ def match_journal(journal_name_or_issn):
     return None
 
 # ── CORE API ──────────────────────────────────────────────────────────────────
-def search_core_journal(journal_name, page_size=30, offset=0):
-    """CORE API: 학술지명으로 OA 논문 검색"""
+def search_core_journal(journal_name, page_size=50, offset=0, year=None):
+    """CORE API: 학술지명으로 OA 논문 검색 (year 지정 시 해당 연도만)"""
     url = "https://api.core.ac.uk/v3/search/works"
     headers = {**HEADERS, "Authorization": f"Bearer {CORE_KEY}"}
-    params = {
-        "q": f'journals.title:"{journal_name}"',
-        "limit": page_size,
-        "offset": offset,
-    }
-    try:
-        r = requests.get(url, params=params, headers=headers, timeout=20)
-        if r.ok:
-            data = r.json()
-            total = data.get("totalHits", 0)
-            results = data.get("results", [])
-            print(f"    CORE: 총 {total}편 (이번 {len(results)}편)")
-            return results, total
-        print(f"  [CORE {r.status_code}] {r.text[:120]}")
-    except Exception as e:
-        print(f"  [CORE 오류] {e}")
+    q = f'journals.title:"{journal_name}"'
+    if year:
+        q += f" AND yearPublished:{year}"
+    params = {"q": q, "limit": page_size, "offset": offset}
+    for attempt in range(3):
+        try:
+            r = requests.get(url, params=params, headers=headers, timeout=25)
+            if r.ok:
+                data = r.json()
+                total = data.get("totalHits", 0)
+                results = data.get("results", [])
+                print(f"    CORE: 총 {total}편 (이번 {len(results)}편)")
+                return results, total
+            print(f"  [CORE {r.status_code}] {r.text[:120]}")
+            return [], 0
+        except Exception as e:
+            if attempt < 2:
+                time.sleep(3)
+            else:
+                print(f"  [CORE 오류] {e}")
     return [], 0
 
 # ── 텔레그램 ─────────────────────────────────────────────────────────────────
@@ -164,20 +168,31 @@ def send_telegram(text):
         pass
 
 # ── 메인 ─────────────────────────────────────────────────────────────────────
-def main():
+def main(year_filter=None):
     DOWNLOAD_DIR.mkdir(exist_ok=True)
     history = load_history()
     downloaded = set(history["downloaded"])
     new_papers = []
 
-    print(f"=== 논문 수집 v5: {datetime.now().strftime('%Y-%m-%d %H:%M')} ===")
+    year_label = f" [{year_filter}년]" if year_filter else ""
+    print(f"=== 논문 수집 v5{year_label}: {datetime.now().strftime('%Y-%m-%d %H:%M')} ===")
     print(f"기존 수집: {len(downloaded)}편\n")
 
     # ── 1) CORE API: 학술지명 기반 수집 ──
     print("[CORE API 수집]")
     for journal in TARGET_JOURNALS:
         print(f"  {journal['name']}")
-        results, _ = search_core_journal(journal["name"], page_size=50)
+        results, total = search_core_journal(journal["name"], page_size=100, year=year_filter)
+        # 100편 초과 시 페이지 추가 수집
+        all_results = list(results)
+        offset = 100
+        while year_filter and offset < total:
+            more, _ = search_core_journal(journal["name"], page_size=100, offset=offset, year=year_filter)
+            if not more:
+                break
+            all_results.extend(more)
+            offset += 100
+        results = all_results
         saved_count = 0
         for item in results:
             pid     = str(item.get("id", ""))
@@ -270,4 +285,7 @@ def main():
         send_telegram("\n".join(lines))
 
 if __name__ == "__main__":
-    main()
+    # python paper_collector.py 2025  → 2025년 논문만
+    # python paper_collector.py       → 최신 50편씩
+    year_arg = int(sys.argv[1]) if len(sys.argv) > 1 else None
+    main(year_filter=year_arg)
