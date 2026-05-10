@@ -23,26 +23,26 @@
     /* 3단 레이아웃 */
     .layout {
       display: grid;
-      grid-template-columns: 200px 1fr 320px;
+      grid-template-columns: 190px 1fr 520px;
       height: calc(100vh - 52px);
     }
 
-    /* ── 왼쪽: 섹터 필터 사이드바 ── */
+    /* ── 왼쪽: 섹터 필터 ── */
     .sidebar {
       background: #1a1a2e;
       border-right: 1px solid #2a2a4a;
       overflow-y: auto;
       padding: 14px 12px;
     }
+    .sidebar h3 { font-size: 0.67rem; color: #555; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
     .sidebar-section { margin-bottom: 20px; }
-    .sidebar h3 { font-size: 0.68rem; color: #555; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
 
     .sector-btn {
       display: flex; align-items: center; width: 100%;
       background: transparent; border: 1px solid transparent;
       color: #999; padding: 6px 8px; margin-bottom: 2px;
       border-radius: 6px; cursor: pointer; font-size: 0.8rem;
-      transition: all 0.15s; text-align: left;
+      transition: all 0.15s;
     }
     .sector-btn:hover { background: #1e2a45; color: #ddd; }
     .sector-btn.active { background: #0f3460; border-color: #4a90d9; color: #fff; }
@@ -54,51 +54,61 @@
       font-size: 0.72rem; cursor: pointer;
     }
     .event-item:hover { background: #1a2035; }
-    .event-item .event-date { color: #c0392b; font-weight: bold; font-size: 0.68rem; }
+    .event-item .event-date { color: #c0392b; font-weight: bold; font-size: 0.67rem; }
     .event-item .event-name { color: #ccc; margin-top: 1px; }
 
     /* ── 가운데: 캘린더 ── */
     .calendar-wrap {
       background: #0f1117;
-      padding: 14px;
+      padding: 12px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
     }
+    #calendar { flex: 1; min-height: 0; }
 
     /* FullCalendar 다크 스타일 */
-    #calendar { flex: 1; min-height: 0; }
     .fc { height: 100% !important; color: #ccc; }
     .fc-view-harness { height: 100% !important; }
+    .fc-toolbar { margin-bottom: 8px !important; }
     .fc-toolbar-title { color: #fff !important; font-size: 0.95rem !important; }
     .fc-button {
       background: #1a1a2e !important; border: 1px solid #2a2a4a !important;
-      color: #aaa !important; font-size: 0.75rem !important;
+      color: #aaa !important; font-size: 0.74rem !important;
       padding: 3px 8px !important; border-radius: 5px !important;
     }
     .fc-button:hover { background: #0f3460 !important; color: #fff !important; }
     .fc-day-today { background: rgba(74,144,217,0.08) !important; }
     .fc-day-today .fc-daygrid-day-number { color: #4a90d9 !important; font-weight: bold; }
-    .fc-daygrid-day-number { color: #666; font-size: 0.72rem; padding: 3px 5px !important; }
+    .fc-daygrid-day-number { color: #666; font-size: 0.7rem; padding: 2px 4px !important; }
     .fc-col-header-cell { background: #12172a; }
-    .fc-col-header-cell-cushion { color: #555; font-size: 0.7rem; text-transform: uppercase; padding: 4px !important; }
+    .fc-col-header-cell-cushion { color: #555; font-size: 0.68rem; text-transform: uppercase; padding: 4px !important; }
     .fc-scrollgrid { border-color: #1e2a3a !important; }
     .fc-scrollgrid-sync-table { height: 100% !important; }
     .fc-scrollgrid td, .fc-scrollgrid th { border-color: #1e2a3a !important; }
     .fc-daygrid-day { cursor: pointer; transition: background 0.15s; }
     .fc-daygrid-day:hover { background: rgba(74,144,217,0.05) !important; }
-    .fc-daygrid-day.fc-day-selected { background: rgba(74,144,217,0.15) !important; outline: 1px solid #4a90d9; }
+    .fc-daygrid-day.fc-day-selected { background: rgba(74,144,217,0.14) !important; outline: 1px solid #3a7bc8; }
     .fc-event {
-      border-radius: 2px !important; font-size: 0.62rem !important;
-      padding: 0 3px !important; cursor: pointer !important;
-      border: none !important; margin-bottom: 1px !important;
-      line-height: 1.6 !important;
+      border-radius: 2px !important; font-size: 0.6rem !important;
+      padding: 0 3px !important; border: none !important;
+      margin-bottom: 1px !important; line-height: 1.55 !important;
+      cursor: pointer !important;
     }
     .fc-daygrid-event-harness { margin-bottom: 1px !important; }
-    .fc-daygrid-more-link { color: #4a90d9 !important; font-size: 0.62rem !important; }
-    .fc-toolbar { margin-bottom: 8px !important; }
+    .fc-daygrid-more-link { color: #4a90d9 !important; font-size: 0.6rem !important; }
 
-    /* ── 오른쪽: 날짜 상세 패널 ── */
+    /* 날짜 수 배지 */
+    .day-count-badge {
+      display: inline-block;
+      background: #1e3a5f; color: #5a9fd4;
+      border-radius: 8px; padding: 0 5px;
+      font-size: 0.58rem; font-weight: 700;
+      line-height: 1.6; margin-left: 3px;
+      vertical-align: middle;
+    }
+
+    /* ── 오른쪽: 상세 패널 ── */
     .detail-panel {
       border-left: 1px solid #2a2a4a;
       background: #0d1117;
@@ -107,58 +117,81 @@
       overflow: hidden;
     }
     .detail-header {
-      padding: 14px 16px 10px;
+      padding: 12px 14px 10px;
       border-bottom: 1px solid #1e2a3a;
       flex-shrink: 0;
     }
-    .detail-header-top {
+    .detail-header-row {
       display: flex; align-items: center; justify-content: space-between;
       margin-bottom: 4px;
     }
     .detail-title { font-size: 0.9rem; color: #fff; font-weight: 600; }
-    .detail-count { font-size: 0.72rem; color: #555; }
-    .detail-hint { font-size: 0.72rem; color: #444; }
+    .detail-meta { font-size: 0.72rem; color: #555; }
     .detail-clear {
-      font-size: 0.72rem; color: #4a90d9; cursor: pointer;
-      background: none; border: none; display: none;
+      font-size: 0.72rem; color: #4a90d9;
+      background: none; border: none; cursor: pointer; display: none;
     }
     .detail-clear:hover { text-decoration: underline; }
 
+    /* 섹터 요약 바 */
+    .sector-summary {
+      display: flex; flex-wrap: wrap; gap: 5px;
+      padding: 8px 14px;
+      border-bottom: 1px solid #1a2030;
+      flex-shrink: 0;
+    }
+    .sector-chip {
+      display: flex; align-items: center; gap: 4px;
+      background: #12172a; border-radius: 10px;
+      padding: 2px 8px; font-size: 0.68rem; color: #aaa;
+    }
+    .sector-chip-dot { width: 6px; height: 6px; border-radius: 50%; }
+    .sector-chip-count { font-weight: 700; }
+
+    /* 그리드 패널 */
     .detail-body { flex: 1; overflow-y: auto; padding: 10px 12px; }
 
-    /* 리포트 리스트 아이템 */
-    .report-item {
-      display: flex; align-items: flex-start; gap: 10px;
-      padding: 10px; margin-bottom: 6px;
-      background: #1a1a2e; border: 1px solid #1e2a3a;
-      border-radius: 8px; cursor: pointer;
-      transition: border-color 0.15s;
+    .report-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 7px;
     }
-    .report-item:hover { border-color: #4a90d9; }
-    .report-item-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
-    .report-item-body { flex: 1; min-width: 0; }
-    .report-item-sector { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 2px; }
-    .report-item-main { font-size: 0.82rem; color: #fff; font-weight: 600; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .report-item-sub { font-size: 0.72rem; color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .report-item-badge {
-      font-size: 0.6rem; color: #777; background: #12172a;
-      border-radius: 3px; padding: 1px 5px; flex-shrink: 0;
-      margin-top: 2px; align-self: flex-start;
+    .report-card {
+      background: #1a1a2e; border: 1px solid #1e2a3a;
+      border-radius: 7px; padding: 9px 10px;
+      cursor: pointer; transition: border-color 0.15s;
+      min-width: 0;
+    }
+    .report-card:hover { border-color: #4a90d9; }
+    .report-card-sector { font-size: 0.58rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; margin-bottom: 3px; }
+    .report-card-company { font-size: 0.78rem; color: #eee; font-weight: 600; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .report-card-firm { font-size: 0.65rem; color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .report-card-title { font-size: 0.62rem; color: #555; margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .report-card-badge {
+      display: inline-block; margin-top: 4px;
+      font-size: 0.55rem; color: #888; background: #12172a;
+      border-radius: 3px; padding: 1px 4px;
     }
 
-    /* 카드 그리드 (기본 전체 뷰) */
-    .cards-grid { display: grid; grid-template-columns: 1fr; gap: 6px; }
-    .card {
-      background: #1a1a2e; border: 1px solid #1e2a3a;
-      border-radius: 8px; padding: 10px 12px;
-      cursor: pointer; transition: border-color 0.15s;
+    /* 기본 상태(날짜 미선택) - 넓은 카드 */
+    .report-grid-default {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 7px;
     }
-    .card:hover { border-color: #4a90d9; }
-    .card-top { display: flex; align-items: center; gap: 6px; margin-bottom: 3px; }
-    .card-sector-tag { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; }
-    .card-date { font-size: 0.65rem; color: #555; margin-left: auto; }
-    .card-main { font-size: 0.82rem; color: #fff; font-weight: 600; margin-bottom: 2px; }
-    .card-firm { font-size: 0.7rem; color: #666; }
+    .report-card-default {
+      background: #1a1a2e; border: 1px solid #1e2a3a;
+      border-radius: 7px; padding: 9px 12px;
+      cursor: pointer; transition: border-color 0.15s;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .report-card-default:hover { border-color: #4a90d9; }
+    .report-card-default-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .report-card-default-body { min-width: 0; }
+    .report-card-default-top { font-size: 0.58rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; margin-bottom: 2px; }
+    .report-card-default-main { font-size: 0.8rem; color: #eee; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .report-card-default-sub { font-size: 0.65rem; color: #666; }
+    .report-card-default-date { font-size: 0.62rem; color: #555; margin-left: auto; flex-shrink: 0; }
 
     /* 모달 */
     .modal-overlay {
@@ -180,7 +213,7 @@
     .modal-body b { color: #999; }
     .modal-body a { color: #4a90d9; }
 
-    .empty-msg { text-align: center; color: #333; padding: 30px 16px; font-size: 0.8rem; line-height: 1.8; }
+    .empty-msg { text-align: center; color: #333; padding: 30px 16px; font-size: 0.8rem; }
   </style>
 </head>
 <body>
@@ -201,11 +234,10 @@
       </button>
       <div id="sector-buttons"></div>
     </div>
-
     <div class="sidebar-section">
       <h3>📅 증시 일정</h3>
       <div id="market-events-list">
-        <div style="color:#333;font-size:0.75rem;padding:6px 0">로딩 중...</div>
+        <div style="color:#333;font-size:0.75rem;padding:4px 0">로딩 중...</div>
       </div>
     </div>
   </aside>
@@ -215,18 +247,21 @@
     <div id="calendar"></div>
   </div>
 
-  <!-- 오른쪽: 날짜 상세 패널 -->
+  <!-- 오른쪽: 상세 패널 -->
   <aside class="detail-panel">
     <div class="detail-header">
-      <div class="detail-header-top">
-        <span class="detail-title" id="detail-title">전체 리포트</span>
-        <button class="detail-clear" id="detail-clear" onclick="clearDateFilter()">✕ 해제</button>
+      <div class="detail-header-row">
+        <span class="detail-title" id="detail-title">최신 리포트</span>
+        <button class="detail-clear" id="detail-clear" onclick="clearDateFilter()">✕ 날짜 해제</button>
       </div>
-      <div style="display:flex;align-items:center;justify-content:space-between">
-        <span class="detail-hint" id="detail-hint">날짜를 클릭하면 해당 날 리포트가 표시됩니다</span>
-        <span class="detail-count" id="detail-count"></span>
+      <div class="detail-header-row">
+        <span class="detail-meta" id="detail-hint">날짜를 클릭하면 해당 날 리포트를 봅니다</span>
+        <span class="detail-meta" id="detail-count"></span>
       </div>
     </div>
+    <!-- 섹터별 수량 요약 -->
+    <div class="sector-summary" id="sector-summary"></div>
+    <!-- 리포트 그리드 -->
     <div class="detail-body" id="detail-body">
       <div class="empty-msg">로딩 중...</div>
     </div>
@@ -246,15 +281,16 @@
 
 <script>
 const SECTOR_COLORS = {
-  "반도체": "#4a90d9", "로봇": "#2ecc71", "방산": "#e74c3c",
-  "조선": "#f39c12",   "2차전지": "#9b59b6", "바이오": "#1abc9c",
-  "플랫폼": "#e67e22", "자동차": "#d35400", "금융": "#27ae60",
-  "건설": "#7f8c8d",   "철강": "#95a5a6",   "에너지": "#f1c40f",
+  "반도체":"#4a90d9","로봇":"#2ecc71","방산":"#e74c3c",
+  "조선":"#f39c12","2차전지":"#9b59b6","바이오":"#1abc9c",
+  "플랫폼":"#e67e22","자동차":"#d35400","금융":"#27ae60",
+  "건설":"#7f8c8d","철강":"#95a5a6","에너지":"#f1c40f",
 };
 
 let allReports = [], allEvents = [], calendar;
 let currentSector = "전체", selectedDate = null, selectedDayEl = null;
 
+// ── 데이터 로드 ────────────────────────────────────────────────────────────
 async function loadData() {
   try {
     const [rRes, eRes] = await Promise.all([
@@ -283,10 +319,9 @@ function getFiltered() {
 // ── 섹터 버튼 ──────────────────────────────────────────────────────────────
 function setupSectorButtons() {
   const sectors = [...new Set(allReports.map(r => r.sector))].filter(Boolean).sort();
-  const el = document.getElementById("sector-buttons");
-  el.innerHTML = sectors.map(s => {
+  document.getElementById("sector-buttons").innerHTML = sectors.map(s => {
     const c = SECTOR_COLORS[s] || "#888";
-    return `<button class="sector-btn" onclick="filterSector('${s}', this)">
+    return `<button class="sector-btn" onclick="filterSector('${s}',this)">
       <span class="sector-dot" style="background:${c}"></span>${s}
     </button>`;
   }).join("");
@@ -305,6 +340,10 @@ function filterSector(sector, btn) {
 
 // ── 캘린더 ─────────────────────────────────────────────────────────────────
 function setupCalendar() {
+  // 날짜별 리포트 수 집계
+  const countByDate = {};
+  allReports.forEach(r => { countByDate[r.date] = (countByDate[r.date] || 0) + 1; });
+
   const calEvents = allReports.map(r => ({
     title: r.company,
     date: r.date,
@@ -314,7 +353,7 @@ function setupCalendar() {
   const mktEvents = allEvents.map(e => ({
     title: "⚡ " + e.name,
     date: e.date,
-    color: "#8b1a1a",
+    color: "#7b1a1a",
     textColor: "#ff8080",
     extendedProps: { type: "market_event", ...e },
   }));
@@ -323,11 +362,25 @@ function setupCalendar() {
     initialView: "dayGridMonth",
     locale: "ko",
     height: "100%",
-    expandRows: true,          // 행 높이를 컨테이너에 맞게 확장
-    dayMaxEvents: 4,           // 칸당 최대 4개 표시
+    expandRows: true,
+    dayMaxEvents: 3,
     events: [...calEvents, ...mktEvents],
 
-    // 날짜 칸 클릭
+    // 날짜 칸에 리포트 수 배지 추가
+    dayCellDidMount: (info) => {
+      const d = info.date.toISOString().split("T")[0];
+      const cnt = countByDate[d];
+      if (cnt) {
+        const num = info.el.querySelector(".fc-daygrid-day-number");
+        if (num) {
+          const badge = document.createElement("span");
+          badge.className = "day-count-badge";
+          badge.textContent = cnt;
+          num.appendChild(badge);
+        }
+      }
+    },
+
     dateClick: (info) => {
       const d = info.dateStr;
       if (selectedDate === d) { clearDateFilter(); return; }
@@ -336,11 +389,10 @@ function setupCalendar() {
       selectedDayEl = info.dayEl;
       info.dayEl.classList.add("fc-day-selected");
       document.getElementById("detail-clear").style.display = "inline";
-      document.getElementById("detail-hint").style.display = "none";
+      document.getElementById("detail-hint").textContent = d + " 리포트";
       renderDetail();
     },
 
-    // 이벤트 클릭
     eventClick: (info) => {
       info.jsEvent.stopPropagation();
       const p = info.event.extendedProps;
@@ -351,7 +403,6 @@ function setupCalendar() {
       }
     },
 
-    // "+N more" 클릭 → 날짜 필터로 처리
     moreLinkClick: (info) => {
       const d = info.date.toISOString().split("T")[0];
       if (selectedDayEl) selectedDayEl.classList.remove("fc-day-selected");
@@ -359,7 +410,7 @@ function setupCalendar() {
       selectedDayEl = info.allSegs[0]?.el?.closest(".fc-daygrid-day") || null;
       if (selectedDayEl) selectedDayEl.classList.add("fc-day-selected");
       document.getElementById("detail-clear").style.display = "inline";
-      document.getElementById("detail-hint").style.display = "none";
+      document.getElementById("detail-hint").textContent = d + " 리포트";
       renderDetail();
       return "stop";
     },
@@ -369,82 +420,97 @@ function setupCalendar() {
   calendar.render();
 }
 
-// ── 날짜 필터 해제 ─────────────────────────────────────────────────────────
 function clearDateFilter() {
   selectedDate = null;
   if (selectedDayEl) selectedDayEl.classList.remove("fc-day-selected");
   selectedDayEl = null;
   document.getElementById("detail-clear").style.display = "none";
-  document.getElementById("detail-hint").style.display = "inline";
+  document.getElementById("detail-hint").textContent = "날짜를 클릭하면 해당 날 리포트를 봅니다";
   renderDetail();
 }
 
 // ── 오른쪽 패널 렌더링 ─────────────────────────────────────────────────────
 function renderDetail() {
   const reports = getFiltered();
-  const titleEl = document.getElementById("detail-title");
-  const countEl = document.getElementById("detail-count");
-  const body    = document.getElementById("detail-body");
 
-  titleEl.textContent = selectedDate
-    ? selectedDate + " 리포트"
-    : (currentSector === "전체" ? "최신 리포트" : currentSector + " 리포트");
-  countEl.textContent = reports.length + "개";
+  // 제목
+  document.getElementById("detail-title").textContent =
+    selectedDate ? selectedDate : (currentSector === "전체" ? "최신 리포트" : currentSector + " 리포트");
+  document.getElementById("detail-count").textContent = reports.length + "개";
 
+  // 섹터별 수량 요약
+  renderSectorSummary(reports);
+
+  const body = document.getElementById("detail-body");
   if (!reports.length) {
     body.innerHTML = '<div class="empty-msg">리포트가 없습니다</div>';
     return;
   }
 
-  // 날짜 선택 → 리스트, 미선택 → 카드
   if (selectedDate) {
-    body.innerHTML = reports.map(r => reportItem(r)).join("");
+    // 날짜 선택 → 4열 그리드
+    body.innerHTML = `<div class="report-grid">${reports.map(r => reportCard4(r)).join("")}</div>`;
   } else {
-    body.innerHTML = `<div class="cards-grid">${reports.slice(0, 80).map(r => reportCard(r)).join("")}</div>`;
+    // 기본 → 2열 넓은 카드
+    body.innerHTML = `<div class="report-grid-default">${reports.slice(0, 80).map(r => reportCardDefault(r)).join("")}</div>`;
   }
 }
 
-function reportItem(r) {
+function renderSectorSummary(reports) {
+  const counts = {};
+  reports.forEach(r => { counts[r.sector] = (counts[r.sector] || 0) + 1; });
+  const el = document.getElementById("sector-summary");
+  el.innerHTML = Object.entries(counts)
+    .sort((a,b) => b[1]-a[1])
+    .map(([s, n]) => {
+      const c = SECTOR_COLORS[s] || "#888";
+      return `<div class="sector-chip">
+        <span class="sector-chip-dot" style="background:${c}"></span>
+        ${s} <span class="sector-chip-count" style="color:${c}">${n}</span>
+      </div>`;
+    }).join("");
+}
+
+// 4열 작은 카드 (날짜 선택 시)
+function reportCard4(r) {
   const c = SECTOR_COLORS[r.sector] || "#888";
   const badge = r.type === "industry" ? "산업" : "종목";
-  return `<div class="report-item" onclick='openReportModal(${escJson(r)})'>
-    <div class="report-item-dot" style="background:${c}"></div>
-    <div class="report-item-body">
-      <div class="report-item-sector" style="color:${c}">${r.sector}</div>
-      <div class="report-item-main">${r.company} · ${r.firm}</div>
-      <div class="report-item-sub">${r.title || ""}</div>
-    </div>
-    <div class="report-item-badge">${badge}</div>
+  return `<div class="report-card" onclick='openReportModal(${escJson(r)})'>
+    <div class="report-card-sector" style="color:${c}">${r.sector}</div>
+    <div class="report-card-company">${r.company}</div>
+    <div class="report-card-firm">${r.firm}</div>
+    <div class="report-card-title">${r.title || ""}</div>
+    <span class="report-card-badge">${badge}</span>
   </div>`;
 }
 
-function reportCard(r) {
+// 2열 기본 카드
+function reportCardDefault(r) {
   const c = SECTOR_COLORS[r.sector] || "#888";
-  return `<div class="card" onclick='openReportModal(${escJson(r)})'>
-    <div class="card-top">
-      <span class="card-sector-tag" style="color:${c}">${r.sector}</span>
-      <span class="card-date">${r.date}</span>
+  return `<div class="report-card-default" onclick='openReportModal(${escJson(r)})'>
+    <div class="report-card-default-dot" style="background:${c}"></div>
+    <div class="report-card-default-body">
+      <div class="report-card-default-top" style="color:${c}">${r.sector}</div>
+      <div class="report-card-default-main">${r.company} · ${r.firm}</div>
+      <div class="report-card-default-sub">${(r.title||"").substring(0,36)}</div>
     </div>
-    <div class="card-main">${r.company} · ${r.firm}</div>
-    <div class="card-firm">${(r.title || "").substring(0, 42)}</div>
+    <div class="report-card-default-date">${r.date}</div>
   </div>`;
 }
 
-function escJson(r) {
-  return JSON.stringify(r).replace(/"/g, "&quot;");
-}
+function escJson(r) { return JSON.stringify(r).replace(/"/g,"&quot;"); }
 
 // ── 증시 일정 ──────────────────────────────────────────────────────────────
 function renderMarketEvents() {
   const today = new Date().toISOString().split("T")[0];
-  const upcoming = allEvents.filter(e => e.date >= today).sort((a,b) => a.date.localeCompare(b.date)).slice(0, 8);
-  const el = document.getElementById("market-events-list");
-  el.innerHTML = upcoming.length
+  const upcoming = allEvents.filter(e => e.date >= today)
+    .sort((a,b) => a.date.localeCompare(b.date)).slice(0,8);
+  document.getElementById("market-events-list").innerHTML = upcoming.length
     ? upcoming.map(e => `
-        <div class="event-item" onclick="showModal('${e.name}','<b>날짜:</b> ${e.date}<br><br>${(e.description||"").replace(/'/g,"\\'")}')">
-          <div class="event-date">${e.date}</div>
-          <div class="event-name">${e.name}</div>
-        </div>`).join("")
+      <div class="event-item" onclick="showModal('${e.name}','<b>날짜:</b> ${e.date}<br><br>${(e.description||"").replace(/'/g,"\\'")}')">
+        <div class="event-date">${e.date}</div>
+        <div class="event-name">${e.name}</div>
+      </div>`).join("")
     : '<div style="color:#333;font-size:0.75rem">일정 없음</div>';
 }
 
@@ -456,7 +522,7 @@ function openReportModal(r) {
   const link    = r.link ? `<br><br><a href="${r.link}" target="_blank">원문 보기 →</a>` : "";
   showModal(
     `[${r.sector}] ${r.company} — ${r.firm}`,
-    `<b>날짜:</b> ${r.date}<br><b>리포트:</b> ${r.title || "-"}<br>${price}${summary}${link}`
+    `<b>날짜:</b> ${r.date}<br><b>리포트:</b> ${r.title||"-"}<br>${price}${summary}${link}`
   );
 }
 function showModal(title, body) {
@@ -465,7 +531,9 @@ function showModal(title, body) {
   document.getElementById("modal").classList.add("open");
 }
 function closeModal() { document.getElementById("modal").classList.remove("open"); }
-document.getElementById("modal").addEventListener("click", e => { if (e.target === e.currentTarget) closeModal(); });
+document.getElementById("modal").addEventListener("click", e => {
+  if (e.target === e.currentTarget) closeModal();
+});
 
 loadData();
 </script>
