@@ -133,4 +133,18 @@ def main():
     print("완료!")
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as e:
+        print(f"[치명적 오류] {e}")
+        import traceback
+        traceback.print_exc()
+        # 오류 발생해도 텔레그램으로 알림
+        try:
+            requests.post(
+                f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
+                json={"chat_id": CHAT_ID, "text": f"⚠️ 뉴스 요약 오류\n{str(e)[:200]}"},
+                timeout=10,
+            )
+        except:
+            pass
