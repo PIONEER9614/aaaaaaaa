@@ -220,15 +220,14 @@ def build_pdf(news_data, analysis, date_str, label):
 
 # ── 텔레그램 ─────────────────────────────────────────────────────────────────
 def send_text(text):
-    try:
-        requests.post(
-            f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
-            json={"chat_id": CHAT_ID, "text": text[:4000],
-                  "parse_mode": "HTML", "disable_web_page_preview": True},
-            timeout=15,
-        )
-    except Exception as e:
-        print(f"[텔레그램 텍스트] {e}")
+    print(f"[텔레그램 전송] 토큰길이={len(BOT_TOKEN)} chat={CHAT_ID}")
+    r = requests.post(
+        f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
+        json={"chat_id": CHAT_ID, "text": text[:4000],
+              "parse_mode": "HTML", "disable_web_page_preview": True},
+        timeout=15,
+    )
+    print(f"[텔레그램 응답] {r.status_code} {r.text[:150]}")
 
 def send_pdf(buf, filename, caption=""):
     try:
@@ -249,6 +248,15 @@ def main():
     label    = "🌅 오전" if now.hour < 12 else "🌆 오후"
     date_str = now.strftime("%Y년 %m월 %d일")
     print(f"=== 뉴스 분석 시작: {date_str} {now.strftime('%H:%M')} ===")
+    print(f"BOT_TOKEN 길이: {len(BOT_TOKEN)}, CHAT_ID: {CHAT_ID}, GROQ_KEY 길이: {len(GROQ_KEY)}")
+
+    # 시작 알림 (연결 확인용)
+    r0 = requests.post(
+        f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
+        json={"chat_id": CHAT_ID, "text": f"⏳ 뉴스 분석 시작 중... {date_str} {label}"},
+        timeout=10,
+    )
+    print(f"[시작 알림] {r0.status_code} {r0.text[:100]}")
 
     # 1) 수집
     news_data = {}
