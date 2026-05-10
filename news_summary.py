@@ -1,19 +1,30 @@
 """
-뉴스 요약 시스템
-- 한국경제(경제/증권), Yahoo Finance
-- 평일 오전 8시 + 오후 6시 텔레그램 텍스트 전송
+뉴스 종합 분석 시스템
+- 한국경제(경제/증권) + Yahoo Finance 기사 수집
+- 전체 기사 내용 기반 종합 시장 분석 (AI)
+- PDF로 생성해서 텔레그램 전송
+- 평일 오전 8시 + 오후 6시 자동 실행
 """
 
-import os, re, time, requests, feedparser
+import os, re, io, time, requests, feedparser
 from groq import Groq
 from datetime import datetime, timedelta, timezone
 from dotenv import load_dotenv
+from bs4 import BeautifulSoup
+
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, HRFlowable
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.lib.pagesizes import A4
+from reportlab.lib.units import cm
+from reportlab.lib import colors
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
 
 load_dotenv()
 
-BOT_TOKEN  = (os.getenv("TELEGRAM_BOT_TOKEN") or os.getenv("ARTICLE_BOT_TOKEN") or "").strip()
-CHAT_ID    = (os.getenv("TELEGRAM_CHAT_ID") or "").strip()
-GROQ_KEY   = (os.getenv("GROQ_API_KEY") or "").strip()
+BOT_TOKEN = (os.getenv("TELEGRAM_BOT_TOKEN") or os.getenv("ARTICLE_BOT_TOKEN") or "").strip()
+CHAT_ID   = (os.getenv("TELEGRAM_CHAT_ID") or "").strip()
+GROQ_KEY  = (os.getenv("GROQ_API_KEY") or "").strip()
 
 NEWS_FEEDS = {
     "한국경제 경제": "https://www.hankyung.com/feed/economy",
@@ -21,129 +32,288 @@ NEWS_FEEDS = {
     "Yahoo Finance":  "https://finance.yahoo.com/news/rssindex",
 }
 
-# ── 유틸 ──────────────────────────────────────────────────────────────────────
+HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
+
+# ── 폰트 ─────────────────────────────────────────────────────────────────────
+def setup_font():
+    candidates = [
+        "/usr/share/fonts/truetype/nanum/NanumGothic.ttf",
+        "/usr/share/fonts/truetype/nanum/NanumBarunGothic.ttf",
+        "C:/Windows/Fonts/malgun.ttf",
+    ]
+    bold_candidates = [
+        "/usr/share/fonts/truetype/nanum/NanumGothicBold.ttf",
+        "C:/Windows/Fonts/malgunbd.ttf",
+    ]
+    font = next((p for p in candidates if os.path.exists(p)), None)
+    bold = next((p for p in bold_candidates if os.path.exists(p)), font)
+    if font:
+        pdfmetrics.registerFont(TTFont("KR", font))
+        pdfmetrics.registerFont(TTFont("KR-B", bold or font))
+        return "KR", "KR-B"
+    return "Helvetica", "Helvetica-Bold"
+
+# ── 유틸 ─────────────────────────────────────────────────────────────────────
 def strip_html(text):
     text = re.sub(r"<[^>]+>", "", str(text or ""))
     return re.sub(r"\s+", " ", text.replace("&nbsp;", " ").replace("&amp;", "&")).strip()
 
-# ── 뉴스 수집 ─────────────────────────────────────────────────────────────────
-def fetch_news(rss_url, hours=13):
+# ── RSS 수집 ──────────────────────────────────────────────────────────────────
+def fetch_rss(rss_url, hours=13):
     try:
         feed = feedparser.parse(rss_url, request_headers={"User-Agent": "Mozilla/5.0"})
         cutoff = datetime.now(timezone.utc) - timedelta(hours=hours)
         articles = []
-        for entry in feed.entries[:15]:
+        for entry in feed.entries[:20]:
             try:
                 pub = datetime(*entry.published_parsed[:6], tzinfo=timezone.utc)
                 if pub < cutoff:
                     continue
             except Exception:
-                pass  # 날짜 파싱 실패 시 포함
+                pass
             articles.append({
                 "title":   entry.get("title", "").strip(),
                 "link":    entry.get("link", ""),
-                "content": strip_html(entry.get("summary", ""))[:200],
+                "summary": strip_html(entry.get("summary", ""))[:400],
+                "content": "",
             })
-        # 최근 기사가 없으면 최신 5개라도 반환
         if not articles:
-            articles = [{"title": e.get("title",""), "link": e.get("link",""), "content": ""} for e in feed.entries[:5]]
+            articles = [{
+                "title":   e.get("title", "").strip(),
+                "link":    e.get("link", ""),
+                "summary": strip_html(e.get("summary", ""))[:400],
+                "content": "",
+            } for e in feed.entries[:10]]
         return articles
     except Exception as e:
         print(f"[RSS 오류] {rss_url}: {e}")
         return []
 
-# ── AI 요약 ───────────────────────────────────────────────────────────────────
-def ai_summarize(source, articles):
+# ── 기사 본문 스크래핑 ────────────────────────────────────────────────────────
+def fetch_content(url, max_chars=800):
+    try:
+        r = requests.get(url, headers=HEADERS, timeout=8)
+        soup = BeautifulSoup(r.text, "html.parser")
+        for sel in ["article", ".article-body", ".news-content", "#articleBodyContents",
+                    ".article_body", "main", ".content"]:
+            el = soup.select_one(sel)
+            if el:
+                text = el.get_text(separator=" ", strip=True)
+                text = re.sub(r"\s+", " ", text)
+                return text[:max_chars]
+        # 폴백: p 태그 합치기
+        paras = soup.select("p")
+        text = " ".join(p.get_text(strip=True) for p in paras[:10])
+        return text[:max_chars]
+    except Exception:
+        return ""
+
+# ── AI 분석 ───────────────────────────────────────────────────────────────────
+def ai_analyze(all_articles_text, label):
     client = Groq(api_key=GROQ_KEY)
-    titles = "\n".join(f"- {a['title']}" for a in articles[:8])
-    prompt = (
-        f"다음은 {source}의 최신 뉴스 제목입니다.\n"
-        f"경제·주식 관점에서 핵심 내용을 4줄로 한국어로 요약해주세요. "
-        f"숫자나 종목명이 있으면 포함하세요.\n\n{titles}"
-    )
+    prompt = f"""다음은 {label} 수집한 경제·주식 뉴스 전문입니다.
+아래 항목으로 종합 분석해주세요:
+
+1. 📈 오늘의 핵심 시장 흐름 (4줄)
+2. 🏭 주요 섹터별 동향 (반도체/AI/에너지/금융/자동차 등 언급된 것 위주, 각 2줄씩)
+3. 🌍 글로벌 매크로 이슈 (금리/환율/원자재 등, 3줄)
+4. 💡 주목할 종목 또는 테마 (3~5개, 각 1줄 이유 포함)
+5. ⚠️ 리스크 요인 (2줄)
+6. 📋 내일 주목해야 할 포인트 (2줄)
+
+뉴스 내용:
+{all_articles_text[:5000]}
+
+분석:"""
     for attempt in range(3):
         try:
             resp = client.chat.completions.create(
                 model="llama-3.1-8b-instant",
                 messages=[{"role": "user", "content": prompt}],
-                max_tokens=350,
+                max_tokens=1200,
                 temperature=0.3,
             )
             return resp.choices[0].message.content.strip()
         except Exception as e:
-            print(f"[Groq 오류 {attempt+1}] {e}")
+            print(f"[Groq {attempt+1}] {e}")
             time.sleep(5)
-    return "\n".join(f"• {a['title'][:60]}" for a in articles[:5])
+    return "AI 분석 실패"
 
-# ── 텔레그램 전송 ─────────────────────────────────────────────────────────────
-def send(text):
-    if not BOT_TOKEN or not CHAT_ID:
-        print("[텔레그램] 토큰 없음")
-        return
-    for chunk in [text[i:i+4000] for i in range(0, len(text), 4000)]:
-        try:
-            r = requests.post(
-                f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
-                json={"chat_id": CHAT_ID, "text": chunk, "parse_mode": "HTML",
-                      "disable_web_page_preview": True},
-                timeout=15,
-            )
-            if not r.ok:
-                print(f"[전송 오류] {r.text[:200]}")
-        except Exception as e:
-            print(f"[전송 예외] {e}")
-        time.sleep(0.3)
+def ai_summarize_source(source, articles):
+    """소스별 기사 목록 요약"""
+    client = Groq(api_key=GROQ_KEY)
+    lines = "\n".join(f"- {a['title']}: {a['summary'][:150]}" for a in articles[:8])
+    prompt = f"{source} 뉴스를 3줄로 핵심만 요약해주세요:\n{lines}"
+    try:
+        resp = client.chat.completions.create(
+            model="llama-3.1-8b-instant",
+            messages=[{"role": "user", "content": prompt}],
+            max_tokens=250,
+            temperature=0.3,
+        )
+        return resp.choices[0].message.content.strip()
+    except Exception as e:
+        print(f"[Groq 소스요약] {e}")
+        return "\n".join(f"• {a['title'][:60]}" for a in articles[:4])
+
+# ── PDF 생성 ──────────────────────────────────────────────────────────────────
+def build_pdf(news_data, analysis, date_str, label):
+    fn, fnb = setup_font()
+
+    S = lambda name, **kw: ParagraphStyle(name, fontName=fn, **kw)
+    styles = {
+        "title":  ParagraphStyle("t",  fontName=fnb, fontSize=18, leading=24, spaceAfter=4,  textColor=colors.HexColor("#0d1b2a")),
+        "sub":    S("s",  fontSize=9,  leading=13, spaceAfter=10, textColor=colors.HexColor("#666")),
+        "h2":     ParagraphStyle("h2", fontName=fnb, fontSize=13, leading=18, spaceBefore=12, spaceAfter=5, textColor=colors.HexColor("#1a3a5c")),
+        "h3":     ParagraphStyle("h3", fontName=fnb, fontSize=10, leading=14, spaceBefore=8,  spaceAfter=3, textColor=colors.HexColor("#2c5282")),
+        "body":   S("b",  fontSize=9,  leading=14, spaceAfter=4,  textColor=colors.HexColor("#222")),
+        "bullet": S("bl", fontSize=8,  leading=13, spaceAfter=2,  textColor=colors.HexColor("#333"), leftIndent=12),
+        "small":  S("sm", fontSize=7,  leading=11, textColor=colors.HexColor("#888")),
+        "analysis": S("an", fontSize=9, leading=15, spaceAfter=4, textColor=colors.HexColor("#111")),
+    }
+
+    buf = io.BytesIO()
+    doc = SimpleDocTemplate(buf, pagesize=A4,
+                            leftMargin=2*cm, rightMargin=2*cm,
+                            topMargin=2*cm, bottomMargin=2*cm)
+    story = []
+
+    # 헤더
+    story.append(Paragraph("경제·주식 뉴스 종합 분석", styles["title"]))
+    story.append(Paragraph(f"{label} | {date_str}", styles["sub"]))
+    story.append(HRFlowable(width="100%", thickness=2, color=colors.HexColor("#1a3a5c")))
+    story.append(Spacer(1, 0.4*cm))
+
+    # 종합 분석
+    story.append(Paragraph("📊 종합 시장 분석", styles["h2"]))
+    for line in analysis.split("\n"):
+        line = line.strip()
+        if not line:
+            story.append(Spacer(1, 0.15*cm))
+        elif line.startswith(("1.", "2.", "3.", "4.", "5.", "6.", "📈", "🏭", "🌍", "💡", "⚠️", "📋")):
+            story.append(Paragraph(line, styles["h3"]))
+        else:
+            story.append(Paragraph(line, styles["analysis"]))
+    story.append(Spacer(1, 0.3*cm))
+    story.append(HRFlowable(width="100%", thickness=1, color=colors.HexColor("#ddd")))
+
+    # 소스별 기사 목록
+    for source, data in news_data.items():
+        articles = data["articles"]
+        summary  = data.get("source_summary", "")
+        story.append(Spacer(1, 0.2*cm))
+        story.append(Paragraph(f"📌 {source}  ({len(articles)}건)", styles["h2"]))
+        if summary:
+            story.append(Paragraph(summary, styles["body"]))
+            story.append(Spacer(1, 0.15*cm))
+        story.append(Paragraph("수집 기사:", styles["small"]))
+        for a in articles:
+            title = a["title"][:80]
+            story.append(Paragraph(f"• {title}", styles["bullet"]))
+            if a.get("summary"):
+                story.append(Paragraph(f"  {a['summary'][:120]}", styles["small"]))
+        story.append(HRFlowable(width="100%", thickness=0.5, color=colors.HexColor("#eee")))
+
+    doc.build(story)
+    buf.seek(0)
+    return buf
+
+# ── 텔레그램 ─────────────────────────────────────────────────────────────────
+def send_text(text):
+    try:
+        requests.post(
+            f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
+            json={"chat_id": CHAT_ID, "text": text[:4000],
+                  "parse_mode": "HTML", "disable_web_page_preview": True},
+            timeout=15,
+        )
+    except Exception as e:
+        print(f"[텔레그램 텍스트] {e}")
+
+def send_pdf(buf, filename, caption=""):
+    try:
+        r = requests.post(
+            f"https://api.telegram.org/bot{BOT_TOKEN}/sendDocument",
+            data={"chat_id": CHAT_ID, "caption": caption[:1000]},
+            files={"document": (filename, buf, "application/pdf")},
+            timeout=60,
+        )
+        if not r.ok:
+            print(f"[PDF 전송 오류] {r.text[:200]}")
+    except Exception as e:
+        print(f"[PDF 전송 예외] {e}")
 
 # ── 메인 ─────────────────────────────────────────────────────────────────────
 def main():
-    now = datetime.now()
-    label = "🌅 오전" if now.hour < 12 else "🌆 오후"
+    now      = datetime.now()
+    label    = "🌅 오전" if now.hour < 12 else "🌆 오후"
     date_str = now.strftime("%Y년 %m월 %d일")
-    print(f"=== 뉴스 요약 시작: {date_str} {now.strftime('%H:%M')} ===")
+    print(f"=== 뉴스 분석 시작: {date_str} {now.strftime('%H:%M')} ===")
 
-    lines = [f"📰 <b>경제·주식 뉴스 요약</b>  {label}\n{date_str}\n"]
-
-    for source, rss_url in NEWS_FEEDS.items():
+    # 1) 수집
+    news_data = {}
+    all_text  = ""
+    for source, url in NEWS_FEEDS.items():
         print(f"  수집: {source}")
-        articles = fetch_news(rss_url)
+        articles = fetch_rss(url)
         if not articles:
-            print(f"    → 기사 없음")
             continue
 
-        print(f"    → {len(articles)}건 수집, AI 요약 중...")
-        summary = ai_summarize(source, articles)
-        time.sleep(2)
+        # 주요 기사 본문 스크래핑 (상위 6개)
+        for a in articles[:6]:
+            a["content"] = fetch_content(a["link"])
+            time.sleep(0.3)
 
-        lines.append(f"━━━━━━━━━━━━━━━━━━")
-        lines.append(f"📌 <b>{source}</b>")
-        lines.append(summary)
-        lines.append("")
-        lines.append("주요 기사:")
-        for a in articles[:4]:
-            title = a["title"][:55]
-            link  = a["link"]
-            lines.append(f'• <a href="{link}">{title}</a>')
-        lines.append("")
+        news_data[source] = {"articles": articles}
+        for a in articles:
+            body = a["content"] or a["summary"]
+            all_text += f"\n[{source}] {a['title']}\n{body}\n"
 
-    if len(lines) <= 2:
-        print("수집된 뉴스 없음")
+        print(f"    → {len(articles)}건")
+
+    if not news_data:
+        send_text("⚠️ 뉴스 수집 실패 - 기사 없음")
         return
 
-    send("\n".join(lines))
-    print("완료!")
+    total = sum(len(v["articles"]) for v in news_data.values())
+    print(f"  총 {total}건 수집, 분석 중...")
+
+    # 2) 종합 분석
+    analysis = ai_analyze(all_text, label)
+    time.sleep(2)
+
+    # 3) 소스별 요약
+    for source, data in news_data.items():
+        data["source_summary"] = ai_summarize_source(source, data["articles"])
+        time.sleep(1.5)
+
+    # 4) PDF 생성
+    print("  PDF 생성 중...")
+    pdf = build_pdf(news_data, analysis, date_str, label)
+
+    # 5) 전송
+    send_text(
+        f"📰 <b>경제·주식 뉴스 분석</b>  {label}\n"
+        f"{date_str}\n\n"
+        f"• 수집 소스: {len(news_data)}개\n"
+        f"• 총 기사: {total}건\n\n"
+        f"아래 PDF에서 종합 분석 확인하세요 ↓"
+    )
+    time.sleep(1)
+    send_pdf(pdf, f"news_{now.strftime('%Y%m%d_%H')}.pdf",
+             f"📊 뉴스 종합 분석 | {date_str} {label}")
+    print("  완료!")
 
 if __name__ == "__main__":
     try:
         main()
     except Exception as e:
-        print(f"[치명적 오류] {e}")
         import traceback
         traceback.print_exc()
-        # 오류 발생해도 텔레그램으로 알림
         try:
             requests.post(
                 f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
-                json={"chat_id": CHAT_ID, "text": f"⚠️ 뉴스 요약 오류\n{str(e)[:200]}"},
+                json={"chat_id": CHAT_ID, "text": f"⚠️ 뉴스 분석 오류\n{str(e)[:300]}"},
                 timeout=10,
             )
         except:
