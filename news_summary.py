@@ -24,7 +24,7 @@ from reportlab.pdfbase.ttfonts import TTFont
 
 load_dotenv()
 
-BOT_TOKEN = (os.getenv("ARTICLE_BOT_TOKEN") or "").strip()
+BOT_TOKEN = (os.getenv("TELEGRAM_BOT_TOKEN") or os.getenv("ARTICLE_BOT_TOKEN") or "").strip()
 CHAT_ID = (os.getenv("TELEGRAM_CHAT_ID") or "").strip()
 GROQ_API_KEY = (os.getenv("GROQ_API_KEY") or "").strip()
 
@@ -32,8 +32,7 @@ NEWS_FEEDS = {
     "한국경제 증권": "https://www.hankyung.com/feed/finance",
     "한국경제 경제": "https://www.hankyung.com/feed/economy",
     "Yahoo Finance": "https://finance.yahoo.com/news/rssindex",
-    "BNN Bloomberg": "https://www.bnnbloomberg.ca/rss",
-    "Bloomberg Markets": "https://feeds.bloomberg.com/markets/news.rss",
+
 }
 
 
