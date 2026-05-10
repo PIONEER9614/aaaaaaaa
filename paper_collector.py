@@ -23,14 +23,14 @@ HISTORY_FILE = Path("paper_history.json")
 HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; PaperBot/1.0)"}
 
 TARGET_JOURNALS = [
-    {"name": "Contributions to the History of Concepts", "folder": "01_Contributions", "issn": "1807-9326", "eissn": "1874-656X"},
-    {"name": "History of European Ideas",                "folder": "02_HEI",           "issn": "0191-6599", "eissn": "1873-541X"},
-    {"name": "Journal of the History of Ideas",          "folder": "03_JHI",           "issn": "0022-5037", "eissn": "1086-3222"},
-    {"name": "Intellectual History Review",              "folder": "04_IHR",           "issn": "1749-4621", "eissn": "1749-463X"},
-    {"name": "History and Theory",                       "folder": "05_HT",            "issn": "0018-2656", "eissn": "1468-2303"},
-    {"name": "Modern Intellectual History",              "folder": "06_MIH",           "issn": "1479-2443", "eissn": "1479-2451"},
-    {"name": "Rethinking History",                       "folder": "07_RH",            "issn": "1364-2529", "eissn": "1470-1154"},
-    {"name": "Gaenyeom-gwa Sotong",                     "folder": "08_Concepts-Comm", "issn": "2092-7649", "eissn": ""},
+    {"name": "Contributions to the History of Concepts", "folder": "01_Contributions to the History of Concepts", "issn": "1807-9326", "eissn": "1874-656X"},
+    {"name": "History of European Ideas",                "folder": "02_History of European Ideas",                "issn": "0191-6599", "eissn": "1873-541X"},
+    {"name": "Journal of the History of Ideas",          "folder": "03_Journal of the History of Ideas",          "issn": "0022-5037", "eissn": "1086-3222"},
+    {"name": "Intellectual History Review",              "folder": "04_Intellectual History Review",              "issn": "1749-4621", "eissn": "1749-463X"},
+    {"name": "History and Theory",                       "folder": "05_History and Theory",                       "issn": "0018-2656", "eissn": "1468-2303"},
+    {"name": "Modern Intellectual History",              "folder": "06_Modern Intellectual History",              "issn": "1479-2443", "eissn": "1479-2451"},
+    {"name": "Rethinking History",                       "folder": "07_Rethinking History",                       "issn": "1364-2529", "eissn": "1470-1154"},
+    {"name": "Gaenyeom-gwa Sotong",                     "folder": "08_Gaenyeom-gwa Sotong",                      "issn": "2092-7649", "eissn": ""},
 ]
 
 # Semantic Scholar: 학술지명 포함 타겟 쿼리
@@ -40,13 +40,13 @@ S2_QUERIES = [
     ("general", "Cambridge school intellectual history Skinner Pocock"),
     ("general", "Sattelzeit historical semantics modernity"),
     # 학술지명 직접 타겟 쿼리
-    ("01_Contributions", "Contributions History Concepts Begriffsgeschichte"),
-    ("02_HEI",           "History of European Ideas intellectual political"),
-    ("03_JHI",           "Journal History Ideas intellectual thought"),
-    ("04_IHR",           "Intellectual History Review Cambridge"),
-    ("05_HT",            "History and Theory historiography methodology"),
-    ("06_MIH",           "Modern Intellectual History nineteenth twentieth century"),
-    ("07_RH",            "Rethinking History theory practice"),
+    ("01_Contributions to the History of Concepts", "Contributions History Concepts Begriffsgeschichte"),
+    ("02_History of European Ideas",                "History of European Ideas intellectual political"),
+    ("03_Journal of the History of Ideas",          "Journal History Ideas intellectual thought"),
+    ("04_Intellectual History Review",              "Intellectual History Review Cambridge"),
+    ("05_History and Theory",                       "History and Theory historiography methodology"),
+    ("06_Modern Intellectual History",              "Modern Intellectual History nineteenth twentieth century"),
+    ("07_Rethinking History",                       "Rethinking History theory practice"),
 ]
 
 # ── 이력 관리 ─────────────────────────────────────────────────────────────────
