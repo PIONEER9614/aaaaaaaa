@@ -1,7 +1,8 @@
 """
-개념사 / 지성사 오픈액세스 논문 자동 수집기 v5
-- Semantic Scholar: 학술지별 타겟 쿼리 + OA PDF 필터링
-- CORE API: 오픈액세스 학술지 기사 수집
+개념사 / 지성사 논문 자동 수집기 v6
+- CrossRef API: ISSN으로 해당 연도 전체 논문 목록 수집
+- Unpaywall API: DOI로 OA PDF URL 확인
+- CORE API: 보완 수집
 - 학술지별 폴더 + 저자_제목_학술지_권호_연도 파일명
 """
 
@@ -14,9 +15,10 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 load_dotenv()
 
-CORE_KEY  = os.getenv("CORE_API_KEY", "DtGby7HTXo1LdxzenWusjfFJg9N2mrVk")
-BOT_TOKEN = (os.getenv("TELEGRAM_BOT_TOKEN") or "").strip()
-CHAT_ID   = (os.getenv("TELEGRAM_CHAT_ID") or "").strip()
+CORE_KEY      = os.getenv("CORE_API_KEY", "DtGby7HTXo1LdxzenWusjfFJg9N2mrVk")
+BOT_TOKEN     = (os.getenv("TELEGRAM_BOT_TOKEN") or "").strip()
+CHAT_ID       = (os.getenv("TELEGRAM_CHAT_ID") or "").strip()
+UNPAYWALL_EMAIL = "ninzago9614@gmail.com"
 
 DOWNLOAD_DIR = Path("papers")
 HISTORY_FILE = Path("paper_history.json")
@@ -33,22 +35,6 @@ TARGET_JOURNALS = [
     {"name": "Gaenyeom-gwa Sotong",                     "folder": "08_Gaenyeom-gwa Sotong",                      "issn": "2092-7649", "eissn": ""},
 ]
 
-# Semantic Scholar: 학술지명 포함 타겟 쿼리
-S2_QUERIES = [
-    # 일반 방법론 쿼리
-    ("general", "Begriffsgeschichte conceptual history Koselleck"),
-    ("general", "Cambridge school intellectual history Skinner Pocock"),
-    ("general", "Sattelzeit historical semantics modernity"),
-    # 학술지명 직접 타겟 쿼리
-    ("01_Contributions to the History of Concepts", "Contributions History Concepts Begriffsgeschichte"),
-    ("02_History of European Ideas",                "History of European Ideas intellectual political"),
-    ("03_Journal of the History of Ideas",          "Journal History Ideas intellectual thought"),
-    ("04_Intellectual History Review",              "Intellectual History Review Cambridge"),
-    ("05_History and Theory",                       "History and Theory historiography methodology"),
-    ("06_Modern Intellectual History",              "Modern Intellectual History nineteenth twentieth century"),
-    ("07_Rethinking History",                       "Rethinking History theory practice"),
-]
-
 # ── 이력 관리 ─────────────────────────────────────────────────────────────────
 def load_history():
     if HISTORY_FILE.exists():
@@ -60,7 +46,7 @@ def save_history(h):
 
 # ── 파일명 생성 ───────────────────────────────────────────────────────────────
 def sanitize(name):
-    return re.sub(r'[\\/:*?"<>|]', "_", str(name or "")).strip("_")[:80]
+    return re.sub(r'[\\/:*?"<>|\n\r\t]', "_", str(name or "")).strip("_. ")[:80]
 
 def make_filename(title, authors, journal, volume, issue, year):
     author  = sanitize(authors[0].split(",")[0]) if authors else "unknown"
@@ -70,14 +56,13 @@ def make_filename(title, authors, journal, volume, issue, year):
     iss_s   = f"n{sanitize(str(issue))}"  if issue  else ""
     year_s  = str(year) if year else "unknown"
     parts   = [author, title_s, jour_s, "_".join(filter(None, [vol_s, iss_s])), year_s]
-    name    = "_".join(p for p in parts if p) + ".pdf"
-    return name[:200]
+    return ("_".join(p for p in parts if p) + ".pdf")[:200]
 
 # ── PDF 다운로드 ──────────────────────────────────────────────────────────────
 def download_pdf(url, title, authors, journal_name, folder, volume="", issue="", year=""):
     for verify in (True, False):
         try:
-            r = requests.get(url, headers=HEADERS, timeout=30, stream=True,
+            r = requests.get(url, headers=HEADERS, timeout=40, stream=True,
                              verify=verify, allow_redirects=True)
             ct = r.headers.get("Content-Type", "")
             if not r.ok or "pdf" not in ct.lower():
@@ -89,69 +74,95 @@ def download_pdf(url, title, authors, journal_name, folder, volume="", issue="",
             with open(path, "wb") as f:
                 for chunk in r.iter_content(8192):
                     f.write(chunk)
-            print(f"  [저장] {folder}/{filename[:65]}")
+            print(f"    [저장] {filename[:70]}")
             return str(path)
         except requests.exceptions.SSLError:
             if verify:
                 continue
             return False
         except Exception as e:
-            print(f"  [실패] {e}")
+            print(f"    [실패] {e.__class__.__name__}: {str(e)[:60]}")
             return False
     return False
 
-# ── Semantic Scholar ──────────────────────────────────────────────────────────
-def search_semantic(query, limit=25):
-    url = "https://api.semanticscholar.org/graph/v1/paper/search"
+# ── CrossRef API: 학술지 전체 논문 목록 ──────────────────────────────────────
+def crossref_get_works(issn, year, offset=0, rows=100):
+    """CrossRef works 엔드포인트로 ISSN + 연도 필터 검색"""
+    url = "https://api.crossref.org/works"
     params = {
-        "query": query, "limit": limit,
-        "fields": "title,authors,year,journal,openAccessPdf,externalIds",
+        "filter": f"issn:{issn},from-pub-date:{year}-01-01,until-pub-date:{year}-12-31",
+        "rows": rows,
+        "offset": offset,
+        "select": "DOI,title,author,published,volume,issue,container-title",
+        "mailto": UNPAYWALL_EMAIL,
     }
     try:
         r = requests.get(url, params=params, headers=HEADERS, timeout=20)
         if r.ok:
-            return [p for p in r.json().get("data", []) if p.get("openAccessPdf")]
+            data = r.json().get("message", {})
+            items = data.get("items", [])
+            total = data.get("total-results", 0)
+            return items, total
+        print(f"    [CrossRef {r.status_code}]")
     except Exception as e:
-        print(f"  [S2 오류] {e}")
-    return []
+        print(f"    [CrossRef 오류] {e.__class__.__name__}")
+    return [], 0
 
-def match_journal(journal_name_or_issn):
-    """학술지명 또는 ISSN으로 타겟 학술지 매칭"""
-    if not journal_name_or_issn:
+def crossref_all_works(issn, year):
+    """페이지네이션으로 전체 목록 수집"""
+    all_items, total = crossref_get_works(issn, year, offset=0)
+    print(f"    CrossRef ({issn}): 총 {total}편")
+    offset = 100
+    while offset < total:
+        items, _ = crossref_get_works(issn, year, offset=offset)
+        if not items:
+            break
+        all_items.extend(items)
+        offset += 100
+        time.sleep(0.5)
+    return all_items
+
+# ── Unpaywall API: DOI → OA PDF URL ──────────────────────────────────────────
+def unpaywall_get_pdf(doi):
+    """DOI로 Unpaywall에서 OA PDF URL 반환. 없으면 None."""
+    url = f"https://api.unpaywall.org/v2/{requests.utils.quote(doi, safe='')}"
+    try:
+        r = requests.get(url, params={"email": UNPAYWALL_EMAIL}, headers=HEADERS, timeout=15)
+        if not r.ok:
+            return None
+        data = r.json()
+        if not data.get("is_oa"):
+            return None
+        # best_oa_location 우선, 없으면 첫 번째 oa_location
+        best = data.get("best_oa_location") or {}
+        pdf_url = best.get("url_for_pdf") or best.get("url")
+        if not pdf_url:
+            for loc in data.get("oa_locations", []):
+                pdf_url = loc.get("url_for_pdf") or loc.get("url")
+                if pdf_url:
+                    break
+        return pdf_url or None
+    except Exception:
         return None
-    q = journal_name_or_issn.lower()
-    for j in TARGET_JOURNALS:
-        eissn = j.get("eissn", "")
-        if (j["name"].lower() in q or q in j["name"].lower()
-                or j["issn"] in q or (eissn and eissn in q)):
-            return j
-    return None
 
-# ── CORE API ──────────────────────────────────────────────────────────────────
-def search_core_journal(journal_name, page_size=50, offset=0, year=None):
-    """CORE API: 학술지명으로 OA 논문 검색 (year 지정 시 해당 연도만)"""
+# ── CORE API: 보완 수집 ───────────────────────────────────────────────────────
+def core_get_works(journal_name, year=None, page_size=100, offset=0):
     url = "https://api.core.ac.uk/v3/search/works"
-    headers = {**HEADERS, "Authorization": f"Bearer {CORE_KEY}"}
+    hdrs = {**HEADERS, "Authorization": f"Bearer {CORE_KEY}"}
     q = f'journals.title:"{journal_name}"'
     if year:
         q += f" AND yearPublished:{year}"
     params = {"q": q, "limit": page_size, "offset": offset}
     for attempt in range(3):
         try:
-            r = requests.get(url, params=params, headers=headers, timeout=25)
+            r = requests.get(url, params=params, headers=hdrs, timeout=25)
             if r.ok:
-                data = r.json()
-                total = data.get("totalHits", 0)
-                results = data.get("results", [])
-                print(f"    CORE: 총 {total}편 (이번 {len(results)}편)")
-                return results, total
-            print(f"  [CORE {r.status_code}] {r.text[:120]}")
+                d = r.json()
+                return d.get("results", []), d.get("totalHits", 0)
             return [], 0
-        except Exception as e:
+        except Exception:
             if attempt < 2:
                 time.sleep(3)
-            else:
-                print(f"  [CORE 오류] {e}")
     return [], 0
 
 # ── 텔레그램 ─────────────────────────────────────────────────────────────────
@@ -175,99 +186,119 @@ def main(year_filter=None):
     new_papers = []
 
     year_label = f" [{year_filter}년]" if year_filter else ""
-    print(f"=== 논문 수집 v5{year_label}: {datetime.now().strftime('%Y-%m-%d %H:%M')} ===")
+    print(f"=== 논문 수집 v6{year_label}: {datetime.now().strftime('%Y-%m-%d %H:%M')} ===")
     print(f"기존 수집: {len(downloaded)}편\n")
 
-    # ── 1) CORE API: 학술지명 기반 수집 ──
-    print("[CORE API 수집]")
+    # ── 1) CrossRef + Unpaywall ──
+    print("[CrossRef + Unpaywall 수집]")
+    for journal in TARGET_JOURNALS:
+        print(f"\n  {journal['name']}")
+        year = year_filter or datetime.now().year
+
+        # ISSN / eISSN 둘 다 시도
+        issns = [journal["issn"]]
+        if journal.get("eissn"):
+            issns.append(journal["eissn"])
+
+        all_works = []
+        seen_dois = set()
+        for issn in issns:
+            works = crossref_all_works(issn, year)
+            for w in works:
+                doi = (w.get("DOI") or "").strip().lower()
+                if doi and doi not in seen_dois:
+                    seen_dois.add(doi)
+                    all_works.append(w)
+
+        oa_count = 0
+        for work in all_works:
+            doi = (work.get("DOI") or "").strip().lower()
+            if not doi:
+                continue
+            uid = f"doi:{doi}"
+            if uid in downloaded:
+                continue
+
+            # 메타데이터 추출
+            titles  = work.get("title", [])
+            title   = titles[0] if titles else ""
+            if not title:
+                continue
+            authors = [
+                f"{a.get('family', '')} {a.get('given', '')}".strip()
+                for a in work.get("author", [])
+            ]
+            pub     = work.get("published", {}).get("date-parts", [[None]])[0]
+            year_p  = str(pub[0]) if pub else str(year)
+            volume  = work.get("volume", "")
+            issue   = work.get("issue", "")
+
+            # Unpaywall로 OA PDF 확인
+            pdf_url = unpaywall_get_pdf(doi)
+            time.sleep(0.15)  # Unpaywall rate limit
+
+            if not pdf_url:
+                continue
+
+            oa_count += 1
+            print(f"  [OA] {title[:65]}")
+            path = download_pdf(pdf_url, title, authors, journal["name"],
+                                journal["folder"], volume, issue, year_p)
+            if path:
+                downloaded.add(uid)
+                new_papers.append({"title": title, "journal": journal["name"], "year": year_p})
+            time.sleep(0.3)
+
+        print(f"    → 총 {len(all_works)}편 중 OA {oa_count}편 / 저장 {sum(1 for p in new_papers if p['journal']==journal['name'])}편")
+        time.sleep(1)
+
+    # ── 2) CORE API: 보완 수집 ──
+    print("\n[CORE API 보완 수집]")
     for journal in TARGET_JOURNALS:
         print(f"  {journal['name']}")
-        results, total = search_core_journal(journal["name"], page_size=100, year=year_filter)
-        # 100편 초과 시 페이지 추가 수집
-        all_results = list(results)
-        offset = 100
-        while year_filter and offset < total:
-            more, _ = search_core_journal(journal["name"], page_size=100, offset=offset, year=year_filter)
-            if not more:
-                break
-            all_results.extend(more)
-            offset += 100
-        results = all_results
-        saved_count = 0
+        results, total = core_get_works(journal["name"], year=year_filter, page_size=100)
+        print(f"    CORE: {total}편")
+        saved = 0
         for item in results:
-            pid     = str(item.get("id", ""))
-            core_id = f"core:{pid}"
-            if core_id in downloaded:
+            pid    = str(item.get("id", ""))
+            uid    = f"core:{pid}"
+            if uid in downloaded:
                 continue
-            title   = item.get("title", "")
+            title  = item.get("title", "")
+            if not title:
+                continue
+            # DOI 중복 체크
+            doi = (item.get("doi") or "").strip().lower()
+            if doi and f"doi:{doi}" in downloaded:
+                downloaded.add(uid)
+                continue
             authors = [a.get("name", "") for a in item.get("authors", [])]
-            year    = item.get("yearPublished", "")
+            year_p  = str(item.get("yearPublished", "") or "")
             pdf_url = item.get("downloadUrl", "")
             if not pdf_url:
                 for lk in item.get("links", []):
                     if lk.get("type") in ("download", "pdf"):
                         pdf_url = lk.get("url", "")
                         break
-            if not pdf_url or not title:
+            if not pdf_url:
                 continue
-
-            volume = ""
-            issue  = ""
+            volume = issue = ""
             for jinfo in item.get("journals", []):
                 volume = str(jinfo.get("volume", "") or "") or volume
                 issue  = str(jinfo.get("issue",  "") or "") or issue
 
-            print(f"  -> {title[:70]}")
+            print(f"  -> {title[:65]}")
             path = download_pdf(pdf_url, title, authors, journal["name"],
-                                journal["folder"], volume, issue, year)
+                                journal["folder"], volume, issue, year_p)
             if path:
-                downloaded.add(core_id)
-                new_papers.append({"title": title, "journal": journal["name"], "year": year})
-                saved_count += 1
-            time.sleep(0.5)
-        print(f"    → {saved_count}편 저장")
+                downloaded.add(uid)
+                if doi:
+                    downloaded.add(f"doi:{doi}")
+                new_papers.append({"title": title, "journal": journal["name"], "year": year_p})
+                saved += 1
+            time.sleep(0.4)
+        print(f"    → {saved}편 추가 저장")
         time.sleep(1)
-
-    # ── 2) Semantic Scholar: 타겟 학술지 OA 논문 ──
-    print("\n[Semantic Scholar 수집]")
-    for folder_hint, query in S2_QUERIES:
-        print(f"  쿼리: {query[:60]}")
-        results = search_semantic(query, limit=25)
-        for paper in results:
-            pid = paper.get("paperId", "")
-            s2_id = f"s2:{pid}"
-            if s2_id in downloaded:
-                continue
-            title   = paper.get("title", "")
-            authors = [a["name"] for a in paper.get("authors", [])]
-            year    = paper.get("year", "")
-            pdf_url = paper.get("openAccessPdf", {}).get("url", "")
-            jinfo   = paper.get("journal") or {}
-            jname   = jinfo.get("name", "")
-            volume  = jinfo.get("volume", "")
-            issue   = jinfo.get("pages", "")
-
-            if not pdf_url or not title:
-                continue
-
-            matched = match_journal(jname)
-            if not matched:
-                # folder_hint가 일반 쿼리("general")이면 건너뜀
-                if folder_hint == "general":
-                    continue
-                # folder_hint가 특정 학술지이면 해당 학술지로 분류
-                matched = next((j for j in TARGET_JOURNALS if j["folder"] == folder_hint), None)
-                if not matched:
-                    continue
-
-            print(f"  -> [{matched['folder']}] {title[:55]}")
-            path = download_pdf(pdf_url, title, authors, matched["name"],
-                                matched["folder"], volume, issue, year)
-            if path:
-                downloaded.add(s2_id)
-                new_papers.append({"title": title, "journal": matched["name"], "year": year})
-            time.sleep(0.5)
-        time.sleep(2)
 
     # ── 결과 저장 ──
     history["downloaded"] = list(downloaded)
@@ -285,7 +316,7 @@ def main(year_filter=None):
         send_telegram("\n".join(lines))
 
 if __name__ == "__main__":
-    # python paper_collector.py 2025  → 2025년 논문만
-    # python paper_collector.py       → 최신 50편씩
+    # python paper_collector.py 2025  → 2025년 논문 전체
+    # python paper_collector.py       → 올해 신규 논문
     year_arg = int(sys.argv[1]) if len(sys.argv) > 1 else None
     main(year_filter=year_arg)
