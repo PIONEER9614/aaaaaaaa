@@ -1,0 +1,30 @@
+name: 주식 내재가치 분석
+
+on:
+  schedule:
+    - cron: "0 1 * * 1-5"   # 평일 오전 10시 KST (UTC 01:00)
+    - cron: "0 7 * * 1-5"   # 평일 오후 4시 KST (UTC 07:00)
+  workflow_dispatch:
+
+jobs:
+  valuation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 한국어 폰트 설치
+        run: sudo apt-get install -y fonts-nanum
+
+      - name: 패키지 설치
+        run: pip install yfinance requests python-dotenv reportlab
+
+      - name: 주식 분석 실행
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python stock_valuation.py
