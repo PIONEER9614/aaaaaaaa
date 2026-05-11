@@ -16,7 +16,7 @@ jobs:
           python-version: "3.11"
 
       - name: 패키지 설치
-        run: pip install feedparser python-dotenv requests groq
+        run: pip install feedparser python-dotenv requests groq reportlab
 
       - name: 블로그 요약 실행
         env:

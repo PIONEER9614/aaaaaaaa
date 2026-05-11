@@ -17,7 +17,7 @@ jobs:
           python-version: "3.11"
 
       - name: 패키지 설치
-        run: pip install requests python-dotenv
+        run: pip install requests python-dotenv reportlab
 
       - name: 논문 수집 실행
         env:

@@ -1,15 +1,24 @@
 """
 블로그 일간/주간/월간 다이제스트
-- 매일 오전 7시: 전날 글 요약
-- 매주 월요일 오전 7시: 주간 총정리
-- 매월 1일 오전 7시: 월간 총정리
+- 매일 오전 7시: 전날 글 요약 → PDF 전송
+- 매주 월요일 오전 7시: 주간 총정리 → PDF 전송
+- 매월 1일 오전 7시: 월간 총정리 → PDF 전송
 """
 
-import os, re, time, requests, feedparser
+import os, re, io, time, requests, feedparser
 from datetime import datetime, timedelta, timezone
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 from groq import Groq
+
+from reportlab.platypus import (SimpleDocTemplate, Paragraph, Spacer,
+                                HRFlowable, Table, TableStyle)
+from reportlab.lib.styles import ParagraphStyle
+from reportlab.lib.pagesizes import A4
+from reportlab.lib.units import cm
+from reportlab.lib import colors
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
 
 load_dotenv()
 
@@ -26,26 +35,136 @@ BLOGS = {
 HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
 KST = timezone(timedelta(hours=9))
 
-# ── Telegram ──────────────────────────────────────────────────────────────────
-def send_telegram(text):
-    if not TELEGRAM_TOKEN or not TELEGRAM_CHAT:
-        print("[텔레그램] 토큰 없음, 건너뜀")
+# ── 폰트 ──────────────────────────────────────────────────────────────────────
+def setup_font():
+    candidates  = ["/usr/share/fonts/truetype/nanum/NanumGothic.ttf",     "C:/Windows/Fonts/malgun.ttf"]
+    bold_c      = ["/usr/share/fonts/truetype/nanum/NanumGothicBold.ttf", "C:/Windows/Fonts/malgunbd.ttf"]
+    font = next((p for p in candidates if os.path.exists(p)), None)
+    bold = next((p for p in bold_c    if os.path.exists(p)), font)
+    if font:
+        pdfmetrics.registerFont(TTFont("KR",   font))
+        pdfmetrics.registerFont(TTFont("KR-B", bold or font))
+        return "KR", "KR-B"
+    return "Helvetica", "Helvetica-Bold"
+
+# ── 텔레그램 ──────────────────────────────────────────────────────────────────
+def send_text(msg):
+    if not TELEGRAM_TOKEN:
         return
-    url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
-    # 4096자 제한 분할
-    chunks = [text[i:i+4000] for i in range(0, len(text), 4000)]
-    for chunk in chunks:
-        try:
-            r = requests.post(url, json={"chat_id": TELEGRAM_CHAT, "text": chunk, "parse_mode": "HTML"}, timeout=15)
-            if not r.ok:
-                print(f"[텔레그램 오류] {r.text[:200]}")
-        except Exception as e:
-            print(f"[텔레그램 예외] {e}")
-        time.sleep(0.3)
+    requests.post(
+        f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage",
+        json={"chat_id": TELEGRAM_CHAT, "text": msg[:4000], "parse_mode": "HTML"},
+        timeout=15,
+    )
+
+def send_pdf(buf, filename, caption=""):
+    if not TELEGRAM_TOKEN:
+        return
+    try:
+        r = requests.post(
+            f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendDocument",
+            data={"chat_id": TELEGRAM_CHAT, "caption": caption[:1000]},
+            files={"document": (filename, buf, "application/pdf")},
+            timeout=60,
+        )
+        if not r.ok:
+            print(f"[PDF 오류] {r.text[:200]}")
+    except Exception as e:
+        print(f"[PDF 예외] {e}")
+
+# ── PDF 빌더 ──────────────────────────────────────────────────────────────────
+def build_pdf(title_str, subtitle_str, sections):
+    """
+    sections: [{"heading": str, "body": str, "items": [(label, text, link), ...]}, ...]
+    """
+    fn, fnb = setup_font()
+
+    def S(nm, **kw):  return ParagraphStyle(nm, fontName=fn,  **kw)
+    def SB(nm, **kw): return ParagraphStyle(nm, fontName=fnb, **kw)
+
+    ST = {
+        "title":  SB("ti", fontSize=18, leading=24, spaceAfter=4,  textColor=colors.HexColor("#0d1b2a")),
+        "sub":    S ("su", fontSize=9,  leading=13, spaceAfter=10, textColor=colors.HexColor("#666")),
+        "h2":     SB("h2", fontSize=12, leading=17, spaceBefore=12,spaceAfter=5, textColor=colors.HexColor("#1a3a5c")),
+        "h3":     SB("h3", fontSize=9,  leading=14, spaceBefore=6, spaceAfter=2, textColor=colors.HexColor("#c0392b")),
+        "body":   S ("bo", fontSize=8,  leading=13, spaceAfter=3,  textColor=colors.HexColor("#222")),
+        "bullet": S ("bl", fontSize=8,  leading=13, spaceAfter=2,  textColor=colors.HexColor("#333"), leftIndent=10),
+        "link":   SB("lk", fontSize=8,  leading=12, spaceAfter=4,  textColor=colors.HexColor("#1a6fb5")),
+        "note":   S ("no", fontSize=7,  leading=11, textColor=colors.HexColor("#888")),
+    }
+
+    buf = io.BytesIO()
+    doc = SimpleDocTemplate(buf, pagesize=A4,
+                            leftMargin=1.8*cm, rightMargin=1.8*cm,
+                            topMargin=1.8*cm,  bottomMargin=1.8*cm)
+    story = []
+
+    story.append(Paragraph(title_str,    ST["title"]))
+    story.append(Paragraph(subtitle_str, ST["sub"]))
+    story.append(HRFlowable(width="100%", thickness=2, color=colors.HexColor("#1a3a5c")))
+    story.append(Spacer(1, 0.3*cm))
+
+    for sec in sections:
+        if sec.get("heading"):
+            story.append(Paragraph(sec["heading"], ST["h2"]))
+            story.append(HRFlowable(width="100%", thickness=0.5, color=colors.HexColor("#aaa")))
+
+        # 자유 텍스트 body
+        if sec.get("body"):
+            for line in sec["body"].split("\n"):
+                line = line.strip()
+                if not line:
+                    story.append(Spacer(1, 0.1*cm))
+                elif line.startswith(("1.", "2.", "3.", "4.", "5.", "6.", "7.",
+                                      "📈", "📊", "🏭", "🌍", "💡", "⚠️", "📋", "━")):
+                    story.append(Paragraph(line, ST["h3"]))
+                elif line.startswith(("•", "-", "·")):
+                    story.append(Paragraph(line, ST["bullet"]))
+                else:
+                    story.append(Paragraph(line, ST["body"]))
+
+        # 아이템 리스트 (제목+요약+링크)
+        for item in sec.get("items", []):
+            label, text, link = item
+            story.append(Spacer(1, 0.15*cm))
+            # 블로그명 태그
+            tag_data = [[Paragraph(f"📌 {label}", ST["h3"])]]
+            tag_t = Table(tag_data, colWidths=[doc.width])
+            tag_t.setStyle(TableStyle([
+                ("BACKGROUND",    (0,0),(-1,-1), colors.HexColor("#EBF5FB")),
+                ("BOX",           (0,0),(-1,-1), 0.5, colors.HexColor("#2980B9")),
+                ("LEFTPADDING",   (0,0),(-1,-1), 8),
+                ("TOPPADDING",    (0,0),(-1,-1), 3),
+                ("BOTTOMPADDING", (0,0),(-1,-1), 3),
+            ]))
+            story.append(tag_t)
+
+            if link:
+                story.append(Paragraph(
+                    f'<a href="{link}" color="#1a6fb5"><u>{text.split(chr(10))[0][:80]}</u></a>',
+                    ST["link"]
+                ))
+            for i, line in enumerate(text.split("\n")):
+                if i == 0 and link:
+                    continue  # 링크로 이미 표시
+                line = line.strip()
+                if line:
+                    story.append(Paragraph(line, ST["bullet"]))
+            if link:
+                story.append(Paragraph(
+                    f'<a href="{link}" color="#888"><font size="7">▶ 원문 보기</font></a>',
+                    ST["note"]
+                ))
+            story.append(HRFlowable(width="100%", thickness=0.3, color=colors.HexColor("#ddd")))
+
+        story.append(Spacer(1, 0.2*cm))
+
+    doc.build(story)
+    buf.seek(0)
+    return buf
 
 # ── RSS 수집 ──────────────────────────────────────────────────────────────────
 def parse_pub_date(entry):
-    """feedparser published_parsed → KST datetime"""
     import calendar
     t = entry.get("published_parsed")
     if t:
@@ -53,14 +172,12 @@ def parse_pub_date(entry):
     return None
 
 def fetch_posts_in_range(blog_id, date_from, date_to):
-    """date_from ~ date_to 사이 포스트 반환"""
     url = f"https://rss.blog.naver.com/{blog_id}.xml"
     try:
         feed = feedparser.parse(url)
     except Exception as e:
         print(f"[RSS 오류] {blog_id}: {e}")
         return []
-
     results = []
     for entry in feed.entries:
         pub = parse_pub_date(entry)
@@ -76,27 +193,16 @@ def fetch_posts_in_range(blog_id, date_from, date_to):
             })
     return results
 
-# ── 본문 스크래핑 ─────────────────────────────────────────────────────────────
 def fetch_post_content(link, max_chars=2000):
-    """네이버 블로그 본문 텍스트 추출"""
     try:
-        r = requests.get(link, headers=HEADERS, timeout=10)
-        soup = BeautifulSoup(r.text, "html.parser")
-
-        # 모바일 페이지로 변환해서 시도
         mobile_url = link.replace("blog.naver.com", "m.blog.naver.com")
-        r2 = requests.get(mobile_url, headers=HEADERS, timeout=10)
-        soup2 = BeautifulSoup(r2.text, "html.parser")
-
-        # 본문 셀렉터 순서대로 시도
+        r = requests.get(mobile_url, headers=HEADERS, timeout=10)
+        soup = BeautifulSoup(r.text, "html.parser")
         for sel in [".se-main-container", ".post-view", "#postViewArea", ".blog-post"]:
-            el = soup2.select_one(sel)
+            el = soup.select_one(sel)
             if el:
                 text = el.get_text(separator="\n", strip=True)
-                text = re.sub(r"\n{3,}", "\n\n", text)
-                return text[:max_chars]
-
-        # 없으면 RSS summary 사용
+                return re.sub(r"\n{3,}", "\n\n", text)[:max_chars]
         return ""
     except Exception as e:
         print(f"[스크래핑 오류] {link[:60]}: {e}")
@@ -119,9 +225,8 @@ def ai_summarize(prompt, max_tokens=1200):
             time.sleep(5)
     return "(AI 요약 실패)"
 
-# ── 일간 요약 ─────────────────────────────────────────────────────────────────
+# ── 일간 ──────────────────────────────────────────────────────────────────────
 def run_daily(target_date):
-    """target_date 하루치 글 요약"""
     print(f"\n[일간] {target_date}")
     all_posts = []
     for blog_id, blog_name in BLOGS.items():
@@ -138,38 +243,35 @@ def run_daily(target_date):
 
     print(f"  총 {len(all_posts)}개 글 수집")
 
-    # 글별 요약
-    summaries = []
+    sections = []
     for p in all_posts:
         body = p["content"] or p["summary"] or p["title"]
         prompt = f"""주식 블로그 글을 5줄로 요약해줘. 핵심 종목명, 수치, 시장 판단 위주로.
-
 블로그: {p['blog_name']}
 제목: {p['title']}
 내용:
 {body[:1500]}
-
 요약 (5줄):"""
         summary = ai_summarize(prompt, max_tokens=400)
-        summaries.append((p['blog_name'], p['title'], summary, p['link']))
         time.sleep(1)
 
-    # 메시지 조립
-    lines = [f"📰 <b>[일간] {target_date.strftime('%m월 %d일')} 블로그 요약</b>\n"]
-    for blog_name, title, summary, link in summaries:
-        lines.append(f"━━━━━━━━━━━━━━━━━━")
-        lines.append(f"📌 <b>{blog_name}</b>")
-        lines.append(f"<i>{title}</i>")
-        lines.append(summary)
-        lines.append(f'<a href="{link}">▶ 원문 보기</a>')
-        lines.append("")
+        full_text = f"{p['title']}\n{summary}"
+        sections.append({
+            "items": [(p["blog_name"], full_text, p["link"])]
+        })
 
-    send_telegram("\n".join(lines))
-    print(f"  일간 요약 전송 완료")
+    date_str = target_date.strftime("%Y년 %m월 %d일")
+    buf = build_pdf(
+        f"📰 블로그 일간 다이제스트",
+        f"{date_str}  ·  {len(all_posts)}건",
+        sections,
+    )
+    filename = f"blog_daily_{target_date.strftime('%Y%m%d')}.pdf"
+    send_pdf(buf, filename, caption=f"📰 {date_str} 블로그 요약 ({len(all_posts)}건)")
+    print(f"  일간 PDF 전송 완료")
 
-# ── 주간 요약 ─────────────────────────────────────────────────────────────────
+# ── 주간 ──────────────────────────────────────────────────────────────────────
 def run_weekly(week_end):
-    """week_end 기준 직전 7일 주간 요약"""
     week_start = week_end - timedelta(days=6)
     print(f"\n[주간] {week_start} ~ {week_end}")
 
@@ -188,7 +290,6 @@ def run_weekly(week_end):
 
     print(f"  총 {len(all_posts)}개 글 수집")
 
-    # 전체 내용 통합해서 AI에게 주간 분석 요청
     combined = ""
     for p in all_posts:
         body = (p["content"] or p["summary"] or "")[:600]
@@ -208,23 +309,28 @@ def run_weekly(week_end):
 
     analysis = ai_summarize(prompt, max_tokens=1000)
 
-    lines = [
-        f"📊 <b>[주간] {week_start.strftime('%m.%d')} ~ {week_end.strftime('%m.%d')} 시장 총정리</b>\n",
-        analysis,
-        f"\n━━━━━━━━━━━━━━━━━━",
-        f"📝 이번 주 글 목록 ({len(all_posts)}건):",
+    # 글 목록 텍스트
+    post_list = "\n".join(f"• [{p['date']}] {p['blog_name']}: {p['title'][:40]}" for p in all_posts)
+
+    sections = [
+        {"heading": "📊 주간 시장 분석", "body": analysis},
+        {"heading": f"📝 이번 주 글 목록 ({len(all_posts)}건)", "body": post_list},
     ]
-    for p in all_posts:
-        lines.append(f"• [{p['date']}] {p['blog_name']}: {p['title'][:35]}")
 
-    send_telegram("\n".join(lines))
-    print("  주간 요약 전송 완료")
+    period = f"{week_start.strftime('%m.%d')} ~ {week_end.strftime('%m.%d')}"
+    buf = build_pdf(
+        f"📊 블로그 주간 다이제스트",
+        f"{period}  ·  {len(all_posts)}건",
+        sections,
+    )
+    filename = f"blog_weekly_{week_end.strftime('%Y%m%d')}.pdf"
+    send_pdf(buf, filename, caption=f"📊 주간 블로그 총정리 {period}")
+    print("  주간 PDF 전송 완료")
 
-# ── 월간 요약 ─────────────────────────────────────────────────────────────────
+# ── 월간 ──────────────────────────────────────────────────────────────────────
 def run_monthly(year, month):
-    """해당 월 전체 요약"""
     import calendar as cal
-    last_day = cal.monthrange(year, month)[1]
+    last_day    = cal.monthrange(year, month)[1]
     month_start = datetime(year, month, 1).date()
     month_end   = datetime(year, month, last_day).date()
     print(f"\n[월간] {year}년 {month}월")
@@ -263,35 +369,39 @@ def run_monthly(year, month):
 
     analysis = ai_summarize(prompt, max_tokens=1200)
 
-    lines = [
-        f"📅 <b>[월간] {year}년 {month}월 시장 총정리</b>\n",
-        analysis,
-        f"\n━━━━━━━━━━━━━━━━━━",
-        f"📝 이번 달 글 목록 ({len(all_posts)}건):",
-    ]
-    for p in sorted(all_posts, key=lambda x: x["date"]):
-        lines.append(f"• [{p['date']}] {p['blog_name']}: {p['title'][:35]}")
+    post_list = "\n".join(
+        f"• [{p['date']}] {p['blog_name']}: {p['title'][:40]}"
+        for p in sorted(all_posts, key=lambda x: x["date"])
+    )
 
-    send_telegram("\n".join(lines))
-    print("  월간 요약 전송 완료")
+    sections = [
+        {"heading": "📅 월간 시장 분석", "body": analysis},
+        {"heading": f"📝 이번 달 글 목록 ({len(all_posts)}건)", "body": post_list},
+    ]
+
+    buf = build_pdf(
+        f"📅 블로그 월간 다이제스트",
+        f"{year}년 {month}월  ·  {len(all_posts)}건",
+        sections,
+    )
+    filename = f"blog_monthly_{year}{month:02d}.pdf"
+    send_pdf(buf, filename, caption=f"📅 {year}년 {month}월 블로그 월간 총정리")
+    print("  월간 PDF 전송 완료")
 
 # ── 메인 ──────────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
-    now = datetime.now(tz=KST)
+    now       = datetime.now(tz=KST)
     today     = now.date()
     yesterday = today - timedelta(days=1)
 
     print(f"블로그 다이제스트 실행: {now.strftime('%Y-%m-%d %H:%M')} KST")
     print(f"대상 블로그: {', '.join(BLOGS.values())}")
 
-    # 1) 일간: 항상 실행 (어제 글)
     run_daily(yesterday)
 
-    # 2) 주간: 월요일마다 (지난 주 월~일 요약)
-    if today.weekday() == 0:  # 0 = Monday
-        run_weekly(yesterday)  # 어제(일요일)까지
+    if today.weekday() == 0:
+        run_weekly(yesterday)
 
-    # 3) 월간: 매월 1일마다 (지난달 전체 요약)
     if today.day == 1:
         last_month = today.replace(day=1) - timedelta(days=1)
         run_monthly(last_month.year, last_month.month)

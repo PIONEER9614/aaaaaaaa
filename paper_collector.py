@@ -6,10 +6,19 @@
 - 학술지별 폴더 + 저자_제목_학술지_권호_연도 파일명
 """
 
-import os, re, json, time, requests, sys, urllib3
+import os, re, io, json, time, requests, sys, urllib3
 from datetime import datetime
 from pathlib import Path
 from dotenv import load_dotenv
+
+from reportlab.platypus import (SimpleDocTemplate, Paragraph, Spacer,
+                                HRFlowable, Table, TableStyle)
+from reportlab.lib.styles import ParagraphStyle
+from reportlab.lib.pagesizes import A4
+from reportlab.lib.units import cm
+from reportlab.lib import colors
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -165,6 +174,18 @@ def core_get_works(journal_name, year=None, page_size=100, offset=0):
                 time.sleep(3)
     return [], 0
 
+# ── 폰트 ─────────────────────────────────────────────────────────────────────
+def setup_font():
+    candidates = ["/usr/share/fonts/truetype/nanum/NanumGothic.ttf",     "C:/Windows/Fonts/malgun.ttf"]
+    bold_c     = ["/usr/share/fonts/truetype/nanum/NanumGothicBold.ttf", "C:/Windows/Fonts/malgunbd.ttf"]
+    font = next((p for p in candidates if os.path.exists(p)), None)
+    bold = next((p for p in bold_c    if os.path.exists(p)), font)
+    if font:
+        pdfmetrics.registerFont(TTFont("KR",   font))
+        pdfmetrics.registerFont(TTFont("KR-B", bold or font))
+        return "KR", "KR-B"
+    return "Helvetica", "Helvetica-Bold"
+
 # ── 텔레그램 ─────────────────────────────────────────────────────────────────
 def send_telegram(text):
     if not BOT_TOKEN or not CHAT_ID:
@@ -177,6 +198,65 @@ def send_telegram(text):
         )
     except Exception:
         pass
+
+def send_pdf(buf, filename, caption=""):
+    if not BOT_TOKEN or not CHAT_ID:
+        return
+    try:
+        r = requests.post(
+            f"https://api.telegram.org/bot{BOT_TOKEN}/sendDocument",
+            data={"chat_id": CHAT_ID, "caption": caption[:1000]},
+            files={"document": (filename, buf, "application/pdf")},
+            timeout=60,
+        )
+        if not r.ok:
+            print(f"[PDF 오류] {r.text[:200]}")
+    except Exception as e:
+        print(f"[PDF 예외] {e}")
+
+def build_paper_pdf(new_papers, date_str, year_label=""):
+    fn, fnb = setup_font()
+    def S(nm, **kw):  return ParagraphStyle(nm, fontName=fn,  **kw)
+    def SB(nm, **kw): return ParagraphStyle(nm, fontName=fnb, **kw)
+    ST = {
+        "title":  SB("ti", fontSize=18, leading=24, spaceAfter=4,  textColor=colors.HexColor("#0d1b2a")),
+        "sub":    S ("su", fontSize=9,  leading=13, spaceAfter=10, textColor=colors.HexColor("#666")),
+        "h2":     SB("h2", fontSize=12, leading=17, spaceBefore=10,spaceAfter=4, textColor=colors.HexColor("#1a3a5c")),
+        "h3":     SB("h3", fontSize=9,  leading=13, spaceBefore=4, spaceAfter=2, textColor=colors.HexColor("#c0392b")),
+        "body":   S ("bo", fontSize=8,  leading=13, spaceAfter=2,  textColor=colors.HexColor("#222")),
+        "note":   S ("no", fontSize=7,  leading=11, textColor=colors.HexColor("#888")),
+    }
+    buf = io.BytesIO()
+    doc = SimpleDocTemplate(buf, pagesize=A4,
+                            leftMargin=1.8*cm, rightMargin=1.8*cm,
+                            topMargin=1.8*cm,  bottomMargin=1.8*cm)
+    story = []
+    W = doc.width
+
+    story.append(Paragraph(f"📚 논문 수집 리포트{year_label}", ST["title"]))
+    story.append(Paragraph(f"{date_str}  ·  신규 {len(new_papers)}편", ST["sub"]))
+    story.append(HRFlowable(width="100%", thickness=2, color=colors.HexColor("#1a3a5c")))
+    story.append(Spacer(1, 0.3*cm))
+
+    # 학술지별 그룹핑
+    by_journal = {}
+    for p in new_papers:
+        j = p["journal"]
+        by_journal.setdefault(j, []).append(p)
+
+    for journal, papers in by_journal.items():
+        story.append(Paragraph(f"📖 {journal}  ({len(papers)}편)", ST["h2"]))
+        story.append(HRFlowable(width="100%", thickness=0.5, color=colors.HexColor("#aaa")))
+        for p in papers:
+            story.append(Spacer(1, 0.1*cm))
+            story.append(Paragraph(f"▶ {p['title'][:90]}", ST["h3"]))
+            story.append(Paragraph(f"연도: {p['year']}", ST["note"]))
+            story.append(HRFlowable(width="100%", thickness=0.3, color=colors.HexColor("#eee")))
+        story.append(Spacer(1, 0.2*cm))
+
+    doc.build(story)
+    buf.seek(0)
+    return buf
 
 # ── 메인 ─────────────────────────────────────────────────────────────────────
 def main(year_filter=None):
@@ -310,10 +390,12 @@ def main(year_filter=None):
         print(f"  [{p['year']}] {p['journal']} / {p['title'][:60]}")
 
     if new_papers and BOT_TOKEN:
-        lines = [f"📚 <b>새 논문 {len(new_papers)}편 수집</b>\n"]
-        for p in new_papers[:15]:
-            lines.append(f"• [{p['year']}] {p['journal']}\n  {p['title'][:55]}")
-        send_telegram("\n".join(lines))
+        date_str   = datetime.now().strftime("%Y년 %m월 %d일 %H:%M")
+        year_label = f" [{year_filter}년]" if year_filter else ""
+        buf        = build_paper_pdf(new_papers, date_str, year_label)
+        filename   = f"papers_{datetime.now().strftime('%Y%m%d_%H%M')}.pdf"
+        caption    = f"📚 새 논문 {len(new_papers)}편 수집{year_label}\n{date_str}"
+        send_pdf(buf, filename, caption=caption)
 
 if __name__ == "__main__":
     # python paper_collector.py 2025  → 2025년 논문 전체
