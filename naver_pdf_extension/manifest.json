@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "페이지 PDF 저장기",
+  "version": "1.1",
+  "description": "네이버 블로그/카페, Valley.town 페이지를 PDF로 저장",
+  "permissions": ["activeTab", "downloads", "scripting", "tabs"],
+  "host_permissions": [
+    "http://localhost:5100/*",
+    "https://www.valley.town/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "PDF로 저장"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16":  "icon.png",
+    "48":  "icon.png",
+    "128": "icon.png"
+  }
+}

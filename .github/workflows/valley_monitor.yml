@@ -1,0 +1,36 @@
+name: Valley.town 새 글 모니터링
+
+on:
+  schedule:
+    - cron: "0 0,3,6,9 * * 1-5"  # 평일 오전 9시, 12시, 15시, 18시 KST
+  workflow_dispatch:
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 패키지 설치
+        run: pip install requests python-dotenv beautifulsoup4 reportlab
+
+      - name: 모니터링 실행
+        env:
+          VALLEY_EMAIL:      ${{ secrets.VALLEY_EMAIL }}
+          VALLEY_PASSWORD:   ${{ secrets.VALLEY_PASSWORD }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:  ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python valley_monitor.py
+
+      - name: 히스토리 커밋
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add valley_history.json
+          git diff --staged --quiet || git commit -m "chore: valley 히스토리 업데이트 $(date +'%Y-%m-%d %H:%M')"
+          git push
