@@ -31,6 +31,6 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add valley_history.json
+          git add valley_history.json || true
           git diff --staged --quiet || git commit -m "chore: valley 히스토리 업데이트 $(date +'%Y-%m-%d %H:%M')"
-          git push
+          git push || true

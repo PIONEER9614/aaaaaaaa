@@ -189,6 +189,10 @@ def send_telegram(pdf_buf, filename):
 def main():
     print(f"\n=== Valley.town 모니터링 {datetime.now().strftime('%Y-%m-%d %H:%M')} ===")
 
+    # 히스토리 파일 없으면 빈 파일 생성 (git add 실패 방지)
+    if not HISTORY_FILE.exists():
+        save_history({"seen_urls": [], "last_check": ""})
+
     if not VALLEY_EMAIL or not VALLEY_PASSWORD:
         print("  ❌ VALLEY_EMAIL / VALLEY_PASSWORD 환경변수 없음")
         sys.exit(1)
