@@ -2,7 +2,7 @@ name: 글로벌 뉴스 요약
 
 on:
   schedule:
-    - cron: "0 23 * * 1-5"  # 평일 오전 8시 KST (UTC 23:00 전날)
+    - cron: "0 23 * * 0-4"  # 평일 오전 8시 KST (UTC 23:00 전날)
     - cron: "0 9 * * 1-5"   # 평일 오후 6시 KST (UTC 09:00)
   workflow_dispatch:
 
