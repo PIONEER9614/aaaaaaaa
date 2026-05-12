@@ -105,6 +105,40 @@ def login_manual():
         browser.close()
     print(f"  ✅ 쿠키 저장 완료: {COOKIE_FILE}")
 
+def auto_login():
+    """GitHub Actions 환경에서 자동 로그인 (캡차 없을 때만 작동)"""
+    if not NAVER_ID or not NAVER_PW:
+        print("  NAVER_ID / NAVER_PW 환경변수 없음")
+        return False
+    from playwright.sync_api import sync_playwright
+    print("  자동 로그인 시도 중...")
+    try:
+        with sync_playwright() as p:
+            browser = p.chromium.launch(headless=True)
+            ctx = browser.new_context()
+            page = ctx.new_page()
+            page.goto("https://nid.naver.com/nidlogin.login")
+            page.wait_for_timeout(1000)
+            page.fill("#id", NAVER_ID)
+            page.wait_for_timeout(500)
+            page.fill("#pw", NAVER_PW)
+            page.wait_for_timeout(500)
+            page.click(".btn_login")
+            page.wait_for_timeout(3000)
+            if "nid.naver.com" not in page.url:
+                COOKIE_FILE.parent.mkdir(parents=True, exist_ok=True)
+                ctx.storage_state(path=str(COOKIE_FILE))
+                browser.close()
+                print("  ✅ 자동 로그인 성공")
+                return True
+            else:
+                browser.close()
+                print("  ❌ 자동 로그인 실패 (캡차 등) — 로컬에서 --login 실행 필요")
+                return False
+    except Exception as e:
+        print(f"  ❌ 자동 로그인 오류: {e}")
+        return False
+
 def get_playwright_ctx(p):
     if COOKIE_FILE.exists():
         return p.chromium.launch(headless=True).new_context(storage_state=str(COOKIE_FILE))
@@ -191,8 +225,9 @@ def collect_feed_posts(scroll_count=20):
     """로그인 쿠키로 이웃새글 피드 스크롤 → 포스트 목록 반환"""
     from playwright.sync_api import sync_playwright
     if not COOKIE_FILE.exists():
-        print("  쿠키 없음 → --login 먼저 실행하세요")
-        return []
+        if not auto_login():
+            print("  쿠키 없음 → --login 먼저 실행하세요")
+            return []
     posts = []
     seen_urls = set()
 
