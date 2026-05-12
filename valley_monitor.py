@@ -30,6 +30,7 @@ TARGET_URL      = "https://www.valley.town/wsaj-premium/industry-company"
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36",
     "Accept-Language": "ko-KR,ko;q=0.9",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
 }
 
 # ── 폰트 ──────────────────────────────────────────────────────────────────────
@@ -51,80 +52,83 @@ def login():
     session = requests.Session()
     session.headers.update(HEADERS)
 
-    # 로그인 페이지에서 CSRF 토큰 가져오기
-    login_page = session.get("https://www.valley.town/accounts/sign-in", timeout=15)
-    soup = BeautifulSoup(login_page.text, "html.parser")
+    # 실제 API 엔드포인트: POST https://api.valley.town/auth/sign-in
+    try:
+        r = session.post(
+            "https://api.valley.town/auth/sign-in",
+            json={"email": VALLEY_EMAIL, "password": VALLEY_PASSWORD, "type": "session"},
+            headers={**HEADERS, "Content-Type": "application/json", "Origin": "https://www.valley.town", "Referer": "https://www.valley.town/login"},
+            timeout=20,
+        )
+        print(f"  로그인 응답: {r.status_code}")
+        if r.status_code in (200, 201):
+            # 쿠키가 세션에 자동 저장됨
+            if session.cookies:
+                data = r.json() if r.text else {}
+                name = data.get("user", {}).get("name", "")
+                print(f"  ✅ 로그인 성공 ({name})")
+                return session, True
+            print(f"  응답 본문: {r.text[:200]}")
+    except Exception as e:
+        print(f"  로그인 오류: {e}")
 
-    csrf = ""
-    for inp in soup.find_all("input", {"name": re.compile(r"csrf|token|_token", re.I)}):
-        csrf = inp.get("value", "")
-        break
-
-    # 로그인 요청 (일반적인 form POST)
-    payload = {
-        "email":    VALLEY_EMAIL,
-        "password": VALLEY_PASSWORD,
-    }
-    if csrf:
-        payload["_token"] = csrf
-
-    # 로그인 엔드포인트 추정 (일반적인 패턴들 시도)
-    for endpoint in ["/accounts/sign-in", "/api/auth/login", "/login", "/accounts/login"]:
-        try:
-            r = session.post(
-                f"https://www.valley.town{endpoint}",
-                data=payload,
-                timeout=15,
-                allow_redirects=True,
-            )
-            # 로그인 성공 확인: 리다이렉트되거나 토큰 쿠키가 생기면 성공
-            if r.url != f"https://www.valley.town{endpoint}" or "session" in session.cookies:
-                print(f"  로그인 성공 (endpoint: {endpoint})")
-                return session
-        except:
-            pass
-
-    print("  로그인 실패 — 쿠키 방식으로 시도")
-    return session
+    print("  ❌ 로그인 실패")
+    return session, False
 
 # ── 글 목록 가져오기 ──────────────────────────────────────────────────────────
 def fetch_posts(session):
-    r = session.get(TARGET_URL, timeout=15)
-    r.encoding = "utf-8"
-    soup = BeautifulSoup(r.text, "html.parser")
+    try:
+        r = session.get(TARGET_URL, timeout=20)
+        r.encoding = "utf-8"
+    except Exception as e:
+        print(f"  페이지 요청 오류: {e}")
+        return []
 
+    soup = BeautifulSoup(r.text, "html.parser")
     posts = []
 
-    # 공통 패턴으로 글 목록 추출
-    for sel in ["article", ".post-item", ".article-item", '[class*="post"]', 'li[class*="item"]', "a[href*='/wsaj']"]:
-        items = soup.select(sel)
-        if len(items) >= 2:
-            for item in items:
-                link = item.find("a") or (item if item.name == "a" else None)
-                href = link.get("href", "") if link else ""
-                if not href or href == "/":
-                    continue
-                if not href.startswith("http"):
-                    href = "https://www.valley.town" + href
+    # valley.town 포스트 URL 패턴: /wsaj-premium/industry-company/<id>
+    for a in soup.find_all("a", href=True):
+        href = a["href"]
+        # /wsaj-premium/industry-company/<24자 이상의 hex id>
+        if re.match(r"^/wsaj-premium/industry-company/[a-f0-9]{10,}", href):
+            full_url = "https://www.valley.town" + href
+            title_el = a.find(["h1","h2","h3","h4","strong","span","p"])
+            title = title_el.get_text(strip=True) if title_el else a.get_text(strip=True)[:80]
+            if not title:
+                title = href.split("/")[-1]
 
-                title_el = item.find(["h1","h2","h3","h4","strong",'.title'])
-                title = title_el.get_text(strip=True) if title_el else item.get_text(strip=True)[:50]
+            date_el = a.find(["time", '[class*="date"]']) or a.find_parent(["article","li","div"])
+            date = ""
+            if date_el:
+                t = date_el.find("time") if date_el.name != "time" else date_el
+                if t:
+                    date = t.get("datetime","") or t.get_text(strip=True)
 
-                date_el = item.find(["time", '[class*="date"]'])
-                date = date_el.get("datetime","") or (date_el.get_text(strip=True) if date_el else "")
+            if full_url not in [p["url"] for p in posts]:
+                posts.append({"title": title, "url": full_url, "date": date})
 
-                if title and href and "wsaj" in href:
-                    posts.append({"title": title, "url": href, "date": date})
-
-            if posts:
-                break
-
-    # 못 찾으면 JS 변수에서 추출 시도
+    # API 방식으로도 시도
     if not posts:
-        script_data = re.findall(r'"title"\s*:\s*"([^"]+)".*?"url"\s*:\s*"([^"]+)"', r.text)
-        for t, u in script_data[:10]:
-            if "wsaj" in u:
-                posts.append({"title": t, "url": u, "date": ""})
+        try:
+            api_r = session.get(
+                "https://api.valley.town/premium-content/posts",
+                params={"category": "industry-company", "page": 1, "limit": 20},
+                timeout=15,
+            )
+            if api_r.status_code == 200:
+                data = api_r.json()
+                items = data if isinstance(data, list) else data.get("data") or data.get("posts") or []
+                for item in items:
+                    url_id = item.get("id") or item.get("slug","")
+                    if url_id:
+                        posts.append({
+                            "title": item.get("title",""),
+                            "url":   f"https://www.valley.town/wsaj-premium/industry-company/{url_id}",
+                            "date":  item.get("createdAt","") or item.get("date",""),
+                        })
+        except Exception:
+            pass
 
     print(f"  글 목록 {len(posts)}개 발견")
     return posts
@@ -154,7 +158,7 @@ def build_pdf(new_posts, date_str):
                             topMargin=2*cm,  bottomMargin=2*cm)
     story = []
 
-    story.append(Paragraph(f"Valley.town 새 글 알림", ST["title"]))
+    story.append(Paragraph("Valley.town 새 글 알림", ST["title"]))
     story.append(Paragraph(f"{date_str}  |  신규 {len(new_posts)}건", ST["sub"]))
     story.append(HRFlowable(width="100%", thickness=1.5, color=colors.HexColor("#1a3a5c")))
     story.append(Spacer(1, 0.3*cm))
@@ -162,7 +166,7 @@ def build_pdf(new_posts, date_str):
     for i, post in enumerate(new_posts, 1):
         story.append(Paragraph(f"{i}. {post['title']}", ST["h3"]))
         if post.get("date"):
-            story.append(Paragraph(f"📅 {post['date']}", ST["body"]))
+            story.append(Paragraph(f"날짜: {post['date']}", ST["body"]))
         story.append(Paragraph(
             f'<a href="{post["url"]}" color="#1a6fb5">{post["url"]}</a>', ST["link"]
         ))
@@ -189,7 +193,6 @@ def send_telegram(pdf_buf, filename):
 def main():
     print(f"\n=== Valley.town 모니터링 {datetime.now().strftime('%Y-%m-%d %H:%M')} ===")
 
-    # 히스토리 파일 없으면 빈 파일 생성 (git add 실패 방지)
     if not HISTORY_FILE.exists():
         save_history({"seen_urls": [], "last_check": ""})
 
@@ -197,8 +200,11 @@ def main():
         print("  ❌ VALLEY_EMAIL / VALLEY_PASSWORD 환경변수 없음")
         sys.exit(1)
 
-    session = login()
-    posts   = fetch_posts(session)
+    session, ok = login()
+    if not ok:
+        print("  로그인 실패 — 페이지 접근 시도 (로그인 불필요한 경우)")
+
+    posts = fetch_posts(session)
 
     if not posts:
         print("  글 목록을 가져오지 못했습니다.")
