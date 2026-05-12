@@ -1,0 +1,45 @@
+name: 네이버 이웃 블로그 다이제스트
+
+on:
+  schedule:
+    - cron: "0 23 * * 0-4"   # KST 월~금 오전 8시 (UTC 전날 23:00)
+  workflow_dispatch:
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 패키지 설치
+        run: |
+          pip install requests python-dotenv groq beautifulsoup4 reportlab playwright
+          playwright install chromium --with-deps
+
+      - name: 이웃 목록 복원
+        run: |
+          mkdir -p data
+          if [ -n "${{ secrets.NAVER_NEIGHBORS }}" ]; then
+            echo '${{ secrets.NAVER_NEIGHBORS }}' > data/naver_neighbors.json
+          fi
+
+      - name: 새 글 수집 + 요약 + 전송
+        env:
+          NAVER_ID: ${{ secrets.NAVER_ID }}
+          NAVER_PW: ${{ secrets.NAVER_PW }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python naver_neighbor_digest.py
+
+      - name: 히스토리 커밋
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add data/naver_neighbor_history.json || true
+          git diff --cached --quiet || git commit -m "chore: 이웃 블로그 히스토리 업데이트 $(date +'%Y-%m-%d')"
+          git push || true
