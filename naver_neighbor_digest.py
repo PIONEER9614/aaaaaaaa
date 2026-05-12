@@ -86,16 +86,20 @@ def save_history(seen: set):
 # 로그인 / 쿠키
 # ─────────────────────────────────────────────────────────────────────────────
 def login_manual():
-    """브라우저 열어서 수동 로그인 → 쿠키 저장"""
+    """브라우저 열어서 수동 로그인 → 로그인 감지 → 쿠키 자동 저장"""
     from playwright.sync_api import sync_playwright
-    print("  브라우저를 열겠습니다. 네이버에 로그인하고 블로그 메인 페이지까지 이동해주세요.")
-    print("  로그인 완료 후 콘솔에서 Enter를 눌러주세요.")
+    print("  브라우저가 열립니다. 네이버에 로그인해주세요.")
+    print("  로그인 완료되면 자동으로 쿠키가 저장됩니다. (최대 120초 대기)")
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False)
         ctx = browser.new_context()
         page = ctx.new_page()
         page.goto("https://nid.naver.com/nidlogin.login")
-        input("  ↑ 로그인 완료 후 Enter ...")
+        for _ in range(120):
+            page.wait_for_timeout(1000)
+            if "nid.naver.com" not in page.url:
+                print(f"  로그인 감지!")
+                break
         COOKIE_FILE.parent.mkdir(parents=True, exist_ok=True)
         ctx.storage_state(path=str(COOKIE_FILE))
         browser.close()
@@ -115,6 +119,20 @@ def fetch_neighbor_list():
     neighbors = []
     seen_ids  = set()
 
+    def extract_blog_ids(html):
+        soup = BeautifulSoup(html, "html.parser")
+        found = []
+        for a in soup.find_all("a", href=True):
+            href = a["href"]
+            m = re.search(r"blog\.naver\.com/([A-Za-z0-9_]{4,})", href)
+            if m:
+                bid = m.group(1)
+                if bid != NAVER_ID and bid not in seen_ids and bid not in ("PostList", "PostView", "search"):
+                    seen_ids.add(bid)
+                    name = a.get_text(strip=True)[:40] or bid
+                    found.append({"id": bid, "name": name})
+        return found
+
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
         ctx = browser.new_context(
@@ -122,54 +140,43 @@ def fetch_neighbor_list():
         )
         page = ctx.new_page()
 
-        # 이웃 목록 API (페이지네이션)
-        page_no = 1
-        while True:
-            url = (f"https://blog.naver.com/NeighborListAsync.naver"
-                   f"?blogId={NAVER_ID}&pageNo={page_no}&countPerPage=100")
+        # 이웃 관리 페이지 (스크롤 방식)
+        for url in [
+            f"https://blog.naver.com/{NAVER_ID}/n/neighbor",
+            f"https://blog.naver.com/NeighborList.naver?blogId={NAVER_ID}",
+        ]:
             page.goto(url)
-            try:
-                data = json.loads(page.locator("pre").inner_text())
-            except:
-                content = page.content()
-                m = re.search(r'\{.*\}', content, re.DOTALL)
-                data = json.loads(m.group()) if m else {}
-
-            items = data.get("neighborList") or data.get("result") or []
-            if not items:
-                # fallback: HTML 파싱
-                page.goto(f"https://blog.naver.com/{NAVER_ID}/n/neighbor")
-                page.wait_for_timeout(2000)
-                soup = BeautifulSoup(page.content(), "html.parser")
-                for a in soup.select("a[href*='blog.naver.com']"):
-                    href = a.get("href", "")
-                    m2 = re.match(r"https?://blog\.naver\.com/([A-Za-z0-9_]+)$", href)
-                    if m2:
-                        bid = m2.group(1)
-                        if bid != NAVER_ID and bid not in seen_ids:
-                            seen_ids.add(bid)
-                            name = a.get_text(strip=True)[:40] or bid
-                            neighbors.append({"id": bid, "name": name})
+            page.wait_for_timeout(2500)
+            # 스크롤로 더 불러오기
+            for _ in range(10):
+                page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
+                page.wait_for_timeout(800)
+            found = extract_blog_ids(page.content())
+            neighbors.extend(found)
+            print(f"  {url.split('?')[0][-40:]} → {len(found)}개")
+            if len(neighbors) > 10:
                 break
 
-            for item in items:
-                bid = item.get("blogId") or item.get("neighborBlogId", "")
-                if bid and bid not in seen_ids and bid != NAVER_ID:
-                    seen_ids.add(bid)
-                    name = item.get("blogName") or item.get("nickName", bid)
-                    neighbors.append({"id": bid, "name": name})
-
-            total = data.get("totalCount") or data.get("total", 0)
-            if len(neighbors) >= total or len(items) < 100:
-                break
-            page_no += 1
+        # 이웃 새글 피드에서도 추가 수집
+        page.goto(f"https://blog.naver.com/{NAVER_ID}")
+        page.wait_for_timeout(2000)
+        found2 = extract_blog_ids(page.content())
+        neighbors.extend(found2)
 
         browser.close()
 
-    print(f"  [이웃 목록] {len(neighbors)}개 수집")
+    # 중복 제거
+    seen = set()
+    unique = []
+    for n in neighbors:
+        if n["id"] not in seen:
+            seen.add(n["id"])
+            unique.append(n)
+
+    print(f"  [이웃 목록] 총 {len(unique)}개 수집")
     NEIGHBOR_FILE.parent.mkdir(parents=True, exist_ok=True)
-    NEIGHBOR_FILE.write_text(json.dumps(neighbors, ensure_ascii=False, indent=2), encoding="utf-8")
-    return neighbors
+    NEIGHBOR_FILE.write_text(json.dumps(unique, ensure_ascii=False, indent=2), encoding="utf-8")
+    return unique
 
 def load_neighbors():
     if not NEIGHBOR_FILE.exists():
@@ -178,7 +185,64 @@ def load_neighbors():
     return json.loads(NEIGHBOR_FILE.read_text(encoding="utf-8"))
 
 # ─────────────────────────────────────────────────────────────────────────────
-# RSS 새 글 수집
+# 이웃새글 피드 직접 수집 (section.blog.naver.com)
+# ─────────────────────────────────────────────────────────────────────────────
+def collect_feed_posts(scroll_count=20):
+    """로그인 쿠키로 이웃새글 피드 스크롤 → 포스트 목록 반환"""
+    from playwright.sync_api import sync_playwright
+    if not COOKIE_FILE.exists():
+        print("  쿠키 없음 → --login 먼저 실행하세요")
+        return []
+    posts = []
+    seen_urls = set()
+
+    SKIP_IDS = {"PostList", "PostView", "search", "blogscrap", "CommentList",
+                "GuestBook", "MyBlog", "MarketPlace", "market"}
+
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        ctx = browser.new_context(storage_state=str(COOKIE_FILE))
+        page = ctx.new_page()
+        page.goto("https://section.blog.naver.com/BlogHome.naver")
+        page.wait_for_timeout(3000)
+
+        # 이웃새글 탭 클릭 시도
+        for tab_text in ["이웃새글", "구독"]:
+            try:
+                page.click(f"text={tab_text}", timeout=2000)
+                page.wait_for_timeout(1500)
+                break
+            except:
+                pass
+
+        # 스크롤 반복
+        for _ in range(scroll_count):
+            page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
+            page.wait_for_timeout(800)
+
+        soup = BeautifulSoup(page.content(), "html.parser")
+        browser.close()
+
+    for a in soup.find_all("a", href=True):
+        href = a["href"]
+        m = re.match(r"https?://blog\.naver\.com/([A-Za-z0-9_]{4,})/(\d+)", href)
+        if not m:
+            continue
+        bid, post_no = m.group(1), m.group(2)
+        if bid in SKIP_IDS or href in seen_urls:
+            continue
+        title = a.get_text(strip=True)[:80]
+        if len(title) < 3:
+            continue
+        seen_urls.add(href)
+        posts.append({"blog_id": bid, "post_no": post_no,
+                      "url": href, "title": title})
+
+    return posts
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# RSS 새 글 수집 (개별 블로그 - 보조용)
 # ─────────────────────────────────────────────────────────────────────────────
 def parse_rss_date(s):
     try:
@@ -331,46 +395,39 @@ def main():
         fetch_neighbor_list()
         return
 
-    # ── 새 글 수집 ──
-    date_str  = datetime.now().strftime("%Y.%m.%d")
-    cutoff_dt = datetime.now(timezone.utc) - timedelta(hours=LOOKBACK_HOURS)
-    seen      = load_history()
-    neighbors = load_neighbors()
-    if not neighbors:
-        return
+    # ── 이웃새글 피드에서 직접 수집 ──
+    date_str = datetime.now().strftime("%Y.%m.%d")
+    seen     = load_history()
 
-    print(f"[새 글 수집] 이웃 {len(neighbors)}개 / {LOOKBACK_HOURS}시간 이내")
-    all_new_posts = []
+    print(f"[새 글 수집] section.blog.naver.com 이웃새글 피드")
+    raw_posts = collect_feed_posts()
 
-    for n in neighbors:
-        posts = get_rss_posts(n["id"], cutoff_dt)
-        new   = [p for p in posts if p["link"] not in seen]
-        if new:
-            print(f"  {n['name']} ({n['id']}): 새 글 {len(new)}건")
-            all_new_posts.append({"blog_name": n["name"], "blog_id": n["id"], "posts": new})
-        if sum(len(x["posts"]) for x in all_new_posts) >= MAX_POSTS:
-            break
-        time.sleep(0.15)
+    new_posts = [p for p in raw_posts if p["url"] not in seen]
+    print(f"  전체 {len(raw_posts)}건 중 신규 {len(new_posts)}건")
 
-    total = sum(len(x["posts"]) for x in all_new_posts)
-    print(f"\n  총 {total}건 새 글 (블로그 {len(all_new_posts)}개)\n")
-
-    if not all_new_posts:
+    if not new_posts:
         print("  새 글 없음")
         return
 
+    # 블로그별로 그룹화
+    by_blog = {}
+    for p in new_posts[:MAX_POSTS]:
+        bid = p["blog_id"]
+        by_blog.setdefault(bid, {"blog_name": p["blog_id"], "posts": []})
+        by_blog[bid]["posts"].append(p)
+
     # ── 본문 추출 ──
-    print("[본문 추출]")
-    for item in all_new_posts:
+    print(f"[본문 추출] {sum(len(v['posts']) for v in by_blog.values())}건")
+    for item in by_blog.values():
         for p in item["posts"]:
-            p["content"] = extract_content(p["link"])
+            p["content"] = extract_content(p["url"])
             time.sleep(0.2)
 
     # ── LLM 요약 ──
     print("[LLM 요약]")
     digest_items = []
-    for item in all_new_posts:
-        print(f"  {item['blog_name']} ...")
+    for bid, item in by_blog.items():
+        print(f"  {bid} ({len(item['posts'])}건) ...")
         summary = summarize_blog_posts(item["blog_name"], item["posts"])
         digest_items.append({
             "blog_name": item["blog_name"],
@@ -378,6 +435,8 @@ def main():
             "summary":   summary,
         })
         time.sleep(0.5)
+
+    total = sum(len(d["posts"]) for d in digest_items)
 
     # ── PDF + 전송 ──
     print("\n[PDF 생성]")
@@ -392,9 +451,8 @@ def main():
     send_telegram(pdf_buf, date_str, total)
 
     # ── 히스토리 업데이트 ──
-    for item in all_new_posts:
-        for p in item["posts"]:
-            seen.add(p["link"])
+    for p in new_posts:
+        seen.add(p["url"])
     save_history(seen)
     print("  히스토리 저장 완료")
 
