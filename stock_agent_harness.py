@@ -83,6 +83,33 @@ PROMPTS = {
 
 한국어로 작성.""",
 
+    "가치투자분석가": """당신은 워런 버핏/벤저민 그레이엄 스타일의 가치투자 전문가입니다.
+아래 계산된 밸류에이션 수치를 해석하고 가치투자 관점에서 심층 분석하세요.
+
+분석 항목:
+1. DCF 내재가치 분석
+   - 현재가 대비 내재가치 및 안전마진(MOS) 해석
+   - WACC·성장률 가정의 적절성 평가
+   - 보수적/기본/낙관적 3가지 시나리오 가치 범위 제시
+
+2. Graham Number 분석
+   - Graham Number vs 현재가 비교
+   - 그레이엄 기준으로 이 종목이 매수 대상인지 판단
+
+3. PER/PBR 적정가 분석
+   - Justified PER·PBR 기반 적정가 vs 현재가
+   - 현재 멀티플이 고평가/저평가 여부
+
+4. 경제적 해자 (Economic Moat) 평가
+   - 브랜드력, 원가우위, 전환비용, 네트워크 효과, 효율적 규모
+   - 해자 강도: Wide(넓음) / Narrow(좁음) / None(없음)
+
+5. 가치투자 최종 판정
+   - 강력매수(MOS 30%+) / 매수고려(10~30%) / 적정가(±10%) / 고평가(-10~-30%) / 심각한고평가(-30% 이하)
+   - "버핏이라면?" — 이 종목을 10년 보유할 이유 또는 패스할 이유 3가지
+
+한국어로 작성.""",
+
     "밸리인사이트": """당신은 Valley AI 프리미엄 콘텐츠 분석가입니다. 제공된 Valley AI 포스트를 분석하세요.
 
 분석 항목:
@@ -103,7 +130,7 @@ PROMPTS = {
 
 한국어로 작성.""",
 
-    "투자전략가": """당신은 공격적 성향의 투자 전략가입니다. 5명의 분석가 결과를 종합하여 최종 투자 판단을 내리세요.
+    "투자전략가": """당신은 공격적 성향의 투자 전략가입니다. 6명의 분석가 결과를 종합하여 최종 투자 판단을 내리세요.
 
 성향: 공격적 (리스크를 감수하더라도 수익 극대화)
 
@@ -115,7 +142,7 @@ PROMPTS = {
 2. 목표 수익률 (%)
 3. 손절 라인 (현재가 대비 %)
 4. 진입 타이밍
-5. 각 분석가 견해 인용하며 근거 설명 (재무·리서치·뉴스·밸리·업종 모두 언급)
+5. 각 분석가 견해 인용하며 근거 설명 (재무·리서치·뉴스·밸리·가치투자·업종 모두 언급)
 
 한국어로 작성.""",
 }
@@ -226,6 +253,9 @@ def yf_data(ticker):
             "industry":  info.get("industry",""),
             "name":      info.get("shortName") or info.get("longName",""),
             "currency":  info.get("currency",""),
+            "shares":    info.get("sharesOutstanding"),
+            "beta":      info.get("beta"),
+            "fcf":       info.get("freeCashflow"),
         }
     except Exception as e:
         print(f"  [yfinance] {e}")
@@ -481,6 +511,179 @@ def format_news(items, company_name):
     return "\n".join(lines)
 
 # ─────────────────────────────────────────────────────────────────────────────
+# 가치투자 밸류에이션 엔진 (DCF + Graham + 멀티플)
+# ─────────────────────────────────────────────────────────────────────────────
+def calc_valuation(dart_parsed, sec_fin, yf_info, is_us):
+    """DCF(2-stage), Graham Number, Justified PER/PBR 계산"""
+    price  = yf_info.get("price")
+    shares = yf_info.get("shares")
+    beta   = yf_info.get("beta") or 1.0
+    roe_pct= yf_info.get("roe") or 10.0          # 퍼센트 단위
+    fcf_yf = yf_info.get("fcf")                   # yfinance FCF (원화/USD)
+
+    # 주식수 보완: 시가총액 / 현재가
+    if not shares:
+        mktcap = yf_info.get("mktcap")
+        if mktcap and price:
+            shares = mktcap / price
+
+    if not shares or not price:
+        return {"error": "주식수 또는 현재가 데이터 없음"}
+
+    # ── 재무 기본값 (단위: 원 or USD) ──
+    net_income = equity = revenue = None
+    rev_cagr   = None
+
+    if is_us and sec_fin:
+        net_income = sec_fin.get("net_income")
+        equity     = sec_fin.get("equity")
+        revenue    = sec_fin.get("revenue")
+    elif dart_parsed:
+        years = sorted(dart_parsed.keys())
+        # 순이익이 있는 가장 최근 연도 사용
+        best_year = next(
+            (y for y in reversed(years) if (dart_parsed[y].get("net_income") or 0) > 0),
+            None
+        )
+        if best_year:
+            d          = dart_parsed[best_year]
+            net_income = d["net_income"] * 1e8   # 억원 → 원
+            equity     = (d.get("equity")  or 0) * 1e8
+            revenue    = (d.get("revenue") or 0) * 1e8
+        # 매출 CAGR: 유효한 연도만 사용
+        valid_rev_years = [y for y in years if (dart_parsed[y].get("revenue") or 0) > 0]
+        if len(valid_rev_years) >= 2:
+            r0 = dart_parsed[valid_rev_years[0]]["revenue"]
+            r1 = dart_parsed[valid_rev_years[-1]]["revenue"]
+            n  = valid_rev_years[-1] - valid_rev_years[0]
+            if r0 > 0 and n > 0:
+                rev_cagr = (r1 / r0) ** (1 / n) - 1
+
+    if not net_income or net_income <= 0:
+        return {"error": "순이익 데이터 없음 또는 적자 (DCF 계산 불가)"}
+
+    eps  = net_income / shares
+    bvps = equity / shares if equity and equity > 0 else None
+
+    # ── WACC 계산 ──
+    rf   = 0.045 if is_us else 0.035   # 무위험수익률
+    mrp  = 0.055                        # 시장위험프리미엄
+    ke   = rf + beta * mrp              # 자기자본비용 (= 단순화 WACC)
+    wacc = ke
+
+    # ── FCF 기준 ──
+    if fcf_yf and fcf_yf > 0:
+        fcf_base = fcf_yf
+    else:
+        fcf_base = net_income * 0.75    # 순이익 × 75% 환산
+
+    if fcf_base <= 0:
+        return {"error": "FCF ≤ 0 (DCF 계산 불가)"}
+
+    # ── 성장률 추정 ──
+    roe = roe_pct / 100
+    sgr = roe * 0.70                    # 지속가능성장률 (유보율 70%)
+    if rev_cagr is not None:
+        g_high = min(max((sgr + rev_cagr) / 2, 0.0), 0.20)
+    else:
+        g_high = min(max(sgr, 0.0), 0.20)
+    g_term = 0.025                      # 터미널 성장률
+
+    if wacc <= g_term:
+        wacc = g_term + 0.01
+
+    # ── 5년 2-단계 DCF ──
+    pv_sum = 0.0
+    fcf = float(fcf_base)
+    for yr in range(1, 6):
+        g    = g_high * (1 - 0.1 * (yr - 1))   # 매년 10% 감속
+        fcf *= (1 + g)
+        pv_sum += fcf / (1 + wacc) ** yr
+
+    tv    = fcf * (1 + g_term) / (wacc - g_term)
+    pv_tv = tv / (1 + wacc) ** 5
+
+    dcf_intrinsic = (pv_sum + pv_tv) / shares
+    mos = (dcf_intrinsic - price) / dcf_intrinsic * 100 if dcf_intrinsic else None
+
+    # ── Graham Number ──
+    graham = None
+    if eps > 0 and bvps and bvps > 0:
+        graham = (22.5 * eps * bvps) ** 0.5
+
+    # ── Justified PER (배당성향 30% 가정) ──
+    justified_per = (0.70 / (ke - g_high)) if ke > g_high else 20.0
+    justified_per = min(max(justified_per, 5.0), 50.0)
+    per_fair      = eps * justified_per if eps > 0 else None
+
+    # ── Justified PBR = ROE / ke ──
+    justified_pbr = roe / ke if ke > 0 else None
+    pbr_fair      = bvps * justified_pbr if bvps and justified_pbr else None
+
+    return {
+        "current_price":  price,
+        "eps":            eps,
+        "bvps":           bvps,
+        "wacc":           wacc * 100,
+        "g_high":         g_high * 100,
+        "g_term":         g_term * 100,
+        "dcf_intrinsic":  dcf_intrinsic,
+        "margin_of_safety": mos,
+        "graham_number":  graham,
+        "justified_per":  justified_per,
+        "per_fair":       per_fair,
+        "justified_pbr":  justified_pbr,
+        "pbr_fair":       pbr_fair,
+        "rev_cagr":       rev_cagr * 100 if rev_cagr is not None else None,
+    }
+
+
+def format_valuation(v, is_us=False):
+    if not v or "error" in v:
+        return f"[밸류에이션 계산 불가: {v.get('error','데이터 부족') if v else '데이터 없음'}]"
+
+    p = v.get("current_price", 0) or 0
+
+    def fp(val):
+        if val is None: return "N/A"
+        if is_us:       return f"${val:.2f}"
+        return f"₩{val:,.0f}"
+
+    def pct_vs(val):
+        if val is None or not p: return ""
+        d = (val - p) / p * 100
+        return f"  (현재가 대비 {d:+.1f}%)"
+
+    mos = v.get("margin_of_safety")
+    if mos is None:   mos_str = "N/A"
+    elif mos > 30:    mos_str = f"{mos:+.1f}%  🟢 강력저평가"
+    elif mos > 10:    mos_str = f"{mos:+.1f}%  🟢 저평가"
+    elif mos > -10:   mos_str = f"{mos:+.1f}%  🟡 적정가"
+    elif mos > -30:   mos_str = f"{mos:+.1f}%  🔴 고평가"
+    else:             mos_str = f"{mos:+.1f}%  🔴 심각한 고평가"
+
+    lines = [
+        "[가치투자 밸류에이션 계산 결과]",
+        f"  현재가: {fp(p)}",
+        f"  EPS: {fp(v.get('eps'))}  |  BVPS: {fp(v.get('bvps'))}",
+        f"  매출CAGR: {v.get('rev_cagr', 'N/A'):.1f}%" if v.get("rev_cagr") is not None else "  매출CAGR: N/A",
+        "",
+        "── DCF 2-단계 모델 ──",
+        f"  WACC: {v.get('wacc',0):.1f}%  |  초기성장률: {v.get('g_high',0):.1f}%  |  터미널: {v.get('g_term',0):.1f}%",
+        f"  DCF 내재가치: {fp(v.get('dcf_intrinsic'))}{pct_vs(v.get('dcf_intrinsic'))}",
+        f"  안전마진(MOS): {mos_str}",
+        "",
+        "── Graham Number ──",
+        f"  Graham Number: {fp(v.get('graham_number'))}{pct_vs(v.get('graham_number'))}",
+        "",
+        "── Justified 멀티플 ──",
+        f"  PER {v.get('justified_per',0):.1f}배 기준 적정가: {fp(v.get('per_fair'))}{pct_vs(v.get('per_fair'))}",
+        f"  PBR {v.get('justified_pbr',0):.2f}배 기준 적정가: {fp(v.get('pbr_fair'))}{pct_vs(v.get('pbr_fair'))}",
+    ]
+    return "\n".join(lines)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
 # 종목 식별
 # ─────────────────────────────────────────────────────────────────────────────
 NAME_TO_CODE = {
@@ -571,6 +774,7 @@ def analyze(stock_query):
     )
 
     # 재무 데이터
+    dart_parsed, sec_fin, sec_text = {}, {}, ""
     if is_us:
         print("  SEC 10-K 수집...")
         cik        = sec_get_cik(stock["yf_ticker"])
@@ -605,6 +809,11 @@ def analyze(stock_query):
         time.sleep(0.3)
     valley_text = f"종목: {name}\n\n{format_valley(rel_posts, name)}"
 
+    # 가치투자 밸류에이션 계산
+    print("  가치투자 밸류에이션 계산...")
+    val_data = calc_valuation(dart_parsed, sec_fin, yf, is_us)
+    val_text = f"종목: {name}\n\n{format_valuation(val_data, is_us)}"
+
     # 업종
     industry_text = (
         f"종목: {name}\n섹터: {yf.get('sector','')}\n업종: {yf.get('industry','')}\n\n"
@@ -618,6 +827,7 @@ def analyze(stock_query):
     r_research= run_agent("리서치분석가",   research_text)
     r_news    = run_agent("뉴스감성분석가", news_text)
     r_valley  = run_agent("밸리인사이트",   valley_text)
+    r_value   = run_agent("가치투자분석가", val_text)
     r_industry= run_agent("업종리서처",     industry_text)
 
     strat_input = f"""종목명: {name}
@@ -627,6 +837,7 @@ def analyze(stock_query):
 === 리서치분석가 ===\n{r_research}
 === 뉴스감성분석가 ===\n{r_news}
 === 밸리인사이트 ===\n{r_valley}
+=== 가치투자분석가 ===\n{r_value}
 === 업종리서처 ===\n{r_industry}"""
 
     r_strat = run_agent("투자전략가", strat_input)
@@ -634,7 +845,8 @@ def analyze(stock_query):
     return {
         "name": name, "stock": stock, "yf": yf,
         "fin": r_fin, "research": r_research, "news": r_news,
-        "valley": r_valley, "industry": r_industry, "strategy": r_strat,
+        "valley": r_valley, "value": r_value, "industry": r_industry, "strategy": r_strat,
+        "val_data": val_data,
         "timestamp": datetime.now().strftime("%Y.%m.%d %H:%M"),
     }
 
@@ -668,6 +880,7 @@ def build_pdf(result):
         ("📋 리서치분석가",           result["research"]),
         ("📰 뉴스감성분석가",         result["news"]),
         ("🏔 밸리인사이트",           result["valley"]),
+        ("💎 가치투자분석가 (DCF)",   result["value"]),
         ("🏭 업종리서처",             result["industry"]),
         ("⚡ 투자전략가 (공격적)",    result["strategy"]),
     ]
