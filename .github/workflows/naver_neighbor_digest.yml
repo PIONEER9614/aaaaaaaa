@@ -20,12 +20,8 @@ jobs:
           pip install requests python-dotenv groq beautifulsoup4 reportlab playwright
           playwright install chromium --with-deps
 
-      - name: 이웃 목록 복원
-        run: |
-          mkdir -p data
-          if [ -n "${{ secrets.NAVER_NEIGHBORS }}" ]; then
-            echo '${{ secrets.NAVER_NEIGHBORS }}' > data/naver_neighbors.json
-          fi
+      - name: data 폴더 생성
+        run: mkdir -p data
 
       - name: 새 글 수집 + 요약 + 전송
         env:

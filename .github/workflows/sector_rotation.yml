@@ -1,0 +1,43 @@
+name: 월별 섹터 로테이션 기록
+
+on:
+  schedule:
+    - cron: "0 23 1 * *"   # 매월 2일 KST 08:00 (UTC 전날 23:00)
+  workflow_dispatch:
+    inputs:
+      month:
+        description: "기록할 월 (예: 2026-04, 기본: 이전달)"
+        required: false
+
+jobs:
+  rotation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 패키지 설치
+        run: pip install python-dotenv groq yfinance reportlab requests
+
+      - name: 수익률 집계 + 분석 + 전송
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          if [ -n "${{ github.event.inputs.month }}" ]; then
+            python sector_rotation_tracker.py "${{ github.event.inputs.month }}"
+          else
+            python sector_rotation_tracker.py
+          fi
+
+      - name: 히스토리 커밋
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add data/sector_rotation_history.json || true
+          git diff --cached --quiet || git commit -m "chore: 섹터 로테이션 히스토리 업데이트 $(date +'%Y-%m')"
+          git push || true
