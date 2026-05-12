@@ -34,15 +34,34 @@ HISTORY_FILE = Path("paper_history.json")
 HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; PaperBot/1.0)"}
 
 TARGET_JOURNALS = [
-    {"name": "Contributions to the History of Concepts", "folder": "01_Contributions to the History of Concepts", "issn": "1807-9326", "eissn": "1874-656X"},
-    {"name": "History of European Ideas",                "folder": "02_History of European Ideas",                "issn": "0191-6599", "eissn": "1873-541X"},
-    {"name": "Journal of the History of Ideas",          "folder": "03_Journal of the History of Ideas",          "issn": "0022-5037", "eissn": "1086-3222"},
-    {"name": "Intellectual History Review",              "folder": "04_Intellectual History Review",              "issn": "1749-4621", "eissn": "1749-463X"},
-    {"name": "History and Theory",                       "folder": "05_History and Theory",                       "issn": "0018-2656", "eissn": "1468-2303"},
-    {"name": "Modern Intellectual History",              "folder": "06_Modern Intellectual History",              "issn": "1479-2443", "eissn": "1479-2451"},
-    {"name": "Rethinking History",                       "folder": "07_Rethinking History",                       "issn": "1364-2529", "eissn": "1470-1154"},
-    {"name": "Gaenyeom-gwa Sotong",                     "folder": "08_Gaenyeom-gwa Sotong",                      "issn": "2092-7649", "eissn": ""},
+    # pub_months: 실제 발행월 목록. 이 월 기준으로 하위 폴더 생성
+    {"name": "Contributions to the History of Concepts", "folder": "01_Contributions to the History of Concepts", "issn": "1807-9326", "eissn": "1874-656X", "pub_months": [3, 6, 9, 12]},
+    {"name": "History of European Ideas",                "folder": "02_History of European Ideas",                "issn": "0191-6599", "eissn": "1873-541X", "pub_months": [2, 4, 6, 8, 10, 12]},
+    {"name": "Journal of the History of Ideas",          "folder": "03_Journal of the History of Ideas",          "issn": "0022-5037", "eissn": "1086-3222", "pub_months": [1, 4, 7, 10]},
+    {"name": "Intellectual History Review",              "folder": "04_Intellectual History Review",              "issn": "1749-4621", "eissn": "1749-463X", "pub_months": [3, 6, 9, 12]},
+    {"name": "History and Theory",                       "folder": "05_History and Theory",                       "issn": "0018-2656", "eissn": "1468-2303", "pub_months": [3, 6, 9, 12]},
+    {"name": "Modern Intellectual History",              "folder": "06_Modern Intellectual History",              "issn": "1479-2443", "eissn": "1479-2451", "pub_months": [3, 7, 11]},
+    {"name": "Rethinking History",                       "folder": "07_Rethinking History",                       "issn": "1364-2529", "eissn": "1470-1154", "pub_months": [3, 6, 9, 12]},
+    {"name": "Gaenyeom-gwa Sotong",                     "folder": "08_Gaenyeom-gwa Sotong",                      "issn": "2092-7649", "eissn": "",           "pub_months": [6, 12]},
 ]
+
+MONTH_KO = {1:"01_Jan", 2:"02_Feb", 3:"03_Mar", 4:"04_Apr", 5:"05_May",  6:"06_Jun",
+            7:"07_Jul", 8:"08_Aug", 9:"09_Sep", 10:"10_Oct", 11:"11_Nov", 12:"12_Dec"}
+
+def issue_subfolder(pub_months, year, month):
+    """발행월 → 폴더명.
+    month가 있으면 가장 가까운 발행월로 스냅. 없으면 연도만.
+    예) pub_months=[3,6,9,12], month=4  →  '2025_06_Jun'  (다음 발행호)
+        pub_months=[3,6,9,12], month=3  →  '2025_03_Mar'
+    """
+    if not month or not year:
+        return str(year or "unknown")
+    if not pub_months:
+        return f"{year}_{MONTH_KO.get(month, f'{month:02d}')}"
+    # month 이상인 발행월 중 가장 작은 것 → 해당 호에 수록
+    candidates = [m for m in sorted(pub_months) if m >= month]
+    target = candidates[0] if candidates else max(pub_months)
+    return f"{year}_{MONTH_KO[target]}"
 
 # ── 이력 관리 ─────────────────────────────────────────────────────────────────
 def load_history():
@@ -68,7 +87,8 @@ def make_filename(title, authors, journal, volume, issue, year):
     return ("_".join(p for p in parts if p) + ".pdf")[:200]
 
 # ── PDF 다운로드 ──────────────────────────────────────────────────────────────
-def download_pdf(url, title, authors, journal_name, folder, volume="", issue="", year=""):
+def download_pdf(url, title, authors, journal_name, folder, volume="", issue="", year="",
+                 pub_month=None, pub_months=None):
     for verify in (True, False):
         try:
             r = requests.get(url, headers=HEADERS, timeout=40, stream=True,
@@ -76,14 +96,16 @@ def download_pdf(url, title, authors, journal_name, folder, volume="", issue="",
             ct = r.headers.get("Content-Type", "")
             if not r.ok or "pdf" not in ct.lower():
                 return False
-            target_dir = DOWNLOAD_DIR / folder
+            # 발행월 기반 하위 폴더
+            sub = issue_subfolder(pub_months or [], int(year) if year else None, pub_month)
+            target_dir = DOWNLOAD_DIR / folder / sub
             target_dir.mkdir(parents=True, exist_ok=True)
             filename = make_filename(title, authors, journal_name, volume, issue, year)
             path = target_dir / filename
             with open(path, "wb") as f:
                 for chunk in r.iter_content(8192):
                     f.write(chunk)
-            print(f"    [저장] {filename[:70]}")
+            print(f"    [저장] {sub}/{filename[:60]}")
             return str(path)
         except requests.exceptions.SSLError:
             if verify:
@@ -310,6 +332,7 @@ def main(year_filter=None):
             ]
             pub     = work.get("published", {}).get("date-parts", [[None]])[0]
             year_p  = str(pub[0]) if pub else str(year)
+            month_p = int(pub[1]) if pub and len(pub) > 1 and pub[1] else None
             volume  = work.get("volume", "")
             issue   = work.get("issue", "")
 
@@ -323,7 +346,8 @@ def main(year_filter=None):
             oa_count += 1
             print(f"  [OA] {title[:65]}")
             path = download_pdf(pdf_url, title, authors, journal["name"],
-                                journal["folder"], volume, issue, year_p)
+                                journal["folder"], volume, issue, year_p,
+                                pub_month=month_p, pub_months=journal.get("pub_months", []))
             if path:
                 downloaded.add(uid)
                 new_papers.append({"title": title, "journal": journal["name"], "year": year_p})
@@ -354,6 +378,9 @@ def main(year_filter=None):
                 continue
             authors = [a.get("name", "") for a in item.get("authors", [])]
             year_p  = str(item.get("yearPublished", "") or "")
+            # CORE publishedDate 예: "2025-06-01"
+            pub_date = item.get("publishedDate", "") or ""
+            month_p  = int(pub_date[5:7]) if len(pub_date) >= 7 and pub_date[5:7].isdigit() else None
             pdf_url = item.get("downloadUrl", "")
             if not pdf_url:
                 for lk in item.get("links", []):
@@ -369,7 +396,8 @@ def main(year_filter=None):
 
             print(f"  -> {title[:65]}")
             path = download_pdf(pdf_url, title, authors, journal["name"],
-                                journal["folder"], volume, issue, year_p)
+                                journal["folder"], volume, issue, year_p,
+                                pub_month=month_p, pub_months=journal.get("pub_months", []))
             if path:
                 downloaded.add(uid)
                 if doi:
