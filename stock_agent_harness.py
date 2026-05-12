@@ -1,5 +1,5 @@
 """
-6-Agent 주식 분석 하네스
+7-Agent 주식 분석 하네스
 사용: python stock_agent_harness.py 삼성전자
       python stock_agent_harness.py 005930
       python stock_agent_harness.py TSLA
@@ -9,8 +9,9 @@
   리서치분석가   ← 네이버 리서치 리포트(KR) / SEC 10-K MD&A(US)
   뉴스감성분석가 ← 네이버 뉴스
   밸리인사이트   ← Valley AI 프리미엄 포스트
+  가치투자분석가 ← DCF 2단계 / Graham Number / Justified PER·PBR
   업종리서처     ← Valley AI 산업 섹션 + yfinance 섹터
-  투자전략가     ← 위 5개 종합 → 최종 판단
+  투자전략가     ← 위 6개 종합 → 최종 판단
 """
 
 import os, io, re, sys, json, time, requests, zipfile
@@ -753,7 +754,7 @@ def run_agent(agent_name, user_content):
 # ─────────────────────────────────────────────────────────────────────────────
 def analyze(stock_query):
     print(f"\n{'='*62}")
-    print(f"  6-Agent 주식 분석: {stock_query}")
+    print(f"  7-Agent 주식 분석: {stock_query}")
     print(f"{'='*62}\n")
 
     stock = resolve_stock(stock_query)
