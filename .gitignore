@@ -4,3 +4,5 @@
 __pycache__/
 *.pyc
 data/naver_cookies.json
+data/naver_research/company/
+data/naver_research/industry/

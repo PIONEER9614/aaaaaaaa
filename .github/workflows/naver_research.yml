@@ -19,7 +19,7 @@ jobs:
         run: pip install requests beautifulsoup4 python-dotenv
 
       - name: 리포트 다운로드
-        run: python naver_research_downloader.py
+        run: python naver_research_downloader.py --days 7
 
       - name: 매니페스트 커밋
         run: |
