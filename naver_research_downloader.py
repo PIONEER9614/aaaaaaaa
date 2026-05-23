@@ -201,7 +201,7 @@ def parse_company_rows(
     # from_date/to_date 지정 시 날짜 필터 URL 사용 (과거 데이터 접근 가능)
     use_date_filter = from_date is not None or to_date is not None
     fd_str = from_date.strftime("%Y-%m-%d") if from_date else ""
-    td_str = to_date.strftime("%Y-%m-%d") if to_date else ""
+    td_str = (to_date or datetime.now().date()).strftime("%Y-%m-%d") if use_date_filter else ""
 
     # recent_days 전용 컷오프 (날짜 필터 미사용 시만)
     cutoff_date = None
@@ -417,7 +417,9 @@ def download_report(
 ) -> tuple[bool, str]:
     key = make_manifest_key(report)
     destination = get_destination(report)
-    if destination.exists() or key in manifest:
+    if destination.exists():
+        return False, "already_saved"
+    if key in manifest and manifest[key].get("saved") and Path(manifest[key].get("path", "X")).exists():
         return False, "already_saved"
 
     pdf_bytes = fetch_binary(session, report.pdf_url)
