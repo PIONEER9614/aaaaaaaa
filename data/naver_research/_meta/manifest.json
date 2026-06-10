@@ -94167,7 +94167,7 @@
     "sector": "생물공학",
     "company": "에스바이오메딕스",
     "company_code": "304360",
-    "checked_at": "2026-06-09T05:08:05"
+    "checked_at": "2026-06-10T05:21:09"
   },
   "company:https://stock.pstatic.net/stock-research/company/56/20260604_company_727645000.pdf": {
     "saved": true,
@@ -94181,7 +94181,7 @@
     "sector": "제약",
     "company": "한미약품",
     "company_code": "128940",
-    "checked_at": "2026-06-09T05:08:06"
+    "checked_at": "2026-06-10T05:21:09"
   },
   "company:https://stock.pstatic.net/stock-research/company/62/20260604_company_453848000.pdf": {
     "saved": true,
@@ -94195,7 +94195,7 @@
     "sector": "제약",
     "company": "오스코텍",
     "company_code": "039200",
-    "checked_at": "2026-06-09T05:08:08"
+    "checked_at": "2026-06-10T05:21:09"
   },
   "company:https://stock.pstatic.net/stock-research/company/62/20260604_company_597111000.pdf": {
     "saved": true,
@@ -94209,7 +94209,7 @@
     "sector": "제약",
     "company": "한미약품",
     "company_code": "128940",
-    "checked_at": "2026-06-09T05:08:09"
+    "checked_at": "2026-06-10T05:21:09"
   },
   "company:https://stock.pstatic.net/stock-research/company/62/20260604_company_277796000.pdf": {
     "saved": true,
@@ -94223,7 +94223,7 @@
     "sector": "생명과학도구및서비스",
     "company": "올릭스",
     "company_code": "226950",
-    "checked_at": "2026-06-09T05:08:10"
+    "checked_at": "2026-06-10T05:21:09"
   },
   "company:https://stock.pstatic.net/stock-research/company/57/20260604_company_407797000.pdf": {
     "saved": true,
@@ -94237,7 +94237,7 @@
     "sector": "통신장비",
     "company": "에치에프알",
     "company_code": "230240",
-    "checked_at": "2026-06-09T05:08:12"
+    "checked_at": "2026-06-10T05:21:10"
   },
   "company:https://stock.pstatic.net/stock-research/company/64/20260604_company_540119000.pdf": {
     "saved": true,
@@ -94251,7 +94251,7 @@
     "sector": "복합기업",
     "company": "삼성물산",
     "company_code": "028260",
-    "checked_at": "2026-06-09T05:08:12"
+    "checked_at": "2026-06-10T05:21:10"
   },
   "company:https://stock.pstatic.net/stock-research/company/74/20260604_company_905363000.pdf": {
     "saved": true,
@@ -94265,7 +94265,7 @@
     "sector": "반도체와반도체장비",
     "company": "원익QnC",
     "company_code": "074600",
-    "checked_at": "2026-06-09T05:08:14"
+    "checked_at": "2026-06-10T05:21:12"
   },
   "company:https://stock.pstatic.net/stock-research/company/74/20260604_company_271504000.pdf": {
     "saved": true,
@@ -94275,11 +94275,11 @@
     "firm": "한국IR협의회",
     "date": "26.06.04",
     "pdf_url": "https://stock.pstatic.net/stock-research/company/74/20260604_company_271504000.pdf",
-    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93397&page=3",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93397&page=4",
     "sector": "방송과엔터테인먼트",
     "company": "JYP Ent.",
     "company_code": "035900",
-    "checked_at": "2026-06-09T05:08:16"
+    "checked_at": "2026-06-10T05:21:15"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/57/20260604_industry_530552000.pdf": {
     "saved": true,
@@ -94289,11 +94289,11 @@
     "firm": "하나증권",
     "date": "26.06.04",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/57/20260604_industry_530552000.pdf",
-    "detail_url": "https://finance.naver.com/research/industry_read.naver?nid=44844&page=2",
+    "detail_url": "https://finance.naver.com/research/industry_read.naver?nid=44844&page=3",
     "sector": "기타",
     "company": "",
     "company_code": "",
-    "checked_at": "2026-06-09T05:09:13"
+    "checked_at": "2026-06-10T05:22:25"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/40/20260604_industry_104715000.pdf": {
     "saved": false,
@@ -94303,7 +94303,7 @@
     "firm": "IBK투자증권",
     "date": "26.06.04",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/40/20260604_industry_104715000.pdf",
-    "checked_at": "2026-06-09T05:09:14"
+    "checked_at": "2026-06-10T05:22:28"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/57/20260604_industry_190936000.pdf": {
     "saved": false,
@@ -94313,7 +94313,7 @@
     "firm": "하나증권",
     "date": "26.06.04",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/57/20260604_industry_190936000.pdf",
-    "checked_at": "2026-06-09T05:09:15"
+    "checked_at": "2026-06-10T05:22:31"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/57/20260604_industry_677316000.pdf": {
     "saved": false,
@@ -94323,7 +94323,7 @@
     "firm": "하나증권",
     "date": "26.06.04",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/57/20260604_industry_677316000.pdf",
-    "checked_at": "2026-06-09T05:09:17"
+    "checked_at": "2026-06-10T05:22:33"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/57/20260604_industry_665486000.pdf": {
     "saved": false,
@@ -94333,7 +94333,7 @@
     "firm": "하나증권",
     "date": "26.06.04",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/57/20260604_industry_665486000.pdf",
-    "checked_at": "2026-06-09T05:09:18"
+    "checked_at": "2026-06-10T05:22:35"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/16/20260604_industry_956445000.pdf": {
     "saved": true,
@@ -94347,7 +94347,7 @@
     "sector": "기타",
     "company": "",
     "company_code": "",
-    "checked_at": "2026-06-09T05:09:21"
+    "checked_at": "2026-06-10T05:22:35"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/16/20260604_industry_686821000.pdf": {
     "saved": true,
@@ -94361,7 +94361,7 @@
     "sector": "건설",
     "company": "",
     "company_code": "",
-    "checked_at": "2026-06-09T05:09:23"
+    "checked_at": "2026-06-10T05:22:39"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/40/20260604_industry_543679000.pdf": {
     "saved": false,
@@ -94371,7 +94371,7 @@
     "firm": "IBK투자증권",
     "date": "26.06.04",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/40/20260604_industry_543679000.pdf",
-    "checked_at": "2026-06-09T05:09:24"
+    "checked_at": "2026-06-10T05:22:42"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/64/20260604_industry_281127000.pdf": {
     "saved": true,
@@ -94385,7 +94385,7 @@
     "sector": "IT",
     "company": "",
     "company_code": "",
-    "checked_at": "2026-06-09T05:09:26"
+    "checked_at": "2026-06-10T05:22:42"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/63/20260604_industry_964017000.pdf": {
     "saved": false,
@@ -94395,7 +94395,7 @@
     "firm": "유진투자증권",
     "date": "26.06.04",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/63/20260604_industry_964017000.pdf",
-    "checked_at": "2026-06-09T05:09:28"
+    "checked_at": "2026-06-10T05:22:44"
   },
   "company:https://stock.pstatic.net/stock-research/company/16/20260605_company_718111000.pdf": {
     "saved": true,
@@ -94409,7 +94409,7 @@
     "sector": "백화점과일반상점",
     "company": "현대백화점",
     "company_code": "069960",
-    "checked_at": "2026-06-09T05:07:57"
+    "checked_at": "2026-06-10T05:20:53"
   },
   "company:https://stock.pstatic.net/stock-research/company/62/20260605_company_254592000.pdf": {
     "saved": true,
@@ -94423,7 +94423,7 @@
     "sector": "에너지장비및서비스",
     "company": "한텍",
     "company_code": "098070",
-    "checked_at": "2026-06-09T05:07:57"
+    "checked_at": "2026-06-10T05:20:56"
   },
   "company:https://stock.pstatic.net/stock-research/company/56/20260605_company_562676000.pdf": {
     "saved": true,
@@ -94437,7 +94437,7 @@
     "sector": "전자장비와기기",
     "company": "삼성전기",
     "company_code": "009150",
-    "checked_at": "2026-06-09T05:07:57"
+    "checked_at": "2026-06-10T05:20:56"
   },
   "company:https://stock.pstatic.net/stock-research/company/57/20260605_company_969551000.pdf": {
     "saved": true,
@@ -94451,7 +94451,7 @@
     "sector": "화장품",
     "company": "제닉",
     "company_code": "123330",
-    "checked_at": "2026-06-09T05:07:57"
+    "checked_at": "2026-06-10T05:20:56"
   },
   "company:https://stock.pstatic.net/stock-research/company/57/20260605_company_189753000.pdf": {
     "saved": true,
@@ -94461,11 +94461,11 @@
     "firm": "하나증권",
     "date": "26.06.05",
     "pdf_url": "https://stock.pstatic.net/stock-research/company/57/20260605_company_189753000.pdf",
-    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93427&page=2",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93427&page=3",
     "sector": "반도체와반도체장비",
     "company": "피에스케이",
     "company_code": "319660",
-    "checked_at": "2026-06-09T05:07:58"
+    "checked_at": "2026-06-10T05:20:59"
   },
   "company:https://stock.pstatic.net/stock-research/company/57/20260605_company_245125000.pdf": {
     "saved": true,
@@ -94475,11 +94475,11 @@
     "firm": "하나증권",
     "date": "26.06.05",
     "pdf_url": "https://stock.pstatic.net/stock-research/company/57/20260605_company_245125000.pdf",
-    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93426&page=2",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93426&page=3",
     "sector": "식품",
     "company": "대상",
     "company_code": "001680",
-    "checked_at": "2026-06-09T05:07:58"
+    "checked_at": "2026-06-10T05:20:59"
   },
   "company:https://stock.pstatic.net/stock-research/company/57/20260605_company_493583000.pdf": {
     "saved": true,
@@ -94489,11 +94489,11 @@
     "firm": "하나증권",
     "date": "26.06.05",
     "pdf_url": "https://stock.pstatic.net/stock-research/company/57/20260605_company_493583000.pdf",
-    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93425&page=2",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93425&page=3",
     "sector": "건설",
     "company": "삼성E&A",
     "company_code": "028050",
-    "checked_at": "2026-06-09T05:08:00"
+    "checked_at": "2026-06-10T05:20:59"
   },
   "company:https://stock.pstatic.net/stock-research/company/18/20260605_company_632210000.pdf": {
     "saved": true,
@@ -94503,11 +94503,11 @@
     "firm": "유안타증권",
     "date": "26.06.05",
     "pdf_url": "https://stock.pstatic.net/stock-research/company/18/20260605_company_632210000.pdf",
-    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93424&page=2",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93424&page=3",
     "sector": "자동차부품",
     "company": "한온시스템",
     "company_code": "018880",
-    "checked_at": "2026-06-09T05:08:00"
+    "checked_at": "2026-06-10T05:20:59"
   },
   "company:https://stock.pstatic.net/stock-research/company/18/20260605_company_42920000.pdf": {
     "saved": true,
@@ -94517,11 +94517,11 @@
     "firm": "유안타증권",
     "date": "26.06.05",
     "pdf_url": "https://stock.pstatic.net/stock-research/company/18/20260605_company_42920000.pdf",
-    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93423&page=2",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93423&page=3",
     "sector": "반도체와반도체장비",
     "company": "예스티",
     "company_code": "122640",
-    "checked_at": "2026-06-09T05:08:02"
+    "checked_at": "2026-06-10T05:20:59"
   },
   "company:https://stock.pstatic.net/stock-research/company/18/20260605_company_792894000.pdf": {
     "saved": true,
@@ -94531,11 +94531,11 @@
     "firm": "유안타증권",
     "date": "26.06.05",
     "pdf_url": "https://stock.pstatic.net/stock-research/company/18/20260605_company_792894000.pdf",
-    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93422&page=2",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93422&page=3",
     "sector": "통신장비",
     "company": "세나테크놀로지",
     "company_code": "061090",
-    "checked_at": "2026-06-09T05:08:02"
+    "checked_at": "2026-06-10T05:21:00"
   },
   "company:https://stock.pstatic.net/stock-research/company/63/20260605_company_206042000.pdf": {
     "saved": true,
@@ -94545,11 +94545,11 @@
     "firm": "유진투자증권",
     "date": "26.06.05",
     "pdf_url": "https://stock.pstatic.net/stock-research/company/63/20260605_company_206042000.pdf",
-    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93421&page=2",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93421&page=3",
     "sector": "섬유,의류,신발,호화품",
     "company": "F&F",
     "company_code": "383220",
-    "checked_at": "2026-06-09T05:08:02"
+    "checked_at": "2026-06-10T05:21:03"
   },
   "company:https://stock.pstatic.net/stock-research/company/64/20260605_company_753523000.pdf": {
     "saved": true,
@@ -94559,11 +94559,11 @@
     "firm": "SK증권",
     "date": "26.06.05",
     "pdf_url": "https://stock.pstatic.net/stock-research/company/64/20260605_company_753523000.pdf",
-    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93419&page=2",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93419&page=3",
     "sector": "핸드셋",
     "company": "KH바텍",
     "company_code": "060720",
-    "checked_at": "2026-06-09T05:08:02"
+    "checked_at": "2026-06-10T05:21:03"
   },
   "company:https://stock.pstatic.net/stock-research/company/64/20260605_company_948184000.pdf": {
     "saved": true,
@@ -94573,11 +94573,11 @@
     "firm": "SK증권",
     "date": "26.06.05",
     "pdf_url": "https://stock.pstatic.net/stock-research/company/64/20260605_company_948184000.pdf",
-    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93418&page=2",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93418&page=3",
     "sector": "통신장비",
     "company": "라이콤",
     "company_code": "388790",
-    "checked_at": "2026-06-09T05:08:02"
+    "checked_at": "2026-06-10T05:21:03"
   },
   "company:https://stock.pstatic.net/stock-research/company/39/20260605_company_359147000.pdf": {
     "saved": true,
@@ -94587,11 +94587,11 @@
     "firm": "키움증권",
     "date": "26.06.05",
     "pdf_url": "https://stock.pstatic.net/stock-research/company/39/20260605_company_359147000.pdf",
-    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93417&page=2",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93417&page=3",
     "sector": "핸드셋",
     "company": "드림텍",
     "company_code": "192650",
-    "checked_at": "2026-06-09T05:08:03"
+    "checked_at": "2026-06-10T05:21:03"
   },
   "company:https://stock.pstatic.net/stock-research/company/39/20260605_company_79110000.pdf": {
     "saved": true,
@@ -94601,11 +94601,11 @@
     "firm": "키움증권",
     "date": "26.06.05",
     "pdf_url": "https://stock.pstatic.net/stock-research/company/39/20260605_company_79110000.pdf",
-    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93416&page=2",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93416&page=3",
     "sector": "전자장비와기기",
     "company": "파크시스템스",
     "company_code": "140860",
-    "checked_at": "2026-06-09T05:08:03"
+    "checked_at": "2026-06-10T05:21:04"
   },
   "company:https://stock.pstatic.net/stock-research/company/64/20260605_company_357797000.pdf": {
     "saved": true,
@@ -94615,11 +94615,11 @@
     "firm": "SK증권",
     "date": "26.06.05",
     "pdf_url": "https://stock.pstatic.net/stock-research/company/64/20260605_company_357797000.pdf",
-    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93415&page=2",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93415&page=3",
     "sector": "전자장비와기기",
     "company": "에이텀",
     "company_code": "355690",
-    "checked_at": "2026-06-09T05:08:03"
+    "checked_at": "2026-06-10T05:21:04"
   },
   "company:https://stock.pstatic.net/stock-research/company/74/20260605_company_223700000.pdf": {
     "saved": true,
@@ -94629,11 +94629,11 @@
     "firm": "한국IR협의회",
     "date": "26.06.05",
     "pdf_url": "https://stock.pstatic.net/stock-research/company/74/20260605_company_223700000.pdf",
-    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93414&page=2",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93414&page=3",
     "sector": "인터넷과카탈로그소매",
     "company": "예스24",
     "company_code": "053280",
-    "checked_at": "2026-06-09T05:08:03"
+    "checked_at": "2026-06-10T05:21:04"
   },
   "company:https://stock.pstatic.net/stock-research/company/69/20260605_company_333898000.pdf": {
     "saved": true,
@@ -94643,11 +94643,11 @@
     "firm": "NICE평가정보",
     "date": "26.06.05",
     "pdf_url": "https://stock.pstatic.net/stock-research/company/69/20260605_company_333898000.pdf",
-    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93413&page=2",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93413&page=3",
     "sector": "자동차부품",
     "company": "휴림에이텍",
     "company_code": "078590",
-    "checked_at": "2026-06-09T05:08:04"
+    "checked_at": "2026-06-10T05:21:07"
   },
   "company:https://stock.pstatic.net/stock-research/company/75/20260605_company_441375000.pdf": {
     "saved": true,
@@ -94657,11 +94657,11 @@
     "firm": "서울평가정보",
     "date": "26.06.05",
     "pdf_url": "https://stock.pstatic.net/stock-research/company/75/20260605_company_441375000.pdf",
-    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93412&page=2",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93412&page=3",
     "sector": "기타",
     "company": "아이케이세미콘",
     "company_code": "149010",
-    "checked_at": "2026-06-09T05:08:04"
+    "checked_at": "2026-06-10T05:21:07"
   },
   "company:https://stock.pstatic.net/stock-research/company/69/20260605_company_987197000.pdf": {
     "saved": true,
@@ -94671,11 +94671,11 @@
     "firm": "NICE평가정보",
     "date": "26.06.05",
     "pdf_url": "https://stock.pstatic.net/stock-research/company/69/20260605_company_987197000.pdf",
-    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93411&page=2",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93411&page=3",
     "sector": "기타",
     "company": "티엘엔지니어링",
     "company_code": "413300",
-    "checked_at": "2026-06-09T05:08:04"
+    "checked_at": "2026-06-10T05:21:07"
   },
   "company:https://stock.pstatic.net/stock-research/company/69/20260605_company_109754000.pdf": {
     "saved": true,
@@ -94685,11 +94685,11 @@
     "firm": "NICE평가정보",
     "date": "26.06.05",
     "pdf_url": "https://stock.pstatic.net/stock-research/company/69/20260605_company_109754000.pdf",
-    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93410&page=2",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93410&page=3",
     "sector": "기타",
     "company": "수프로",
     "company_code": "185190",
-    "checked_at": "2026-06-09T05:08:04"
+    "checked_at": "2026-06-10T05:21:08"
   },
   "company:https://stock.pstatic.net/stock-research/company/75/20260605_company_487699000.pdf": {
     "saved": true,
@@ -94699,11 +94699,11 @@
     "firm": "서울평가정보",
     "date": "26.06.05",
     "pdf_url": "https://stock.pstatic.net/stock-research/company/75/20260605_company_487699000.pdf",
-    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93409&page=2",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93409&page=3",
     "sector": "기타",
     "company": "에이펙스인텍",
     "company_code": "207490",
-    "checked_at": "2026-06-09T05:08:05"
+    "checked_at": "2026-06-10T05:21:08"
   },
   "company:https://stock.pstatic.net/stock-research/company/75/20260605_company_183296000.pdf": {
     "saved": true,
@@ -94713,11 +94713,11 @@
     "firm": "서울평가정보",
     "date": "26.06.05",
     "pdf_url": "https://stock.pstatic.net/stock-research/company/75/20260605_company_183296000.pdf",
-    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93408&page=2",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93408&page=3",
     "sector": "기타",
     "company": "루켄테크놀러지스",
     "company_code": "162120",
-    "checked_at": "2026-06-09T05:08:05"
+    "checked_at": "2026-06-10T05:21:08"
   },
   "company:https://stock.pstatic.net/stock-research/company/75/20260605_company_825712000.pdf": {
     "saved": true,
@@ -94731,7 +94731,7 @@
     "sector": "기타",
     "company": "바이오텐",
     "company_code": "289170",
-    "checked_at": "2026-06-09T05:08:05"
+    "checked_at": "2026-06-10T05:21:08"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/57/20260605_industry_564085000.pdf": {
     "saved": false,
@@ -94741,7 +94741,7 @@
     "firm": "하나증권",
     "date": "26.06.05",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/57/20260605_industry_564085000.pdf",
-    "checked_at": "2026-06-09T05:08:59"
+    "checked_at": "2026-06-10T05:22:10"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/57/20260605_industry_549825000.pdf": {
     "saved": true,
@@ -94751,11 +94751,11 @@
     "firm": "하나증권",
     "date": "26.06.05",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/57/20260605_industry_549825000.pdf",
-    "detail_url": "https://finance.naver.com/research/industry_read.naver?nid=44852&page=2",
+    "detail_url": "https://finance.naver.com/research/industry_read.naver?nid=44852&page=3",
     "sector": "통신",
     "company": "",
     "company_code": "",
-    "checked_at": "2026-06-09T05:09:01"
+    "checked_at": "2026-06-10T05:22:10"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/57/20260605_industry_563044000.pdf": {
     "saved": false,
@@ -94765,7 +94765,7 @@
     "firm": "하나증권",
     "date": "26.06.05",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/57/20260605_industry_563044000.pdf",
-    "checked_at": "2026-06-09T05:09:03"
+    "checked_at": "2026-06-10T05:22:12"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/18/20260605_industry_271502000.pdf": {
     "saved": true,
@@ -94775,11 +94775,11 @@
     "firm": "유안타증권",
     "date": "26.06.05",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/18/20260605_industry_271502000.pdf",
-    "detail_url": "https://finance.naver.com/research/industry_read.naver?nid=44850&page=2",
+    "detail_url": "https://finance.naver.com/research/industry_read.naver?nid=44850&page=3",
     "sector": "기타",
     "company": "",
     "company_code": "",
-    "checked_at": "2026-06-09T05:09:05"
+    "checked_at": "2026-06-10T05:22:14"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/63/20260605_industry_657837000.pdf": {
     "saved": false,
@@ -94789,7 +94789,7 @@
     "firm": "유진투자증권",
     "date": "26.06.05",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/63/20260605_industry_657837000.pdf",
-    "checked_at": "2026-06-09T05:09:07"
+    "checked_at": "2026-06-10T05:22:16"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/63/20260605_industry_62372000.pdf": {
     "saved": false,
@@ -94799,7 +94799,7 @@
     "firm": "유진투자증권",
     "date": "26.06.05",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/63/20260605_industry_62372000.pdf",
-    "checked_at": "2026-06-09T05:09:09"
+    "checked_at": "2026-06-10T05:22:18"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/40/20260605_industry_656346000.pdf": {
     "saved": false,
@@ -94809,7 +94809,7 @@
     "firm": "IBK투자증권",
     "date": "26.06.05",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/40/20260605_industry_656346000.pdf",
-    "checked_at": "2026-06-09T05:09:10"
+    "checked_at": "2026-06-10T05:22:21"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/40/20260605_industry_508675000.pdf": {
     "saved": true,
@@ -94819,11 +94819,11 @@
     "firm": "IBK투자증권",
     "date": "26.06.05",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/40/20260605_industry_508675000.pdf",
-    "detail_url": "https://finance.naver.com/research/industry_read.naver?nid=44845&page=2",
+    "detail_url": "https://finance.naver.com/research/industry_read.naver?nid=44845&page=3",
     "sector": "자동차",
     "company": "",
     "company_code": "",
-    "checked_at": "2026-06-09T05:09:12"
+    "checked_at": "2026-06-10T05:22:21"
   },
   "company:https://stock.pstatic.net/stock-research/company/16/20260608_company_172879000.pdf": {
     "saved": true,
@@ -94833,11 +94833,11 @@
     "firm": "한화투자증권",
     "date": "26.06.08",
     "pdf_url": "https://stock.pstatic.net/stock-research/company/16/20260608_company_172879000.pdf",
-    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93449&page=1",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93449&page=2",
     "sector": "양방향미디어와서비스",
     "company": "NAVER",
     "company_code": "035420",
-    "checked_at": "2026-06-09T05:07:52"
+    "checked_at": "2026-06-10T05:20:40"
   },
   "company:https://stock.pstatic.net/stock-research/company/62/20260608_company_972832000.pdf": {
     "saved": true,
@@ -94847,11 +94847,11 @@
     "firm": "교보증권",
     "date": "26.06.08",
     "pdf_url": "https://stock.pstatic.net/stock-research/company/62/20260608_company_972832000.pdf",
-    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93448&page=1",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93448&page=2",
     "sector": "백화점과일반상점",
     "company": "롯데쇼핑",
     "company_code": "023530",
-    "checked_at": "2026-06-09T05:07:52"
+    "checked_at": "2026-06-10T05:20:40"
   },
   "company:https://stock.pstatic.net/stock-research/company/57/20260608_company_632693000.pdf": {
     "saved": true,
@@ -94861,11 +94861,11 @@
     "firm": "하나증권",
     "date": "26.06.08",
     "pdf_url": "https://stock.pstatic.net/stock-research/company/57/20260608_company_632693000.pdf",
-    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93447&page=1",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93447&page=2",
     "sector": "제약",
     "company": "한미약품",
     "company_code": "128940",
-    "checked_at": "2026-06-09T05:07:52"
+    "checked_at": "2026-06-10T05:20:42"
   },
   "company:https://stock.pstatic.net/stock-research/company/57/20260608_company_532792000.pdf": {
     "saved": true,
@@ -94875,11 +94875,11 @@
     "firm": "하나증권",
     "date": "26.06.08",
     "pdf_url": "https://stock.pstatic.net/stock-research/company/57/20260608_company_532792000.pdf",
-    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93446&page=1",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93446&page=2",
     "sector": "생물공학",
     "company": "디앤디파마텍",
     "company_code": "347850",
-    "checked_at": "2026-06-09T05:07:52"
+    "checked_at": "2026-06-10T05:20:45"
   },
   "company:https://stock.pstatic.net/stock-research/company/57/20260608_company_868346000.pdf": {
     "saved": true,
@@ -94889,11 +94889,11 @@
     "firm": "하나증권",
     "date": "26.06.08",
     "pdf_url": "https://stock.pstatic.net/stock-research/company/57/20260608_company_868346000.pdf",
-    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93445&page=1",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93445&page=2",
     "sector": "복합기업",
     "company": "삼성물산",
     "company_code": "028260",
-    "checked_at": "2026-06-09T05:07:53"
+    "checked_at": "2026-06-10T05:20:45"
   },
   "company:https://stock.pstatic.net/stock-research/company/15/20260608_company_86417000.pdf": {
     "saved": true,
@@ -94903,11 +94903,11 @@
     "firm": "대신증권",
     "date": "26.06.08",
     "pdf_url": "https://stock.pstatic.net/stock-research/company/15/20260608_company_86417000.pdf",
-    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93443&page=1",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93443&page=2",
     "sector": "증권",
     "company": "NH투자증권",
     "company_code": "005940",
-    "checked_at": "2026-06-09T05:07:53"
+    "checked_at": "2026-06-10T05:20:46"
   },
   "company:https://stock.pstatic.net/stock-research/company/63/20260608_company_533095000.pdf": {
     "saved": true,
@@ -94917,11 +94917,11 @@
     "firm": "유진투자증권",
     "date": "26.06.08",
     "pdf_url": "https://stock.pstatic.net/stock-research/company/63/20260608_company_533095000.pdf",
-    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93441&page=1",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93441&page=2",
     "sector": "전기장비",
     "company": "서진시스템",
     "company_code": "178320",
-    "checked_at": "2026-06-09T05:07:53"
+    "checked_at": "2026-06-10T05:20:46"
   },
   "company:https://stock.pstatic.net/stock-research/company/40/20260608_company_392545000.pdf": {
     "saved": true,
@@ -94931,11 +94931,11 @@
     "firm": "IBK투자증권",
     "date": "26.06.08",
     "pdf_url": "https://stock.pstatic.net/stock-research/company/40/20260608_company_392545000.pdf",
-    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93440&page=1",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93440&page=2",
     "sector": "건설",
     "company": "삼성E&A",
     "company_code": "028050",
-    "checked_at": "2026-06-09T05:07:53"
+    "checked_at": "2026-06-10T05:20:46"
   },
   "company:https://stock.pstatic.net/stock-research/company/39/20260608_company_804002000.pdf": {
     "saved": true,
@@ -94945,11 +94945,11 @@
     "firm": "키움증권",
     "date": "26.06.08",
     "pdf_url": "https://stock.pstatic.net/stock-research/company/39/20260608_company_804002000.pdf",
-    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93439&page=1",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93439&page=2",
     "sector": "IT서비스",
     "company": "NHN",
     "company_code": "181710",
-    "checked_at": "2026-06-09T05:07:54"
+    "checked_at": "2026-06-10T05:20:46"
   },
   "company:https://stock.pstatic.net/stock-research/company/61/20260608_company_20839000.pdf": {
     "saved": true,
@@ -94963,7 +94963,7 @@
     "sector": "제약",
     "company": "휴메딕스",
     "company_code": "200670",
-    "checked_at": "2026-06-09T05:07:54"
+    "checked_at": "2026-06-10T05:20:46"
   },
   "company:https://stock.pstatic.net/stock-research/company/61/20260608_company_900500000.pdf": {
     "saved": true,
@@ -94977,7 +94977,7 @@
     "sector": "전자장비와기기",
     "company": "심텍",
     "company_code": "222800",
-    "checked_at": "2026-06-09T05:07:54"
+    "checked_at": "2026-06-10T05:20:47"
   },
   "company:https://stock.pstatic.net/stock-research/company/39/20260608_company_508656000.pdf": {
     "saved": true,
@@ -94991,7 +94991,7 @@
     "sector": "IT서비스",
     "company": "NHN KCP",
     "company_code": "060250",
-    "checked_at": "2026-06-09T05:07:54"
+    "checked_at": "2026-06-10T05:20:49"
   },
   "company:https://stock.pstatic.net/stock-research/company/39/20260608_company_606562000.pdf": {
     "saved": true,
@@ -95005,7 +95005,7 @@
     "sector": "백화점과일반상점",
     "company": "이마트",
     "company_code": "139480",
-    "checked_at": "2026-06-09T05:07:54"
+    "checked_at": "2026-06-10T05:20:52"
   },
   "company:https://stock.pstatic.net/stock-research/company/74/20260608_company_733800000.pdf": {
     "saved": true,
@@ -95019,7 +95019,7 @@
     "sector": "기타",
     "company": "노브메타파마",
     "company_code": "229500",
-    "checked_at": "2026-06-09T05:07:55"
+    "checked_at": "2026-06-10T05:20:53"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/16/20260608_industry_908528000.pdf": {
     "saved": true,
@@ -95029,11 +95029,11 @@
     "firm": "한화투자증권",
     "date": "26.06.08",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/16/20260608_industry_908528000.pdf",
-    "detail_url": "https://finance.naver.com/research/industry_read.naver?nid=44883&page=1",
+    "detail_url": "https://finance.naver.com/research/industry_read.naver?nid=44883&page=2",
     "sector": "기타",
     "company": "",
     "company_code": "",
-    "checked_at": "2026-06-09T05:08:50"
+    "checked_at": "2026-06-10T05:21:36"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/16/20260608_industry_569865000.pdf": {
     "saved": true,
@@ -95043,11 +95043,11 @@
     "firm": "한화투자증권",
     "date": "26.06.08",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/16/20260608_industry_569865000.pdf",
-    "detail_url": "https://finance.naver.com/research/industry_read.naver?nid=44882&page=1",
+    "detail_url": "https://finance.naver.com/research/industry_read.naver?nid=44882&page=2",
     "sector": "은행",
     "company": "",
     "company_code": "",
-    "checked_at": "2026-06-09T05:08:51"
+    "checked_at": "2026-06-10T05:21:40"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/63/20260608_industry_646899000.pdf": {
     "saved": false,
@@ -95057,7 +95057,7 @@
     "firm": "유진투자증권",
     "date": "26.06.08",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/63/20260608_industry_646899000.pdf",
-    "checked_at": "2026-06-09T05:08:51"
+    "checked_at": "2026-06-10T05:21:40"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/62/20260608_industry_824183000.pdf": {
     "saved": false,
@@ -95067,7 +95067,7 @@
     "firm": "교보증권",
     "date": "26.06.08",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/62/20260608_industry_824183000.pdf",
-    "checked_at": "2026-06-09T05:08:51"
+    "checked_at": "2026-06-10T05:21:44"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/63/20260608_industry_35612000.pdf": {
     "saved": false,
@@ -95077,7 +95077,7 @@
     "firm": "유진투자증권",
     "date": "26.06.08",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/63/20260608_industry_35612000.pdf",
-    "checked_at": "2026-06-09T05:08:51"
+    "checked_at": "2026-06-10T05:21:46"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/62/20260608_industry_304563000.pdf": {
     "saved": true,
@@ -95087,11 +95087,11 @@
     "firm": "교보증권",
     "date": "26.06.08",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/62/20260608_industry_304563000.pdf",
-    "detail_url": "https://finance.naver.com/research/industry_read.naver?nid=44877&page=1",
+    "detail_url": "https://finance.naver.com/research/industry_read.naver?nid=44877&page=2",
     "sector": "IT",
     "company": "",
     "company_code": "",
-    "checked_at": "2026-06-09T05:08:52"
+    "checked_at": "2026-06-10T05:21:47"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/62/20260608_industry_293327000.pdf": {
     "saved": false,
@@ -95101,7 +95101,7 @@
     "firm": "교보증권",
     "date": "26.06.08",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/62/20260608_industry_293327000.pdf",
-    "checked_at": "2026-06-09T05:08:52"
+    "checked_at": "2026-06-10T05:21:49"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/63/20260608_industry_760789000.pdf": {
     "saved": true,
@@ -95111,11 +95111,11 @@
     "firm": "유진투자증권",
     "date": "26.06.08",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/63/20260608_industry_760789000.pdf",
-    "detail_url": "https://finance.naver.com/research/industry_read.naver?nid=44875&page=1",
+    "detail_url": "https://finance.naver.com/research/industry_read.naver?nid=44875&page=2",
     "sector": "건설",
     "company": "",
     "company_code": "",
-    "checked_at": "2026-06-09T05:08:52"
+    "checked_at": "2026-06-10T05:21:52"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/57/20260608_industry_666643000.pdf": {
     "saved": false,
@@ -95125,7 +95125,7 @@
     "firm": "하나증권",
     "date": "26.06.08",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/57/20260608_industry_666643000.pdf",
-    "checked_at": "2026-06-09T05:08:52"
+    "checked_at": "2026-06-10T05:21:53"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/57/20260608_industry_918009000.pdf": {
     "saved": true,
@@ -95139,7 +95139,7 @@
     "sector": "기타",
     "company": "",
     "company_code": "",
-    "checked_at": "2026-06-09T05:08:53"
+    "checked_at": "2026-06-10T05:21:53"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/15/20260608_industry_622717000.pdf": {
     "saved": false,
@@ -95149,7 +95149,7 @@
     "firm": "대신증권",
     "date": "26.06.08",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/15/20260608_industry_622717000.pdf",
-    "checked_at": "2026-06-09T05:08:53"
+    "checked_at": "2026-06-10T05:21:53"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/57/20260608_industry_807386000.pdf": {
     "saved": true,
@@ -95163,7 +95163,7 @@
     "sector": "철강금속",
     "company": "",
     "company_code": "",
-    "checked_at": "2026-06-09T05:08:53"
+    "checked_at": "2026-06-10T05:21:53"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/57/20260608_industry_542433000.pdf": {
     "saved": true,
@@ -95177,7 +95177,7 @@
     "sector": "에너지",
     "company": "",
     "company_code": "",
-    "checked_at": "2026-06-09T05:08:53"
+    "checked_at": "2026-06-10T05:21:53"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/57/20260608_industry_919970000.pdf": {
     "saved": true,
@@ -95191,7 +95191,7 @@
     "sector": "반도체",
     "company": "",
     "company_code": "",
-    "checked_at": "2026-06-09T05:08:54"
+    "checked_at": "2026-06-10T05:21:54"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/57/20260608_industry_717468000.pdf": {
     "saved": false,
@@ -95201,7 +95201,7 @@
     "firm": "하나증권",
     "date": "26.06.08",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/57/20260608_industry_717468000.pdf",
-    "checked_at": "2026-06-09T05:08:54"
+    "checked_at": "2026-06-10T05:21:54"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/63/20260608_industry_838302000.pdf": {
     "saved": false,
@@ -95211,7 +95211,7 @@
     "firm": "유진투자증권",
     "date": "26.06.08",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/63/20260608_industry_838302000.pdf",
-    "checked_at": "2026-06-09T05:08:54"
+    "checked_at": "2026-06-10T05:21:57"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/57/20260608_industry_261062000.pdf": {
     "saved": false,
@@ -95221,7 +95221,7 @@
     "firm": "하나증권",
     "date": "26.06.08",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/57/20260608_industry_261062000.pdf",
-    "checked_at": "2026-06-09T05:08:54"
+    "checked_at": "2026-06-10T05:21:57"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/64/20260608_industry_86430000.pdf": {
     "saved": true,
@@ -95235,7 +95235,7 @@
     "sector": "반도체",
     "company": "",
     "company_code": "",
-    "checked_at": "2026-06-09T05:08:55"
+    "checked_at": "2026-06-10T05:22:00"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/63/20260608_industry_54850000.pdf": {
     "saved": false,
@@ -95245,7 +95245,7 @@
     "firm": "유진투자증권",
     "date": "26.06.08",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/63/20260608_industry_54850000.pdf",
-    "checked_at": "2026-06-09T05:08:55"
+    "checked_at": "2026-06-10T05:22:03"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/40/20260608_industry_222022000.pdf": {
     "saved": true,
@@ -95259,7 +95259,7 @@
     "sector": "IT",
     "company": "",
     "company_code": "",
-    "checked_at": "2026-06-09T05:08:55"
+    "checked_at": "2026-06-10T05:22:03"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/40/20260608_industry_126193000.pdf": {
     "saved": true,
@@ -95273,7 +95273,7 @@
     "sector": "기타",
     "company": "",
     "company_code": "",
-    "checked_at": "2026-06-09T05:08:56"
+    "checked_at": "2026-06-10T05:22:03"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/40/20260608_industry_642660000.pdf": {
     "saved": false,
@@ -95283,7 +95283,7 @@
     "firm": "IBK투자증권",
     "date": "26.06.08",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/40/20260608_industry_642660000.pdf",
-    "checked_at": "2026-06-09T05:08:56"
+    "checked_at": "2026-06-10T05:22:05"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/63/20260608_industry_682201000.pdf": {
     "saved": false,
@@ -95293,7 +95293,7 @@
     "firm": "유진투자증권",
     "date": "26.06.08",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/63/20260608_industry_682201000.pdf",
-    "checked_at": "2026-06-09T05:08:56"
+    "checked_at": "2026-06-10T05:22:06"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/61/20260608_industry_670369000.pdf": {
     "saved": true,
@@ -95303,11 +95303,11 @@
     "firm": "iM증권",
     "date": "26.06.08",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/61/20260608_industry_670369000.pdf",
-    "detail_url": "https://finance.naver.com/research/industry_read.naver?nid=44857&page=2",
+    "detail_url": "https://finance.naver.com/research/industry_read.naver?nid=44857&page=3",
     "sector": "철강금속",
     "company": "",
     "company_code": "",
-    "checked_at": "2026-06-09T05:08:56"
+    "checked_at": "2026-06-10T05:22:09"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/39/20260608_industry_684497000.pdf": {
     "saved": false,
@@ -95317,7 +95317,7 @@
     "firm": "키움증권",
     "date": "26.06.08",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/39/20260608_industry_684497000.pdf",
-    "checked_at": "2026-06-09T05:08:57"
+    "checked_at": "2026-06-10T05:22:09"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/-/20260608_industry_235757000.pdf": {
     "saved": true,
@@ -95327,11 +95327,11 @@
     "firm": "키움증권",
     "date": "26.06.08",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/-/20260608_industry_235757000.pdf",
-    "detail_url": "https://finance.naver.com/research/industry_read.naver?nid=44855&page=2",
+    "detail_url": "https://finance.naver.com/research/industry_read.naver?nid=44855&page=3",
     "sector": "제약",
     "company": "",
     "company_code": "",
-    "checked_at": "2026-06-09T05:08:57"
+    "checked_at": "2026-06-10T05:22:09"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/61/20260608_industry_572119000.pdf": {
     "saved": true,
@@ -95341,11 +95341,11 @@
     "firm": "iM증권",
     "date": "26.06.08",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/61/20260608_industry_572119000.pdf",
-    "detail_url": "https://finance.naver.com/research/industry_read.naver?nid=44854&page=2",
+    "detail_url": "https://finance.naver.com/research/industry_read.naver?nid=44854&page=3",
     "sector": "석유화학",
     "company": "",
     "company_code": "",
-    "checked_at": "2026-06-09T05:08:57"
+    "checked_at": "2026-06-10T05:22:09"
   },
   "company:https://stock.pstatic.net/stock-research/company/16/20260609_company_853814000.pdf": {
     "saved": true,
@@ -95359,7 +95359,7 @@
     "sector": "백화점과일반상점",
     "company": "신세계",
     "company_code": "004170",
-    "checked_at": "2026-06-09T05:07:48"
+    "checked_at": "2026-06-10T05:20:33"
   },
   "company:https://stock.pstatic.net/stock-research/company/56/20260609_company_257800000.pdf": {
     "saved": true,
@@ -95373,7 +95373,7 @@
     "sector": "전자장비와기기",
     "company": "액스비스",
     "company_code": "0011A0",
-    "checked_at": "2026-06-09T05:07:48"
+    "checked_at": "2026-06-10T05:20:33"
   },
   "company:https://stock.pstatic.net/stock-research/company/66/20260609_company_532859000.pdf": {
     "saved": true,
@@ -95387,7 +95387,7 @@
     "sector": "양방향미디어와서비스",
     "company": "NAVER",
     "company_code": "035420",
-    "checked_at": "2026-06-09T05:07:48"
+    "checked_at": "2026-06-10T05:20:34"
   },
   "company:https://stock.pstatic.net/stock-research/company/62/20260609_company_657957000.pdf": {
     "saved": true,
@@ -95401,7 +95401,7 @@
     "sector": "양방향미디어와서비스",
     "company": "NAVER",
     "company_code": "035420",
-    "checked_at": "2026-06-09T05:07:49"
+    "checked_at": "2026-06-10T05:20:34"
   },
   "company:https://stock.pstatic.net/stock-research/company/15/20260609_company_214808000.pdf": {
     "saved": true,
@@ -95415,7 +95415,7 @@
     "sector": "백화점과일반상점",
     "company": "롯데쇼핑",
     "company_code": "023530",
-    "checked_at": "2026-06-09T05:07:49"
+    "checked_at": "2026-06-10T05:20:34"
   },
   "company:https://stock.pstatic.net/stock-research/company/15/20260609_company_944577000.pdf": {
     "saved": true,
@@ -95429,7 +95429,7 @@
     "sector": "전기제품",
     "company": "성호전자",
     "company_code": "043260",
-    "checked_at": "2026-06-09T05:07:49"
+    "checked_at": "2026-06-10T05:20:34"
   },
   "company:https://stock.pstatic.net/stock-research/company/57/20260609_company_166114000.pdf": {
     "saved": true,
@@ -95443,7 +95443,7 @@
     "sector": "우주항공과국방",
     "company": "RF머트리얼즈",
     "company_code": "327260",
-    "checked_at": "2026-06-09T05:07:49"
+    "checked_at": "2026-06-10T05:20:34"
   },
   "company:https://stock.pstatic.net/stock-research/company/57/20260609_company_92545000.pdf": {
     "saved": true,
@@ -95457,7 +95457,7 @@
     "sector": "통신장비",
     "company": "RFHIC",
     "company_code": "218410",
-    "checked_at": "2026-06-09T05:07:50"
+    "checked_at": "2026-06-10T05:20:35"
   },
   "company:https://stock.pstatic.net/stock-research/company/57/20260609_company_871432000.pdf": {
     "saved": true,
@@ -95471,7 +95471,7 @@
     "sector": "양방향미디어와서비스",
     "company": "NAVER",
     "company_code": "035420",
-    "checked_at": "2026-06-09T05:07:50"
+    "checked_at": "2026-06-10T05:20:35"
   },
   "company:https://stock.pstatic.net/stock-research/company/56/20260609_company_677883000.pdf": {
     "saved": true,
@@ -95485,7 +95485,7 @@
     "sector": "반도체와반도체장비",
     "company": "SK하이닉스",
     "company_code": "000660",
-    "checked_at": "2026-06-09T05:07:50"
+    "checked_at": "2026-06-10T05:20:38"
   },
   "company:https://stock.pstatic.net/stock-research/company/56/20260609_company_699328000.pdf": {
     "saved": true,
@@ -95495,11 +95495,11 @@
     "firm": "미래에셋증권",
     "date": "26.06.09",
     "pdf_url": "https://stock.pstatic.net/stock-research/company/56/20260609_company_699328000.pdf",
-    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93457&page=1",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93457&page=2",
     "sector": "반도체와반도체장비",
     "company": "삼성전자",
     "company_code": "005930",
-    "checked_at": "2026-06-09T05:07:50"
+    "checked_at": "2026-06-10T05:20:39"
   },
   "company:https://stock.pstatic.net/stock-research/company/61/20260609_company_537152000.pdf": {
     "saved": true,
@@ -95509,11 +95509,11 @@
     "firm": "iM증권",
     "date": "26.06.09",
     "pdf_url": "https://stock.pstatic.net/stock-research/company/61/20260609_company_537152000.pdf",
-    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93454&page=1",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93454&page=2",
     "sector": "전자장비와기기",
     "company": "삼성전기",
     "company_code": "009150",
-    "checked_at": "2026-06-09T05:07:51"
+    "checked_at": "2026-06-10T05:20:39"
   },
   "company:https://stock.pstatic.net/stock-research/company/61/20260609_company_240760000.pdf": {
     "saved": true,
@@ -95523,11 +95523,11 @@
     "firm": "iM증권",
     "date": "26.06.09",
     "pdf_url": "https://stock.pstatic.net/stock-research/company/61/20260609_company_240760000.pdf",
-    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93453&page=1",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93453&page=2",
     "sector": "전자장비와기기",
     "company": "파크시스템스",
     "company_code": "140860",
-    "checked_at": "2026-06-09T05:07:51"
+    "checked_at": "2026-06-10T05:20:39"
   },
   "company:https://stock.pstatic.net/stock-research/company/39/20260609_company_479087000.pdf": {
     "saved": true,
@@ -95537,11 +95537,11 @@
     "firm": "키움증권",
     "date": "26.06.09",
     "pdf_url": "https://stock.pstatic.net/stock-research/company/39/20260609_company_479087000.pdf",
-    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93452&page=1",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93452&page=2",
     "sector": "양방향미디어와서비스",
     "company": "NAVER",
     "company_code": "035420",
-    "checked_at": "2026-06-09T05:07:51"
+    "checked_at": "2026-06-10T05:20:40"
   },
   "company:https://stock.pstatic.net/stock-research/company/39/20260609_company_840586000.pdf": {
     "saved": true,
@@ -95551,11 +95551,11 @@
     "firm": "키움증권",
     "date": "26.06.09",
     "pdf_url": "https://stock.pstatic.net/stock-research/company/39/20260609_company_840586000.pdf",
-    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93451&page=1",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93451&page=2",
     "sector": "건강관리장비와용품",
     "company": "제이피아이헬스케어",
     "company_code": "0010V0",
-    "checked_at": "2026-06-09T05:07:51"
+    "checked_at": "2026-06-10T05:20:40"
   },
   "company:https://stock.pstatic.net/stock-research/company/40/20260609_company_96168000.pdf": {
     "saved": true,
@@ -95565,11 +95565,11 @@
     "firm": "IBK투자증권",
     "date": "26.06.09",
     "pdf_url": "https://stock.pstatic.net/stock-research/company/40/20260609_company_96168000.pdf",
-    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93450&page=1",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93450&page=2",
     "sector": "양방향미디어와서비스",
     "company": "NAVER",
     "company_code": "035420",
-    "checked_at": "2026-06-09T05:07:51"
+    "checked_at": "2026-06-10T05:20:40"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/63/20260609_industry_230464000.pdf": {
     "saved": false,
@@ -95579,7 +95579,7 @@
     "firm": "유진투자증권",
     "date": "26.06.09",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/63/20260609_industry_230464000.pdf",
-    "checked_at": "2026-06-09T05:08:23"
+    "checked_at": "2026-06-10T05:21:29"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/18/20260609_industry_111630000.pdf": {
     "saved": true,
@@ -95593,7 +95593,7 @@
     "sector": "전기전자",
     "company": "",
     "company_code": "",
-    "checked_at": "2026-06-09T05:08:24"
+    "checked_at": "2026-06-10T05:21:29"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/16/20260609_industry_196679000.pdf": {
     "saved": false,
@@ -95603,7 +95603,7 @@
     "firm": "한화투자증권",
     "date": "26.06.09",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/16/20260609_industry_196679000.pdf",
-    "checked_at": "2026-06-09T05:08:24"
+    "checked_at": "2026-06-10T05:21:29"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/18/20260609_industry_263119000.pdf": {
     "saved": true,
@@ -95617,7 +95617,7 @@
     "sector": "석유화학",
     "company": "",
     "company_code": "",
-    "checked_at": "2026-06-09T05:08:25"
+    "checked_at": "2026-06-10T05:21:29"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/16/20260609_industry_942866000.pdf": {
     "saved": false,
@@ -95627,7 +95627,7 @@
     "firm": "한화투자증권",
     "date": "26.06.09",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/16/20260609_industry_942866000.pdf",
-    "checked_at": "2026-06-09T05:08:27"
+    "checked_at": "2026-06-10T05:21:29"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/63/20260609_industry_958303000.pdf": {
     "saved": true,
@@ -95641,7 +95641,7 @@
     "sector": "기타",
     "company": "",
     "company_code": "",
-    "checked_at": "2026-06-09T05:08:28"
+    "checked_at": "2026-06-10T05:21:30"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/62/20260609_industry_934449000.pdf": {
     "saved": true,
@@ -95655,7 +95655,7 @@
     "sector": "자동차",
     "company": "",
     "company_code": "",
-    "checked_at": "2026-06-09T05:08:30"
+    "checked_at": "2026-06-10T05:21:32"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/57/20260609_industry_379635000.pdf": {
     "saved": true,
@@ -95669,7 +95669,7 @@
     "sector": "화장품",
     "company": "",
     "company_code": "",
-    "checked_at": "2026-06-09T05:08:33"
+    "checked_at": "2026-06-10T05:21:32"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/57/20260609_industry_95671000.pdf": {
     "saved": false,
@@ -95679,7 +95679,7 @@
     "firm": "하나증권",
     "date": "26.06.09",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/57/20260609_industry_95671000.pdf",
-    "checked_at": "2026-06-09T05:08:35"
+    "checked_at": "2026-06-10T05:21:33"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/63/20260609_industry_352565000.pdf": {
     "saved": false,
@@ -95689,7 +95689,7 @@
     "firm": "유진투자증권",
     "date": "26.06.09",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/63/20260609_industry_352565000.pdf",
-    "checked_at": "2026-06-09T05:08:36"
+    "checked_at": "2026-06-10T05:21:33"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/57/20260609_industry_877034000.pdf": {
     "saved": false,
@@ -95699,7 +95699,7 @@
     "firm": "하나증권",
     "date": "26.06.09",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/57/20260609_industry_877034000.pdf",
-    "checked_at": "2026-06-09T05:08:38"
+    "checked_at": "2026-06-10T05:21:33"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/57/20260609_industry_658233000.pdf": {
     "saved": true,
@@ -95713,7 +95713,7 @@
     "sector": "건설",
     "company": "",
     "company_code": "",
-    "checked_at": "2026-06-09T05:08:40"
+    "checked_at": "2026-06-10T05:21:33"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/63/20260609_industry_321848000.pdf": {
     "saved": false,
@@ -95723,7 +95723,7 @@
     "firm": "유진투자증권",
     "date": "26.06.09",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/63/20260609_industry_321848000.pdf",
-    "checked_at": "2026-06-09T05:08:42"
+    "checked_at": "2026-06-10T05:21:33"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/63/20260609_industry_252911000.pdf": {
     "saved": false,
@@ -95733,7 +95733,7 @@
     "firm": "유진투자증권",
     "date": "26.06.09",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/63/20260609_industry_252911000.pdf",
-    "checked_at": "2026-06-09T05:08:42"
+    "checked_at": "2026-06-10T05:21:34"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/61/20260609_industry_28246000.pdf": {
     "saved": false,
@@ -95743,7 +95743,7 @@
     "firm": "iM증권",
     "date": "26.06.09",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/61/20260609_industry_28246000.pdf",
-    "checked_at": "2026-06-09T05:08:44"
+    "checked_at": "2026-06-10T05:21:34"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/40/20260609_industry_578839000.pdf": {
     "saved": false,
@@ -95753,7 +95753,7 @@
     "firm": "IBK투자증권",
     "date": "26.06.09",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/40/20260609_industry_578839000.pdf",
-    "checked_at": "2026-06-09T05:08:46"
+    "checked_at": "2026-06-10T05:21:34"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/40/20260609_industry_152608000.pdf": {
     "saved": true,
@@ -95763,11 +95763,11 @@
     "firm": "IBK투자증권",
     "date": "26.06.09",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/40/20260609_industry_152608000.pdf",
-    "detail_url": "https://finance.naver.com/research/industry_read.naver?nid=44885&page=1",
+    "detail_url": "https://finance.naver.com/research/industry_read.naver?nid=44885&page=2",
     "sector": "자동차",
     "company": "",
     "company_code": "",
-    "checked_at": "2026-06-09T05:08:48"
+    "checked_at": "2026-06-10T05:21:34"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/39/20260609_industry_808868000.pdf": {
     "saved": false,
@@ -95777,6 +95777,436 @@
     "firm": "키움증권",
     "date": "26.06.09",
     "pdf_url": "https://stock.pstatic.net/stock-research/industry/39/20260609_industry_808868000.pdf",
-    "checked_at": "2026-06-09T05:08:50"
+    "checked_at": "2026-06-10T05:21:35"
+  },
+  "company:https://stock.pstatic.net/stock-research/company/56/20260610_company_533058000.pdf": {
+    "saved": true,
+    "path": "data/naver_research/company/조선/HD현대마린솔루션_FDC 사업역량 부각 기대_미래에셋증권_26.06.10.pdf",
+    "page_count": 10,
+    "title": "FDC 사업역량 부각 기대",
+    "firm": "미래에셋증권",
+    "date": "26.06.10",
+    "pdf_url": "https://stock.pstatic.net/stock-research/company/56/20260610_company_533058000.pdf",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93487&page=1",
+    "sector": "조선",
+    "company": "HD현대마린솔루션",
+    "company_code": "443060",
+    "checked_at": "2026-06-10T05:20:29"
+  },
+  "company:https://stock.pstatic.net/stock-research/company/18/20260610_company_135650000.pdf": {
+    "saved": true,
+    "path": "data/naver_research/company/반도체와반도체장비/신성이엔지_Fab 투자 & 공정 미세화 수혜_유안타증권_26.06.10.pdf",
+    "page_count": 4,
+    "title": "Fab 투자 & 공정 미세화 수혜",
+    "firm": "유안타증권",
+    "date": "26.06.10",
+    "pdf_url": "https://stock.pstatic.net/stock-research/company/18/20260610_company_135650000.pdf",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93486&page=1",
+    "sector": "반도체와반도체장비",
+    "company": "신성이엔지",
+    "company_code": "011930",
+    "checked_at": "2026-06-10T05:20:29"
+  },
+  "company:https://stock.pstatic.net/stock-research/company/15/20260610_company_894884000.pdf": {
+    "saved": true,
+    "path": "data/naver_research/company/반도체와반도체장비/하나마이크론_사업 효율성 제고_대신증권_26.06.10.pdf",
+    "page_count": 5,
+    "title": "사업 효율성 제고",
+    "firm": "대신증권",
+    "date": "26.06.10",
+    "pdf_url": "https://stock.pstatic.net/stock-research/company/15/20260610_company_894884000.pdf",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93485&page=1",
+    "sector": "반도체와반도체장비",
+    "company": "하나마이크론",
+    "company_code": "067310",
+    "checked_at": "2026-06-10T05:20:30"
+  },
+  "company:https://stock.pstatic.net/stock-research/company/15/20260610_company_31633000.pdf": {
+    "saved": true,
+    "path": "data/naver_research/company/전자장비와기기/삼성전기_AI의 패러다임에 최대 수혜, 재평가 확대!_대신증권_26.06.10.pdf",
+    "page_count": 8,
+    "title": "AI의 패러다임에 최대 수혜, 재평가 확대!",
+    "firm": "대신증권",
+    "date": "26.06.10",
+    "pdf_url": "https://stock.pstatic.net/stock-research/company/15/20260610_company_31633000.pdf",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93484&page=1",
+    "sector": "전자장비와기기",
+    "company": "삼성전기",
+    "company_code": "009150",
+    "checked_at": "2026-06-10T05:20:30"
+  },
+  "company:https://stock.pstatic.net/stock-research/company/15/20260610_company_268714000.pdf": {
+    "saved": true,
+    "path": "data/naver_research/company/증권/NH투자증권_롤러코스터 증시, 편안한 배당매력에 주목_대신증권_26.06.10.pdf",
+    "page_count": 4,
+    "title": "롤러코스터 증시, 편안한 배당매력에 주목",
+    "firm": "대신증권",
+    "date": "26.06.10",
+    "pdf_url": "https://stock.pstatic.net/stock-research/company/15/20260610_company_268714000.pdf",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93483&page=1",
+    "sector": "증권",
+    "company": "NH투자증권",
+    "company_code": "005940",
+    "checked_at": "2026-06-10T05:20:30"
+  },
+  "company:https://stock.pstatic.net/stock-research/company/40/20260610_company_381739000.pdf": {
+    "saved": true,
+    "path": "data/naver_research/company/기계/클로봇_로봇 SI 업체로 진화 중_IBK투자증권_26.06.10.pdf",
+    "page_count": 10,
+    "title": "로봇 SI 업체로 진화 중",
+    "firm": "IBK투자증권",
+    "date": "26.06.10",
+    "pdf_url": "https://stock.pstatic.net/stock-research/company/40/20260610_company_381739000.pdf",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93480&page=1",
+    "sector": "기계",
+    "company": "클로봇",
+    "company_code": "466100",
+    "checked_at": "2026-06-10T05:20:30"
+  },
+  "company:https://stock.pstatic.net/stock-research/company/40/20260610_company_104104000.pdf": {
+    "saved": true,
+    "path": "data/naver_research/company/건설/현대건설_현대건설 전환사채 발행결정 코멘트(26.06.09.._IBK투자증권_26.06.10.pdf",
+    "page_count": 3,
+    "title": "현대건설 전환사채 발행결정 코멘트(26.06.09..",
+    "firm": "IBK투자증권",
+    "date": "26.06.10",
+    "pdf_url": "https://stock.pstatic.net/stock-research/company/40/20260610_company_104104000.pdf",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93479&page=1",
+    "sector": "건설",
+    "company": "현대건설",
+    "company_code": "000720",
+    "checked_at": "2026-06-10T05:20:30"
+  },
+  "company:https://stock.pstatic.net/stock-research/company/63/20260610_company_339406000.pdf": {
+    "saved": true,
+    "path": "data/naver_research/company/건설/DL이앤씨_콥데이 후기_ SMR, 그리고 미국_유진투자증권_26.06.10.pdf",
+    "page_count": 7,
+    "title": "콥데이 후기: SMR, 그리고 미국",
+    "firm": "유진투자증권",
+    "date": "26.06.10",
+    "pdf_url": "https://stock.pstatic.net/stock-research/company/63/20260610_company_339406000.pdf",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93478&page=1",
+    "sector": "건설",
+    "company": "DL이앤씨",
+    "company_code": "375500",
+    "checked_at": "2026-06-10T05:20:31"
+  },
+  "company:https://stock.pstatic.net/stock-research/company/61/20260610_company_298018000.pdf": {
+    "saved": true,
+    "path": "data/naver_research/company/디스플레이장비및부품/덕산네오룩스_하방 리스크 제한적, 적극적 비중 확대 구간_iM증권_26.06.10.pdf",
+    "page_count": 9,
+    "title": "하방 리스크 제한적, 적극적 비중 확대 구간",
+    "firm": "iM증권",
+    "date": "26.06.10",
+    "pdf_url": "https://stock.pstatic.net/stock-research/company/61/20260610_company_298018000.pdf",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93477&page=1",
+    "sector": "디스플레이장비및부품",
+    "company": "덕산네오룩스",
+    "company_code": "213420",
+    "checked_at": "2026-06-10T05:20:31"
+  },
+  "company:https://stock.pstatic.net/stock-research/company/39/20260610_company_741046000.pdf": {
+    "saved": true,
+    "path": "data/naver_research/company/백화점과일반상점/롯데쇼핑_2Q 기존점 +14%, 목표주가 23만원으로 상향_키움증권_26.06.10.pdf",
+    "page_count": 7,
+    "title": "2Q 기존점 +14%, 목표주가 23만원으로 상향",
+    "firm": "키움증권",
+    "date": "26.06.10",
+    "pdf_url": "https://stock.pstatic.net/stock-research/company/39/20260610_company_741046000.pdf",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93476&page=1",
+    "sector": "백화점과일반상점",
+    "company": "롯데쇼핑",
+    "company_code": "023530",
+    "checked_at": "2026-06-10T05:20:31"
+  },
+  "company:https://stock.pstatic.net/stock-research/company/39/20260610_company_828235000.pdf": {
+    "saved": true,
+    "path": "data/naver_research/company/백화점과일반상점/현대백화점_2Q 기존점 +16%, 목표주가 22만원으로 상향_키움증권_26.06.10.pdf",
+    "page_count": 7,
+    "title": "2Q 기존점 +16%, 목표주가 22만원으로 상향",
+    "firm": "키움증권",
+    "date": "26.06.10",
+    "pdf_url": "https://stock.pstatic.net/stock-research/company/39/20260610_company_828235000.pdf",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93475&page=1",
+    "sector": "백화점과일반상점",
+    "company": "현대백화점",
+    "company_code": "069960",
+    "checked_at": "2026-06-10T05:20:31"
+  },
+  "company:https://stock.pstatic.net/stock-research/company/39/20260610_company_161013000.pdf": {
+    "saved": true,
+    "path": "data/naver_research/company/건설/삼성E&A_사우디, UAE의 에너지 전략 속 기회요인 확인_키움증권_26.06.10.pdf",
+    "page_count": 12,
+    "title": "사우디, UAE의 에너지 전략 속 기회요인 확인",
+    "firm": "키움증권",
+    "date": "26.06.10",
+    "pdf_url": "https://stock.pstatic.net/stock-research/company/39/20260610_company_161013000.pdf",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93474&page=1",
+    "sector": "건설",
+    "company": "삼성E&A",
+    "company_code": "028050",
+    "checked_at": "2026-06-10T05:20:31"
+  },
+  "company:https://stock.pstatic.net/stock-research/company/39/20260610_company_873014000.pdf": {
+    "saved": true,
+    "path": "data/naver_research/company/백화점과일반상점/신세계_2Q 기존점 +25%, 목표주가 85만원으로 상향_키움증권_26.06.10.pdf",
+    "page_count": 7,
+    "title": "2Q 기존점 +25%, 목표주가 85만원으로 상향",
+    "firm": "키움증권",
+    "date": "26.06.10",
+    "pdf_url": "https://stock.pstatic.net/stock-research/company/39/20260610_company_873014000.pdf",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93473&page=1",
+    "sector": "백화점과일반상점",
+    "company": "신세계",
+    "company_code": "004170",
+    "checked_at": "2026-06-10T05:20:32"
+  },
+  "company:https://stock.pstatic.net/stock-research/company/74/20260610_company_787394000.pdf": {
+    "saved": true,
+    "path": "data/naver_research/company/전자장비와기기/슈프리마_주주환원에 눈을 뜬 통합보안시스템 분야 리.._한국IR협의회_26.06.10.pdf",
+    "page_count": 25,
+    "title": "주주환원에 눈을 뜬 통합보안시스템 분야 리..",
+    "firm": "한국IR협의회",
+    "date": "26.06.10",
+    "pdf_url": "https://stock.pstatic.net/stock-research/company/74/20260610_company_787394000.pdf",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93472&page=1",
+    "sector": "전자장비와기기",
+    "company": "슈프리마",
+    "company_code": "236200",
+    "checked_at": "2026-06-10T05:20:32"
+  },
+  "company:https://stock.pstatic.net/stock-research/company/74/20260610_company_704433000.pdf": {
+    "saved": true,
+    "path": "data/naver_research/company/교육서비스/아이비김영_대학편입 1위에서 성인교육 플랫폼으로 확장_한국IR협의회_26.06.10.pdf",
+    "page_count": 23,
+    "title": "대학편입 1위에서 성인교육 플랫폼으로 확장",
+    "firm": "한국IR협의회",
+    "date": "26.06.10",
+    "pdf_url": "https://stock.pstatic.net/stock-research/company/74/20260610_company_704433000.pdf",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93471&page=1",
+    "sector": "교육서비스",
+    "company": "아이비김영",
+    "company_code": "339950",
+    "checked_at": "2026-06-10T05:20:32"
+  },
+  "company:https://stock.pstatic.net/stock-research/company/56/20260610_company_70348000.pdf": {
+    "saved": true,
+    "path": "data/naver_research/company/통신장비/쓰리에이로직스_2026년, 레벨업의 원년_미래에셋증권_26.06.10.pdf",
+    "page_count": 7,
+    "title": "2026년, 레벨업의 원년",
+    "firm": "미래에셋증권",
+    "date": "26.06.10",
+    "pdf_url": "https://stock.pstatic.net/stock-research/company/56/20260610_company_70348000.pdf",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93470&page=1",
+    "sector": "통신장비",
+    "company": "쓰리에이로직스",
+    "company_code": "177900",
+    "checked_at": "2026-06-10T05:20:32"
+  },
+  "company:https://stock.pstatic.net/stock-research/company/56/20260610_company_335911000.pdf": {
+    "saved": true,
+    "path": "data/naver_research/company/가정용기기와용품/오아_소형가전의 대명사_미래에셋증권_26.06.10.pdf",
+    "page_count": 6,
+    "title": "소형가전의 대명사",
+    "firm": "미래에셋증권",
+    "date": "26.06.10",
+    "pdf_url": "https://stock.pstatic.net/stock-research/company/56/20260610_company_335911000.pdf",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93469&page=1",
+    "sector": "가정용기기와용품",
+    "company": "오아",
+    "company_code": "342870",
+    "checked_at": "2026-06-10T05:20:32"
+  },
+  "company:https://stock.pstatic.net/stock-research/company/56/20260610_company_949909000.pdf": {
+    "saved": true,
+    "path": "data/naver_research/company/전기제품/필에너지_보릿고개 끝자락, 수확이 다가오는 시기_미래에셋증권_26.06.10.pdf",
+    "page_count": 6,
+    "title": "보릿고개 끝자락, 수확이 다가오는 시기",
+    "firm": "미래에셋증권",
+    "date": "26.06.10",
+    "pdf_url": "https://stock.pstatic.net/stock-research/company/56/20260610_company_949909000.pdf",
+    "detail_url": "https://finance.naver.com/research/company_read.naver?nid=93468&page=1",
+    "sector": "전기제품",
+    "company": "필에너지",
+    "company_code": "378340",
+    "checked_at": "2026-06-10T05:20:33"
+  },
+  "industry:https://stock.pstatic.net/stock-research/industry/57/20260610_industry_857844000.pdf": {
+    "saved": false,
+    "skipped_reason": "page_count_lt_10",
+    "page_count": 3,
+    "title": "CHPS 규제 변화. 국내 연료전지 시장 축소",
+    "firm": "하나증권",
+    "date": "26.06.10",
+    "pdf_url": "https://stock.pstatic.net/stock-research/industry/57/20260610_industry_857844000.pdf",
+    "checked_at": "2026-06-10T05:21:16"
+  },
+  "industry:https://stock.pstatic.net/stock-research/industry/57/20260610_industry_691882000.pdf": {
+    "saved": false,
+    "skipped_reason": "page_count_lt_10",
+    "page_count": 3,
+    "title": "Non-China 공급망의 가치, 매수 기회",
+    "firm": "하나증권",
+    "date": "26.06.10",
+    "pdf_url": "https://stock.pstatic.net/stock-research/industry/57/20260610_industry_691882000.pdf",
+    "checked_at": "2026-06-10T05:21:18"
+  },
+  "industry:https://stock.pstatic.net/stock-research/industry/57/20260610_industry_740057000.pdf": {
+    "saved": true,
+    "path": "data/naver_research/industry/기타/기타_이 가격은 못 참겠다_하나증권_26.06.10.pdf",
+    "page_count": 16,
+    "title": "이 가격은 못 참겠다",
+    "firm": "하나증권",
+    "date": "26.06.10",
+    "pdf_url": "https://stock.pstatic.net/stock-research/industry/57/20260610_industry_740057000.pdf",
+    "detail_url": "https://finance.naver.com/research/industry_read.naver?nid=44917&page=1",
+    "sector": "기타",
+    "company": "",
+    "company_code": "",
+    "checked_at": "2026-06-10T05:21:18"
+  },
+  "industry:https://stock.pstatic.net/stock-research/industry/57/20260610_industry_298230000.pdf": {
+    "saved": false,
+    "skipped_reason": "page_count_lt_10",
+    "page_count": 5,
+    "title": "배터리 Valuation의 본질",
+    "firm": "하나증권",
+    "date": "26.06.10",
+    "pdf_url": "https://stock.pstatic.net/stock-research/industry/57/20260610_industry_298230000.pdf",
+    "checked_at": "2026-06-10T05:21:20"
+  },
+  "industry:https://stock.pstatic.net/stock-research/industry/16/20260610_industry_349882000.pdf": {
+    "saved": true,
+    "path": "data/naver_research/industry/기타/기타_[디지털자산] 6월_ 디지털자산 정책 인사이트_한화투자증권_26.06.10.pdf",
+    "page_count": 19,
+    "title": "[디지털자산] 6월: 디지털자산 정책 인사이트",
+    "firm": "한화투자증권",
+    "date": "26.06.10",
+    "pdf_url": "https://stock.pstatic.net/stock-research/industry/16/20260610_industry_349882000.pdf",
+    "detail_url": "https://finance.naver.com/research/industry_read.naver?nid=44915&page=1",
+    "sector": "기타",
+    "company": "",
+    "company_code": "",
+    "checked_at": "2026-06-10T05:21:23"
+  },
+  "industry:https://stock.pstatic.net/stock-research/industry/66/20260610_industry_160657000.pdf": {
+    "saved": true,
+    "path": "data/naver_research/industry/에너지/에너지_무엇이 바뀌고 어디에 기회가 있나_ 정책 분.._DS투자증권_26.06.10.pdf",
+    "page_count": 32,
+    "title": "무엇이 바뀌고 어디에 기회가 있나: 정책 분..",
+    "firm": "DS투자증권",
+    "date": "26.06.10",
+    "pdf_url": "https://stock.pstatic.net/stock-research/industry/66/20260610_industry_160657000.pdf",
+    "detail_url": "https://finance.naver.com/research/industry_read.naver?nid=44914&page=1",
+    "sector": "에너지",
+    "company": "",
+    "company_code": "",
+    "checked_at": "2026-06-10T05:21:26"
+  },
+  "industry:https://stock.pstatic.net/stock-research/industry/62/20260610_industry_289433000.pdf": {
+    "saved": false,
+    "skipped_reason": "page_count_lt_10",
+    "page_count": 4,
+    "title": "2026년 6월 둘째 주 전기전자 Weekly",
+    "firm": "교보증권",
+    "date": "26.06.10",
+    "pdf_url": "https://stock.pstatic.net/stock-research/industry/62/20260610_industry_289433000.pdf",
+    "checked_at": "2026-06-10T05:21:27"
+  },
+  "industry:https://stock.pstatic.net/stock-research/industry/-/20260610_industry_604218000.pdf": {
+    "saved": true,
+    "path": "data/naver_research/industry/지주회사/지주회사_지주회사 기본서 Holding Company 101_대신증권_26.06.10.pdf",
+    "page_count": 115,
+    "title": "지주회사 기본서 Holding Company 101",
+    "firm": "대신증권",
+    "date": "26.06.10",
+    "pdf_url": "https://stock.pstatic.net/stock-research/industry/-/20260610_industry_604218000.pdf",
+    "detail_url": "https://finance.naver.com/research/industry_read.naver?nid=44912&page=1",
+    "sector": "지주회사",
+    "company": "",
+    "company_code": "",
+    "checked_at": "2026-06-10T05:21:27"
+  },
+  "industry:https://stock.pstatic.net/stock-research/industry/15/20260610_industry_18763000.pdf": {
+    "saved": false,
+    "skipped_reason": "page_count_lt_10",
+    "page_count": 2,
+    "title": "FCAS 공동 개발 결렬에 따른 국내 방위산업 ..",
+    "firm": "대신증권",
+    "date": "26.06.10",
+    "pdf_url": "https://stock.pstatic.net/stock-research/industry/15/20260610_industry_18763000.pdf",
+    "checked_at": "2026-06-10T05:21:27"
+  },
+  "industry:https://stock.pstatic.net/stock-research/industry/61/20260610_industry_375601000.pdf": {
+    "saved": true,
+    "path": "data/naver_research/industry/기타/기타_부익부 시대의 소비 확대 - 카지노 편_iM증권_26.06.10.pdf",
+    "page_count": 87,
+    "title": "부익부 시대의 소비 확대 - 카지노 편",
+    "firm": "iM증권",
+    "date": "26.06.10",
+    "pdf_url": "https://stock.pstatic.net/stock-research/industry/61/20260610_industry_375601000.pdf",
+    "detail_url": "https://finance.naver.com/research/industry_read.naver?nid=44910&page=1",
+    "sector": "기타",
+    "company": "",
+    "company_code": "",
+    "checked_at": "2026-06-10T05:21:27"
+  },
+  "industry:https://stock.pstatic.net/stock-research/industry/63/20260610_industry_820081000.pdf": {
+    "saved": false,
+    "skipped_reason": "page_count_lt_10",
+    "page_count": 1,
+    "title": "안녕하세요 데일리에요(로봇/방산/조선)",
+    "firm": "유진투자증권",
+    "date": "26.06.10",
+    "pdf_url": "https://stock.pstatic.net/stock-research/industry/63/20260610_industry_820081000.pdf",
+    "checked_at": "2026-06-10T05:21:28"
+  },
+  "industry:https://stock.pstatic.net/stock-research/industry/61/20260610_industry_600870000.pdf": {
+    "saved": true,
+    "path": "data/naver_research/industry/건설/건설_부담스러운 금리, 하지만 무시할 수 없는 주.._iM증권_26.06.10.pdf",
+    "page_count": 53,
+    "title": "부담스러운 금리, 하지만 무시할 수 없는 주..",
+    "firm": "iM증권",
+    "date": "26.06.10",
+    "pdf_url": "https://stock.pstatic.net/stock-research/industry/61/20260610_industry_600870000.pdf",
+    "detail_url": "https://finance.naver.com/research/industry_read.naver?nid=44907&page=1",
+    "sector": "건설",
+    "company": "",
+    "company_code": "",
+    "checked_at": "2026-06-10T05:21:28"
+  },
+  "industry:https://stock.pstatic.net/stock-research/industry/40/20260610_industry_648796000.pdf": {
+    "saved": false,
+    "skipped_reason": "page_count_lt_10",
+    "page_count": 1,
+    "title": "[IBKS Daily] 인터넷/게임",
+    "firm": "IBK투자증권",
+    "date": "26.06.10",
+    "pdf_url": "https://stock.pstatic.net/stock-research/industry/40/20260610_industry_648796000.pdf",
+    "checked_at": "2026-06-10T05:21:28"
+  },
+  "industry:https://stock.pstatic.net/stock-research/industry/64/20260610_industry_641151000.pdf": {
+    "saved": true,
+    "path": "data/naver_research/industry/화장품/화장품_Weekly Amazon Beauty Check_SK증권_26.06.10.pdf",
+    "page_count": 10,
+    "title": "Weekly Amazon Beauty Check",
+    "firm": "SK증권",
+    "date": "26.06.10",
+    "pdf_url": "https://stock.pstatic.net/stock-research/industry/64/20260610_industry_641151000.pdf",
+    "detail_url": "https://finance.naver.com/research/industry_read.naver?nid=44905&page=1",
+    "sector": "화장품",
+    "company": "",
+    "company_code": "",
+    "checked_at": "2026-06-10T05:21:28"
+  },
+  "industry:https://stock.pstatic.net/stock-research/industry/40/20260610_industry_832232000.pdf": {
+    "saved": false,
+    "skipped_reason": "page_count_lt_10",
+    "page_count": 3,
+    "title": "브룩필드 인터뷰의 의미",
+    "firm": "IBK투자증권",
+    "date": "26.06.10",
+    "pdf_url": "https://stock.pstatic.net/stock-research/industry/40/20260610_industry_832232000.pdf",
+    "checked_at": "2026-06-10T05:21:28"
   }
 }
