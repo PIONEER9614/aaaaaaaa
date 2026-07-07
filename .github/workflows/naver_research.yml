@@ -2,7 +2,7 @@ name: 네이버 리서치 리포트 다운로드
 
 on:
   schedule:
-    - cron: "0 1 * * 1-5"   # KST 월~금 오전 10시 (UTC 01:00)
+    - cron: "0 1 * * *"   # KST 매일 오전 10시 (UTC 01:00)
   workflow_dispatch:
 
 jobs:
