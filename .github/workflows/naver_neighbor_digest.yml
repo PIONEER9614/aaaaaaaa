@@ -5,6 +5,9 @@ on:
     - cron: "0 23 * * 0-4"   # KST 월~금 오전 8시 (UTC 전날 23:00)
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   digest:
     runs-on: ubuntu-latest

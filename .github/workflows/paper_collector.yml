@@ -5,6 +5,9 @@ on:
     - cron: "0 1 * * 1"  # 매주 월요일 오전 10시 KST
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   collect:
     runs-on: ubuntu-latest

@@ -5,6 +5,9 @@ on:
     - cron: "0 1 * * *"   # KST 매일 오전 10시 (UTC 01:00)
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   download:
     runs-on: ubuntu-latest

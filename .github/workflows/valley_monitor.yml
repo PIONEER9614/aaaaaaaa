@@ -5,6 +5,9 @@ on:
     - cron: "0 0,3,6,9 * * 1-5"  # 평일 오전 9시, 12시, 15시, 18시 KST
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   monitor:
     runs-on: ubuntu-latest

@@ -9,6 +9,9 @@ on:
         description: "기록할 월 (예: 2026-04, 기본: 이전달)"
         required: false
 
+permissions:
+  contents: write
+
 jobs:
   rotation:
     runs-on: ubuntu-latest
