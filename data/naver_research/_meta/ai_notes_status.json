@@ -1002,82 +1002,82 @@
   "company:https://stock.pstatic.net/stock-research/company/63/20260821_company_739786000.pdf": {
     "status": "failed",
     "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-08-22T23:28:19"
+    "updated_at": "2026-08-23T10:33:46"
   },
   "company:https://stock.pstatic.net/stock-research/company/63/20260821_company_844326000.pdf": {
     "status": "failed",
     "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-08-22T23:28:27"
+    "updated_at": "2026-08-23T10:33:54"
   },
   "company:https://stock.pstatic.net/stock-research/company/57/20260821_company_319836000.pdf": {
     "status": "failed",
     "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-08-22T23:29:00"
+    "updated_at": "2026-08-23T10:34:27"
   },
   "company:https://stock.pstatic.net/stock-research/company/57/20260821_company_816595000.pdf": {
     "status": "failed",
     "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-08-22T23:29:07"
+    "updated_at": "2026-08-23T10:34:33"
   },
   "company:https://stock.pstatic.net/stock-research/company/57/20260821_company_209091000.pdf": {
     "status": "failed",
     "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-08-22T23:29:13"
+    "updated_at": "2026-08-23T10:34:41"
   },
   "company:https://stock.pstatic.net/stock-research/company/18/20260821_company_434425000.pdf": {
     "status": "failed",
     "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-08-22T23:29:18"
+    "updated_at": "2026-08-23T10:34:48"
   },
   "company:https://stock.pstatic.net/stock-research/company/18/20260821_company_974914000.pdf": {
     "status": "failed",
     "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-08-22T23:29:23"
+    "updated_at": "2026-08-23T10:34:56"
   },
   "company:https://stock.pstatic.net/stock-research/company/18/20260821_company_49560000.pdf": {
     "status": "failed",
     "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-08-22T23:29:27"
+    "updated_at": "2026-08-23T10:35:01"
   },
   "company:https://stock.pstatic.net/stock-research/company/18/20260821_company_635887000.pdf": {
     "status": "failed",
     "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-08-22T23:29:30"
+    "updated_at": "2026-08-23T10:35:08"
   },
   "company:https://stock.pstatic.net/stock-research/company/74/20260821_company_296950000.pdf": {
     "status": "failed",
     "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-08-22T23:29:34"
+    "updated_at": "2026-08-23T10:35:13"
   },
   "company:https://stock.pstatic.net/stock-research/company/69/20260821_company_856990000.pdf": {
     "status": "failed",
     "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-08-22T23:29:45"
+    "updated_at": "2026-08-23T10:35:30"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/57/20260821_industry_962802000.pdf": {
     "status": "failed",
     "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-08-22T23:29:51"
+    "updated_at": "2026-08-23T10:35:35"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/16/20260821_industry_645474000.pdf": {
     "status": "failed",
     "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-08-22T23:29:55"
+    "updated_at": "2026-08-23T10:35:38"
   },
   "company:https://stock.pstatic.net/stock-research/company/15/20260821_company_35227000.pdf": {
     "status": "failed",
     "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-08-22T23:29:59"
+    "updated_at": "2026-08-23T10:35:41"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/15/20260821_industry_188470000.pdf": {
     "status": "failed",
     "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-08-22T23:30:02"
+    "updated_at": "2026-08-23T10:35:43"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/17/20260821_industry_289451000.pdf": {
     "status": "failed",
     "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-08-22T23:30:06"
+    "updated_at": "2026-08-23T10:35:46"
   },
   "company:https://stock.pstatic.net/stock-research/company/15/20260820_company_966995000.pdf": {
     "status": "failed",
