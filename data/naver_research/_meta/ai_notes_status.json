@@ -2225,188 +2225,188 @@
     "updated_at": "2026-09-02T10:23:56"
   },
   "company:https://stock.pstatic.net/stock-research/company/16/20260904_company_986431000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-05T13:51:00"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-04\\260904_롯데이노베이트_한화투자증권_DBO 레퍼런스 확보, 수익성 개선, 남은 건 멀...md",
+    "updated_at": "2026-09-06T08:57:30"
   },
   "company:https://stock.pstatic.net/stock-research/company/15/20260904_company_869637000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-05T13:52:22"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-04\\260904_팬오션_대신증권_High & Dry.md",
+    "updated_at": "2026-09-06T08:57:41"
   },
   "company:https://stock.pstatic.net/stock-research/company/15/20260904_company_30144000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-05T13:53:34"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-04\\260904_DB손해보험_대신증권_새로운 밸류업 정책으로 확대되는 배당총액.md",
+    "updated_at": "2026-09-06T08:58:27"
   },
   "company:https://stock.pstatic.net/stock-research/company/74/20260904_company_794463000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-05T13:54:11"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-04\\260904_엔에프씨_한국IR협의회_화장품 ODM 고성장, 소재 턴어라운드 본격화.md",
+    "updated_at": "2026-09-06T08:58:46"
   },
   "company:https://stock.pstatic.net/stock-research/company/74/20260904_company_712284000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-05T13:55:09"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-04\\260904_월덱스_한국IR협의회_이익 성장과 주주환원이 그리는 밸류업.md",
+    "updated_at": "2026-09-06T08:59:19"
   },
   "company:https://stock.pstatic.net/stock-research/company/40/20260904_company_578812000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-05T13:55:33"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-04\\260904_제닉_IBK투자증권_탐방노트_ 확인된 수요, 관건은 공급.md",
+    "updated_at": "2026-09-06T08:59:46"
   },
   "company:https://stock.pstatic.net/stock-research/company/69/20260904_company_825522000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-05T13:57:13"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-04\\260904_이씨에스_NICE평가정보_AI·클라우드 전환을 주도하는 엔터프라이즈 ...md",
+    "updated_at": "2026-09-06T09:00:16"
   },
   "company:https://stock.pstatic.net/stock-research/company/69/20260904_company_479490000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-05T14:00:00"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-04\\260904_신대양제지_NICE평가정보_원지 전 지종 생산과 수직계열 공급망을 기반...md",
+    "updated_at": "2026-09-06T09:00:39"
   },
   "company:https://stock.pstatic.net/stock-research/company/75/20260904_company_888150000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-05T14:01:48"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-04\\260904_강원에너지_서울평가정보_2차전지 소재·공정기술과 플랜트 엔지니어링...md",
+    "updated_at": "2026-09-06T09:01:09"
   },
   "company:https://stock.pstatic.net/stock-research/company/74/20260904_company_574399000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-05T14:02:11"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-04\\260904_데이원컴퍼니_한국IR협의회_성인 온라인 교육 콘텐츠를 제작·유통하는 ...md",
+    "updated_at": "2026-09-06T09:01:39"
   },
   "company:https://stock.pstatic.net/stock-research/company/74/20260904_company_777963000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-05T14:02:30"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-04\\260904_승일_한국IR협의회_[AI] 에어졸관·일반관을 OEM 생산하는 제관...md",
+    "updated_at": "2026-09-06T09:02:09"
   },
   "company:https://stock.pstatic.net/stock-research/company/74/20260904_company_359710000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-05T14:02:50"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-04\\260904_알피바이오_한국IR협의회_[AI] 연질캡슐 기반 의약품·건기식 위탁생산...md",
+    "updated_at": "2026-09-06T09:02:40"
   },
   "company:https://stock.pstatic.net/stock-research/company/74/20260904_company_295692000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-05T14:03:08"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-04\\260904_온코닉테라퓨틱스_한국IR협의회_[AI] P-CAB 신약과 표적항암제를 개발하는 기...md",
+    "updated_at": "2026-09-06T09:03:07"
   },
   "company:https://stock.pstatic.net/stock-research/company/74/20260904_company_570469000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-05T14:04:22"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-04\\260904_와이제이링크_한국IR협의회_[AI] SMT 공정 스마트화 장비를 제조하는 기...md",
+    "updated_at": "2026-09-06T09:03:38"
   },
   "company:https://stock.pstatic.net/stock-research/company/74/20260904_company_59142000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-05T14:05:02"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-04\\260904_웨이비스_한국IR협의회_[AI] GaN RF 반도체를 국산화한 방산 부품기...md",
+    "updated_at": "2026-09-06T09:04:09"
   },
   "company:https://stock.pstatic.net/stock-research/company/74/20260904_company_144027000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-05T14:05:23"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-04\\260904_잉글우드랩_한국IR협의회_[AI] 미국 뉴저지 기반 기초화장품 ODM 기업.md",
+    "updated_at": "2026-09-06T09:04:37"
   },
   "company:https://stock.pstatic.net/stock-research/company/74/20260904_company_970445000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-05T14:05:45"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-04\\260904_코윈테크_한국IR협의회_[AI] AMR과 자동화시스템을 공급하는 기업.md",
+    "updated_at": "2026-09-06T09:05:07"
   },
   "company:https://stock.pstatic.net/stock-research/company/74/20260904_company_312631000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-05T14:06:05"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-04\\260904_퓨쳐켐_한국IR협의회_[AI] 전립선암 표적 방사성의약품 개발기업.md",
+    "updated_at": "2026-09-06T09:05:36"
   },
   "company:https://stock.pstatic.net/stock-research/company/74/20260904_company_643693000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-05T14:06:22"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-04\\260904_피아이이_한국IR협의회_[AI] AI 비전 검사와 제조 지능화 솔루션 기...md",
+    "updated_at": "2026-09-06T09:06:06"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/57/20260904_industry_675198000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-05T14:06:47"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-04\\260904_통신_하나증권_미국과 함께 국내도 큰 시장 섭니다.md",
+    "updated_at": "2026-09-06T09:06:38"
   },
   "company:https://stock.pstatic.net/stock-research/company/16/20260903_company_712381000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-05T14:06:57"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-03\\260903_코스맥스_한화투자증권_중복상장 리스크 해소.md",
+    "updated_at": "2026-09-06T09:07:01"
   },
   "company:https://stock.pstatic.net/stock-research/company/66/20260903_company_126677000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-05T14:07:16"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-03\\260903_두산퓨얼셀_DS투자증권_미국 진출에도 웃지 못한 주가.md",
+    "updated_at": "2026-09-06T09:07:37"
   },
   "company:https://stock.pstatic.net/stock-research/company/18/20260903_company_869580000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-05T14:07:38"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-03\\260903_코스맥스_유안타증권_코스맥스이스트 중복상장 우려 해소.md",
+    "updated_at": "2026-09-06T09:08:11"
   },
   "company:https://stock.pstatic.net/stock-research/company/15/20260903_company_87023000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-05T14:07:59"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-03\\260903_DB손해보험_대신증권_새로운 밸류업 정책으로 확대되는 배당총액.md",
+    "updated_at": "2026-09-06T09:08:44"
   },
   "company:https://stock.pstatic.net/stock-research/company/15/20260903_company_679023000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-05T14:08:27"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-03\\260903_삼성전기_대신증권_3Q 영업이익 상향. 환율 악재는 상쇄, AI 부...md",
+    "updated_at": "2026-09-06T09:09:20"
   },
   "company:https://stock.pstatic.net/stock-research/company/15/20260903_company_359168000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-05T14:08:41"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-03\\260903_알테오젠_대신증권_반복되는 기술수출, ALT-B4 가치 재평가.md",
+    "updated_at": "2026-09-06T09:09:45"
   },
   "company:https://stock.pstatic.net/stock-research/company/63/20260903_company_779354000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-05T14:09:45"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-03\\260903_제이앤티씨_유진투자증권_2Q26 Review_ 하반기 HDD사업 매출 가시화 기...md",
+    "updated_at": "2026-09-06T09:10:23"
   },
   "company:https://stock.pstatic.net/stock-research/company/64/20260903_company_378701000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-05T14:09:54"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-03\\260903_하나머티리얼즈_SK증권_노이즈보다 다가올 호황에 조명.md",
+    "updated_at": "2026-09-06T09:10:45"
   },
   "company:https://stock.pstatic.net/stock-research/company/40/20260903_company_624070000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-05T14:10:18"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-03\\260903_티씨케이_IBK투자증권_SiC 포커스링, 두 번째 성장기 진입.md",
+    "updated_at": "2026-09-06T09:11:21"
   },
   "company:https://stock.pstatic.net/stock-research/company/64/20260903_company_552772000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-05T14:10:31"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-03\\260903_롯데지주_SK증권_관심 가져볼 만한 주가.md",
+    "updated_at": "2026-09-06T09:11:50"
   },
   "company:https://stock.pstatic.net/stock-research/company/39/20260903_company_153296000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-05T14:10:58"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-03\\260903_로체시스템즈_키움증권_저평가된 반도체 투자 확대 수혜주.md",
+    "updated_at": "2026-09-06T09:12:28"
   },
   "company:https://stock.pstatic.net/stock-research/company/40/20260903_company_234898000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-05T14:11:09"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-03\\260903_씨앤씨인터내셔널_IBK투자증권_탐방노트_ 수익성 정상화 진행 중.md",
+    "updated_at": "2026-09-06T09:12:52"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/57/20260903_industry_325071000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-05T14:11:30"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-03\\260903_유틸리티_하나증권_Electro-state, 대전환의 시작.md",
+    "updated_at": "2026-09-06T09:13:11"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/57/20260903_industry_916277000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-05T14:11:54"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-03\\260903_자동차_하나증권_미국 자동차 판매 동향(2026년 8월)_ HEV 위...md",
+    "updated_at": "2026-09-06T09:13:46"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/57/20260903_industry_455101000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-05T14:12:23"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-03\\260903_자동차_하나증권_글로벌 친환경차_2차전지 Monthly (2026년 7...md",
+    "updated_at": "2026-09-06T09:14:21"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/16/20260903_industry_741353000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-05T14:12:42"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-03\\260903_자동차_한화투자증권_8월, 판매 실적 엇갈림 속 미국 M_S 12.9%.md",
+    "updated_at": "2026-09-06T09:14:59"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/-/20260903_industry_328976000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-05T14:12:53"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-03\\260903_기타_SK증권_AI의 허리_ 서버 사업 이해하기.md",
+    "updated_at": "2026-09-06T09:15:08"
   }
 }
