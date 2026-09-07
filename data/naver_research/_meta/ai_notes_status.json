@@ -1856,203 +1856,203 @@
   },
   "company:https://stock.pstatic.net/stock-research/company/16/20260831_company_281595000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:25:17"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198763, Requested 4493. Please try again in 23m26.591999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:23:46"
   },
   "company:https://stock.pstatic.net/stock-research/company/66/20260831_company_457219000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:25:20"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198755, Requested 4485. Please try again in 23m19.679999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:23:50"
   },
   "company:https://stock.pstatic.net/stock-research/company/57/20260831_company_73632000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:25:23"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198745, Requested 3965. Please try again in 19m30.72s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:23:54"
   },
   "company:https://stock.pstatic.net/stock-research/company/57/20260831_company_226577000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:25:26"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198732, Requested 4450. Please try again in 22m54.624s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:24:00"
   },
   "company:https://stock.pstatic.net/stock-research/company/57/20260831_company_192366000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:25:30"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198720, Requested 4736. Please try again in 24m52.992s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:24:05"
   },
   "company:https://stock.pstatic.net/stock-research/company/57/20260831_company_4985000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:25:35"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198705, Requested 4982. Please try again in 26m32.784s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:24:12"
   },
   "company:https://stock.pstatic.net/stock-research/company/15/20260831_company_229496000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:25:39"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198693, Requested 4562. Please try again in 23m26.16s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:24:17"
   },
   "company:https://stock.pstatic.net/stock-research/company/15/20260831_company_999070000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:25:41"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198686, Requested 2597. Please try again in 9m14.256s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:24:20"
   },
   "company:https://stock.pstatic.net/stock-research/company/74/20260831_company_575878000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:25:44"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198672, Requested 4136. Please try again in 20m13.056s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:24:26"
   },
   "company:https://stock.pstatic.net/stock-research/company/39/20260831_company_191326000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:25:47"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198662, Requested 3403. Please try again in 14m52.08s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:24:30"
   },
   "company:https://stock.pstatic.net/stock-research/company/61/20260831_company_92606000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:25:49"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198652, Requested 3528. Please try again in 15m41.76s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:24:34"
   },
   "company:https://stock.pstatic.net/stock-research/company/61/20260831_company_760313000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:25:51"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198643, Requested 3508. Please try again in 15m29.232s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:24:38"
   },
   "company:https://stock.pstatic.net/stock-research/company/61/20260831_company_347491000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:25:54"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198637, Requested 3266. Please try again in 13m42.095999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:24:41"
   },
   "company:https://stock.pstatic.net/stock-research/company/64/20260831_company_248021000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:25:57"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198629, Requested 4680. Please try again in 23m49.488s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:24:44"
   },
   "company:https://stock.pstatic.net/stock-research/company/39/20260831_company_783548000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:25:59"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198623, Requested 2120. Please try again in 5m20.976s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:24:47"
   },
   "company:https://stock.pstatic.net/stock-research/company/74/20260831_company_40638000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:26:02"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198614, Requested 3855. Please try again in 17m46.608s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:24:51"
   },
   "company:https://stock.pstatic.net/stock-research/company/40/20260831_company_630424000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:26:05"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198604, Requested 4037. Please try again in 19m0.912s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:24:55"
   },
   "company:https://stock.pstatic.net/stock-research/company/40/20260831_company_222610000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:26:08"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198595, Requested 4154. Please try again in 19m47.568s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:24:59"
   },
   "company:https://stock.pstatic.net/stock-research/company/40/20260831_company_28461000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:26:12"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198583, Requested 4872. Please try again in 24m52.56s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:25:04"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/57/20260831_industry_784681000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:26:20"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198567, Requested 4740. Please try again in 23m48.624s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:25:11"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/57/20260831_industry_267979000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:26:23"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198558, Requested 4485. Please try again in 21m54.576s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:25:15"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/57/20260831_industry_905589000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:26:27"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198525, Requested 4684. Please try again in 23m6.288s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:25:30"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/57/20260831_industry_549794000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:26:30"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198509, Requested 4472. Please try again in 21m27.792s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:25:36"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/57/20260831_industry_957561000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:26:34"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198459, Requested 4697. Please try again in 22m43.391999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:25:58"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/16/20260831_industry_941563000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:26:37"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198446, Requested 2583. Please try again in 7m24.528s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:26:03"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/16/20260831_industry_342242000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:26:40"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198436, Requested 3640. Please try again in 14m56.832s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:26:08"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/61/20260831_industry_317914000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:26:51"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198393, Requested 4859. Please try again in 23m24.864s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:26:26"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/63/20260831_industry_335792000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:26:56"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198380, Requested 3903. Please try again in 16m26.256s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:26:32"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/39/20260831_industry_862010000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:27:01"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198359, Requested 4941. Please try again in 23m45.6s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:26:41"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/39/20260831_industry_923523000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:27:03"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198344, Requested 4604. Please try again in 21m13.536s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:26:48"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/21/20260831_industry_976335000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:27:05"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-08-31\\260831_기타_IBK투자증권_[IBKS Monthly] 2026 IBKS Insight Monthly (...md",
+    "updated_at": "2026-09-06T09:26:53"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/61/20260831_industry_665861000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:27:08"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199414, Requested 4317. Please try again in 26m51.792s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:26:57"
   },
   "company:https://stock.pstatic.net/stock-research/company/15/20260901_company_893572000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:23:59"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199026, Requested 3936. Please try again in 21m19.584s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:21:53"
   },
   "company:https://stock.pstatic.net/stock-research/company/15/20260901_company_308326000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:24:03"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199012, Requested 4815. Please try again in 27m33.264s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:21:59"
   },
   "company:https://stock.pstatic.net/stock-research/company/15/20260901_company_78426000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:24:06"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199001, Requested 4782. Please try again in 27m14.256s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:22:04"
   },
   "company:https://stock.pstatic.net/stock-research/company/16/20260901_company_246585000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:24:10"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198988, Requested 4974. Please try again in 28m31.584s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:22:09"
   },
   "company:https://stock.pstatic.net/stock-research/company/66/20260901_company_260206000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:24:13"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198980, Requested 4200. Please try again in 22m53.76s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:22:13"
   },
   "company:https://stock.pstatic.net/stock-research/company/57/20260901_company_307937000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:24:17"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198966, Requested 4874. Please try again in 27m38.88s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:22:19"
   },
   "company:https://stock.pstatic.net/stock-research/company/57/20260901_company_204514000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:24:21"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198952, Requested 4949. Please try again in 28m5.232s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:22:25"
   },
   "company:https://stock.pstatic.net/stock-research/company/57/20260901_company_976082000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:24:25"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198938, Requested 4697. Please try again in 26m10.32s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:22:31"
   },
   "company:https://stock.pstatic.net/stock-research/company/56/20260901_company_536305000.pdf": {
     "status": "success",
@@ -2061,38 +2061,38 @@
   },
   "company:https://stock.pstatic.net/stock-research/company/18/20260901_company_212849000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:24:28"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198929, Requested 3409. Please try again in 16m50.016s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:22:35"
   },
   "company:https://stock.pstatic.net/stock-research/company/18/20260901_company_447202000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:24:31"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198921, Requested 2960. Please try again in 13m32.592s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:22:38"
   },
   "company:https://stock.pstatic.net/stock-research/company/18/20260901_company_124279000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:24:35"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198910, Requested 4571. Please try again in 25m3.792s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:22:43"
   },
   "company:https://stock.pstatic.net/stock-research/company/64/20260901_company_15050000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:24:38"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198897, Requested 4581. Please try again in 25m2.495999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:22:49"
   },
   "company:https://stock.pstatic.net/stock-research/company/64/20260901_company_666753000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:24:41"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198889, Requested 3631. Please try again in 18m8.64s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:22:52"
   },
   "company:https://stock.pstatic.net/stock-research/company/61/20260901_company_188873000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:24:43"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198882, Requested 3464. Please try again in 16m53.472s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:22:55"
   },
   "company:https://stock.pstatic.net/stock-research/company/40/20260901_company_196665000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:24:45"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198876, Requested 1802. Please try again in 4m52.895999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:22:58"
   },
   "company:https://stock.pstatic.net/stock-research/company/56/20260901_company_606947000.pdf": {
     "status": "success",
@@ -2106,123 +2106,123 @@
   },
   "industry:https://stock.pstatic.net/stock-research/industry/15/20260901_industry_415856000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:24:48"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198866, Requested 2024. Please try again in 6m24.48s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:23:02"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/57/20260901_industry_322288000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:24:51"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198843, Requested 4521. Please try again in 24m13.248s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:23:12"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/57/20260901_industry_543119000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:24:55"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198832, Requested 5104. Please try again in 28m20.351999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:23:17"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/57/20260901_industry_298859000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:24:57"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198823, Requested 3415. Please try again in 16m6.816s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:23:21"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/16/20260901_industry_259021000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:25:00"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198817, Requested 3235. Please try again in 14m46.464s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:23:23"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/63/20260901_industry_439331000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:25:06"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198801, Requested 3778. Please try again in 18m34.128s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:23:30"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/63/20260901_industry_980385000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:25:09"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198791, Requested 2927. Please try again in 12m22.176s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:23:35"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/61/20260901_industry_277042000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:25:12"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198781, Requested 4360. Please try again in 22m36.912s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:23:39"
   },
   "company:https://stock.pstatic.net/stock-research/company/74/20260901_company_704372000.pdf": {
     "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:27:11"
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kr35js8sekns1vy90e9p5aa4` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199401, Requested 3730. Please try again in 22m32.591999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "updated_at": "2026-09-06T09:27:02"
   },
   "company:https://stock.pstatic.net/stock-research/company/66/20260902_company_292043000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:23:11"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-02\\260902_티씨머티리얼즈_DS투자증권_증설로 도약할 변압기 수혜주.md",
+    "updated_at": "2026-09-06T09:15:46"
   },
   "company:https://stock.pstatic.net/stock-research/company/57/20260902_company_108244000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:23:15"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-02\\260902_RFHIC_하나증권_곧 2차 급등할 가능성이 높습니다.md",
+    "updated_at": "2026-09-06T09:16:23"
   },
   "company:https://stock.pstatic.net/stock-research/company/57/20260902_company_842073000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:23:19"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-02\\260902_롯데렌탈_하나증권_배당을 많이 할 것 같아요.md",
+    "updated_at": "2026-09-06T09:17:01"
   },
   "company:https://stock.pstatic.net/stock-research/company/57/20260902_company_229076000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:23:24"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-02\\260902_SJG세종_하나증권_P_E 2배 이하, 주가 재평가의 열쇠는 전동화 ...md",
+    "updated_at": "2026-09-06T09:17:38"
   },
   "company:https://stock.pstatic.net/stock-research/company/61/20260902_company_151846000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:23:26"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-02\\260902_삼성전기_iM증권_MLCC 수주 공시 코멘트_ 플랫폼 단위로 확대...md",
+    "updated_at": "2026-09-06T09:18:05"
   },
   "company:https://stock.pstatic.net/stock-research/company/40/20260902_company_229191000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:23:28"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-02\\260902_삼성전기_IBK투자증권_MLCC 대규모 수주 공시.md",
+    "updated_at": "2026-09-06T09:18:21"
   },
   "company:https://stock.pstatic.net/stock-research/company/39/20260902_company_78442000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:23:31"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-02\\260902_컴투스_키움증권_신작의 현실적 반영.md",
+    "updated_at": "2026-09-06T09:18:56"
   },
   "company:https://stock.pstatic.net/stock-research/company/74/20260902_company_688043000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:23:36"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-02\\260902_팜스토리_한국IR협의회_안정적인 영업 실적과 주주환원의 확대.md",
+    "updated_at": "2026-09-06T09:19:31"
   },
   "company:https://stock.pstatic.net/stock-research/company/40/20260902_company_817845000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:23:38"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-02\\260902_셀트리온제약_IBK투자증권_모회사가 앞에서 끌고, 한국 정부가 뒤에서 ...md",
+    "updated_at": "2026-09-06T09:20:02"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/18/20260902_industry_973051000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:23:41"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-02\\260902_통신_유안타증권_AIDC 다음 승부처_ 네트워크와 냉각.md",
+    "updated_at": "2026-09-06T09:20:16"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/57/20260902_industry_377335000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:23:45"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-02\\260902_반도체_하나증권_증설의 시대, 후공정의 수혜도 함께 온다.md",
+    "updated_at": "2026-09-06T09:20:39"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/15/20260902_industry_364581000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:23:49"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-02\\260902_반도체_대신증권_테스트 전성 시대.md",
+    "updated_at": "2026-09-06T09:21:05"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/16/20260902_industry_470149000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:23:51"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-02\\260902_기타_한화투자증권_[디지털자산] 월간 디지털자산 시장 동향 기...md",
+    "updated_at": "2026-09-06T09:21:15"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/40/20260902_industry_354722000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:23:53"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-02\\260902_자동차_IBK투자증권_[IBKS Monthly] 자동차_2차전지.md",
+    "updated_at": "2026-09-06T09:21:25"
   },
   "industry:https://stock.pstatic.net/stock-research/industry/40/20260902_industry_272024000.pdf": {
-    "status": "failed",
-    "error": "Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
-    "updated_at": "2026-09-02T10:23:56"
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-02\\260902_지주회사_IBK투자증권_[IBKS 지주 ESG In-Depth] 주주환원 각서, 시...md",
+    "updated_at": "2026-09-06T09:21:49"
   },
   "company:https://stock.pstatic.net/stock-research/company/16/20260904_company_986431000.pdf": {
     "status": "success",
@@ -2408,5 +2408,170 @@
     "status": "success",
     "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-03\\260903_기타_SK증권_AI의 허리_ 서버 사업 이해하기.md",
     "updated_at": "2026-09-06T09:15:08"
+  },
+  "company:https://stock.pstatic.net/stock-research/company/66/20260907_company_169484000.pdf": {
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-07\\260907_피에스케이홀딩스_DS투자증권_홀딩스의 시간이 온다.md",
+    "updated_at": "2026-09-07T13:22:49"
+  },
+  "company:https://stock.pstatic.net/stock-research/company/15/20260907_company_971100000.pdf": {
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-07\\260907_SK텔레콤_대신증권_하이퍼와 호라이즌 투트랙.md",
+    "updated_at": "2026-09-07T13:23:04"
+  },
+  "company:https://stock.pstatic.net/stock-research/company/15/20260907_company_373596000.pdf": {
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-07\\260907_LS_대신증권_내러티브가 실적으로 증명되기 시작!.md",
+    "updated_at": "2026-09-07T13:23:38"
+  },
+  "company:https://stock.pstatic.net/stock-research/company/18/20260907_company_3782000.pdf": {
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-07\\260907_코스맥스엔비티_유안타증권_[다시봐] 강점이 부각 & 확대되는 시기.md",
+    "updated_at": "2026-09-07T13:24:13"
+  },
+  "company:https://stock.pstatic.net/stock-research/company/56/20260907_company_884057000.pdf": {
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-07\\260907_오름테라퓨틱_미래에셋증권_예상보다 빠른 임상 진입, 재평가 시점도 앞...md",
+    "updated_at": "2026-09-07T13:24:19"
+  },
+  "company:https://stock.pstatic.net/stock-research/company/56/20260907_company_868953000.pdf": {
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-07\\260907_삼성전자_미래에셋증권_HBM으로 매크로 우려 극복.md",
+    "updated_at": "2026-09-07T13:24:54"
+  },
+  "company:https://stock.pstatic.net/stock-research/company/64/20260907_company_893671000.pdf": {
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-07\\260907_아모레퍼시픽_SK증권_안정적인 실적 성장 궤도 진입.md",
+    "updated_at": "2026-09-07T13:25:28"
+  },
+  "company:https://stock.pstatic.net/stock-research/company/56/20260907_company_806609000.pdf": {
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-07\\260907_SK하이닉스_미래에셋증권_HBM 고객 다변화 본격화.md",
+    "updated_at": "2026-09-07T13:25:47"
+  },
+  "company:https://stock.pstatic.net/stock-research/company/64/20260907_company_534778000.pdf": {
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-07\\260907_실리콘투_SK증권_벤더사 역할이 중요해지는 구간.md",
+    "updated_at": "2026-09-07T13:26:04"
+  },
+  "company:https://stock.pstatic.net/stock-research/company/64/20260907_company_609046000.pdf": {
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-07\\260907_코스맥스_SK증권_On Track.md",
+    "updated_at": "2026-09-07T13:26:40"
+  },
+  "company:https://stock.pstatic.net/stock-research/company/64/20260907_company_508507000.pdf": {
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-07\\260907_에이피알_SK증권_상대적인 밸류에이션 매력도 상승.md",
+    "updated_at": "2026-09-07T13:27:15"
+  },
+  "company:https://stock.pstatic.net/stock-research/company/64/20260907_company_598699000.pdf": {
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-07\\260907_한국콜마_SK증권_업황 강세에 글로벌 MNC 모멘텀까지.md",
+    "updated_at": "2026-09-07T13:27:49"
+  },
+  "company:https://stock.pstatic.net/stock-research/company/40/20260907_company_671779000.pdf": {
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-07\\260907_디케이티_IBK투자증권_휴머노이드 탈중국 공급망 구축의 수혜주.md",
+    "updated_at": "2026-09-07T13:28:20"
+  },
+  "company:https://stock.pstatic.net/stock-research/company/61/20260907_company_544387000.pdf": {
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-07\\260907_GST_iM증권_반도체 투자 확대로 사상 최대 실적 및 칠러 ...md",
+    "updated_at": "2026-09-07T13:28:43"
+  },
+  "company:https://stock.pstatic.net/stock-research/company/61/20260907_company_371823000.pdf": {
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-07\\260907_디아이_iM증권_전방산업 투자 확대 ⇒ 올해 사상 최대 실적.md",
+    "updated_at": "2026-09-07T13:29:09"
+  },
+  "company:https://stock.pstatic.net/stock-research/company/61/20260907_company_785279000.pdf": {
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-07\\260907_한라캐스트_iM증권_휴머노이드 로봇부품 등으로 성장성 가속화.md",
+    "updated_at": "2026-09-07T13:29:36"
+  },
+  "company:https://stock.pstatic.net/stock-research/company/74/20260907_company_510362000.pdf": {
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-07\\260907_바이오솔루션_한국IR협의회_연골재생치료, 이제 시작일지도 모른다.md",
+    "updated_at": "2026-09-07T13:30:11"
+  },
+  "company:https://stock.pstatic.net/stock-research/company/40/20260907_company_933460000.pdf": {
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-07\\260907_클리오_IBK투자증권_탐방노트_ 북미 성장과 비효율 채널 정리 효...md",
+    "updated_at": "2026-09-07T13:30:44"
+  },
+  "industry:https://stock.pstatic.net/stock-research/industry/15/20260907_industry_289973000.pdf": {
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-07\\260907_기타_대신증권_부동산 세제개편 영향.md",
+    "updated_at": "2026-09-07T13:30:56"
+  },
+  "industry:https://stock.pstatic.net/stock-research/industry/15/20260907_industry_229224000.pdf": {
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-07\\260907_기계_대신증권_순환 너머 구조적 성장으로.md",
+    "updated_at": "2026-09-07T13:31:15"
+  },
+  "industry:https://stock.pstatic.net/stock-research/industry/66/20260907_industry_447542000.pdf": {
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-07\\260907_기타_DS투자증권_K방산과 유럽 사이를 이간질하지 마세요!.md",
+    "updated_at": "2026-09-07T13:31:47"
+  },
+  "industry:https://stock.pstatic.net/stock-research/industry/57/20260907_industry_477247000.pdf": {
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-07\\260907_기타_하나증권_미국 전력 행정 명령과 정상회담을 함께 고려...md",
+    "updated_at": "2026-09-07T13:32:19"
+  },
+  "industry:https://stock.pstatic.net/stock-research/industry/57/20260907_industry_821620000.pdf": {
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-07\\260907_반도체_하나증권_환율 때문에 실적보다는 메모리 가격에 집중.md",
+    "updated_at": "2026-09-07T13:32:57"
+  },
+  "industry:https://stock.pstatic.net/stock-research/industry/57/20260907_industry_290989000.pdf": {
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-07\\260907_철강금속_하나증권_중국 동 스크랩 병목현상 심화, 동 가격 상승...md",
+    "updated_at": "2026-09-07T13:33:30"
+  },
+  "industry:https://stock.pstatic.net/stock-research/industry/63/20260907_industry_383103000.pdf": {
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-07\\260907_건설_유진투자증권_건설_부동산 Weekly - 2차 공공기관 지방이전...md",
+    "updated_at": "2026-09-07T13:33:57"
+  },
+  "industry:https://stock.pstatic.net/stock-research/industry/57/20260907_industry_990388000.pdf": {
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-07\\260907_에너지_하나증권_미국 디젤 사상 최대 vs. 10월 사우디 OSP -2...md",
+    "updated_at": "2026-09-07T13:34:31"
+  },
+  "industry:https://stock.pstatic.net/stock-research/industry/64/20260907_industry_574132000.pdf": {
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-07\\260907_화장품_SK증권_체급이 달라졌다- 미국·유럽이 열어준 구조...md",
+    "updated_at": "2026-09-07T13:34:51"
+  },
+  "industry:https://stock.pstatic.net/stock-research/industry/16/20260907_industry_229003000.pdf": {
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-07\\260907_유통_한화투자증권_냉정과 열정 사이.md",
+    "updated_at": "2026-09-07T13:35:05"
+  },
+  "industry:https://stock.pstatic.net/stock-research/industry/39/20260907_industry_562578000.pdf": {
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-07\\260907_기타_키움증권_키움 엔터테인먼트 Weekly_ 9월 2주차.md",
+    "updated_at": "2026-09-07T13:35:44"
+  },
+  "industry:https://stock.pstatic.net/stock-research/industry/61/20260907_industry_789610000.pdf": {
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-07\\260907_철강금속_iM증권_Steel Weekly (9월 1주차).md",
+    "updated_at": "2026-09-07T13:36:20"
+  },
+  "industry:https://stock.pstatic.net/stock-research/industry/39/20260907_industry_849905000.pdf": {
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-07\\260907_제약_키움증권_제약_바이오_의료기기_ Kiwoom Healthcare 종...md",
+    "updated_at": "2026-09-07T13:36:55"
+  },
+  "industry:https://stock.pstatic.net/stock-research/industry/64/20260907_industry_699572000.pdf": {
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-07\\260907_조선_SK증권_한수위_ HD현대의 세 번째 해외 거점 야드가 ...md",
+    "updated_at": "2026-09-07T13:37:28"
+  },
+  "industry:https://stock.pstatic.net/stock-research/industry/61/20260907_industry_895937000.pdf": {
+    "status": "success",
+    "path": "C:\\Users\\sun\\OneDrive - 경희대학교\\문서\\Obsidian Vault\\주식\\Naver Research\\2026-09-07\\260907_석유화학_iM증권_기름뿜뿜 Weekly_ 같은 공급차질에도 정유 vs...md",
+    "updated_at": "2026-09-07T13:37:53"
   }
 }
