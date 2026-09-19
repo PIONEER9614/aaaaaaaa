@@ -309,7 +309,7 @@ def parse_company_rows(
     if recent_days is not None and from_date is None and to_date is None:
         cutoff_date = datetime.now().date() - timedelta(days=recent_days)
 
-    max_scrolls = max_pages if max_pages is not None else 40
+    max_scrolls = max_pages if max_pages is not None else 150
 
     raw_items: list[dict] = []
     with sync_playwright() as p:
@@ -325,7 +325,9 @@ def parse_company_rows(
             count = cards.count()
             if count == prev_count:
                 stagnant += 1
-                if stagnant >= 3:
+                # CI/클라우드 러너는 네트워크가 느려서 카드 로딩이 늦게 잡히는 경우가 많음.
+                # 너무 일찍 멈추면 뒤에 있는(더 오래된) 증권사 리포트들을 놓치게 됨 -> 임계값 상향.
+                if stagnant >= 6:
                     break
             else:
                 stagnant = 0
@@ -342,7 +344,7 @@ def parse_company_rows(
                     pass
 
             page_obj.mouse.wheel(0, 8000)
-            time.sleep(0.9)
+            time.sleep(1.6)
 
         cards = page_obj.locator(CARD_SELECTOR)
         n = cards.count()
@@ -392,18 +394,52 @@ def parse_company_rows(
             filtered.append(it)
 
         # 상세 페이지 방문해서 실제 PDF URL 확인
+        # CI(GitHub Actions)처럼 네트워크가 불안정한 환경에서는 상세 페이지 요청이
+        # 한 번에 실패하는 경우가 잦고, 예전 코드는 실패 시 바로 포기 -> 조용히 누락됨.
+        # (특정 증권사만 계속 누락되는 원인 중 하나였음) 재시도 + 실패 로그를 추가한다.
+        detail_failures: list[dict] = []
         for it in filtered:
             detail_url = f"https://stock.naver.com{it['href']}"
-            try:
-                page_obj.goto(detail_url, wait_until="domcontentloaded", timeout=20000)
-                page_obj.wait_for_selector("a[href*='.pdf']", timeout=8000)
-                pdf_link = page_obj.locator("a[href*='.pdf']").first
-                it["pdf_url"] = pdf_link.get_attribute("href", timeout=3000) if pdf_link.count() > 0 else ""
-            except Exception as exc:
-                it["pdf_url"] = ""
-                print(f"  [warn] PDF 링크 못 찾음: {it.get('title','')[:30]} ({exc.__class__.__name__})")
+            it["pdf_url"] = ""
+            last_exc = None
+            for attempt in range(3):
+                try:
+                    page_obj.goto(detail_url, wait_until="domcontentloaded", timeout=25000)
+                    page_obj.wait_for_selector("a[href*='.pdf']", timeout=10000)
+                    pdf_link = page_obj.locator("a[href*='.pdf']").first
+                    it["pdf_url"] = pdf_link.get_attribute("href", timeout=5000) if pdf_link.count() > 0 else ""
+                    last_exc = None
+                    break
+                except Exception as exc:
+                    last_exc = exc
+                    time.sleep(1.0 * (attempt + 1))
+            if last_exc is not None or not it["pdf_url"]:
+                print(
+                    f"  [warn] PDF 링크 못 찾음 (3회 시도): "
+                    f"{it.get('firm','?')} | {it.get('title','')[:30]} "
+                    f"({last_exc.__class__.__name__ if last_exc else 'no_pdf_link'})"
+                )
+                detail_failures.append({
+                    "firm": it.get("firm", ""),
+                    "title": it.get("title", ""),
+                    "date": it.get("date_text", ""),
+                    "href": it.get("href", ""),
+                    "reason": last_exc.__class__.__name__ if last_exc else "no_pdf_link",
+                })
             it["detail_url"] = detail_url
             time.sleep(0.25)
+
+        if detail_failures:
+            fail_path = META_DIR / "failed_detail_lookups.json"
+            existing = load_json(fail_path, [])
+            existing.extend({**f, "run_at": datetime.now().isoformat(timespec="seconds")} for f in detail_failures)
+            existing = existing[-2000:]  # 무한 증가 방지
+            save_json(fail_path, existing)
+            fail_firms = sorted({f["firm"] for f in detail_failures})
+            print(f"[warn] 이번 회차에서 PDF 링크 조회 실패: {len(detail_failures)}건 / 증권사: {', '.join(fail_firms)}")
+
+        found_firms = sorted({it.get("firm", "") for it in filtered if it.get("firm")})
+        print(f"[collect] 이번 스크롤에서 발견된 증권사({len(found_firms)}개): {', '.join(found_firms)}")
 
         browser.close()
 
