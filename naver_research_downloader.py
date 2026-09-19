@@ -188,22 +188,24 @@ def fetch_page_html(session: requests.Session, list_url: str) -> tuple[str, list
     return html, all_cols
 
 
-def parse_company_rows(
+def parse_company_rows_legacy(
     session: requests.Session,
     max_pages: int | None,
     recent_days: int | None,
     from_date: datetime.date | None = None,
     to_date: datetime.date | None = None,
 ) -> list[ReportRow]:
+    """구(舊) finance.naver.com/research/company_list.naver 표 기반 파서.
+    2026-09 무렵 네이버가 이 페이지를 stock.naver.com/research/company 로 이전하면서
+    <table> 구조 자체가 사라져 더 이상 동작하지 않음. 참고용으로만 남겨둠.
+    현재는 parse_company_rows (Playwright 기반)를 사용."""
     rows: list[ReportRow] = []
     page = 1
 
-    # from_date/to_date 지정 시 날짜 필터 URL 사용 (과거 데이터 접근 가능)
     use_date_filter = from_date is not None or to_date is not None
     fd_str = from_date.strftime("%Y-%m-%d") if from_date else ""
     td_str = (to_date or datetime.now().date()).strftime("%Y-%m-%d") if use_date_filter else ""
 
-    # recent_days 전용 컷오프 (날짜 필터 미사용 시만)
     cutoff_date = None
     if recent_days is not None and not use_date_filter:
         cutoff_date = datetime.now().date() - timedelta(days=recent_days)
@@ -221,7 +223,6 @@ def parse_company_rows(
 
         html, all_cols = fetch_page_html(session, list_url)
 
-        # 첫 페이지에서 마지막 페이지 번호 파악
         if last_page is None:
             last_page = get_last_page(html)
 
@@ -277,6 +278,152 @@ def parse_company_rows(
         page += 1
         time.sleep(0.2)
 
+    return rows
+
+
+STOCK_NAVER_URL = "https://stock.naver.com/research/company"
+CARD_SELECTOR = "a.ResearchList_research-item-link__OF48E"
+
+
+def _clean_stock_naver_date(raw: str) -> str:
+    # "2026. 09. 18." -> "2026.09.18"
+    cleaned = raw.replace(" ", "")
+    return cleaned.rstrip(".")
+
+
+def parse_company_rows(
+    session: requests.Session,
+    max_pages: int | None,
+    recent_days: int | None,
+    from_date: datetime.date | None = None,
+    to_date: datetime.date | None = None,
+) -> list[ReportRow]:
+    """stock.naver.com/research/company (무한스크롤 카드형) 기반 파서.
+    2026-09 네이버 리뉴얼 이후 구조. Playwright로 렌더링 후 카드 데이터를 읽고,
+    PDF 실제 URL은 각 리포트 상세 페이지(/research/company/{id})를 방문해 확인한다.
+    max_pages는 "스크롤 회차 상한"으로 재해석해 사용한다 (없으면 기본 40회).
+    """
+    from playwright.sync_api import sync_playwright
+
+    cutoff_date = None
+    if recent_days is not None and from_date is None and to_date is None:
+        cutoff_date = datetime.now().date() - timedelta(days=recent_days)
+
+    max_scrolls = max_pages if max_pages is not None else 40
+
+    raw_items: list[dict] = []
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        page_obj = browser.new_page(viewport={"width": 1400, "height": 1400})
+        page_obj.goto(STOCK_NAVER_URL, wait_until="networkidle", timeout=30000)
+        time.sleep(1.5)
+
+        prev_count = -1
+        stagnant = 0
+        for scroll_i in range(max_scrolls):
+            cards = page_obj.locator(CARD_SELECTOR)
+            count = cards.count()
+            if count == prev_count:
+                stagnant += 1
+                if stagnant >= 3:
+                    break
+            else:
+                stagnant = 0
+            prev_count = count
+
+            # 컷오프 도달 여부: 현재 로드된 마지막 카드의 날짜 확인
+            if cutoff_date is not None and count > 0:
+                try:
+                    last_date_raw = cards.nth(count - 1).locator(".ResearchList_date__tVIZb").inner_text(timeout=2000)
+                    last_date = parse_report_date(_clean_stock_naver_date(last_date_raw))
+                    if last_date < cutoff_date:
+                        break
+                except Exception:
+                    pass
+
+            page_obj.mouse.wheel(0, 8000)
+            time.sleep(0.9)
+
+        cards = page_obj.locator(CARD_SELECTOR)
+        n = cards.count()
+        for i in range(n):
+            c = cards.nth(i)
+            try:
+                href = c.get_attribute("href") or ""
+                title = normalize_whitespace(c.locator(".ResearchList_title__QEejC").inner_text(timeout=2000))
+                date_raw = c.locator(".ResearchList_date__tVIZb").inner_text(timeout=2000)
+                firm = normalize_whitespace(c.locator(".press").inner_text(timeout=2000))
+                company_name = normalize_whitespace(
+                    c.locator(".ResearchList_stock-name__RjQiE").inner_text(timeout=2000)
+                )
+                thumb_src = c.locator(".Thumbnail_img__iYWsD").get_attribute("src", timeout=2000) or ""
+            except Exception:
+                continue
+
+            code_match = re.search(r"Stock(\d{6})", thumb_src)
+            raw_items.append({
+                "href": href,
+                "title": title,
+                "date_raw": date_raw,
+                "firm": firm,
+                "company_name": company_name,
+                "company_code": code_match.group(1) if code_match else "",
+            })
+
+        # 날짜 필터링 + 중복 제거
+        filtered: list[dict] = []
+        seen_href = set()
+        for it in raw_items:
+            if not it["href"] or it["href"] in seen_href:
+                continue
+            seen_href.add(it["href"])
+            date_clean = _clean_stock_naver_date(it["date_raw"])
+            try:
+                d = parse_report_date(date_clean)
+            except ValueError:
+                continue
+            if cutoff_date is not None and d < cutoff_date:
+                continue
+            if from_date is not None and d < from_date:
+                continue
+            if to_date is not None and d > to_date:
+                continue
+            it["date_text"] = date_clean
+            filtered.append(it)
+
+        # 상세 페이지 방문해서 실제 PDF URL 확인
+        for it in filtered:
+            detail_url = f"https://stock.naver.com{it['href']}"
+            try:
+                page_obj.goto(detail_url, wait_until="domcontentloaded", timeout=20000)
+                page_obj.wait_for_selector("a[href*='.pdf']", timeout=8000)
+                pdf_link = page_obj.locator("a[href*='.pdf']").first
+                it["pdf_url"] = pdf_link.get_attribute("href", timeout=3000) if pdf_link.count() > 0 else ""
+            except Exception as exc:
+                it["pdf_url"] = ""
+                print(f"  [warn] PDF 링크 못 찾음: {it.get('title','')[:30]} ({exc.__class__.__name__})")
+            it["detail_url"] = detail_url
+            time.sleep(0.25)
+
+        browser.close()
+
+    rows: list[ReportRow] = []
+    for it in filtered:
+        if not it.get("pdf_url"):
+            continue
+        rows.append(
+            ReportRow(
+                report_type="company",
+                title=it["title"],
+                firm=it["firm"],
+                date_text=it["date_text"],
+                detail_url=it["detail_url"],
+                pdf_url=it["pdf_url"],
+                sector_name="",
+                company_name=it["company_name"],
+                company_code=it["company_code"],
+            )
+        )
     return rows
 
 
