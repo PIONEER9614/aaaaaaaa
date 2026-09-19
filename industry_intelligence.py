@@ -57,16 +57,30 @@ INDUSTRIES = {
             {"name": "테슬라",      "ticker": "TSLA",  "market": "US"},
         ],
     },
-    # 산업 추가 예시:
-    # "배터리": {
-    #     "keywords": ["배터리", "전기차", "ESS", "리튬", "양극재"],
-    #     "global_keywords": ["battery", "EV", "lithium", "cathode"],
-    #     "key_company": {"name": "LG에너지솔루션", "code": "373220"},
-    #     "competitors": [
-    #         {"name": "삼성SDI", "code": "006400", "market": "KR"},
-    #         {"name": "CATL", "ticker": "300750.SZ", "market": "US"},
-    #     ],
-    # },
+    "방산": {
+        "keywords": ["방산", "국방", "미사일", "무기", "K방산", "수출", "한화", "방위산업"],
+        "global_keywords": ["defense", "military", "missile", "weapons", "aerospace", "K-defense"],
+        "key_company": {"name": "한화에어로스페이스", "code": "012450"},
+        "competitors": [
+            {"name": "LIG넥스원",   "code": "079550", "market": "KR"},
+            {"name": "한국항공우주", "code": "047810", "market": "KR"},
+            {"name": "Lockheed",   "ticker": "LMT",   "market": "US"},
+            {"name": "RTX",        "ticker": "RTX",   "market": "US"},
+        ],
+    },
+    "조선": {
+        "keywords": ["조선", "선박", "LNG선", "컨테이너선", "해운", "수주", "도크"],
+        "global_keywords": ["shipbuilding", "LNG carrier", "container ship", "shipping", "vessel order"],
+        "key_company": {"name": "HD현대중공업", "code": "329180"},
+        "competitors": [
+            {"name": "삼성중공업", "code": "010140", "market": "KR"},
+            {"name": "한화오션",   "code": "042660", "market": "KR"},
+        ],
+    },
+    # 추가 가능 섹터 예시:
+    # "2차전지": { "key_company": {"name": "LG에너지솔루션", "code": "373220"}, ... },
+    # "바이오":   { "key_company": {"name": "삼성바이오로직스", "code": "207940"}, ... },
+    # "플랫폼":   { "key_company": {"name": "카카오", "code": "035720"}, ... },
 }
 
 # ─── 뉴스 RSS ─────────────────────────────────────────────────────────
@@ -257,7 +271,7 @@ def build_industry_analysis(client, industry_name, config, all_data):
     for attempt in range(2):
         try:
             resp = client.chat.completions.create(
-                model="llama-3.1-8b-instant",
+                model="llama-3.3-70b-versatile",
                 messages=[{"role": "user", "content": prompt}],
                 max_tokens=1500,
             )

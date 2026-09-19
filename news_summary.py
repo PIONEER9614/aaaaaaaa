@@ -60,7 +60,7 @@ def strip_html(text):
     text = re.sub(r"<[^>]+>", "", str(text or ""))
     return re.sub(r"\s+", " ", text.replace("&nbsp;", " ").replace("&amp;", "&")).strip()
 
-def groq_call(prompt, max_tokens=1200, model="llama-3.3-70b-versatile"):
+def groq_call(prompt, max_tokens=1200, model="openai/gpt-oss-120b"):
     client = Groq(api_key=GROQ_KEY)
     for attempt in range(3):
         try:
@@ -153,7 +153,7 @@ def ai_batch_summarize(articles, source):
 • 줄1
 ...
 """
-        result = groq_call(prompt, max_tokens=800, model="llama-3.1-8b-instant")
+        result = groq_call(prompt, max_tokens=800, model="llama-3.3-70b-versatile")
         time.sleep(2)
 
         # 파싱

@@ -129,7 +129,7 @@ def explain_items(client, items):
     for attempt in range(2):
         try:
             resp = client.chat.completions.create(
-                model="llama-3.1-8b-instant",
+                model="llama-3.3-70b-versatile",
                 messages=[{"role": "user", "content": prompt}],
                 max_tokens=600,
             )
@@ -174,7 +174,7 @@ def summarize_type(client, type_name, items):
     for attempt in range(2):
         try:
             resp = client.chat.completions.create(
-                model="llama-3.1-8b-instant",
+                model="llama-3.3-70b-versatile",
                 messages=[{"role": "user", "content": prompt}],
                 max_tokens=500,
             )

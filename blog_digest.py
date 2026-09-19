@@ -214,7 +214,7 @@ def ai_summarize(prompt, max_tokens=1200):
     for attempt in range(3):
         try:
             resp = client.chat.completions.create(
-                model="llama-3.1-8b-instant",
+                model="llama-3.3-70b-versatile",
                 messages=[{"role": "user", "content": prompt}],
                 max_tokens=max_tokens,
                 temperature=0.3,
