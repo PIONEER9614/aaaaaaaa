@@ -2,8 +2,13 @@ name: 네이버 리서치 리포트 다운로드
 
 on:
   schedule:
-    - cron: "0 1 * * *"   # KST 매일 오전 10시 (UTC 01:00)
+    - cron: "0 */3 * * *"   # 3시간마다 (KST 09,12,15,18,21,00,03,06시) - 한 번 실패해도 다음 회차에서 재시도됨
   workflow_dispatch:
+    inputs:
+      days:
+        description: "몇 일치를 다시 훑을지 (백필용, 기본 7)"
+        required: false
+        default: "7"
 
 permissions:
   contents: write
@@ -24,12 +29,13 @@ jobs:
           playwright install --with-deps chromium
 
       - name: 리포트 다운로드
-        run: python naver_research_downloader.py --days 7
+        run: python naver_research_downloader.py --days "${{ github.event.inputs.days || '7' }}"
 
       - name: 매니페스트 커밋
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add data/naver_research/_meta/ || true
-          git diff --cached --quiet || git commit -m "chore: 네이버 리서치 매니페스트 업데이트 $(date +'%Y-%m-%d')"
+          git diff --cached --quiet || git commit -m "chore: 네이버 리서치 매니페스트 업데이트 $(date +'%Y-%m-%d %H:%M')"
+          git pull --rebase || true
           git push || true
