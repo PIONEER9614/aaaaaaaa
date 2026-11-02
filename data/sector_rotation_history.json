@@ -436,5 +436,78 @@
     },
     "analysis": "분석 실패: Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
     "recorded_at": "2026-10-02"
+  },
+  "2026-10": {
+    "top_kr": [
+      {
+        "sector": "IT",
+        "return": 10.66
+      },
+      {
+        "sector": "금융",
+        "return": -8.19
+      },
+      {
+        "sector": "2차전지",
+        "return": -8.42
+      }
+    ],
+    "top_us": [
+      {
+        "sector": "Energy",
+        "return": 11.67
+      },
+      {
+        "sector": "Health",
+        "return": 11.23
+      },
+      {
+        "sector": "Utilities",
+        "return": 9.45
+      }
+    ],
+    "bot_kr": [
+      {
+        "sector": "반도체",
+        "return": -28.69
+      },
+      {
+        "sector": "에너지",
+        "return": -18.33
+      }
+    ],
+    "bot_us": [
+      {
+        "sector": "Semis",
+        "return": -18.19
+      },
+      {
+        "sector": "Tech",
+        "return": -9.25
+      }
+    ],
+    "all_kr": {
+      "반도체": -28.69,
+      "2차전지": -8.42,
+      "바이오": -14.79,
+      "금융": -8.19,
+      "자동차": -12.91,
+      "IT": 10.66,
+      "에너지": -18.33
+    },
+    "all_us": {
+      "Tech": -9.25,
+      "Energy": 11.67,
+      "Finance": 5.71,
+      "Health": 11.23,
+      "Industrial": -0.74,
+      "Materials": 8.65,
+      "Consumer": 6.04,
+      "Utilities": 9.45,
+      "Real Estate": 6.12,
+      "Semis": -18.19
+    },
+    "analysis": "분석 실패: Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+    "recorded_at": "2026-11-02"
   }
 }
