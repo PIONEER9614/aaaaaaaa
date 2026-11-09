@@ -33,6 +33,12 @@ BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "data" / "naver_research"
 COMPANY_DIR = DATA_DIR / "company"
 INDUSTRY_DIR = DATA_DIR / "industry"
+# 날짜_증권사_제목 형식으로 저장하는 분야 (naver_research_downloader_econ_bond.py 와 같은 폴더/규칙)
+FLAT_DIRS = {
+    "invest": DATA_DIR / "invest",
+    "economy": DATA_DIR / "economy",
+    "bond": DATA_DIR / "bond",
+}
 META_DIR = DATA_DIR / "_meta"
 MANIFEST_PATH = META_DIR / "manifest.json"
 SECTOR_CACHE_PATH = META_DIR / "company_sector_cache.json"
@@ -68,7 +74,7 @@ class ReportRow:
 
 
 def ensure_directories() -> None:
-    for path in (COMPANY_DIR, INDUSTRY_DIR, META_DIR):
+    for path in (COMPANY_DIR, INDUSTRY_DIR, META_DIR, *FLAT_DIRS.values()):
         path.mkdir(parents=True, exist_ok=True)
 
 
@@ -81,11 +87,15 @@ def load_json(path: Path, default):
 
 def save_json(path: Path, payload) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
+    import os as _os
     import time as _time
+    # 임시 파일에 다 쓴 뒤 교체: 실행이 중간에 끊겨도 기존 파일이 잘리지 않음
+    tmp_path = path.with_name(path.name + ".tmp")
     for attempt in range(5):
         try:
-            with path.open("w", encoding="utf-8") as handle:
+            with tmp_path.open("w", encoding="utf-8") as handle:
                 json.dump(payload, handle, ensure_ascii=False, indent=2)
+            _os.replace(tmp_path, path)
             return
         except OSError:
             if attempt == 4:
@@ -463,6 +473,112 @@ def parse_company_rows(
     return rows
 
 
+API_BASE = "https://stock.naver.com/api/stockSecurity/researches/v2"
+API_HEADERS = {"User-Agent": USER_AGENT, "Referer": "https://stock.naver.com/research"}
+# report_type -> API 카테고리
+API_CATEGORIES = {
+    "company": "company",
+    "industry": "industry",
+    "invest": "invest",
+    "economy": "economy",
+    "bond": "debenture",
+}
+
+
+def fetch_api_json(session: requests.Session, url: str) -> dict:
+    last_exc = None
+    for attempt in range(3):
+        try:
+            response = session.get(url, headers=API_HEADERS, timeout=30)
+            response.raise_for_status()
+            return response.json()
+        except (requests.RequestException, ValueError) as exc:
+            last_exc = exc
+            time.sleep(1.5 * (attempt + 1))
+    raise RuntimeError(f"API 요청 실패: {url} ({last_exc})")
+
+
+def parse_api_rows(
+    session: requests.Session,
+    report_type: str,
+    recent_days: int | None,
+    from_date: datetime.date | None = None,
+    to_date: datetime.date | None = None,
+    max_pages: int | None = None,
+) -> list[ReportRow]:
+    """stock.naver.com 내부 API 기반 수집.
+    목록(?index=N&size=50)에는 PDF 주소가 없어서 상세(/{nid})의 attachUrl을 쓴다.
+    상세 화면에 PDF 링크가 안 보이는 증권사(신한투자증권 등)도 attachUrl은 내려온다.
+    """
+    category = API_CATEGORIES[report_type]
+    cutoff = from_date
+    if cutoff is None and recent_days is not None:
+        cutoff = datetime.now().date() - timedelta(days=recent_days)
+
+    items: list[dict] = []
+    index = 0
+    while True:
+        data = fetch_api_json(session, f"{API_BASE}/{category}?index={index}&size=50")
+        page_items = data.get("items") or []
+        items.extend(page_items)
+        index += 1
+        if not page_items or not data.get("hasNext"):
+            break
+        if cutoff is not None and page_items[-1]["writeDate"] < cutoff.isoformat():
+            break
+        if max_pages is not None and index >= max_pages:
+            break
+        time.sleep(0.2)
+
+    rows: list[ReportRow] = []
+    failures: list[dict] = []
+    for it in items:
+        report_date = datetime.strptime(it["writeDate"], "%Y-%m-%d").date()
+        if cutoff is not None and report_date < cutoff:
+            continue
+        if to_date is not None and report_date > to_date:
+            continue
+        nid = it["nid"]
+        try:
+            detail = fetch_api_json(session, f"{API_BASE}/{category}/{nid}")
+        except RuntimeError as exc:
+            detail = {}
+            print(f"  [warn] 상세 조회 실패: {it.get('brokerName')} | {it.get('title', '')[:30]} ({exc})")
+        pdf_url = detail.get("attachUrl") or ""
+        if not pdf_url:
+            failures.append({"firm": it.get("brokerName", ""), "title": it.get("title", ""),
+                             "date": it["writeDate"], "href": f"/research/{category}/{nid}",
+                             "reason": "no_attach_url"})
+            continue
+        rows.append(
+            ReportRow(
+                report_type=report_type,
+                title=normalize_whitespace(it.get("title", "")),
+                firm=normalize_whitespace(it.get("brokerName", "")),
+                date_text=report_date.strftime("%Y.%m.%d"),
+                detail_url=f"https://stock.naver.com/research/{category}/{nid}",
+                pdf_url=pdf_url,
+                sector_name=it.get("industryKoreanName") or "",
+                company_name=it.get("itemName") or "",
+                company_code=it.get("itemCode") or "",
+                source_category=category,
+            )
+        )
+        time.sleep(0.1)
+
+    if failures:
+        fail_path = META_DIR / "failed_detail_lookups.json"
+        existing = load_json(fail_path, [])
+        stamp = datetime.now().isoformat(timespec="seconds")
+        existing.extend({**f, "run_at": stamp} for f in failures)
+        save_json(fail_path, existing[-2000:])
+        print(f"[warn] {report_type}: PDF 없는 리포트 {len(failures)}건")
+
+    firms = sorted({row.firm for row in rows})
+    print(f"[collect] {report_type}: {len(rows)}건 / 증권사 {len(firms)}곳 ({', '.join(firms)})")
+    return rows
+
+
 def parse_industry_rows(
     session: requests.Session,
     max_pages: int | None,
@@ -569,12 +685,16 @@ def build_filename(report: ReportRow) -> str:
     date_suffix = format_date_suffix(report.date_text)
     if report.report_type == "company":
         stem = f"{report.company_name}_{report.title}_{report.firm}_{date_suffix}"
+    elif report.report_type in FLAT_DIRS:
+        stem = f"{date_suffix}_{report.firm}_{report.title}"
     else:
         stem = f"{report.sector_name}_{report.title}_{report.firm}_{date_suffix}"
     return f"{sanitize_filename(stem)}.pdf"
 
 
 def get_destination(report: ReportRow) -> Path:
+    if report.report_type in FLAT_DIRS:
+        return FLAT_DIRS[report.report_type] / build_filename(report)
     sector_dir = sanitize_filename(report.sector_name or "기타")
     base_dir = COMPANY_DIR if report.report_type == "company" else INDUSTRY_DIR
     return base_dir / sector_dir / build_filename(report)
@@ -659,69 +779,61 @@ def run(
     if from_date:
         print(f"[filter] {from_date} ~ {to_date or '오늘'} 범위 수집")
 
-    company_rows: list[ReportRow] = []
-    industry_rows: list[ReportRow] = []
+    report_types = list(API_CATEGORIES) if mode == "all" else [mode]
+    page_limits = {"company": company_pages, "industry": industry_pages}
+    rows_by_type: dict[str, list[ReportRow]] = {}
 
-    if mode in {"all", "company"}:
-        print("[collect] company rows")
-        company_rows = parse_company_rows(session, company_pages, recent_days,
-                                          from_date=from_date, to_date=to_date)
-        print(f"[collect] found {len(company_rows)} company reports")
+    for report_type in report_types:
+        print(f"[collect] {report_type} rows")
+        rows = parse_api_rows(session, report_type, recent_days, from_date=from_date,
+                              to_date=to_date, max_pages=page_limits.get(report_type))
+        if report_type == "company":
+            for row in rows:
+                if row.company_code:
+                    row.sector_name = resolve_company_sector(
+                        session=session,
+                        company_code=row.company_code,
+                        company_name=row.company_name,
+                        cache=sector_cache,
+                    )
+        rows_by_type[report_type] = rows
 
-        for row in company_rows:
-            row.sector_name = resolve_company_sector(
-                session=session,
-                company_code=row.company_code,
-                company_name=row.company_name,
-                cache=sector_cache,
-            )
-
-    if mode in {"all", "industry"}:
-        print("[collect] industry rows")
-        industry_rows = parse_industry_rows(session, industry_pages, recent_days,
-                                            from_date=from_date, to_date=to_date)
-        print(f"[collect] found {len(industry_rows)} industry reports")
-
-    company_saved = 0
-    industry_saved = 0
+    saved_counts = {t: 0 for t in report_types}
     industry_skipped = 0
+    failed = 0
 
-    for row in company_rows:
-        saved, status = download_report(
-            session=session,
-            report=row,
-            manifest=manifest,
-            industry_min_pages=industry_min_pages,
-        )
-        if saved:
-            company_saved += 1
-        print(f"[company] {row.company_name} | {row.title} -> {status}")
-        save_json(MANIFEST_PATH, manifest)
-        time.sleep(0.1)
+    for report_type, rows in rows_by_type.items():
+        for row in rows:
+            try:
+                saved, status = download_report(
+                    session=session,
+                    report=row,
+                    manifest=manifest,
+                    industry_min_pages=industry_min_pages,
+                )
+            except Exception as exc:  # 한 건 실패가 전체 회차를 멈추지 않게
+                saved, status = False, f"error_{exc.__class__.__name__}"
+                failed += 1
+            if saved:
+                saved_counts[report_type] += 1
+            elif status.startswith("skipped_pages_"):
+                industry_skipped += 1
+            label = row.company_name or row.sector_name or row.firm
+            print(f"[{report_type}] {label} | {row.title} -> {status}")
+            if saved or status.startswith("skipped_pages_"):
+                save_json(MANIFEST_PATH, manifest)
+            time.sleep(0.1)
 
-    for row in industry_rows:
-        saved, status = download_report(
-            session=session,
-            report=row,
-            manifest=manifest,
-            industry_min_pages=industry_min_pages,
-        )
-        if saved:
-            industry_saved += 1
-        elif status.startswith("skipped_pages_"):
-            industry_skipped += 1
-        print(f"[industry] {row.sector_name} | {row.title} -> {status}")
-        save_json(MANIFEST_PATH, manifest)
-        time.sleep(0.1)
-
+    save_json(MANIFEST_PATH, manifest)
     save_json(SECTOR_CACHE_PATH, sector_cache)
 
     print("")
     print("[done]")
-    print(f"  company saved  : {company_saved}")
-    print(f"  industry saved : {industry_saved}")
-    print(f"  industry skip  : {industry_skipped}")
-    print(f"  manifest       : {MANIFEST_PATH.relative_to(BASE_DIR)}")
+    for report_type in report_types:
+        print(f"  {report_type:<9} saved : {saved_counts[report_type]}")
+    print(f"  industry skip   : {industry_skipped}")
+    print(f"  download failed : {failed}")
+    print(f"  manifest        : {MANIFEST_PATH.relative_to(BASE_DIR)}")
 
 
 def parse_args() -> argparse.Namespace:
@@ -752,7 +864,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--mode",
-        choices=["all", "company", "industry"],
+        choices=["all", *API_CATEGORIES],
         default="all",
         help="Choose which report type to process.",
     )
