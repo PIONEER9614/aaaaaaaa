@@ -402,9 +402,9 @@ def _off(a, b, base, tol):
     return gap if abs(gap) > max(abs(base or 0) * tol, 1e6 if U["div"] >= 1e8 else 1) else None
 
 
-def verify(yrs, raw_items=None):
-    """→ (결과 목록, 요약). raw_items: {연도: DART 원본 줄들} (SEC면 None)"""
-    raw_items = raw_items or {}
+def verify(yrs, raw_items=None, meta=None):
+    """→ (결과 목록, 요약). raw_items: {연도: DART 원본 줄들} (SEC면 None), meta: {"acc_mt": 결산월}"""
+    raw_items, meta = raw_items or {}, meta or {}
     ys = sorted(yrs)
     out, n_eq, n_ok = [], 0, 0
     amt = lambda v: f"{v/U['div']:,.1f}{U['label']}"
@@ -522,7 +522,44 @@ def verify(yrs, raw_items=None):
                 elif a and b and c and a > 0 and b > 0 and c > 0 and ((b / a > 3 and b / c > 3) or (b / a < 1/3 and b / c < 1/3)):
                     add("확인 필요", y, "혼자 튀는 값", f"{KEY_KO[k]}: {amt(a)} → {amt(b)} → {amt(c)}",
                         "그해에만 다른 줄을 집었을 가능성 (실제 인수합병·분할이면 정상)")
-    # 9) 꼬리표 없는 줄 비율 (최근 연도)
+        # 9) 부호가 말이 안 되는 값 (자동 수집에서 흔한 부호 뒤집힘)
+        for k in ("revenue", "assets", "liab", "cash", "inventory", "receivables", "cur_assets"):
+            if d.get(k) is not None and d[k] < 0:
+                add("확인 필요", y, "음수가 될 수 없는 값", f"{label(d, k)} {amt(d[k])}",
+                    "부호를 반대로 적은 줄이거나 차감 줄(충당금 등)을 집은 것")
+        # 10) 같은 꼬리표가 한 표에 여러 줄 (합계와 세부 줄에 같은 꼬리표) → 어느 걸 집었는지에 따라 숫자가 달라짐
+        rows = [i for i in raw_items.get(y, []) if i.get("sj_div") in ("BS", "IS", "CIS", "CF")
+                and (i.get("account_detail") or "-").strip() in ("-", "")]
+        for k in CORE:
+            sk = d.get("_src", {}).get(k, {})
+            if sk.get("how") != "꼬리표" or d.get(k) is None:
+                continue
+            vals = {}
+            for i in rows:
+                if i.get("account_id") == sk["id"] and i.get("sj_div") == sk.get("sj"):
+                    v = num(i.get("thstrm_amount"))
+                    if v is not None:
+                        vals.setdefault(v, i.get("account_nm", ""))
+            if len(vals) > 1:
+                top = max(vals, key=abs)
+                lst = ", ".join(f"'{n}' {amt(v)}" for v, n in sorted(vals.items(), key=lambda t: -abs(t[0]))[:4])
+                add("확인 필요" if abs(d[k]) < abs(top) * 0.999 else "참고", y, "같은 꼬리표가 여러 줄",
+                    f"{KEY_KO[k]} 꼬리표({sk['id']})가 {len(vals)}줄: {lst} — 집은 값 {amt(d[k])}",
+                    "합계 줄을 집었는지 원문 표에서 확인 (세부 줄을 집으면 작게 나옴)")
+    # 11) 통화·결산월·빠진 해 — AI가 가장 흔히 섞는 기간·단위 문제
+    cur = {i.get("currency") for its in raw_items.values() for i in its if i.get("currency")}
+    if cur - {"KRW"}:
+        add("확인 필요", "전체", "원화가 아닌 통화", f"재무제표 통화: {', '.join(sorted(cur))}",
+            "금액 단위(억 원) 표기와 PBR·시가총액 비교가 틀어짐 — 원문 통화로 다시 읽기")
+    if meta.get("acc_mt") and str(meta["acc_mt"]).lstrip("0") != "12":
+        add("참고", "전체", f"{int(meta['acc_mt'])}월 결산 회사",
+            f"'{ys[-1] if ys else ''}년'은 달력 연도가 아니라 {int(meta['acc_mt'])}월에 끝나는 회계연도",
+            "다른 회사·분기 실적과 같은 해로 나란히 비교하면 기간이 어긋남")
+    gaps = [y for y in range(ys[0], ys[-1]) if y not in yrs] if ys else []
+    if gaps:
+        add("확인 필요", "전체", "중간에 빠진 해", f"{', '.join(map(str, gaps))}년 사업보고서 숫자가 없음",
+            "그해만 연결/별도가 바뀌었거나 보고서가 정정 중 — 성장률·평균이 빈 해를 건너뛰어 계산됨")
+    # 12) 꼬리표 없는 줄 비율 (최근 연도)
     cover = None
     if ys and ys[-1] in raw_items:
         rows = raw_items[ys[-1]]
@@ -611,6 +648,15 @@ def report(corp, fs_div, yrs, ms, fl, z, mcap, price, recent, vr=None, vs=None):
     return "\n".join(L)
 
 
+def corp_meta(corp_code):
+    """DART 기업개황 — 결산월 등"""
+    try:
+        r = requests.get(f"{API}/company.json", params={"crtfc_key": DART_KEY, "corp_code": corp_code}, timeout=20).json()
+        return {"acc_mt": r.get("acc_mt")}
+    except Exception:
+        return {}
+
+
 def recent_quarter(corp_code, fs_div, last_annual):
     for year in (last_annual + 1,):
         for code in ("11014", "11012", "11013"):
@@ -635,7 +681,10 @@ def main():
     ap.add_argument("company")
     ap.add_argument("--years", type=int, default=5)
     ap.add_argument("--ofs", action="store_true", help="별도 재무제표")
+    ap.add_argument("--check", metavar="글파일", help="분석 글 속 숫자를 최근 계산 결과와 대조")
     a = ap.parse_args()
+    if a.check:
+        return main_check(a)
     if not DART_KEY:
         sys.exit("  [오류] DART_API_KEY 없음")
     if not re.fullmatch(r"\d{6}", a.company) and re.fullmatch(r"[A-Za-z][A-Za-z.\-]{0,9}", a.company):
@@ -669,7 +718,7 @@ def main():
     z = altman_z(yrs[last], mcap)
     fl = flags(yrs, ms, z)
     recent = recent_quarter(corp["corp_code"], fs_div, last)
-    vr, vs = verify(yrs, raw)
+    vr, vs = verify(yrs, raw, corp_meta(corp["corp_code"]))
     print(f"  [검산] {vs['등식·대조 수']}개 중 {vs['통과']}개 통과, 확인 필요 {vs['확인 필요']}건")
     md = report(corp, fs_div, yrs, ms, fl, z, mcap, price, recent, vr, vs)
     OUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -680,6 +729,78 @@ def main():
          "market_cap": mcap, "recent": recent, "verify": vr, "verify_summary": vs}, ensure_ascii=False, indent=1, default=str), encoding="utf-8")
     print(md)
     print(f"\n  [저장] {stem}.md")
+
+
+# ── 글 속 숫자 대조 ──────────────────────────────────────────────────────────
+# AI(나 포함)가 분석 글을 쓰면 계산기 결과와 다른 숫자가 자신 있게 섞여 들어간다(기간·단위·항목 혼동, 암산 실수).
+# 글에 나온 억·조·%·배 숫자를 계산기 json의 숫자와 하나씩 맞춰 보고, 근거를 못 찾은 숫자만 골라 보여준다.
+NUM_RE = re.compile(r"(-?\d[\d,]*(?:\.\d+)?)\s*조(?:\s*(\d[\d,]*(?:\.\d+)?)\s*억)?|(-?\d[\d,]*(?:\.\d+)?)\s*(억|%p|%|배)")
+
+
+def _pool(js):
+    """json → {'억': [...], '%': [...], '배': [...]} (부호 무시)"""
+    eok, pct, x = [], [], []
+    def walk_raw(d):
+        for k, v in (d or {}).items():
+            if isinstance(v, (int, float)) and not isinstance(v, bool):
+                eok.append(abs(v) / 1e8)
+    for d in (js.get("raw") or {}).values():
+        walk_raw(d)
+    rc = js.get("recent") or {}
+    walk_raw(rc.get("cur")); walk_raw(rc.get("prev"))
+    for m in (js.get("metrics") or {}).values():
+        for k, v in m.items():
+            if isinstance(v, (int, float)):
+                pct.append(abs(v)); x.append(abs(v))   # 글에서 % / 배 표기가 섞여도 잡히게 둘 다
+    if js.get("altman_z") is not None and isinstance(js["altman_z"], (int, float)):
+        x.append(abs(js["altman_z"]))
+    if js.get("market_cap"):
+        eok.append(js["market_cap"] / 1e8)
+    return {"억": eok, "%": pct, "배": x}
+
+
+def _step(t):
+    t = t.replace(",", "")
+    return 10 ** -len(t.split(".")[1]) if "." in t else 1
+
+
+def check_claims(text, js):
+    pool = _pool(js)
+    res = []
+    for ln, line in enumerate(text.splitlines(), 1):
+        for m in NUM_RE.finditer(line):
+            if m.group(1):   # 조 (+ 억)
+                a = abs(float(m.group(1).replace(",", "")))
+                val, tol = a * 1e4, _step(m.group(1)) * 1e4 / 2
+                if m.group(2):
+                    val += float(m.group(2).replace(",", "")); tol = _step(m.group(2)) / 2
+                kind = "억"
+            else:
+                kind = {"억": "억", "%": "%", "배": "배", "%p": "%p"}[m.group(4)]
+                if kind == "%p":
+                    continue   # 차이(%p)는 두 숫자의 뺄셈 — 따로 근거가 없음
+                val = abs(float(m.group(3).replace(",", "")))
+                tol = _step(m.group(3)) / 2
+            tol = tol * 1.01 + val * 0.003 + 1e-9
+            ok = any(abs(v - val) <= tol for v in pool[kind])
+            res.append({"줄": ln, "숫자": m.group(0).strip(), "근거": ok, "문장": line.strip()[:90]})
+    return res
+
+
+def main_check(a):
+    corp = find_corp(a.company)
+    safe = re.sub(r'[\\/:*?"<>|]', '', corp['name']).rstrip('. ')
+    cands = sorted(OUT_DIR.glob(f"{safe}_*.json"))
+    if not cands:
+        sys.exit(f"  [오류] {safe} 분석 결과(json)가 없음 — 먼저 python fs_analyzer.py {a.company}")
+    js = json.loads(cands[-1].read_text(encoding="utf-8"))
+    res = check_claims(Path(a.check).read_text(encoding="utf-8"), js)
+    bad = [r for r in res if not r["근거"]]
+    print(f"  [대조] {Path(a.check).name} ↔ {cands[-1].name}: 숫자 {len(res)}개 중 {len(res) - len(bad)}개 근거 있음, {len(bad)}개 근거 못 찾음")
+    for r in bad:
+        print(f"   - {r['줄']}줄 '{r['숫자']}' : {r['문장']}")
+    if bad:
+        print("  → 계산기에 없는 숫자: 직접 계산한 것(차이·합·평균)이면 식을 옆에 적고, 아니면 기간·단위·항목을 다시 확인")
 
 
 def save(corp, md, payload):
