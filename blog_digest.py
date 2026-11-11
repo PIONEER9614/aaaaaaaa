@@ -20,7 +20,7 @@ from reportlab.lib import colors
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 
-load_dotenv()
+load_dotenv(os.path.expanduser("~/.claude-code-secrets/.env"))
 
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "").strip()
 TELEGRAM_CHAT  = os.getenv("TELEGRAM_CHAT_ID", "").strip()
@@ -30,6 +30,8 @@ BLOGS = {
     "seanhong99":          "숀홍 시장정리",
     "fullmoon2050":        "보름달 시황/상한가",
     "james_lee_advisors":  "James Lee 거시경제",
+    "ranto28":             "메르",
+    "tosoha1":             "농구천재",
 }
 
 HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
@@ -214,7 +216,8 @@ def ai_summarize(prompt, max_tokens=1200):
     for attempt in range(3):
         try:
             resp = client.chat.completions.create(
-                model="llama-3.3-70b-versatile",
+                model="openai/gpt-oss-120b",
+                reasoning_effort="low",
                 messages=[{"role": "user", "content": prompt}],
                 max_tokens=max_tokens,
                 temperature=0.3,

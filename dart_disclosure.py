@@ -21,7 +21,7 @@ from reportlab.lib import colors
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 
-load_dotenv()
+load_dotenv(os.path.expanduser("~/.claude-code-secrets/.env"))
 
 DART_API_KEY = (os.getenv("DART_API_KEY") or "").strip()
 BOT_TOKEN    = (os.getenv("TELEGRAM_BOT_TOKEN") or "").strip()
@@ -129,7 +129,8 @@ def explain_items(client, items):
     for attempt in range(2):
         try:
             resp = client.chat.completions.create(
-                model="llama-3.3-70b-versatile",
+                model="openai/gpt-oss-120b",
+                reasoning_effort="low",
                 messages=[{"role": "user", "content": prompt}],
                 max_tokens=600,
             )
@@ -174,7 +175,8 @@ def summarize_type(client, type_name, items):
     for attempt in range(2):
         try:
             resp = client.chat.completions.create(
-                model="llama-3.3-70b-versatile",
+                model="openai/gpt-oss-120b",
+                reasoning_effort="low",
                 messages=[{"role": "user", "content": prompt}],
                 max_tokens=500,
             )

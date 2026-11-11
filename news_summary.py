@@ -22,7 +22,7 @@ from reportlab.lib import colors
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 
-load_dotenv()
+load_dotenv(os.path.expanduser("~/.claude-code-secrets/.env"))
 
 BOT_TOKEN = (os.getenv("TELEGRAM_BOT_TOKEN") or os.getenv("ARTICLE_BOT_TOKEN") or "").strip()
 CHAT_ID   = (os.getenv("TELEGRAM_CHAT_ID") or "").strip()
@@ -66,6 +66,7 @@ def groq_call(prompt, max_tokens=1200, model="openai/gpt-oss-120b"):
         try:
             resp = client.chat.completions.create(
                 model=model,
+                reasoning_effort="low",
                 messages=[{"role": "user", "content": prompt}],
                 max_tokens=max_tokens,
                 temperature=0.3,
@@ -153,7 +154,7 @@ def ai_batch_summarize(articles, source):
 • 줄1
 ...
 """
-        result = groq_call(prompt, max_tokens=800, model="llama-3.3-70b-versatile")
+        result = groq_call(prompt, max_tokens=800)
         time.sleep(2)
 
         # 파싱

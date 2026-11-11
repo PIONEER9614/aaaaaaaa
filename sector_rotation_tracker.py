@@ -24,7 +24,7 @@ from reportlab.lib import colors
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 
-load_dotenv()
+load_dotenv(Path.home() / ".claude-code-secrets" / ".env")
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 TG_TOKEN  = os.getenv("TELEGRAM_BOT_TOKEN", "")
@@ -153,7 +153,7 @@ def analyze_rotation(kr, us, year, month):
     data_text = format_returns_for_llm(kr, us, year, month)
     try:
         resp = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
+            model="openai/gpt-oss-120b",
             messages=[
                 {"role": "system", "content": ANALYSIS_PROMPT},
                 {"role": "user",   "content": data_text},

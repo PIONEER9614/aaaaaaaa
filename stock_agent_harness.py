@@ -31,7 +31,7 @@ from reportlab.lib import colors
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 
-load_dotenv()
+load_dotenv(Path.home() / ".claude-code-secrets" / ".env")
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 GROQ_KEY       = os.getenv("GROQ_API_KEY", "")
@@ -40,7 +40,7 @@ TG_TOKEN       = os.getenv("TELEGRAM_BOT_TOKEN", "")
 TG_CHAT        = os.getenv("TELEGRAM_CHAT_ID", "")
 VALLEY_EMAIL   = os.getenv("VALLEY_EMAIL", "")
 VALLEY_PASS    = os.getenv("VALLEY_PASSWORD", "")
-GROQ_MODEL     = "llama-3.3-70b-versatile"
+GROQ_MODEL     = "openai/gpt-oss-120b"
 NAVER_MANIFEST = Path("data/naver_research/_meta/manifest.json")
 HEADERS        = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
 

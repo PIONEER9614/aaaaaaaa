@@ -17,7 +17,7 @@ from reportlab.lib import colors
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 
-load_dotenv()
+load_dotenv(Path.home() / ".claude-code-secrets" / ".env")
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 VALLEY_EMAIL    = os.getenv("VALLEY_EMAIL", "")

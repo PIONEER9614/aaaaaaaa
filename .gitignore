@@ -6,3 +6,19 @@ __pycache__/
 data/naver_cookies.json
 data/naver_research/company/
 data/naver_research/industry/
+data/fb_profile/
+data/fb_tracker_seen.json
+data/fb_tracker_debug.png
+data/fb_tracker.log
+
+# 로그인 쿠키·비밀값 (공개 저장소에 올라가면 안 됨)
+valley_cookie.json
+valley_cookie.txt
+stockeasy_cookies.json
+.env.*
+*.session
+data/earnings/
+
+# 리포트 목록 검색용 사본 (manifest.json에서 언제든 다시 만듦)
+data/research.db
+data/research.db.tmp

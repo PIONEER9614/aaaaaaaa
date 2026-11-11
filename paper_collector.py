@@ -22,7 +22,7 @@ from reportlab.pdfbase.ttfonts import TTFont
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-load_dotenv()
+load_dotenv(Path.home() / ".claude-code-secrets" / ".env")
 
 CORE_KEY      = os.getenv("CORE_API_KEY", "DtGby7HTXo1LdxzenWusjfFJg9N2mrVk")
 BOT_TOKEN     = (os.getenv("TELEGRAM_BOT_TOKEN") or "").strip()

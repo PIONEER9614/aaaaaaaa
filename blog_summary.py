@@ -16,7 +16,7 @@ from reportlab.lib import colors
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 
-load_dotenv()
+load_dotenv(os.path.expanduser("~/.claude-code-secrets/.env"))
 
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "").strip()
 TELEGRAM_CHAT_ID   = os.getenv("TELEGRAM_CHAT_ID", "").strip()
@@ -166,7 +166,8 @@ def summarize_with_groq(all_posts):
         f"{posts_text}"
     )
     response = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
+        model="openai/gpt-oss-120b",
+        reasoning_effort="low",
         messages=[{"role": "user", "content": prompt}],
         max_tokens=2048,
     )

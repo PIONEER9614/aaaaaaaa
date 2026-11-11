@@ -20,7 +20,7 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-load_dotenv()
+load_dotenv(os.path.expanduser("~/.claude-code-secrets/.env"))
 
 BOT_TOKEN = (os.getenv("TELEGRAM_BOT_TOKEN") or "").strip()
 CHAT_ID   = (os.getenv("TELEGRAM_CHAT_ID") or "").strip()

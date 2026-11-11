@@ -24,7 +24,7 @@ from reportlab.lib import colors
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 
-load_dotenv()
+load_dotenv(os.path.expanduser("~/.claude-code-secrets/.env"))
 
 BOT_TOKEN      = (os.getenv("TELEGRAM_BOT_TOKEN") or "").strip()
 CHAT_ID        = (os.getenv("TELEGRAM_CHAT_ID") or "").strip()
@@ -271,7 +271,8 @@ def build_industry_analysis(client, industry_name, config, all_data):
     for attempt in range(2):
         try:
             resp = client.chat.completions.create(
-                model="llama-3.3-70b-versatile",
+                model="openai/gpt-oss-120b",
+                reasoning_effort="low",
                 messages=[{"role": "user", "content": prompt}],
                 max_tokens=1500,
             )

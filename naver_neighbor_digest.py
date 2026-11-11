@@ -24,7 +24,7 @@ from reportlab.lib import colors
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 
-load_dotenv()
+load_dotenv(Path.home() / ".claude-code-secrets" / ".env")
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 NAVER_ID      = os.getenv("NAVER_ID", "")
@@ -35,10 +35,11 @@ GROQ_KEY      = os.getenv("GROQ_API_KEY", "")
 
 NEIGHBOR_FILE = Path("data/naver_neighbors.json")
 HISTORY_FILE  = Path("data/naver_neighbor_history.json")
-COOKIE_FILE   = Path("data/naver_cookies.json")
+COOKIE_FILE   = Path.home() / ".claude-code-secrets" / "naver_cookies.json"
 HEADERS       = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
 MAX_POSTS     = 40   # 하루 최대 처리 포스트 수
 LOOKBACK_HOURS = 26  # 몇 시간 이내 새 글만
+MAX_BLOG_TEXT = 12000
 
 client = Groq(api_key=GROQ_KEY)
 
@@ -317,13 +318,28 @@ def extract_content(url):
             src = iframe.get("src", "")
             if src.startswith("/"):
                 src = "https://blog.naver.com" + src
-            r2   = requests.get(src, headers=HEADERS, timeout=10)
+            r2 = requests.get(src, headers=HEADERS, timeout=10)
             soup = BeautifulSoup(r2.text, "html.parser")
-        for sel in [".se-main-container", "#postViewArea", ".post-view", "main"]:
+        for sel in [".se-main-container", "#postViewArea", ".post-view", ".post_ct", "#viewTypeSelector", "main"]:
             el = soup.select_one(sel)
             if el:
-                return el.get_text(separator=" ", strip=True)[:1500]
-        return soup.get_text(separator=" ", strip=True)[:1500]
+                return el.get_text(separator=" ", strip=True)[:MAX_BLOG_TEXT]
+        mobile_url = url
+        if "m.blog.naver.com" not in mobile_url:
+            mobile_url = mobile_url.replace("https://blog.naver.com/", "https://m.blog.naver.com/PostView.naver?blogId=")
+            if "/PostView.naver?blogId=" not in mobile_url:
+                parts = url.rstrip("/").split("/")
+                if len(parts) >= 2:
+                    blog_id = parts[-2]
+                    log_no = parts[-1].split("?")[0]
+                    mobile_url = f"https://m.blog.naver.com/PostView.naver?blogId={blog_id}&logNo={log_no}"
+        r3 = requests.get(mobile_url, headers=HEADERS, timeout=10)
+        soup = BeautifulSoup(r3.text, "html.parser")
+        for sel in [".post_ct", "#viewTypeSelector", ".se-main-container", "#postViewArea", ".post-view", "main"]:
+            el = soup.select_one(sel)
+            if el:
+                return el.get_text(separator=" ", strip=True)[:MAX_BLOG_TEXT]
+        return soup.get_text(separator=" ", strip=True)[:MAX_BLOG_TEXT]
     except:
         return ""
 
@@ -343,7 +359,7 @@ def summarize_blog_posts(blog_name, posts):
     user_input = "\n".join(lines)
     try:
         resp = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
+            model="openai/gpt-oss-120b",
             messages=[{"role":"system","content":PROMPT},
                       {"role":"user","content":user_input}],
             temperature=0.3, max_tokens=1024,
