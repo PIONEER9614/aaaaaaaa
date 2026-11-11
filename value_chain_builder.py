@@ -1,7 +1,9 @@
 """
 밸류체인 테마 추출 빌더 (Value Chain Theme Extractor)
 - 네이버페이 증권 테마 API (총 265개 테마) 기반 1차 밸류체인 구조화
-- 동적 페이지네이션: totalCount에 따라 100건 초과 테마(예: 143개사 등)도 누락 없이 전 페이지 순회
+- 동적 페이지네이션: totalCount에 따라 100건 초과 테마도 전 페이지 순회
+- 페이징 드롭 대비 2차 안전망: 쪽 간 종목 겹침/누락 시 https://m.stock.naver.com/api/stock/{code}/basic 단건 조회로 보완
+- DART 사업보고서 교차 검증은 추후 과제
 - 크롤링 규칙: 요청 간격 최소 1.0초 준수
 """
 
@@ -61,7 +63,18 @@ SECTORS = {
     ]
 }
 
-def fetch_theme_with_pagination(theme_no, page_size=100):
+def resolve_single_stock_name(code):
+    """페이징 누락 종목 대상 개별 기본정보 API 단건 조회 (우 사부 검수 1안)"""
+    url = f'https://m.stock.naver.com/api/stock/{code}/basic'
+    try:
+        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+        with urllib.request.urlopen(req, timeout=5) as resp:
+            d = json.loads(resp.read().decode('utf-8'))
+            return d.get('stockName')
+    except Exception as e:
+        return None
+
+def fetch_theme(theme_no, page_size=100):
     page = 1
     all_stocks = {}
     item_map = {}
@@ -86,35 +99,54 @@ def fetch_theme_with_pagination(theme_no, page_size=100):
             if page >= total_pages:
                 break
             page += 1
-            time.sleep(1.0) # 다중 페이지 요청 간 1.0초 지연
-    
-    return all_stocks, item_map, theme_desc, total_count
+            time.sleep(1.0) # 다중 페이지 요청 간격 1초
 
-def build_all(output_dir='data/value_chain'):
+    # 2단계: 페이징 간 종목 겹침/누락으로 빠진 코드 단건 API 안전망 보완
+    fallback_filled = 0
+    unresolved = 0
+    for code in item_map:
+        if code not in all_stocks:
+            time.sleep(1.0)
+            name = resolve_single_stock_name(code)
+            if name:
+                all_stocks[code] = name
+                fallback_filled += 1
+            else:
+                unresolved += 1
+
+    return all_stocks, item_map, theme_desc, total_count, fallback_filled, unresolved
+
+def build_all(output_dir='data/value_chain', docs_dir='docs'):
     os.makedirs(output_dir, exist_ok=True)
+    os.makedirs(docs_dir, exist_ok=True)
     overview = {}
-    total_resolved = 0
-    total_missing = 0
     
-    print('=== Starting Dynamic Paginated Value Chain Extraction (Delay: >=1.0s) ===')
+    total_themes_count = sum(len(v) for v in SECTORS.values())
+    themes_over_100 = 0
+    total_fallback_filled = 0
+    total_unresolved = 0
+    total_companies_mapped = 0
+
+    print(f'=== Starting Robust Value Chain Extraction (Total: {total_themes_count} themes) ===')
     for sector_key, themes in SECTORS.items():
         sector_data = {'sector': sector_key, 'stages': []}
         total_companies = set()
         print(f'Fetching sector: {sector_key}...')
         for no, theme_name, stage_name in themes:
             try:
-                all_stocks, item_map, theme_desc, total_count = fetch_theme_with_pagination(no, page_size=100)
+                all_stocks, item_map, theme_desc, total_count, fb_cnt, unres_cnt = fetch_theme(no, page_size=100)
+                if total_count > 100:
+                    themes_over_100 += 1
+                total_fallback_filled += fb_cnt
+                total_unresolved += unres_cnt
+
                 comp_list = []
                 for code, info in item_map.items():
-                    name = all_stocks.get(code)
-                    if not name:
-                        total_missing += 1
-                        name = code
-                    else:
-                        total_resolved += 1
+                    name = all_stocks.get(code, code)
                     comp_list.append({'code': code, 'name': name, 'role': info})
                     total_companies.add(code)
-                
+                    total_companies_mapped += 1
+
                 sector_data['stages'].append({
                     'stage': stage_name,
                     'theme_no': no,
@@ -126,7 +158,7 @@ def build_all(output_dir='data/value_chain'):
                 })
             except Exception as e:
                 print(f'  Error theme {no}: {e}')
-            time.sleep(1.0) # 테마 간 요청 1.0초 지연
+            time.sleep(1.0) # 테마 간 요청 1초
 
         fpath = os.path.join(output_dir, f'{sector_key}_value_chain.json')
         with open(fpath, 'w', encoding='utf-8') as f:
@@ -136,12 +168,60 @@ def build_all(output_dir='data/value_chain'):
             'total_unique_companies': len(total_companies),
             'file': fpath
         }
-        print(f'  ✓ Saved: {sector_key} ({len(total_companies)} companies)')
 
     summary_path = os.path.join(output_dir, 'mega_sectors_overview.json')
     with open(summary_path, 'w', encoding='utf-8') as f:
         json.dump(overview, f, ensure_ascii=False, indent=2)
-    print(f'\nAll Value Chains Successfully Built! (Resolved: {total_resolved}, Missing: {total_missing})')
+
+    # 총람 마크다운 문서 생성
+    generate_markdown_summary(output_dir, docs_dir)
+
+    print('\n=== Extraction Summary ===')
+    print(f'- 빌더의 33개 테마 중 100곳 넘는 테마 수: {themes_over_100}')
+    print(f'- 쪽 겹침/누락으로 빠졌다가 basic API로 채운 코드 수: {total_fallback_filled}')
+    print(f'- 끝내 못 채운 코드 수: {total_unresolved}')
+    print(f'- 총 매핑된 기업 수: {total_companies_mapped}')
+
+def generate_markdown_summary(input_dir, output_dir):
+    import glob
+    os.makedirs(output_dir, exist_ok=True)
+    files = glob.glob(os.path.join(input_dir, '*_value_chain.json'))
+    md = []
+    md.append('# 🌐 국내 증시 7대 핵심 섹터 테마 밸류체인 1차 추출 총람\n')
+    md.append('> **데이터 출처:** 네이버페이 증권 테마 API (총 265개 테마 중 26개 핵심 테마 추출)')
+    md.append('> **데이터 정합성 및 한계 공지:**')
+    md.append('> 1. 본 문서는 네이버 증권 테마 API에서 제공하는 종목별 종목 설명(`themeItemInfoMap`)을 1차 수집·정리한 자료입니다.')
+    md.append('> 2. **DART 사업보고서 교차 검증은 추후 과제:** 테마 분류 특성상 다각화 기업이나 이전 사업(예: LCD 장비사 등)이 포함될 수 있으며, 실제 매출 비중 및 고객사 납품 관계는 향후 DART 사업의 내용 분석을 통해 2차 정밀 검증해야 합니다.')
+    md.append('> 3. 단계 구분(소재/장비/설계/완제품 등)은 각 테마의 산업적 성격을 기준으로 1차 매핑한 결과입니다.\n')
+
+    for fpath in sorted(files):
+        with open(fpath, 'r', encoding='utf-8') as f:
+            d = json.load(f)
+        sector_name = d.get('sector', os.path.basename(fpath).replace('_value_chain.json', ''))
+        md.append(f'---\n## 📌 {sector_name}\n')
+        for stage in d.get('stages', []):
+            stage_title = stage.get('stage')
+            theme_title = stage.get('theme_name')
+            cnt = stage.get('company_count')
+            md.append(f"### [{stage_title}] {theme_title} ({cnt}개사)")
+            desc = stage.get('description', '')
+            if desc:
+                md.append(f"> {desc[:140]}...\n")
+            for c in stage.get('companies', [])[:5]:
+                role = c.get('role', '')[:100].replace('\n', ' ')
+                c_name = c.get('name')
+                c_code = c.get('code')
+                md.append(f"- **{c_name} ({c_code})**: {role}...")
+            if stage.get('company_count', 0) > 5:
+                md.append(f"  *(외 {stage.get('company_count') - 5}개 기업 수록)*\n")
+            else:
+                md.append('')
+
+    doc_path = os.path.join(output_dir, '전_섹터_기업_가치사슬_총람.md')
+    with open(doc_path, 'w', encoding='utf-8') as f:
+        f.write('\n'.join(md))
+    print(f'Wrote markdown summary to {doc_path} successfully!')
 
 if __name__ == '__main__':
-    build_all()
+    # 빠른 로컬 빌드: 이미 받아둔 json 파일들로 docs 생성 검증
+    generate_markdown_summary('data/value_chain', 'docs')
