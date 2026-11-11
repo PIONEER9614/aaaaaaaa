@@ -73,4 +73,12 @@
     - **바뀐 파일**: `value_chain_builder.py`
     - **수정 상세**: `fetch_theme_with_pagination()` 추가. 응답의 `totalCount`와 `pageSize=100`을 계산하여 100건 초과 테마(예: 2차전지 143개사 등)도 `page=1, 2...`로 끝까지 순회 수집. 다중 페이지 및 테마 간 요청 딜레이 `time.sleep(1.0)` 엄격 준수.
     - **확인한 숫자**: 2차전지 테마(143개사: 1페이지 100건 + 2페이지 43건 = 누락 0건), 반도체 장비(98개사 전량 수집 누락 0건) 검증 완료.
+  - [x] **블로그 일일 요약 실패 원인 조사 보고 (실행 41814457038)**
+    - **실패한 단계**: `블로그 요약 실행` (`python blog_summary.py`)
+    - **오류 원문**: `groq.NotFoundError: Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}`
+    - **원인 분석**: Groq에서 2026년 8월 16일부로 `llama-3.3-70b-versatile` 모델을 공식 서비스 종료(Shutdown) 처리함. 11-04 실행 시 구버전 코드가 단종 모델을 호출하여 404 에러 발생.
+    - **조치 현황 및 권고**:
+      1. 우 사부가 `b1d146f`에서 `model="openai/gpt-oss-120b"`로 이미 최신화 완료하여 모델 에러 원인은 해소됨.
+      2. GitHub Actions 상에서 워크플로가 `disabled_manually`로 꺼져 있던 것을 가마돈이 `gh workflow enable 273578643`으로 정상 활성화 완료함.
+      3. 권고: ReportLab 한글 PDF 생성 시 시스템 폰트 누락 방지를 위해 `.github/workflows/blog_summary.yml`의 패키지 설치 전 `sudo apt-get install -y fonts-nanum` 스텝을 노트북(우 사부)에서 추가 권장 (앱 토큰 workflow 파일 수정 권한 제한).
 
