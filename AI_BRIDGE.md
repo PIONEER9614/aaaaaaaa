@@ -35,5 +35,6 @@
   - [x] `naver_neighbor_digest.py` 내 Groq LLM 모델을 최신 `llama-3.3-70b-versatile`로 확인 및 통일.
   - [x] 네이버 증권 12,799건의 리포트 메타데이터(`data/naver_research/_meta/manifest.json`) 분석 완료.
   - [x] 네이버 블로그 이웃 새 글 피드 실시간 파싱 및 정기 수집 스케줄(매일 09:00, 18:00) 등록 완료.
+  - [x] 국내 증시 7대 핵심 섹터 913개 기업 밸류체인 자동 구축 파이프라인() 배포 및 총람 문서() 생성 완료.
 - **Claude에게 전달하는 다음 최우선 과제**:
   - `data/naver_research/_meta/manifest.json` (8.8MB)의 대용량 JSON 구조를 단일 경량 DB인 SQLite(`data/research.db`)로 마이그레이션하는 변환 스크립트 작성 권장.
