@@ -1,13 +1,14 @@
 """
 밸류체인 테마 추출 빌더 (Value Chain Theme Extractor)
 - 네이버페이 증권 테마 API (총 265개 테마) 기반 1차 밸류체인 구조화
-- 주의: 본 스크립트는 네이버 테마 API 기반 1차 수집본이며, DART 사업보고서 교차 검증은 추후 과제입니다.
+- 동적 페이지네이션: totalCount에 따라 100건 초과 테마(예: 143개사 등)도 누락 없이 전 페이지 순회
 - 크롤링 규칙: 요청 간격 최소 1.0초 준수
 """
 
 import os
 import json
 import time
+import math
 import urllib.request
 
 SECTORS = {
@@ -60,46 +61,72 @@ SECTORS = {
     ]
 }
 
+def fetch_theme_with_pagination(theme_no, page_size=100):
+    page = 1
+    all_stocks = {}
+    item_map = {}
+    theme_desc = ''
+    total_count = 0
+
+    while True:
+        url = f'https://m.stock.naver.com/api/stocks/theme/{theme_no}?page={page}&pageSize={page_size}'
+        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+        with urllib.request.urlopen(req) as resp:
+            d = json.loads(resp.read().decode('utf-8'))
+            if not theme_desc:
+                theme_desc = d.get('themeDescription', '')
+            if not item_map:
+                item_map = d.get('themeItemInfoMap', {})
+            total_count = d.get('totalCount', 0)
+            
+            for s in d.get('stocks', []):
+                all_stocks[s['itemCode']] = s['stockName']
+            
+            total_pages = math.ceil(total_count / page_size) if total_count else 1
+            if page >= total_pages:
+                break
+            page += 1
+            time.sleep(1.0) # 다중 페이지 요청 간 1.0초 지연
+    
+    return all_stocks, item_map, theme_desc, total_count
+
 def build_all(output_dir='data/value_chain'):
     os.makedirs(output_dir, exist_ok=True)
     overview = {}
     total_resolved = 0
     total_missing = 0
     
-    print('=== Starting Value Chain Extraction (Delay: 1.0s, PageSize: 100) ===')
+    print('=== Starting Dynamic Paginated Value Chain Extraction (Delay: >=1.0s) ===')
     for sector_key, themes in SECTORS.items():
         sector_data = {'sector': sector_key, 'stages': []}
         total_companies = set()
         print(f'Fetching sector: {sector_key}...')
         for no, theme_name, stage_name in themes:
-            url = f'https://m.stock.naver.com/api/stocks/theme/{no}?pageSize=100'
             try:
-                req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-                with urllib.request.urlopen(req) as resp:
-                    d = json.loads(resp.read().decode('utf-8'))
-                    stocks = {s['itemCode']: s['stockName'] for s in d.get('stocks', [])}
-                    item_map = d.get('themeItemInfoMap', {})
-                    comp_list = []
-                    for code, info in item_map.items():
-                        name = stocks.get(code)
-                        if not name:
-                            total_missing += 1
-                            name = code
-                        else:
-                            total_resolved += 1
-                        comp_list.append({'code': code, 'name': name, 'role': info})
-                        total_companies.add(code)
-                    sector_data['stages'].append({
-                        'stage': stage_name,
-                        'theme_no': no,
-                        'theme_name': theme_name,
-                        'description': d.get('themeDescription', ''),
-                        'company_count': len(comp_list),
-                        'companies': comp_list
-                    })
+                all_stocks, item_map, theme_desc, total_count = fetch_theme_with_pagination(no, page_size=100)
+                comp_list = []
+                for code, info in item_map.items():
+                    name = all_stocks.get(code)
+                    if not name:
+                        total_missing += 1
+                        name = code
+                    else:
+                        total_resolved += 1
+                    comp_list.append({'code': code, 'name': name, 'role': info})
+                    total_companies.add(code)
+                
+                sector_data['stages'].append({
+                    'stage': stage_name,
+                    'theme_no': no,
+                    'theme_name': theme_name,
+                    'total_count': total_count,
+                    'description': theme_desc,
+                    'company_count': len(comp_list),
+                    'companies': comp_list
+                })
             except Exception as e:
                 print(f'  Error theme {no}: {e}')
-            time.sleep(1.0) # 인간 열람 속도 준수 (최소 1.0초 지연)
+            time.sleep(1.0) # 테마 간 요청 1.0초 지연
 
         fpath = os.path.join(output_dir, f'{sector_key}_value_chain.json')
         with open(fpath, 'w', encoding='utf-8') as f:
