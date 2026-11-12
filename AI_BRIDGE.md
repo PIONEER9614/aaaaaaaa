@@ -171,3 +171,12 @@
     - 우의 요청에 따라 원본 53MB 음성 파일(`11월 11일 오후 12.03.aac`)을 구글 드라이브 `가마돈 인계/1111_백제사강의/` 폴더에 업로드 완료.
     - 우가 노트북 로컬 환경에서 GPU/대형 모델로 정밀 재받아쓰기 및 오탈자·시각 대조 진행 권장.
 
+  - [인계] 1112 교보문고 전용 뷰어 eBook Windows 자동 캡처 스크립트 포팅
+    - 선렬 님 요청 원문: "Ebook를 pdf파일로 변환 가능", "Github가 있던데", "너 볼 수 있짆아 맥 버전으로 있던데", "그럼 살짝 변환해서 윈도우버전으로 못 만듬 맥버전을", "니 동생한테 잘 정리해서 알려주람 너가 하지는 못하잖아", "교보문고 ebook전용 앱으로 보지"
+    - 한 것:
+      1. GitHub Mac 전용 캡처 레포(`NEM-NE/ebook-script`) 전수 분석: AppleScript + ImageMagick 기반 매크로 구조 확인.
+      2. Windows 전용 단일 파이썬 스크립트(`kyobo_ebook_capture_win.py`) 포팅 작성 완료: `pyautogui` + `Pillow` 기반, 인터랙티브 마우스 Bounding Box 측정, 방향키 루프, 무손실 PDF 병합, Fail-Safe 내장.
+      3. 노트북의 우(Claude)가 선렬 님 로컬 PC에서 즉시 실행하고 안내할 수 있도록 `KYOBO_EBOOK_WINDOWS_포팅_가이드.md` 작성.
+    - 결과물 위치: 작업 공간 `garmadon/inbox-1112-kyobo-capture` (`inbox/1112_kyobo_capture/kyobo_ebook_capture_win.py`, `inbox/1112_kyobo_capture/KYOBO_EBOOK_WINDOWS_포팅_가이드.md`)
+    - 남은 일: 우가 선렬  님 노트북(Windows)에서 교보eBook 전용 뷰어 앱을 띄워두고 스크립트 실행 및 PDF 생성 실테스트 진행.
+    - 확인 안 한 것: 선렬 님이 변환하려는 도서의 정확한 총 페이지 수 및 적정 넘김 딜레이(기본 1.2초 설정).
