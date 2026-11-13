@@ -361,3 +361,27 @@
     - 편대 운용 제언:
       - 선렬 님의 메인 폰/태블릿에는 보안상 절대 물리지 않음 (선렬 님 보안 Never 5조 준수).
       - 추후 미니 PC(Crosshair) 구축 시 유휴 공기계가 확보될 경우, 독립된 샌드박스 서브 환경에서 모바일 앱 테스트용으로 검토 권장.
+
+  - [정보 공유] 1113 2026 하반기 글로벌 AI 에이전트 & 바이브 코딩 최신 툴체인 트렌드 총괄 (Wrecker -> Echo/Tech)
+    - 선렬 님 요청 원문: "최근 ai 툴 있냐주목받는", "다 정리 에코한테"
+    - 목적: 단순 챗봇을 넘어 '자율 실행형 에이전트 및 바이브 코딩'으로 진화한 2026년 하반기 핵심 툴체인 4대 트렌드를 에코/테크와 공유하고 우리 편대(Clone Force 99)에 도입 가능한 도구 식별.
+    - 4대 핵심 분야 및 주요 툴:
+      1. 터미널 & 자율 코딩 에이전트:
+         - **Claude Code (Anthropic)**: SWE-bench Verified 73% 최고점, CLI 네이티브, Git/MCP 통합. 현존 최고 성능의 시니어 코딩 파트너.
+         - **OpenCode**: GitHub 16만 stars 돌파의 최강 오픈소스 터미널 에이전트. 75개 이상 모델(Ollama 로컬 포함) 연결 가능, 벤더 종속 탈피.
+         - **Cursor Composer**: 다중 파일 자동 리팩토링 및 테스트 루프 완성형 GUI 에디터.
+      2. 컴퓨터 & 브라우저 제어 에이전트 (Computer/Browser Use):
+         - **Browser Use 1.0**: Chrome DevTools Protocol(CDP) 직결로 에이전트가 브라우저 전면 조작 및 스크래핑.
+         - **Vercel agent-browser (Rust)**: 200~400 토큰 초경량 스냅샷 및 번호표 클릭 기반 초고속 터미널 브라우저 (우리 편대 설치 권장).
+         - **Aside / Ego Lite**: 로그인 세션·쿠키 유지 기반 실사용 인증 웹 조작.
+         - **phone-harness**: 안드로이드 ADB/접근성 트리 기반 모바일 GUI 조작.
+      3. 바이브 코딩 (Vibe Coding) & 즉시 배포:
+         - **Lovable.dev / Bolt.new / v0**: 자연어 프롬프트 기반 3분 풀스택 웹앱 생성 및 Vercel 원클릭 배포.
+         - **Replit Agent**: 모바일 앱(React Native) 생성, Expo Go 실기기 QR 테스트 및 앱스토어 배포 자동화.
+      4. 에이전트 오케스트레이션 & 표준 인터페이스:
+         - **Google Antigravity 2.0**: 기획-코딩-브라우저 테스트 서브에이전트 군단을 총괄 지휘하는 에이전트 관리형 IDE.
+         - **MCP (Model Context Protocol)**: 로컬 파일, DB, DART, 깃허브를 에이전트에 레고처럼 꽂는 글로벌 오픈 표준.
+    - 우리 편대(Clone Force 99) 적용 제언:
+      - 1) 에코/테크(노트북): `agent-browser` 및 Claude Code MCP 환경 고도화 (단테/개발동생 가이드 적용).
+      - 2) 크로스헤어(미니 PC): 브라우저 및 데이터 수집 스케줄러 전담 백엔드로 활용.
+      - 3) Wrecker(폰): 24시간 스케줄 관리 및 선렬 님 실시간 접점 유지.
