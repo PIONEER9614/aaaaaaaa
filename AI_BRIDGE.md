@@ -452,3 +452,45 @@
     - ⚠️ 주의: **Aephel** 라이브러리는 원문 링크 허브로만 쓸 것(사이트가 자체 리서치는 AI 분석가 페르소나 작성이라고 명시). **Deutsche Bank Konzept**은 2014~18호로 발간 종료라 제외. 가격은 11-14 표기 기준.
     - 확인 안 한 것: 유료 서비스 실제 결제 단계 금액, Yardeni QuickTakes 본문 무료 범위, Dan Nystedt 게시 빈도·정확도.
     - 남은 일(에코/테크 제안): ① RSS 열린 소스만 골라 `data_collector.py`에 소스 어댑터 추가 ② ECOS Open API + FRED API로 국고채·회사채·미국금리 스프레드 테이블화 ③ 주 1회 "글로벌 1차 리서치 다이제스트" 생성 검토(텔레그램 발송은 Hunter 승인 후).
+
+---
+
+## 🛰️ 2026-11-14 (21:00) AI 레이더 인계 — Wrecker
+
+11-14 21:00 일일 AI 트렌드 브리핑에서 편대(Tech/Echo/Crosshair)에 바로 쓸 만한 것 4건만 추려 옮긴다. 각 항목의 저장소·README·공식 문서는 11-14 21:00 KST에 직접 열어 확인했고, 확인하지 못한 것은 항목마다 따로 적었다.
+
+### 1. Ollama Bridge MCP — 크로스헤어 0-토큰 분업의 레퍼런스 구현
+- 주소: https://github.com/ElnurIbrahimov/ollama-bridge-mcp (MIT, Python, 기본 브랜치 `master`, 확인 시점 ★0)
+- 무엇: Claude Code를 **오케스트레이터(두뇌·문맥·워크플로)** 로만 두고, 실제 작업은 MCP로 Ollama에 위임하는 서버. 툴 4개 — `ask_model`(특정 모델에 단일 질의), `batch_ask`(같은 질문을 2~5개 모델에 **병렬**, 총 시간은 가장 느린 모델 기준), `route_task`(작업 카테고리만 주면 최적 모델 자동 선택: code/math/reasoning/general/vision/ocr/factual/agentic), `list_models`.
+- 왜 우리에게: 11-13 확정한 크로스헤어 철칙 1·2번(클로드 쿼터 1바이트도 소모 금지 / 로컬 Ollama + Qwen-Coder)의 **구조를 그대로 참고**할 수 있음. `batch_ask`는 크로스헤어 야간 병렬 검증에, `route_task`는 작업 종류별 로컬 모델 고정에 바로 대응.
+- 붙이는 법(제안): 크로스헤어에 `ollama pull qwen2.5-coder:7b` → 이 MCP를 `claude mcp add`로 등록 → 크로스헤어 세션은 `route_task`/`batch_ask`만 쓰게 두고 두뇌 판단은 클로드(낮 시간대 테크/에코)로 분리.
+- ⚠️ 주의: 2026-02-25 생성된 ★0 신생 저장소. 코드는 읽고 참고하되 남의 저장소 코드를 크로스헤어에 그대로 자동 실행하지는 말 것. README의 "0원"은 **로컬 모델 12종** 기준이고 cloud 모델 15종은 Ollama 유료 플랜($20/월) 전제.
+- 확인 안 한 것: 위임 시 실제 토큰 절감률(README에 수치 없음), 윈도우에서의 동작.
+
+### 2. Claude Trading Skills — 매매 신호가 아니라 '절차 골격'으로 읽을 것
+- 주소: https://github.com/tradermonty/claude-trading-skills (MIT, 확인 시점 ★4,418 · 포크 885 · 문서 사이트 tradermonty.github.io/claude-trading-skills)
+- 무엇: Claude Code/Claude 스킬 묶음. 시장 분석·기술적 차팅·경제 캘린더·스크리너·전략 개발. 워크플로 5개가 매니페스트로 정리돼 있음: `market-regime-daily`(15분 일일 점검 — market-breadth-analyzer·uptrend-analyzer·exposure-coach), `core-portfolio-weekly`, `swing-opportunity-daily`(vcp-screener·drawdown-circuit-breaker·position-sizer·pre-trade-discipline-gate), `trade-memory-loop`, `monthly-performance-review`.
+- 왜 우리에게: 쓸모는 **절차를 강제하는 골격** 쪽. "게이트 → 산출물 → 기록" 구조를 우리 가치사슬·종목 리서치 파이프라인에 그대로 옮길 수 있음(리서치 전 리스크 게이트, 판단 복기 로그). FMP·Alpaca·FINVIZ Elite는 선택 연동(유료)이고 무료 경로도 있음.
+- ⚠️ 주의: 저장소 스스로 "투자 자문·신호 서비스 아님, 자동매매용 아님"이라고 명시. 우리 규칙(매매 스크립트 실행 금지)은 그대로 — 읽고 참고만 하고 주문 연동은 하지 않는다. `kis_trader.py`류와 절대 섞지 말 것.
+- 확인 안 한 것: 개별 스킬이 요구하는 데이터 API 무료 한도, 국내(KRX) 데이터로 실제 돌아가는지.
+
+### 3. OpenCodex — 하네스는 그대로, 백엔드 모델만 교체하는 프록시
+- 주소: https://github.com/lidge-jun/opencodex (MIT, 확인 시점 ★18,512 · 포크 1,475 · 기본 브랜치 `dev` · 한국어 문서 있음 · opencodex.me)
+- 무엇: 로컬 게이트웨이. Responses/Chat Completions/Anthropic Messages API를 받아 제공자 형식으로 변환(스트리밍·툴콜·추론·이미지 전달). `npm install -g --allow-scripts=bun @bitkyc08/opencodex` → `ocx start`(프록시+대시보드 `localhost:10100`) → `ocx claude`로 Claude Code를 프록시 통해 실행. Codex/Claude Code/Claude Desktop/Grok Build + 40개 이상 제공자(Claude·Gemini·Grok·GLM·DeepSeek·Kimi·Qwen·Ollama).
+- 왜 우리에게: 테크/에코가 쓰는 하네스(스킬·MCP·`CLAUDE.md`)를 그대로 둔 채 모델만 바꿔 비교 시험할 수 있음. 크로스헤어에서 "같은 작업을 로컬 모델과 클라우드 모델로 돌려 비교"하는 실험에 가장 빠른 길.
+- ⚠️ 주의(중요 · 내 판단): Claude **구독 계정**을 프록시에 물려 다른 모델로 돌리는 방식은 Anthropic 이용약관 위반 소지가 있음(계정 정지 리스크). 우리 목적은 쿼터 보존이므로 (a) 크로스헤어는 Ollama 로컬 또는 별도 API 키로만, (b) 구독 계정 우회 경로는 만들지 않는 선에서. 약관 원문은 도입 전 테크가 확인할 것 — 이건 문서 확인이 아니라 내 판단이다.
+- 확인 안 한 것: 약관 조항 원문, 윈도우(크로스헤어) 안정성, `dev`가 기본 브랜치라는 점(릴리스 태그 사용 권장).
+
+### 4. Claude Code 2.1.325 무인 실행 주의보 — X 제보, 공식 미확인
+- 출처: X @GodsBoy7777 https://x.com/GodsBoy7777/status/2121574097339506899 (11-14 브리핑에서 수집)
+- 주장: 최신 버전부터 샌드박스 Bash도 기본 권한 확인을 띄워 야간 자동 루프가 멈출 수 있음 → `sandbox.autoAllowBashIfSandboxed: true`, 스케줄 스킬은 `permissions.allow`, 외부 레포는 `--add-dir`.
+- **공식 확인 결과(11-14 21:00 조회)**: Anthropic 공식 CHANGELOG의 2.1.325 항목에 샌드박스 권한 확인 관련 변경은 **없음**. 이 주장은 공식 문서로 확인되지 않았으니 제보로만 취급할 것 — 버전 탓으로 단정하지 말고, 실제로 멈추면 `claude --debug`로 권한 프롬프트가 원인인지 먼저 볼 것.
+- 다만 설정 키 자체는 실재하고 유효함(공식 settings-reference·skills 문서에서 확인):
+  - `sandbox.autoAllowBashIfSandboxed` = "샌드박스된 명령을 권한 확인 없이 실행" (어떤 settings 파일에도 가능)
+  - `sandbox.enabled` = Bash 샌드박스 켜기, `sandbox.failIfUnavailable` = 샌드박스를 못 켜면 실행 중단(무인 실행이 조용히 비샌드박스로 도는 것 방지)
+  - 스킬 호출 허용은 `permissions.allow`의 `Skill(<스킬이름>)` 규칙 (공식 권한 문서는 deny 쪽에서 `Skill(skill:<name>)` 표기를 씀 — allow 쪽 정확한 표기는 settings-reference로 한 번 더 확인할 것)
+  - 외부 레포는 `--add-dir`로 추가해야 그 안의 `.claude/skills/`가 로드됨(공식 skills 문서 확인). 단, `--add-dir`는 파일 접근을 늘리는 것이고 설정을 통째로 넘겨주는 건 아님.
+- 확인 안 한 것: 2.1.325 실기기에서의 프롬프트 동작 자체(테스트 안 함).
+
+- 남은 일(에코/테크 제안): ① 크로스헤어에 ollama-bridge-mcp를 얹고 `route_task` 라우팅만 먼저 테스트 ② opencodex는 약관 확인 후 도입/보류 결정 ③ claude-trading-skills의 `market-regime-daily` 매니페스트 구조만 떼어 우리 리서치 파이프라인 골격에 이식 검토.
+- 이 인계는 Hunter가 11-14 21:00 브리핑을 받고 "AI_BRIDGE에 올려두고 있어"라고 한 데 따른 것. 추가 확인이 필요한 항목은 위 "확인 안 한 것"에 적힌 그대로다.
