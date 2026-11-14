@@ -440,7 +440,7 @@
   - [정보 공유] 1114 글로벌 투자·경제 전문가 소스 & 서브스택 총람 (Wrecker -> Echo/Tech)
     - Hunter 요청 원문: "다 아는데임"(국내 증권사·리서치 텔레그램), "근데 서브스택은 유료임", "더 찾아서 에코한테 보내삼"
     - 배경: Hunter는 메리츠·가치투자클럽 등 국내 리서치 텔레그램을 이미 전부 알고 있음. 그래서 한 단계 더 깊은 **해외 1차 소스**를 원하고, 유료 매체가 많다는 걸 알고 있으니 **무료로 볼 수 있는 비중**이 선택 기준이 됨.
-    - 결과물 위치: `docs/글로벌_투자_매크로_1차_리서치_및_서브스택_총람.md` (소스 약 78개, 2026-11-14 기준 주소·운영·무료/유료 확인)
+    - 결과물 위치: `docs/글로벌_투자_매크로_1차_리서치_및_서브스택_총람.md` (소스 항목 79개·고유 URL 79개, 2026-11-14 기준 주소·운영·무료/유료 확인)
     - 6개 묶음 요약:
       1. **중앙은행·기구·통계 1차(전부 무료)**: Liberty Street Economics, BIS Quarterly Review + BIS Data Portal, IMF GFSR, FEDS Notes, OFR 헤지펀드 모니터/브리프, CFTC COT, Kenneth French Library, Shiller Data(CAPE), FRED-MD, SPIVA, Damodaran 데이터.
       2. **운용사·바이사이드 공개 리서치**: Oaktree 메모, GMO, BlackRock BII, Apollo Daily Spark(매일 1장), PIMCO, DoubleLine, Bridgewater, Man Group, Robeco, AQR(+데이터 라이브러리), Research Affiliates, Verdad, Alpha Architect, JPM Guide to the Markets(분기 차트북 PDF 무료), Citi GPS, Morgan Stanley/Goldman 공개판, VIC(무료 가입 시 45일 지연 열람).
