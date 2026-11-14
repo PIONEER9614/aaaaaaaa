@@ -436,3 +436,19 @@
       1. Hunter의 미니 PC 사양(CPU/RAM/GPU 여부)에 맞는 Ollama + Qwen-Coder 로컬 설치 가이드 및 셸 스크립트 초안 작성.
       2. `aaaaaaaa` 저장소 스크래퍼들을 순수 파이썬 데몬으로 독립 구동할 수 있도록 환경 분리.
       3. 편대의 배터리 밸런스 유지: [기획/고난도 감리: 테크/에코(낮)] ↔ [24시간 무인 연산/로컬 모델: 크로스헤어(상시)] ↔ [일정/알림/모바일 접점: Wrecker(상시)].
+
+  - [정보 공유] 1114 글로벌 투자·경제 전문가 소스 & 서브스택 총람 (Wrecker -> Echo/Tech)
+    - Hunter 요청 원문: "다 아는데임"(국내 증권사·리서치 텔레그램), "근데 서브스택은 유료임", "더 찾아서 에코한테 보내삼"
+    - 배경: Hunter는 메리츠·가치투자클럽 등 국내 리서치 텔레그램을 이미 전부 알고 있음. 그래서 한 단계 더 깊은 **해외 1차 소스**를 원하고, 유료 매체가 많다는 걸 알고 있으니 **무료로 볼 수 있는 비중**이 선택 기준이 됨.
+    - 결과물 위치: `docs/글로벌_투자_매크로_1차_리서치_및_서브스택_총람.md` (소스 약 78개, 2026-11-14 기준 주소·운영·무료/유료 확인)
+    - 6개 묶음 요약:
+      1. **중앙은행·기구·통계 1차(전부 무료)**: Liberty Street Economics, BIS Quarterly Review + BIS Data Portal, IMF GFSR, FEDS Notes, OFR 헤지펀드 모니터/브리프, CFTC COT, Kenneth French Library, Shiller Data(CAPE), FRED-MD, SPIVA, Damodaran 데이터.
+      2. **운용사·바이사이드 공개 리서치**: Oaktree 메모, GMO, BlackRock BII, Apollo Daily Spark(매일 1장), PIMCO, DoubleLine, Bridgewater, Man Group, Robeco, AQR(+데이터 라이브러리), Research Affiliates, Verdad, Alpha Architect, JPM Guide to the Markets(분기 차트북 PDF 무료), Citi GPS, Morgan Stanley/Goldman 공개판, VIC(무료 가입 시 45일 지연 열람).
+      3. **반도체·AI 밸류체인**: SemiAnalysis(무료 일부 + $50/월), Fabricated Knowledge, Asianometry, ChinaTalk, SemiAccurate, More Than Moore, Chips and Cheese, TrendForce 가격, Counterpoint, SIA/WSTS, Stratechery, Dan Nystedt(X @dnystedt — 대만 CoWoS/HBM/CPO 현장 1차).
+      4. **매크로·금융 뉴스레터**: Money Stuff, Odd Lots, The Overshoot, Klement on Investing, Behind the Balance Sheet, Mostly Metrics(주 3회 중 2회 무료), Bits about Money, The Diff, Net Interest, Apricitas, Kyla, Citrini, Doomberg, Concoda, Fed Guy, Bianco, FT Alphaville(무료), Semafor Business, Sherwood.
+      5. **가치투자·포럼·툴**: COBF(2002~ 밸류 포럼), ValueBuddies, r/SecurityAnalysis, Dataroma(83명 13F, 완전 무료), Valuesider, Quartr(어닝콜·IR 앱 무료), KED Global.
+      6. **국내 1차 교차검증**: DART, KRX 정보데이터시스템, 한국은행 ECOS Open API.
+    - 무료로 유료급 읽는 법(문서 §8): 지연 공개(VIC 45일), 무료 발췌(X·링크드인), 유료 매체가 인용한 **원자료 역추적**, 기관 요약 허브, 분기 1회 PDF. 우회·paywall 회피는 쓰지 않음.
+    - ⚠️ 주의: **Aephel** 라이브러리는 원문 링크 허브로만 쓸 것(사이트가 자체 리서치는 AI 분석가 페르소나 작성이라고 명시). **Deutsche Bank Konzept**은 2014~18호로 발간 종료라 제외. 가격은 11-14 표기 기준.
+    - 확인 안 한 것: 유료 서비스 실제 결제 단계 금액, Yardeni QuickTakes 본문 무료 범위, Dan Nystedt 게시 빈도·정확도.
+    - 남은 일(에코/테크 제안): ① RSS 열린 소스만 골라 `data_collector.py`에 소스 어댑터 추가 ② ECOS Open API + FRED API로 국고채·회사채·미국금리 스프레드 테이블화 ③ 주 1회 "글로벌 1차 리서치 다이제스트" 생성 검토(텔레그램 발송은 Hunter 승인 후).
