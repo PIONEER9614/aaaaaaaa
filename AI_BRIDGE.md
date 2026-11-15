@@ -500,3 +500,98 @@
 
 - 남은 일(에코/테크 제안): ① 크로스헤어에 ollama-bridge-mcp를 얹고 `route_task` 라우팅만 먼저 테스트 ② opencodex는 약관 확인 후 도입/보류 결정 ③ claude-trading-skills의 `market-regime-daily` 매니페스트 구조만 떼어 우리 리서치 파이프라인 골격에 이식 검토.
 - 이 인계는 Hunter가 11-14 21:00 브리핑을 받고 "AI_BRIDGE에 올려두고 있어"라고 한 데 따른 것. 추가 확인이 필요한 항목은 위 "확인 안 한 것"에 적힌 그대로다.
+
+---
+
+## 🛰️ 2026-11-15 (10:00) 유튜버 MINDUNG 깃허브 핫 오픈소스 정리 — Wrecker -> Tech/Echo
+
+Hunter 지시 원문: "Mindung이라는 유튜버 좀 찾아서 최근에 올린 깃허브 핫한거 알려주던데 정리해서 테크한테 보내셈"
+
+채널 확인: **MINDUNG** = 유튜브 `@Mindung-EasyAI` 「민둥이 | 쉽게 배우는 AI」. 한국어 AI 뉴스·바이브코딩 채널(2025-07 개설, 영상 179개, 구독 약 3.9천). 아래 저장소 수치는 2026-11-15 10:0x KST에 `gh api`로 직접 조회한 값(별·포크·라이선스·기본 브랜치·최근 푸시)이고, 영상이 말한 내용은 자막 정리본으로 대조했다. **영상이 말한 수치와 저장소 실측이 다르면 둘 다 적었다.**
+
+### 0. 최신 영상 재확인 (브리프 지시 사항)
+- **11-01** 「개발자들이 지금 몰려간 오픈소스 TOP 14, 이건 필수템입니다 [10분 완벽 정리]」 https://www.youtube.com/watch?v=6xsWCTTrY5k — 이 인계의 본문 근거(11-01 트렌딩 14개).
+- **11-11** 「앤트로픽·메타·YC 대표가 전부 풀었다..오늘 깃허브에 풀어 버린 오픈소스 TOP 11 (11.10 트렌딩)」 — 11-01 이후 가장 최신 '깃허브 트렌딩' 롱폼이다. 다만 **영상 목록 자체는 확보 실패**(제목·게시일만 확인)라, 그 11개를 추측해서 옮겨 적지 않는다. 참고로 같은 날짜의 일간 트렌딩 집계 상위는 anthropics/skills · meta/astryx · sherlock-project/sherlock · google-deepmind/mujoco · anthropics/claude-quickstarts · garrytan/gbrain · vercel-labs/agent-browser · ruvnet/RuView · **ZhuLinsen/daily_stock_analysis** · homeassistant-ai/ha-mcp 였다(영상 내용이 아니라 별도 집계다).
+- **11-12** 「매주 깃허브 트렌딩에 올라오는 이유: 클로드 코드 개발자의 AI 노하우 25개」 — 애디 오스마니의 `addyosmani/agent-skills` 소개(★117,579 · MIT · JavaScript · 25개 스킬 · 2026-11-14 푸시). 명단에 포함했다.
+- 11-13 이후 업로드(클로드 미팅, AWS 에뮬레이터 등)는 깃허브 트렌딩과 무관해 뺐다.
+
+### 1. 편대에 바로 쓸 만한 5개 (Wrecker 선별)
+
+#### 1) Headroom — 크로스헤어 0토큰 전략에 직결되는 컨텍스트 압축
+- 주소: https://github.com/headroomlabs-ai/headroom (Apache-2.0, Python, ★79,675 · 포크 6,237 · 2026-11-14 푸시 · 문서 docs.headroomlabs.ai)
+- 무엇: 에이전트가 읽는 것(도구 출력·로그·RAG 청크·파일·대화 이력)을 **모델에 들어가기 전에** 압축. PyPI·npm `headroom-ai`로 배포되고 **라이브러리 / 프록시 / MCP 서버** 세 형태로 붙는다.
+- 자체 측정: 에이전트 시나리오 4종에서 입력 토큰 21~57% 감소, 반복 JSON 배열·로그 라인에서 90%+. README 히어로 예시는 55,957토큰 → 24,340토큰(핵심 `FATAL` 라인은 바이트 그대로 보존 주장). 영상(11-01 TOP10 쇼츠) 예시는 "1만 토큰대 → 1,200토큰, 검색 결과는 동일".
+- 왜 우리에게: 11-13 확정한 크로스헤어 철칙(클로드 쿼터 1바이트도 소모 금지 / 로컬 Ollama)과 같은 방향. 우리 수집 파이프라인의 증권 리포트·공시 원문을 요약 전에 통째로 프롬프트에 넣는 구조를 바꾸지 않고도 입력 토큰을 깎을 수 있다.
+- ⚠️ 주의: 압축이 **금액·수치·날짜 원문을 자를 수 있다**. 투자 리서치에서는 "같은 답"이라는 주장을 그대로 믿지 말고, 압축 전후 숫자 대조를 파이프라인에 넣을 것(내 판단). MCP 프록시로 물릴 때 어떤 프롬프트가 어디로 가는지 로그를 남긴다.
+- 확인 안 한 것: 우리 문서(한국어·표 중심)에서의 실제 절감률, 압축이 표 구조를 깨는지.
+
+#### 2) Lightpanda — 우리 크롤러(네이버·증권 리포트)에 쓸 수 있는 AI 전용 브라우저
+- 주소: https://github.com/lightpanda-io/browser (Zig, **AGPL-3.0**, ★42,044 · 포크 2,117 · 2026-11-15 푸시)
+- 무엇: 화면 렌더링을 아예 뺀 헤드리스 브라우저. 제작사 벤치마크로 100페이지를 크롬 2GB/46초 vs 라이트판다 123MB/5초. 페이지를 AI가 읽기 좋은 마크다운으로 변환, Puppeteer/Playwright 코드는 접속 주소만 바꿔 재사용, Claude Code에는 MCP 한 줄로 붙는다.
+- 핵심 성질: **한 번 해낸 탐색 과정을 스크립트로 저장해 두면 다음부터는 LLM 호출도 토큰도 없이 재실행**된다. 비밀번호는 자리표시자로만 남아 모델에 넘어가지 않는다. 사이트 호환성은 크롬의 약 80%라고 제작자가 스스로 밝힘(11-01 영상).
+- 왜 우리에게: 매일 같은 사이트를 도는 우리 수집(네이버 이웃 피드 요약, 증권사 리포트 목록)은 '한 번 배우고 무한 재실행'이 정확히 맞는 형태다. 크로스헤어에서 메모리 123MB로 24시간 상시 대기 가능.
+- ⚠️ 주의: **AGPL-3.0**. 우리가 수정본을 네트워크 서비스로 제공하면 소스 공개 의무가 생긴다. 내부 파이프라인에서만 쓰고 사내·외부에 서비스로 열지 않는 선에서. 그리고 80% 호환은 우리 대상 사이트(네이버 로그인·자바스크립트 많은 화면)에서 바로 깨질 수 있다.
+- 확인 안 한 것: 네이버·증권사 사이트에서의 실제 동작, 로그인 세션 유지 방식, 스크립트 재실행 기능의 안정성.
+
+#### 3) T3 Code — 테크/에코를 Hunter 폰에서 조종하는 화면
+- 주소: https://github.com/pingdotgg/t3code (MIT, TypeScript, ★60,612 · 포크 10,914 · 2026-11-15 푸시 · t3.codes · 최신 v0.1.8, 11-09)
+- 무엇: 이미 설치·로그인된 코딩 에이전트(Claude Code·Codex·Cursor·Grok Build·OpenCode·Antigravity·fx)를 **데스크톱·웹·휴대폰 앱**에서 조종하는 관리 화면. 대화마다 작업공간이 따로 생겨 여러 작업이 엉키지 않고, 변경 확인 후 클릭 한 번으로 PR을 올린다.
+- 중요: **구독·키를 대체하지 않는다**. 본인 계정으로 이미 로그인된 CLI를 그대로 쓴다(저장소가 못 박음). 이 점이 OpenCodex 때 걸렸던 '약관 위반 소지'와 결정적으로 다르다.
+- 왜 우리에게: Hunter는 안드로이드 폰이 주 접점이고, 노트북의 테크/에코 세션은 폰에서 보이지 않는다. T3 Code를 노트북에 띄우면 폰에서 진행 상황 확인·지시가 붙는다 — Wrecker(폰) + Tech/Echo(노트북) 사이의 접점을 브릿지 파일 말고 하나 더 얻는 셈.
+- ⚠️ 주의: v0.1.x이고 저장소가 "아직 버그가 있을 것"이라고 스스로 적었다. 떠 있는 서버를 외부에 열지 말고(터널·포트 노출 금지), LAN 또는 사설 접속으로만.
+- 확인 안 한 것: 안드로이드 앱 실물 동작, 윈도우(크로스헤어 말고 노트북) 설치 경험, 세션 동시 사용 시 쿼터 간섭.
+
+#### 4) Impeccable — 'AI 티' 검사를 모델 없이 규칙으로
+- 주소: https://github.com/pbakaus/impeccable (Apache-2.0, Rust, ★110,231 · 포크 6,573 · 2026-11-15 푸시. 영상(11-01)은 ★9만9천 기준)
+- 무엇: AI가 만든 웹 화면의 전형적 패턴(같은 글꼴, 그라데이션 글씨, 카드 안 카드)을 잡는 디자인 스킬. **검사기는 LLM을 쓰지 않고 규칙으로 판정** — 그래서 빠르고 결과가 매번 같고, 자동 검사에서 실패 처리해 배포 전에 막을 수 있다. 슬래시 명령 24개(polish·typeset·animate 등), 규칙 62가지, 4.8부터 PR 코멘트.
+- 왜 우리에게: 우리 리포트·대시보드의 화면 품질을 'AI가 만든 티' 없이 유지하는 데 쓸 수 있고, 무엇보다 **결정적(deterministic) 검사**라는 점이 우리 검수 문화(재현 가능한 판정)와 맞는다.
+- ⚠️ 주의: 웹 UI 전용. 우리 산출물 대부분(마크다운·HWP·PDF)에는 해당 없음. Rust 바이너리 설치 경로 확인 필요.
+- 확인 안 한 것: 우리 대시보드(있다면)에 실제 적용 결과, 설치 난이도.
+
+#### 5) Superpowers / Matt Pocock Skills — '순서 강제' 계열 (기존 규칙과 중복 주의)
+- Superpowers: https://github.com/obra/superpowers (MIT, Shell, ★317,655 · 포크 28,288). 코드부터 짜지 않고 아이디어 다듬기 → 계획 → 테스트 → 리뷰 순서를 강제. 영상: 설치 110만+ 돌파, 깃허브 전체 별 12위.
+- Matt Pocock Skills: https://github.com/mattpocock/skills (MIT, Shell, ★324,495 · 포크 27,235 · 2026-11-13 푸시). 구현 전 계획을 캐묻는 `grill-me` 계열, 최근 업데이트는 티켓마다 서브에이전트를 새로 띄워 맥락 혼합을 막음.
+- 왜 우리에게: 우리는 이미 브릿지 인계 규칙·검수 절차·"확인 안 한 것" 표기 규칙을 갖고 있다. **그래서 도입은 '설치'가 아니라 '우리 규칙에 흡수'** — 특히 grill-me식 사전 질문 목록은 내 인계장의 "남은 일/확인 안 한 것" 항목을 더 날카롭게 만드는 데 참고할 만하다.
+- ⚠️ 주의: 스킬을 그대로 깔면 노트북 세션의 프롬프트·훅이 늘어나 쿼터와 디버깅 부담이 커진다. 테크/에코 쿼터가 병목인 지금은 **선별 1~2개만**.
+- 확인 안 한 것: 우리 워크플로에 얹었을 때의 실제 이득(미측정).
+
+### 2. 검증 명단 — 영상에 나온 프로젝트의 실제 저장소 (2026-11-15 10:0x 조회)
+
+| 프로젝트 | 저장소 | ★ | 라이선스 | 한 줄 |
+|---|---|---|---|---|
+| Claude-Mem | https://github.com/thedotmack/claude-mem | 117,124 | Apache-2.0 | 세션 간 맥락 자동 기억. 최신 v15.18.3(11-12) |
+| Matt Pocock Skills | https://github.com/mattpocock/skills | 324,495 | MIT | grill-me 계획 캐묻기, 티켓별 서브에이전트 |
+| Claude Code Game Studios | https://github.com/Donchitos/Claude-Code-Game-Studios | 39,305 | MIT | 에이전트 49개(감독 Opus/실무 Sonnet), v1.3.0 |
+| T3 Code | https://github.com/pingdotgg/t3code | 60,612 | MIT | 다중 코딩 에이전트 한 화면 |
+| OpenMausBot | https://github.com/milind-soni/OpenMausBot | 22,777 | Apache-2.0 (`enterprise/` 별도) | 봇을 메신저 친구로, 승인 카드, 한국어 UI, v0.1.151 |
+| Impeccable | https://github.com/pbakaus/impeccable | 110,231 | Apache-2.0 | 규칙 기반 디자인 검사(모델 미사용) |
+| Superpowers | https://github.com/obra/superpowers | 317,655 | MIT | 작업 순서 강제 |
+| Lightpanda | https://github.com/lightpanda-io/browser | 42,044 | **AGPL-3.0** | Zig 헤드리스 브라우저 |
+| Orkas | https://github.com/Orkas-AI/Orkas | 9,353 | MIT | 지휘관이 목표를 작업 지도로 쪼개 16개 전문 에이전트에 배정, 한국어 화면, macOS/Windows |
+| Headroom | https://github.com/headroomlabs-ai/headroom | 79,675 | Apache-2.0 | 도구 출력·로그 압축, 프록시·MCP |
+| Ponytail | https://github.com/DietrichGebert/ponytail | 190,943 | MIT | '가장 게으른 시니어' 프롬프트. README 배지 자체 측정 -53% 코드·-41% 시간·-26% 비용 |
+| Graphify | https://github.com/Graphify-Labs/graphify | 147,786 | Apache-2.0 | 코드·문서·SQL·PDF를 로컬 AST 지식그래프로(벡터DB 없음). 기본 브랜치 `v8` |
+| Ruflo | https://github.com/ruvnet/ruflo | 81,714 | MIT | 멀티에이전트 오케스트레이션 + 적응형 메모리 |
+| gstack | https://github.com/garrytan/gstack | 141,580 | MIT | Garry Tan의 Claude Code 셋업 23개 툴(CEO/디자이너/EM/QA 역할) |
+| REA (Reverse Engineer Anything) | https://github.com/morluto/rea | 459,915 | MIT | 앱 동작~네이티브 바이너리 역분석 에이전트, rea.tools |
+| Cloudflare Security Audit Skill | https://github.com/cloudflare/security-audit-skill | 72,641 | MIT | 다단계 보안 감사 + 별도 에이전트 반박 검증. 마지막 푸시 2026-09-14 |
+| NVIDIA OpenShell | https://github.com/NVIDIA/OpenShell | 21,630 | Apache-2.0 | 에이전트 격리 런타임(파일·인터넷 정책, 키 비노출) |
+| Addy Osmani Agent Skills | https://github.com/addyosmani/agent-skills | 117,579 | MIT | 25개 스킬 묶음(11-12 영상 소재) |
+
+### 3. ⚠️ 보안·라이선스 — Hunter 보안 철칙 5조 연계 확인
+
+1. **Claude-Mem 15.2 설치 화면의 프롬프트 업로드 (가장 중요)**
+   - 영상(11-01) 주장: 15.2부터 설치 화면이 뜨자마자 지난 30일 프롬프트가 클로드멤 서버로 올라가고, 동의를 먼저 받도록 고치는 수정은 아직 반영되지 않았다.
+   - **원문 대조 결과**: 저장소 릴리스 노트 v15.2.0에 실제로 이렇게 적혀 있다 — "Scan — reads the last 30 days of supported local agent history … **Reveal — uploads the filtered owner prompts (gzip) to CMEM Cloud for hosted intent extraction**". 즉 업로드 단계는 실재한다. 최신은 v15.18.3(11-12)인데 그 노트에 '업로드 전 동의 게이트'를 넣었다는 문구는 없다. **따라서 '수정 반영됨'을 확인하지 못했다(미해결로 취급).**
+   - 별도 확인된 성질: 익명 사용 통계 기본 켜짐, 설치 중 호스팅 관찰 기능을 고르면 **카드 등록이 필요한 30일 무료 체험**이 시작됨. 공급자 옵션·환경변수를 지정하면 계정 없이 설치 가능하다고 README가 안내.
+   - 결론(권고): 노트북 세션 기억이 급하면 계정·클라우드 없이 로컬 전용으로만 설치하고, **설치 브라우저 플로우의 업로드 단계는 거부**, 결제 화면은 절대 넘기지 말 것. 테크/에코가 이미 쓰고 있다면 `~/.claude-mem` 내용과 전송 설정부터 점검.
+2. **REA — 라이선스와 권한은 별개**
+   - 저장소는 MIT(★459,915 · 포크 112,723, 생성 2026-04-14). 하지만 MIT는 '코드 사용 허가'일 뿐이고, **역분석 대상 앱의 약관·저작권은 그 앱 것이 따로**다. 우리 진행 중인 교보 eBook DRM 캡처 건에 REA류를 붙이면 그 자체가 약관 위반 소지가 된다. 우리 원칙(허용된 대상만)은 그대로.
+   - 같은 이름의 사칭·포크가 많다(NabilRFG12/Reverse-Engineer-anything, aicodeking/leanrea 등). **원 저장소 `morluto/rea`만** 본다.
+3. **Lightpanda AGPL-3.0** — 수정본을 네트워크 서비스로 제공하면 소스 공개 의무. 내부 수집용으로만.
+4. **OpenMausBot** — 본체 Apache-2.0이지만 `enterprise/` 폴더는 별도 라이선스(운영 환경 사용 시 라이선스 키 필요).
+5. **anthropics/skills** — GitHub API 라이선스 값이 비어 있고 루트 LICENSE 없음. README는 Apache 2.0 안내, 폴더별로 다름. 가져다 쓸 때 폴더별 확인.
+
+### 4. 확인 안 한 것 / 남은 일
+- 확인 안 한 것: ① 위 저장소 중 **설치·실행은 0건**(전부 README·릴리스 노트·API 조회 기준) ② 11-11 영상(11.10 트렌딩 TOP 11)의 11개 목록 ③ Lightpanda의 네이버·증권사 사이트 호환 ④ Headroom의 한국어·표 문서 절감률 ⑤ T3 Code 안드로이드 앱 실물.
+- 남은 일(테크/에코 제안): ① Headroom을 우리 수집 파이프라인 요약 단계 앞에 MCP로 붙여 전후 숫자 대조 ② Lightpanda를 네이버 이웃 피드 수집 1건에만 시험(AGPL 경계 = 내부용) ③ T3 Code는 노트북 로컬에서만 띄워 폰 접속 확인 ④ Claude-Mem은 위 1번 조건(로컬·업로드 거부) 충족 전까지 도입 보류 ⑤ Impeccable은 대시보드 생길 때.
