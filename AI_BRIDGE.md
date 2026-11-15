@@ -677,3 +677,50 @@ Hunter 추가 지시(11-15 10:05): MINDUNG 오픈소스 정리와 함께 '깃허
 
 - 확인 안 한 것(전체): 4개 모두 **설치·실행 0건**(README·릴리스·API 조회 기준). 한국 종목 실행 검증 0건. 별 수치는 11-15 10:0x 조회값.
 - 남은 일(테크/에코 제안): ① TradingAgents를 크로스헤어에서 Ollama로 **스모크 테스트 1회**(`NVDA` + `005930.KS` 둘 다 시도해 한국 경로가 실제로 도는지 판정) ② daily_stock_analysis의 Telegram 발송 모듈만 떼어 우리 Actions 골격과 비교 ③ FinceptTerminal은 설치본만 열어 화면 참고 ④ 4개 약관·라이선스 확인 후 도입/보류 판정(Hunter 승인 후 진행).
+
+## 🆓 2026-11-15 (11:50) FreeLLMAPI 크로스헤어·테크 후보 인계 — Wrecker -> Tech
+
+Hunter 승인(11-15 11:50): 크로스헤어 세팅 후보로 테크에게 브릿지에 올려 둘 것 — "ㅇㅇ".
+별·포크·생성일·푸시일·라이선스·릴리스는 2026-11-15 11:5x KST `gh api repos/tashfeenahmed/freellmapi`·`gh release view` 직접 조회값이고, 기능·제약은 저장소 **README.md 원문**과 **`docs/en/architecture/00-high-level-index.md` 원문** 대조값이다. **설치·실행은 안 했다.**
+
+| 항목 | 값 |
+|---|---|
+| 주소 | https://github.com/tashfeenahmed/freellmapi (홈페이지 https://freellmapi.co) |
+| 규모 | ★52,391 / 포크 7,331 / 열린 이슈 53 |
+| 라이선스 | MIT — 라우터 본체는 영구 무료, 유료는 카탈로그 피드뿐 |
+| 언어·일정 | TypeScript · 2026-04-21 생성 · 2026-11-14 10:23Z 푸시 |
+| 최신 릴리스 | **v0.16.29 (2026-11-14 10:39Z)** — `FreeLLMAPI-Setup-0.16.29.exe`(윈도우), macOS arm64/x64 dmg·zip, Linux AppImage·deb·rpm, win.zip 첨부 확인 |
+| 한 줄 | 87개 제공자의 무료 티어 + 로컬 Ollama·커스텀 엔드포인트를 `http://localhost:3001/v1` **단일 OpenAI 호환 엔드포인트**로 묶는 자체 호스팅 라우터 |
+
+### 무엇을 하는 물건인가 (README 원문 기준)
+- **통합 엔드포인트**: 아무 OpenAI 클라이언트나 `base_url=http://localhost:3001/v1` + 통합 키(`freellmapi-…`) 하나로 붙는다. 클라이언트는 제공자 키를 볼 일이 없다.
+- **열려 있는 표면**: `/v1/chat/completions` 외에 `/v1/responses`(Codex CLI가 쓰는 형식), `/v1/completions`, **`/v1/messages`(Anthropic Messages 형식 — 클로드 코드·Anthropic SDK를 그대로 물릴 수 있다)**, `/v1/embeddings`, `/v1/images|videos|audio/generations|speech|transcriptions`, `/v1/models`. Gemini `/v1beta`와 Ollama NDJSON 흉내는 옵트인.
+- **규모(저장소 표기값)**: 87개 제공자 / 736개 모델 패밀리 / **1,313개 무료 엔드포인트** / 월 약 **101억 토큰** 상당. 제공자 예: Google, Groq, Cerebras, Mistral, OpenRouter, Cloudflare, NVIDIA, HuggingFace, Cohere, Z.ai(Zhipu), ModelScope Qwen3·DeepSeek V4·GLM-5 등 + "75개 더". **이 숫자는 README·freellmapi.co 표기값이고 내가 개별 검증한 수는 아니다.**
+- **라우팅 6전략**: 요청마다 모델별 속도·능력·신뢰도 점수를 매기고 Thompson 샘플링 밴딧으로 순위를 정한다. `model="auto"`, `auto:fast`, `auto:smart`, 이름 붙인 프로파일(코딩 체인·비전 체인).
+- **자동 페일오버(핵심)**: Fallback Chain 순서대로 "키가 건강하고 모든 한도 밑인" 최우선 모델을 고르고, 호출이 **429(한도)·5xx면 그 키를 쿨다운에 넣고 다음 순위 모델로 즉시 재시도**한다. 요청당 최대 20회 시도, 벽시계 예산 안에서. 상위 체인이 일일 한도를 다 쓰면 다음 티어로 내려가고 UTC 자정에 리셋.
+- **한도 원장**: `(플랫폼, 모델, 키)` 단위 **RPM/RPD/TPM/TPD** 카운터를 SQLite 원장에 남기고 제공자가 보고한 상한을 학습해 항상 한도 밑으로 유지한다.
+- **키 관리**: 제공자 키는 SQLite에 **AES-256-GCM 암호화**로 저장하고 요청 시 메모리에서만 복호화. 앱은 통합 토큰 하나만 본다. 키 상태 주기 점검, `.env` 대량 import/export.
+- **부가**: `fusion` 가상 모델(여러 무료 모델 병렬 초안 → 심판 모델 합성), 30분 고정 세션 + 컨텍스트 인계, 옵트인 프롬프트 압축, 응답 캐시, `/mcp` MCP 서버, 응답마다 `X-Routed-Via` 헤더로 실제 서빙 제공자 표시, 대시보드 60개 언어.
+
+### 크로스헤어에 왜 맞는가
+- 11-13 확정한 **크로스헤어 3대 철칙 1번(클로드 쿼터 1바이트도 소모 금지)**과 방향이 같다. 외장 GPU 없는 미니 PC(솔로탑 3미니2)에서 로컬 7B 속도가 병목일 때, **클로드/ChatGPT 유료 쿼터를 한 토큰도 안 쓰고** 무료 클라우드 API + 로컬 Ollama를 한 엔드포인트로 섞어 쓰는 용도.
+- 상시 구동 부담이 작다: README 기준 **Node 20+만 있으면 어디서나**(Windows·macOS·Linux·라즈베리파이) 돌고 **유휴 시 RSS 약 40MB**. PM2·systemd·윈도우 작업 스케줄러에 얹기 좋다.
+- 설치 경로 세 가지(README 원문): ① **윈도우는 Releases의 `.exe` 설치본** — 크로스헤어가 윈도우라 이게 제일 간단 ② Docker 원라이너 `curl -fsSL https://freellmapi.co/install.sh | bash` ③ `npm install && npm run dev`. 대시보드는 `http://localhost:3001`에서 열리고, 그 화면 **Keys**에서 제공자 키를 넣고 **Fallback Chain** 순서를 바꾼다.
+- **에이전트 연결**: `npx freellmapi launch`(클로드 코드) / `launch-codex`(Codex)가 **설정 파일에 자격증명을 남기지 않고** 띄운다. `npx freellmapi setup-claude --url http://localhost:3001 --api-key <통합키>`는 기존 설정을 백업하고 병합한다. Claude Code·Codex CLI·Gemini CLI·Cursor·Cline·Roo Code·OpenCode·Aider 등이 지원 목록에 있다.
+
+### ⚠️ 주의 / 제한 (여기부터가 테크가 판정할 몫)
+1. **무료 API 키를 제공자마다 최초 1회 발급해야 한다.** README에 신용카드 요구는 없지만 **제공자마다 가입·키 발급 절차가 다르고 일부는 국가·신원 제한이 있다.** 87개를 다 채우는 구조가 아니라 3~5개만 채워도 굴러간다.
+2. **프론티어 모델은 없다 — README §Limitations 원문이 정면으로 말한다.** 카탈로그에 GPT-5.x·Grok 4.x·Kimi K3·Gemini 3.x 행은 있지만 "지속적 접근(sustained access)"은 없고, 특히 **상위 모델일수록 일일 한도가 작아 하루가 지날수록 답 품질이 떨어지고 UTC 자정(=한국 09:00)에 리셋**된다. 지연시간 편차 크고 SLA 없음. → **밤샘 대량 생성·잡일에는 맞고, 펀더멘털 추론·최종 판단에는 안 맞는다.**
+3. **카탈로그 30일 지연**: 무료 설치는 서명된 월간 스냅샷을 받아 새 모델이 **30일 뒤에** 들어온다(지금 라이브 피드보다 약 303개 뒤짐). 실시간은 연 $19 또는 $49 평생 프리미엄. **README가 "무료판도 아무것도 만료·기능 제한 없음"이라고 밝히므로 무료판으로 충분 — 결제 금지.**
+4. **약관 — 저장소가 자체 검토표를 싣고 있다**(2026-05 재검토, `docs/en/architecture/00-high-level-index.md`). 원문 요지: **Cohere ❌**(§14 "개인·가족·가구 목적 금지") / **Google Gemini·NVIDIA NIM·Z.ai ⚠️**(Gemini 2026-03 약관이 "소비자용 아님, 전문·사업 목적"으로 좁힘, NIM은 "평가용, 프로덕션 금지") / Cloudflare ⚠️모호 / **Groq·Cerebras·Mistral·OpenRouter·Zhipu ✅가능성 높음**. 저장소가 정한 권고 규칙: **제공자당 계정 1개, 재판매 금지, 다른 사람에게 엔드포인트 공유 금지, 유료 프로덕션 백엔드처럼 갈아넣지 말 것**. 저장소도 "정보 제공일 뿐 법률 자문 아님"이라고 적는다.
+   - **우리 편대에 걸리는 지점(내 판단 — 확인 필요)**: 우리는 한 사람의 여러 에이전트(테크·에코·크로스헤어)가 한 라우터를 쓰는 형태다. "다른 사람에게 공유 금지"의 '사람'을 문자 그대로 보면 판정이 흐려진다. **외부인에게 포트를 열지 말고 `127.0.0.1`만 바인딩**하는 것을 전제로, 테크가 약관 원문과 함께 판정할 것.
+5. **단일 사용자 설계**: 멀티테넌트 인증이 없다. README 원문 "Run this for yourself; don't expose it to the internet." → **LAN·인터넷에 열지 말 것.** 서버 설치(Docker·소스 실행)는 대시보드 이메일+비밀번호 계정이 생기고, 잊으면 **서버 로그에 찍히는 일회 코드(15분 유효)**로 재설정한다 — **로그를 공개 저장소에 붙이지 말 것.**
+6. **철칙 1 위반 방지선**: `launch`·`setup-claude`는 **Claude Code라는 클라이언트**를 띄우는 것이고 추론은 무료 제공자로 간다 — Anthropic 쿼터는 안 쓴다. 단 **커스텀 제공자에 Anthropic 키·구독을 절대 넣지 말 것**(넣으면 철칙 1이 깨진다). 그리고 이 명령은 **설정 파일을 백업·병합하므로 테크/에코가 쓰는 노트북에서는 실행하지 말고 크로스헤어에서만** 할 것.
+7. **개인 실험용 명시**: README §Disclaimer 원문 "for personal experimentation and learning, not production … swap in a paid API before you ship." 각 제공자와의 관계는 **선렬님이 그 계정을 만들 때 동의한 약관**이 지배한다.
+
+### 기존 브릿지 기록과의 숫자 차이 (정정)
+- 11-13 〈달비의 작업실〉 정리(이 문서 264행·285행)에 "**34개 제공사 / 635개 무료 엔드포인트**"로 적혀 있는데, 그건 유튜브 요약을 옮긴 값이다. 저장소가 지금 스스로 표기하는 값은 **87개 제공자 / 1,313개 엔드포인트**(v0.16.29 README·freellmapi.co)다. 앞으로 이 숫자는 최신값 기준으로 볼 것.
+
+- **확인 안 한 것**: 설치·실행 0건(README·docs·API·릴리스 조회만). 크로스헤어(윈도우 미니 PC) 실동작, `.exe` 설치본의 코드 서명·백신 반응, 로컬 Ollama와 무료 클라우드 모델을 섞었을 때의 실제 지연·품질, 제공자별 가입 난이도와 국내 접근 가능성, 계정 1개로 여러 에이전트를 돌릴 때의 약관 판정. 별·포크 수치는 2026-11-15 11:5x 조회값.
+
+- **테크에게 남기는 판정 요청(내 제안 — 선렬님 승인 후 진행)**: ① 크로스헤어에 `.exe`로 설치하고 약관이 무난한 제공자 3곳(Groq·Cerebras·OpenRouter/Mistral)만 키를 넣어 `auto` 라우팅 스모크 테스트 1회 ② `/v1/messages`로 Claude Code가 실제로 붙는지 + **Anthropic 쿼터가 안 줄어드는지** 확인 ③ 약관 판정 — 위 4번의 "다른 사람 공유" 조항과 Gemini·NVIDIA 경고를 우리 편대 구성에 대입 ④ 우리 수집 파이프라인의 잡일(요약·분류·태깅)을 이 엔드포인트로 돌릴 때와 로컬 Qwen-Coder 단독일 때의 품질·속도 비교.
