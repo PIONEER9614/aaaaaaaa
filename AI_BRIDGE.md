@@ -595,3 +595,85 @@ Hunter 지시 원문: "Mindung이라는 유튜버 좀 찾아서 최근에 올린
 ### 4. 확인 안 한 것 / 남은 일
 - 확인 안 한 것: ① 위 저장소 중 **설치·실행은 0건**(전부 README·릴리스 노트·API 조회 기준) ② 11-11 영상(11.10 트렌딩 TOP 11)의 11개 목록 ③ Lightpanda의 네이버·증권사 사이트 호환 ④ Headroom의 한국어·표 문서 절감률 ⑤ T3 Code 안드로이드 앱 실물.
 - 남은 일(테크/에코 제안): ① Headroom을 우리 수집 파이프라인 요약 단계 앞에 MCP로 붙여 전후 숫자 대조 ② Lightpanda를 네이버 이웃 피드 수집 1건에만 시험(AGPL 경계 = 내부용) ③ T3 Code는 노트북 로컬에서만 띄워 폰 접속 확인 ④ Claude-Mem은 위 1번 조건(로컬·업로드 거부) 충족 전까지 도입 보류 ⑤ Impeccable은 대시보드 생길 때.
+
+---
+
+## 📊 2026-11-15 (10:05) 깃허브 기업·주식 분석 오픈소스 4대장 — Wrecker -> Tech
+
+Hunter 추가 지시(11-15 10:05): MINDUNG 오픈소스 정리와 함께 '깃허브 기업·주식 분석 오픈소스 4대장'도 같이 테크에 넘길 것.
+별·포크·라이선스·기본 브랜치·최근 푸시는 2026-11-15 10:0x KST `gh api` 직접 조회값, 기능 설명은 각 저장소 **README 원문 대조**다. (4개 모두 실제 설치·실행은 안 했다.)
+
+| 순서 | 저장소 | ★ / 포크 | 라이선스 | 시장 범위 | 우리에게 |
+|---|---|---|---|---|---|
+| 1 | TauricResearch/TradingAgents | 122,598 / 23,485 | Apache-2.0 | 미국 중심(EDGAR)+Yahoo 전 시장 | **미국 펀더멘털 깊이의 기준선**, Bull/Bear 강제 |
+| 2 | ZhuLinsen/daily_stock_analysis | 72,262 / 57,476 | MIT | A·HK·US·JP·**KR**·TW + ETF | **한국 종목까지 명시 지원**하는 유일한 후보, 발송 골격 |
+| 3 | virattt/ai-hedge-fund | 64,679 / 11,382 | MIT | 미국 | 대가 페르소나 설계 표본(교육용) |
+| 4 | Fincept-Corporation/FinceptTerminal | 33,803 / 4,849 | **AGPL-3.0** | 글로벌(데스크탑 터미널) | 터미널 UX 참고, 코드 반입 금지 |
+
+### 1. TradingAgents — 트레이딩 데스크를 흉내 내는 멀티에이전트 (미국 1차 소스급)
+- 주소: https://github.com/TauricResearch/TradingAgents (Apache-2.0 · Python · 2024-12-28 생성 · 2026-11-04 푸시 · https://tauric.ai · 논문 arXiv 2412.20138 · 최신 v0.7.1(2026-10))
+- 구조:
+  - **Analyst 팀 4명** — 펀더멘털(내재가치·적신호), 감성(뉴스 헤드라인 + StockTwits + Reddit), 뉴스(글로벌 뉴스·매크로 지표), 기술적(MACD·RSI). 넷이 **동시에** 각자 도구로 돌고, 보고서가 다 모이면 토론이 시작된다(README 원문: "The selected analysts work at the same time, each on its own tools, and the research debate starts once all of their reports are in").
+  - **Researcher 팀 = Bull vs Bear 토론** → Trader → 리스크 팀 → **Portfolio Manager(구조화 출력)**. LangGraph 체크포인트로 중단·재개, 결정 로그 영구 보관, 라운드 수 제한(`TRADINGAGENTS_MAX_DEBATE_ROUNDS`).
+  - **시점 무결성(point-in-time)**: 백테스트는 각 분석일까지 공개된 데이터만 본다. v0.7.1이 "실행일 이후 공시를 읽을 수 있던 모델 날짜" 버그를 고쳤고, v0.7.1은 결정 채점을 종가 기준·휴장일 넘김으로 정리.
+  - 데이터: **SEC EDGAR 공시를 접수된 그대로(as filed)**, FRED 매크로, Polymarket, Alpha Vantage, Yahoo. (v0.5.0 "SEC EDGAR fundamentals served as filed" / v0.6.0 "FRED and Polymarket data vendors")
+  - 모델: **티어별 제공자 지정 가능**(매니저와 애널리스트를 다른 모델로). `TRADINGAGENTS_QUICK_THINK_LLM` / `TRADINGAGENTS_DEEP_THINK_LLM` 분리.
+- **크로스헤어 직결 경로 (핵심)**: `llm_provider: "ollama"`, 기본 엔드포인트 `http://localhost:11434/v1`, `OLLAMA_BASE_URL`로 **원격 `ollama-serve`** 지정 가능. OpenAI 호환 서버(vLLM·LM Studio·llama.cpp)도 `openai_compatible`로 붙는다.
+- **구독 모드**: `llm_provider: "chatgpt"` + `tradingagents login chatgpt`(브라우저 주소 왕복, 인증은 `~/.tradingagents/chatgpt-auth.json`, `logout`으로 폐기). 단 **실행이 플랜 사용 한도에 그대로 잡히고**, 플랜은 `temperature`/`max_tokens`를 받지 않는다.
+- 왜 우리에게: 우리 가치사슬·종목 리서치에 없는 **'반대편 논리 강제(Bear 연구원)'**가 구조에 박혀 있다. 미국 종목이면 EDGAR as-filed라 DART 파이프라인과 같은 급의 1차 소스를 쓴다.
+- ⚠️ 주의:
+  1. README 스스로 "연구용, 금융·투자·매매 조언 아님". **자동주문 없음**. 우리 규칙(주문 연동 금지)은 그대로.
+  2. 1회 실행 비용이 크다 — 애널리스트 4 + 리서처 토론 + 트레이더 + 리스크 + PM. 기본 모델이 GPT-6 Sol/Luna다. 크로스헤어 로컬로 태우면 0원이지만 **소형 로컬 모델의 펀더멘털 추론 품질은 미검증**(내 판단: 보고서 생성은 로컬, 토론·최종 판단은 클라우드로 분리하는 게 안전).
+  3. 구독 모드(`chatgpt`)는 저장소가 공식 안내하는 기능이지만, **서드파티 클라이언트가 구독 쿼터를 쓰는 것이 OpenAI 약관상 허용되는지는 확인 안 했다** — 테크가 약관 원문 확인 후 결정. (OpenCodex 때와 같은 종류의 확인 사항이다.)
+  4. 시작 시 하루 1회 업데이트 체크 통신이 있다(실행 정보는 안 보낸다고 명시). `TRADINGAGENTS_NO_UPDATE_CHECK=1`로 끌 수 있다.
+- **한국 종목 — 여기가 한계다**:
+  - README §Markets의 예시는 US(`AAPL`), 홍콩(`0700.HK`), 도쿄(`7203.T`), 런던(`AZN.L`), 인도(`.NS/.BO`), 캐나다(`.TO`), 호주(`.AX`), 중국 A(`.SS/.SZ`), 크립토(`BTC-USD`)뿐이고 **한국(.KS/.KQ)은 목록에 없다**. 규칙은 "Yahoo Finance가 커버하는 시장이면 되고 거래소 접미사 티커를 쓴다"이므로 `005930.KS`가 이론상 통과하지만 **실행 검증은 0건**.
+  - 더 중요한 건 깊이다. README 원문: "Other companies' statements come from Yahoo Finance, which dates a statement by the period it covers rather than by when it was published. A run dated today reads them; **a run dated in the past is told they are withheld**, since Yahoo cannot say which figures were public by then." → **한국 종목은 EDGAR 비등가 경로(Yahoo)라 펀더멘털 깊이가 얕고, 과거 시점 백테스트에서는 재무제표가 아예 가려진다.**
+- 확인 안 한 것: 한국 종목 1회 실행 성공 여부, 로컬 Ollama 조합의 리포트 품질, 1회 실행 토큰·소요시간, 윈도우(크로스헤어/노트북) 동작.
+
+### 2. daily_stock_analysis — 한국 종목을 명시 지원하는 유일한 후보 (단, 깊이는 얕음)
+- 주소: https://github.com/ZhuLinsen/daily_stock_analysis (MIT · Python · 2026-01-10 생성 · 2026-11-14 푸시 · https://dsa.zhulinsen.tech · arXiv 2608.26990 · 문서 1차 언어 중국어)
+- 무엇: A주·홍콩·미국·일본·**한국**·대만 + ETF 자쥬(自选股) 데일리 분석 → '의사결정 대시보드'(핵심 결론·점수·추세·매수매도 포인트·리스크 경고·촉매·체크리스트)를 **기업위챗/페이슈/Telegram/Discord/Slack/메일**로 푸시. 실행은 **GitHub Actions·Docker·로컬 cron·FastAPI**. 웹/데스크톱 워크벤치(수동분석·진행률·이력·Markdown·백테스트·보유·설정), 내장 전략 15종(이동평균·缠论·파동·추세·이벤트·성장 등), 이미지·CSV·엑셀 가져오기.
+- **한국 종목 경로 (문서 `docs/market-support.md` 원문 대조)**:
+  - `005930.KS`(KOSPI)·`247540.KQ`(KOSDAQ) **접미사 직접입력 = suffix-only MVP**. 웹 자동완성에 한국/일본 주요 종목 시드 인덱스가 들어 있고, 이름·별칭 검색도 된다.
+  - 일봉·기본 시세는 **`YfinanceFetcher`만** 사용. A주 전용 소스(AkShare·Tushare·Efinance·Pytdx·Baostock)는 한국에 시도하지 않는다.
+  - 지수: KOSPI `^KS11`, KOSDAQ `^KQ11`. 거래소 캘린더에 `kr: XKRX / Asia/Seoul` 등록, **15:20~15:30 종가 동시호가**·장전·장후·휴장을 인식.
+  - 프롬프트에 한국 시장 의미를 따로 넣어 A주 개념(상한가·북향자금·용호방)을 잘못 적용하지 않게 했다고 문서가 밝힘.
+- ⚠️ 주의:
+  1. **한국은 '접미사 MVP'다.** 펀더멘털은 해외 yfinance 경량 경로를 재사용하고, A주 전용 기능(자금흐름·용호방·업종)은 한국에서 `not_supported`로 강등된다. yfinance 응답에는 `market`·`currency`·`data_quality`·`missing_fields`·`provider` 메타가 붙으므로 **화면의 점수를 그대로 믿지 말고 품질 메타를 같이 봐야 한다.**
+  2. UI·문서가 중국어 우선. 푸시 대상도 위챗·페이슈 중심이라 한국어 리포트 포맷은 우리가 손봐야 한다.
+  3. README 상단에 유료 API 제휴 링크(Modelflare·AIHubMix)가 붙어 있다 — **결제 유도 문구는 무시**하고 무료 경로(GitHub Actions + 본인 LLM 키)로만.
+  4. 포크 57,476이 별 72,262에 근접한다. Actions 템플릿으로 포크해 쓰는 구조 때문으로 **보인다**(내 추정 — 확인 안 함).
+- 왜 우리에게: 우리가 이미 쓰는 형태(**GitHub Actions + 스케줄 + Telegram**)와 같은 골격이고, 무엇보다 **한국 종목을 Yahoo 접미사로 돌리는 유일한 검증 후보**다. 다만 '한국 리서치 대체'가 아니라 **'발송·스케줄 골격 차용'**이 맞는 용도다.
+- 확인 안 한 것: 한국 종목 실제 리포트 품질, Telegram 발송 실동작(우리는 발송 전 Hunter 승인 규칙), Actions 1회 실행 시간·LLM 비용, 한국어 출력 품질.
+
+### 3. ai-hedge-fund — '대가 페르소나'가 프롬프트일 뿐임을 코드로 보여주는 표본
+- 주소: https://github.com/virattt/ai-hedge-fund (MIT · Python · 2024-11-29 생성 · 2026-11-09 푸시)
+- 무엇: `pipx install aihf` → `aihf`. 현재 구조는 `hedge_fund/signals/`의 페르소나별 LLM 분석기 — `buffett.py`·`munger.py`·`lynch.py`·`graham.py`·`druckenmiller.py`·`pead.py`(실적발표 후 드리프트) + 공통 `llm_agent.py`.
+  - `buffett.py` 주석 원문: "The persona is ONLY a system prompt — all machinery lives in LLMAgent; all data comes from the point-in-time FundamentalsSnapshot." 즉 **인격은 프롬프트 한 장이고 데이터는 시점 고정 스냅샷**이라는 걸 코드가 그대로 말한다.
+  - 페이퍼 트레이딩: 해시 체인 원장(`~/.hedge-fund/paper/<name>/`), 다음 세션 실행 전 **체결될 결정을 먼저 보여주는 승인 단계**, kill switch(`h`/`r`)까지 있다. 백테스트는 벤치마크 대비 자산곡선으로 `~/.hedge-fund/research/`에 저장, 펀드 정의는 `~/.hedge-fund/mandates/`.
+- ⚠️ 주의:
+  1. README 첫 줄부터 "**educational** … not intended for real trading or investment", 본문에 "the system does not actually make any trades", VISION.md: 페르소나는 실제 인물이 아니고 보증도 아니다. 우리도 '분석 보조'로만.
+  2. 데이터는 **Financial Datasets API 키**가 필요하다. 없으면 **USDC 지갑 x402로 호출당 결제**(최근 365일, 비전문가용). 즉 무료가 아니다.
+  3. FundamentalsSnapshot이 미국 시장 중심 → 한국 종목에는 사실상 못 쓴다.
+- 왜 우리에게: 페르소나 토론을 우리 리서치에 넣을 때 **'프롬프트와 데이터 계약 분리'** 설계를 그대로 배낄 수 있고, 해시 체인 원장은 판단 복기 로그에 참고할 만하다. (돈·주문이 걸린 곳에 페르소나를 붙이는 사고를 막는 표본이기도 하다.)
+- 확인 안 한 것: 최신 버전의 페르소나 구성 변화 상세(디렉터리 기준 6종 확인), 한국 종목 지원 여부(없음으로 봄), x402 결제 실사용 비용.
+
+### 4. FinceptTerminal — 터미널 UX 참고용, 코드 반입은 AGPL 주의
+- 주소: https://github.com/Fincept-Corporation/FinceptTerminal (**AGPL-3.0** · C++20/Qt6 + Python 3.11 · 2024-08-29 생성 · 2026-11-13 푸시 · https://fincept.in)
+- 무엇: 오픈소스 '블룸버그 터미널' 컨셉 데스크탑 앱. 시장 분석·투자 리서치·경제 데이터 탐색 + AI 리서치 에이전트.
+- 배포 확인: 최신 **v4.5.2(2026-11-09)** 릴리스에 `windows-x64-setup.exe`, `macos-arm64-setup.dmg`, `linux-x64`(.deb/.rpm/.run) 설치본이 실제로 첨부돼 있다(확인).
+- ⚠️ 주의:
+  1. **AGPL-3.0** — 수정본을 네트워크 서비스로 제공하면 소스 공개 의무. 우리 파이프라인에 코드를 복사하는 방식은 피하고 **화면·워크플로 참고용**으로만.
+  2. README가 유료 상향을 크게 민다: Enterprise 월 $15/$30/$45(user/mo), 별도 Quantcept(무료 350크레딧, Alpha $3/30일, Apex $8/30일, 학생 Apex $5). 오픈소스 본체는 AGPL로 무료지만 **기능 경계가 유료판에 있다**는 뜻 — 결제 버튼은 건드리지 않는다.
+  3. C++/Qt6 빌드는 무겁다. 크로스헤어에서 상시 구동은 부담이고, 설치본으로만 쓰는 게 맞다.
+- 확인 안 한 것: 설치본 실행·화면 품질, 무료판에서 AI 리서치 에이전트가 어디까지 되는지, 데이터 소스의 무료/유료 경계.
+
+### 5. 결론 — 우리 파이프라인 기준 제안 (Hunter 승인 필요, Wrecker 판단)
+1. **미국 종목**: `TradingAgents` + 크로스헤어 Ollama(`llm_provider: "ollama"`, 원격 `OLLAMA_BASE_URL`)로 **야간 무인 다중 페르소나 1차 검증** 실험. 최종 판단 모델은 클라우드(테크/에코 낮 시간)로 분리해 쿼터와 품질을 나눈다. 검증 종목은 이미 우리가 보는 미국 종목 1개로 좁혀서.
+2. **한국 종목**: 두 후보 다 **Yahoo 기반이라 깊이가 EDGAR 경로보다 얕다**(TradingAgents는 과거 시점 실행에서 재무제표가 withheld, daily_stock_analysis는 yfinance 경량 경로). 그래서 한국은 **기존 DART·KRX 정보데이터시스템·증권 리포트 파이프라인을 1차로 유지**하고, 위 도구는 ① 뉴스·감성 수집 ② 데일리 발송 골격 ③ **반대논리(Bear) 생성**에만 붙인다.
+3. **DART로 깊이를 메우는 조합(제안)**: DART 공시 원문을 로컬 지식그래프(`Graphify-Labs/graphify`, Apache-2.0, 벡터DB 없이 로컬 AST·문서 파싱)로 물려 RAG를 만들고, 그 결과를 TradingAgents의 펀더멘털 애널리스트 입력으로 넣는 구조. Yahoo의 얕음을 **우리 1차 소스로 대체**하는 방향이다. (내 제안 — 검증 전)
+4. **하지 않을 것**: 자동 주문 연동, 유료 API 결제·구독 전환, AGPL 코드 반입, 구독 쿼터 우회 경로.
+
+- 확인 안 한 것(전체): 4개 모두 **설치·실행 0건**(README·릴리스·API 조회 기준). 한국 종목 실행 검증 0건. 별 수치는 11-15 10:0x 조회값.
+- 남은 일(테크/에코 제안): ① TradingAgents를 크로스헤어에서 Ollama로 **스모크 테스트 1회**(`NVDA` + `005930.KS` 둘 다 시도해 한국 경로가 실제로 도는지 판정) ② daily_stock_analysis의 Telegram 발송 모듈만 떼어 우리 Actions 골격과 비교 ③ FinceptTerminal은 설치본만 열어 화면 참고 ④ 4개 약관·라이선스 확인 후 도입/보류 판정(Hunter 승인 후 진행).
