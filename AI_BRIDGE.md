@@ -1009,3 +1009,60 @@ Hunter가 "지금까지 나온 스타워즈 코믹스 전부 정리"를 요청�
 - 출처: Wookieepedia·Wikipedia 시리즈 목록, Marvel.com 시리즈 페이지, GCD(comics.org), 다크호스 공식 뉴스, Mynock Manor·Jedi News 솔리시테이션, Gizmodo·AIPT·Bleeding Cool, 시공사·북프라이스.
 - **테크에게 부탁**: 작업 요청 아님. 읽어 보고 링크·수치 오류만 짚어 주면 된다. Hunter 취향 ★의 판단 근거는 문서 0-2 표기 규칙에 적혀 있다.
 - 올리기 전 개인정보 점검: 본명(전체)·전화번호·주소·계정·연락처 없음. 호칭 '선렬 님'이 취향 표시 문구에만 나온다(기존 이 문서의 표기와 같은 수준). 저장소가 공개라 한 번 훑고 올렸다.
+
+---
+
+## 🛰️ 2026-11-16 (21:00) AI 레이더 핵심 인계 (Wrecker → Tech)
+
+11-16 21:00 일일 AI 레이더 브리핑에서 **Tech/Crosshair 워크플로에 적용 가치가 높은 2건**만 추려 옮긴다. Hunter가 "`AI_BRIDGE.md`에도 올려두고 커밋 떨어지면 말해 준다"고 한 데 따른 인계다.
+
+**확인 방법(2026-11-16 21:0x~21:2x KST)**: 저장소 수치·라이선스·푸시일은 `gh api`로 직접 조회, README 본문은 직접 열람, npm 배포판은 registry 조회. **설치·실행은 4개 도구 모두 0건**이다.
+
+---
+
+### ① `umbel` — 구독제 CLI(Claude Code·Codex·Gemini)를 tmux로 오케스트레이션, 로컬 Ollama까지 혼합
+
+- 주소: https://github.com/jahala/umbel — **MIT**, 2026-05-21 생성 · 2026-11-06 푸시 · 11-16 21:0x 조회 시점 **★7**. 웹 https://plotplot.ai/umbel/ (README 배지 링크는 jahala.github.io/umbel)
+- **무엇**: 세션 **안에서 다른 사업자의 에이전트 워커를 띄운다**. `claude`·`codex`·`gemini`·`opencode`를 **tmux**로 구동하고, CLI / **MCP 서버** / YAML 워크플로 **세 얼굴**로 조작한다. README가 밝힌 동기 그대로: *"Anthropic·OpenAI·Google이 `-p`(`--print`) 모드를 API 요율로 책정해 놓고 인터랙티브 TUI는 구독에 남겨 뒀다"* → **이미 결제 중인 구독의 인터랙티브 바이너리를 프로그램으로 다룬다.**
+- **MCP 툴(README 실명)**: `umbel_spawn` · `umbel_send` · `umbel_wait` · `umbel_read` + `umbel_kill` · `umbel_help`. `.mcp.json`에 `{ "mcpServers": { "umbel": { "command": "umbel", "args": ["mcp"] } } }` 한 줄로 붙고, 호스트(Claude Code)는 **계획·종합에만 토큰을 쓰고 실제 작업은 워커가** 한다 — 호스트 컨텍스트가 깨끗하게 유지된다.
+- **구독 기반 워커**: `claude`(Pro/Max) · `codex`(ChatGPT Plus/Pro/Team/Enterprise) · `gemini`(Google AI Pro/Ultra) — **전부 구독 과금**으로 돈다(토큰 추가 과금 없음). 설치된 바이너리가 없는 provider는 선택 불가(조용히 실패하지 않고 크게 실패한다).
+- **로컬 모델 혼합**: `umbel -p "..." --provider opencode --model ollama/qwen2.5-coder` — **로컬 Ollama**를 워커로 붙인다. 같은 형태로 `opencode/big-pickle`(무료·키 불필요), `anthropic/…`·`openrouter/…`(내 키). README 표현: *"OpenCode가 umbel을 **모든 에이전트 CLI 위의 통합 오케스트레이션 계층**으로 만든다 — 구독제 claude/codex/gemini 옆에 무료 로컬 워커를 비용 손실 없이 나란히 돌리는 데."*
+- **워크플로 모드**: `umbel run x.yaml`로 스텝마다 provider를 섞고 `needs`로 순서·병렬을 잡는다. 스텝 출력은 파일로 받아 다음 스텝 프롬프트에 `{{ steps.NAME.outputs.X }}`로 주입.
+- **완료 판정 방식(설계상 신뢰할 만한 부분)**: 터미널 화면 긁기(`capture-pane`)가 아니라 **각 벤더의 네이티브 라이프사이클 이벤트**(Claude/Codex `Stop`, Gemini `AfterAgent`, OpenCode idle)로 끝을 판정하고, 결과는 각 CLI의 **트랜스크립트(JSONL)**에서 읽는다. 데몬 없음 — tmux가 데몬, 상태는 `~/.umbel/`.
+- **⚠️ 우리 환경 제약 — 이게 제일 중요하다**
+  - **macOS 또는 Linux 전용, `tmux ≥ 3.0`.** README에 윈도우 지원이 **없다** → **크로스헤어(윈도우 미니 PC)에는 그대로 못 깔린다.** WSL2로 올리면 이론상 가능하지만, 그때 `ollama/qwen2.5-coder`도 WSL 쪽에서 돌아야 하고 tmux·provider CLI를 전부 WSL 안에 다시 깔아야 한다.
+  - **배포판이 없다.** 릴리스 **0건**, **npm 패키지 없음**(`registry.npmjs.org/umbel` → 404), Homebrew 탭은 *"coming"*. **소스 빌드뿐**: `bun install && bun run build` → **Bun이 선행 조건**이다.
+  - **★7 신생 개인 저장소**다. 코드가 짧아 읽기는 쉽지만 검증 이력은 없다. README가 *"solo developers … 상업적 재판매·대규모 우회용 아님"*이라 못 박고 `docs/tos.md`에 **세 벤더 약관 스펙트럼**을 따로 적어 뒀다 — 도입 전에 그 문서부터 읽을 것.
+- **편대 적용 포인트(내 판단)**: Hunter의 **ChatGPT Plus(Codex)** + 테크(**Claude Code 구독**) + (가능하면) **크로스헤어의 Ollama**를 **추가 API 과금 0**으로 역할 분담시키는 후보. 지금 우리가 손으로 하는 "테크가 에코에게 리뷰 넘기고 결과 받기"를 세션 안에서 자동화하는 물건이다. 11-15 인계한 Nightshift(바통 터치)와 **직교**한다 — Nightshift는 같은 에이전트의 장기 실행, umbel은 **다른 사업자 워커의 호출**.
+- **⚠️ 설치·실행은 Hunter 승인 후**(기존 규칙 그대로). 이건 새 바이너리 빌드 + 구독 CLI의 자동 조종이라 승인 없이 손대지 말 것.
+- **확인 안 한 것**: 설치·실행 **0건**. 노트북 OS(이 문서 어디에도 단정돼 있지 않다 — 맥 관련 언급은 있으나 확정 아님), 크로스헤어 WSL2에서의 동작, 세 구독을 같은 머신에서 동시에 물릴 때의 레이트리밋·쿼터 간섭, `umbel spawn --provider codex`가 Plus 쿼터를 실제로 얼마나 소모하는지, `bun` 빌드가 이 환경에서 끝까지 가는지.
+
+---
+
+### ② `vibe-shield` · `ghost-qa` · `unslop` — `npx` 한 줄로 붙는 AI 코딩 검증 3종 (VibeFoundry)
+
+세 개가 **한 오너(avivgerz-hue)의 같은 스위트**라 README마다 서로를 광고한다(별 달라는 문구도 공통). **전부 MIT**, npm 배포판 있음, `npx -y` 한 줄 실행, `init`을 돌리면 **`SKILL.md`·`mcp.json`·`AGENTS.md`·`CLAUDE.md`를 자동으로 깔아** 에이전트가 스스로 부르게 만든다.
+
+| 도구 | 명령 | 11-16 21:0x 확인된 사실 |
+|---|---|---|
+| **vibe-shield** | `npx -y @vibefoundry/vibe-shield@latest scan .` | **92 규칙** 정적 보안 스캐너 + Agent Skill + MCP. 비밀키 노출·인증 없는 라우트·RLS 누락·IDOR 등을 잡는다(README 예시는 17ms). 심각도·CWE·위치·OWASP 2025 매핑, `--report`/`--format html`. npm 최신 **2.1.2**. **★45** |
+| **ghost-qa** | `npx -y ghost-qa@latest test http://localhost:3000` | **Playwright** 기반 헤드리스 브라우저 QA. **떠 있는 앱**의 라이브 DOM을 훑고 버튼을 안전하게 눌러 런타임·네트워크·레이아웃 실패를 잡아 **Self-Healing Bug Report**로 되돌린다. 3 뷰포트 × 라이트/다크, QA Health Score(A+~F), 회귀 diff. npm 최신 **2.1.1**. **★27** |
+| **unslop** | `npx -y unslop-mcp@latest init` | **UI/UX 디자인 린터**. **72 규칙·7 기둥**, A+~F 등급, `refactor-plan`으로 `UNSLOP-REPORT.md` 생성, Tailwind v4/v3·CSS 변수·W3C 토큰 4형식 내보내기. npm 최신 **2.1.1**. **★35** |
+
+- **`SKILL.md`·MCP 점검 경로**: vibe-shield의 **`audit-skills`** 서브커맨드가 *"agent/MCP integrity"* 벡터를 따로 검사한다(README: MCP·스킬 파일 오염 = **MCP/Skill poisoning**) → `npx -y @vibefoundry/vibe-shield audit-skills --report agent-report.html`. 우리 저장소의 **`SKILL.md`를 실제로 검사 대상으로 삼는지가 핵심 관심사**인데, 이건 미시험이다(아래 '확인 안 한 것').
+- **⚠️ 우리 저장소에는 절반만 맞는다**: 셋 다 **JS/TS·프론트엔드 전제**(Next.js·Supabase·React·Tailwind·Vue·Svelte)다. `aaaaaaaa`의 주력은 **파이썬 파이프라인 + 마크다운**이라 92 규칙·72 규칙·브라우저 QA가 직접 걸리는 코드가 거의 없다. **지금 실효가 있는 건** ① 비밀키 문자열 스캔(언어 무관) ② `SKILL.md`/MCP 무결성 점검 ③ 훗날 우리가 웹 UI를 만들 때.
+- **⚠️ `npx -y`는 검증 없이 남의 코드를 실행하는 것이다.** 별 7~45짜리 신생 스위트이고, `init`은 **저장소 파일을 덮어쓰거나 덧붙인다**. 우리 철칙 3번(외부 전송 사전 승인)에 따라, 테크 쪽에서 `package.json`·`postinstall` 훅·네트워크 요청 범위를 한 번 읽고 실행하는 게 맞다.
+- **편대 적용 포인트(내 판단)**: 테크가 **코드나 `SKILL.md`·`CLAUDE.md`를 수정한 뒤 PR 전에 돌리는 자동 점검 루틴** 후보. 다만 위 전제 때문에 **당장의 실효는 비밀키 스캔 + `audit-skills` 정도**로 보고, 하네스 검증의 본선은 11-15 인계한 **exit 2 완료 훅**이 더 싸고 확실하다.
+- **확인 안 한 것**: 셋 다 설치·실행 **0건**. `audit-skills`가 이 저장소의 `SKILL.md`를 실제로 읽어 무엇을 잡는지, 파이썬 코드에 규칙이 얼마나 걸리는지, ghost-qa가 **서버 없이**(정적 파일·빌드 산출물) 도는지, `init`이 덮어쓰는 파일 목록, 스위트 세 개를 같이 깔면 `init`이 서로 충돌하는지.
+
+---
+
+### 남은 일 (테크 제안 — 우선순위 순)
+
+1. **노트북 OS 회신** — umbel은 **macOS/Linux 전용**이다. 맥이면 Bun 빌드로 바로 시험 가능, 윈도우 노트북이면 **WSL2가 선행 조건**이라 우선순위가 내려간다. 이 한 줄이 ①의 운명을 가른다.
+2. **vibe-shield `audit-skills`만 단독 시험** — 설치 없이 `npx -y @vibefoundry/vibe-shield audit-skills` 1회. `SKILL.md`를 잡는지 확인되면 저비용 pre-commit 후보로 올린다. (무엇도 덮어쓰지 않는 읽기 전용 경로라 승인 부담이 가장 작다. 단 `npx` 다운로드는 발생.)
+3. **umbel 실험은 Hunter 승인 후, 얕게부터**: `umbel -p` 한 줄 → `.mcp.json`에 `umbel mcp` 붙여 클로드가 `umbel_spawn`으로 codex 리뷰어 하나 띄우기 → 통하면 YAML 워크플로. 시작 전 `docs/tos.md` 읽기.
+4. **셋 다 상시 설치 금지** — 훅·스킬 파일을 까는 도구라 저장소 상태가 바뀐다. 시험은 별도 클론에서.
+
+- 이 인계의 수치는 **2026-11-16 21:0x~21:2x KST 조회값**이다. 그 뒤 별 수·버전이 바뀌었을 수 있다.
+- 올리기 전 개인정보 점검: 본명(전체)·전화번호·주소·계정·연락처 없음. 호칭 'Hunter/테크/크로스헤어'만 나온다(기존 문서와 같은 수준). 공개 저장소라 한 번 훑고 올렸다.
