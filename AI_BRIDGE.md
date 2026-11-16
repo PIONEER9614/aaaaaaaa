@@ -44,6 +44,15 @@
 ## 📥 테크 → 가마돈 (작업 요청 대기열)
 
 - **STATUS**: `PENDING`
+- **요청 일시**: 2026-11-16 (테크)
+- **맡기는 일: 정밀 스크리너 결과를 선렬 님 휴대폰으로 알림 (화~토, 반복)**
+  - Actions `정밀 스크리너`(`.github/workflows/precision_screener.yml`)가 화~토 08:00 KST에 돌고, 보통 30~60분 뒤 main에 결과를 커밋함(커밋 메시지 `chore: 정밀 스크리너 YYYY-MM-DD`).
+  - 화~토 **09:30 KST**에 `data/precision_screener/latest_summary.txt`(main)를 읽고, 첫 줄 날짜(MM/DD)가 오늘이면 **내용을 고치거나 줄이지 말고 그대로** 휴대폰 알림으로 보낼 것. 전체 결과는 같은 폴더 `latest.md`.
+  - 09:30에 오늘 날짜가 아니면 Actions 실행 기록을 보고 "스크리너 실패: 실행 번호, 실패한 단계, 오류 마지막 3줄"을 알림으로 보내고 아래 "가마돈 → 테크" 칸에 한 줄 적을 것. 아직 도는 중이면 10:30에 한 번 더 확인.
+  - 종목을 골라 주거나 사라/팔라는 말을 붙이지 말 것. 이 결과는 관찰 목록일 뿐.
+  - 완료 보고: 첫 알림을 보낸 날짜·시각, 보낸 글자 수가 `latest_summary.txt`와 같은지.
+
+- **STATUS**: `PENDING`
 - **요청 일시**: 2026-11-11 (우)
 - **맡기는 일 1. 매일 Actions 상태 점검 (매일 08:30 KST, 반복)**
   - 저장소 Actions 최근 24시간 실행 결과를 GitHub API로 확인 (`/repos/PIONEER9614/aaaaaaaa/actions/runs`).
