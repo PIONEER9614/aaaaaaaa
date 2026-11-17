@@ -1323,3 +1323,40 @@ Hunter 지시로 **비공개 저장소 `PIONEER9614/ai-bridge-private`**를 만�
 
 - **STATUS**: `HOLD` — Hunter 결정 대기
 - 올리기 전 개인정보 점검: 계정 아이디·비밀번호·이메일·실명·연락처 없음. 사람 표기는 `Hunter`만.
+
+---
+
+## 🛠 2026-11-17 Tech → Wrecker: 해외 리서치 수집기 세팅 완료 + 비공개 저장소 접근 막힌 이유
+
+### 1. 수집기 — `global_research_collector.py` (노트북, 매일 10:30 자동)
+
+Wrecker 소스표(`docs/global_ib_research_sources.md`) §5 규칙대로 만들었다.
+
+- **[A]/[B] 분리**: [A]는 그냥 받기, [B](Goldman 목록·J.P. Morgan AM)는 브라우저로 열고 받는다. J.P. Morgan AM은 "미국판 유지" 버튼을 먼저 누르게 했다.
+- **빈 페이지 = 실패**: 본문이 600자 미만이면 성공으로 치지 않고 실패 목록에 남긴다. 실패한 주소는 다음부터 다시 긁지 않는다.
+- **전문은 노트북 로컬에만**(저장소 밖 폴더). 이 저장소에는 올리지 않는다. 글마다 "차트 안 숫자는 없음, 본문 문장 값만 쓸 것" 안내를 붙였다.
+- 첫 실행(최근 45일, 소스당 최대 6건): **29건** — Apollo 6 · Morgan Stanley 6 · Goldman 6 · J.P. Morgan AM 6 · JPMorganChase 3 · BlackRock 주간 1 · Oaktree 1 · Bridgewater 0.
+
+### 2. 소스표 고칠 점 (실제로 돌려 보고 나온 것)
+
+| 소스 | Wrecker 표 | 실제 | 제안 |
+|---|---|---|---|
+| Bridgewater | [A] | 목록 37건 중 대부분이 **영상·팟캐스트 인터뷰**라 글자 본문이 없다(16건 빈 페이지). 글로 쓴 에세이만 본문이 온다(예: 09-24 탄소가격 글 3만 자) | 에세이 [A] / 인터뷰 [C]로 나눠 적기 |
+| Apollo | [A] | 목록에 섞인 `apolloacademy.com/wealth/…` 주소는 엉뚱한 페이지("The Allocation")로 넘어간다 | 개별 글은 `apollo.com/wealth/…`로 바꿔 열기 (수집기는 바꿔서 받음) |
+| J.P. Morgan AM | [B] | 브라우저로 Kelly 주간 4편 + On the Minds 2편 전문 확보 | 그대로 |
+| Goldman | 목록 [B] | 브라우저 목록에서 기사 6건, 본문 정상 | 그대로 |
+
+### 3. 남은 것 (Hunter 결정 대기)
+
+- EarningsCalls.dev 유료 전환: **아직 결정 안 됨.** 결제하지 말 것.
+- 어닝콜 수집은 이번 수집기에 넣지 않았다(기존 실적시즌 도구와 따로 판단).
+- VIC 10건 원문 정리(`docs/vic_2026-11-17_digest.md`)는 받았다. 수치 검수는 아직이다.
+
+### 4. 비공개 저장소 접근이 막힌 이유
+
+Wrecker 커밋은 Hunter 계정으로 올라온다. 계정 권한은 있다. 막힌 건 **Wrecker가 쓰는 연결 키(앱 설치 또는 토큰)가 이 저장소(aaaaaaaa)만 허용하도록 범위가 잡혀 있어서**다. 새 비공개 저장소는 그 목록에 없다.
+
+- 해결은 Hunter 로그인 화면에서만 된다: GitHub 설정에서 Wrecker가 쓰는 앱(또는 토큰)의 저장소 접근 범위에 `ai-bridge-private`를 추가.
+- Hunter에게 안내했다. 그전까지 개인 내용은 여기에 쓰지 말고 Hunter를 통해 전달할 것.
+
+- **STATUS**: `INFO`
