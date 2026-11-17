@@ -1205,3 +1205,48 @@ Hunter가 "지금까지 나온 스타워즈 코믹스 전부 정리"를 요청�
 
 - **STATUS**: `DONE` — 테크 회신
 - 올리기 전 개인정보 점검: 아이디·이메일·전화번호·비밀번호·학번 없음. 서비스 이름, 로그인 방식 종류, 방문한 날 수만 있다.
+
+---
+
+## 🌍 2026-11-17 글로벌 IB·기관 리서치 + 헤지펀드 서한 + 어닝콜 Q&A 소스 검증 인계 — Wrecker → Tech
+
+**무엇** — Hunter가 "외국 리포트를 간접적으로라도 볼 수 있는 루트"를 요청해서, 후보 URL을 **실제로 열어보고** 통과/탈락을 가른 표를 만들었다. 전문은 **`docs/global_ib_research_sources.md`**(같은 커밋). 여기에는 Tech가 바로 쓸 요약만 적는다.
+
+### ✅ 무로그인 통과 (텍스트 수집 즉시 가능 = [A])
+
+| 소스 | 주기 | 최신 확인분(11-17 조회) |
+|---|---|---|
+| Apollo **The Daily Spark** | 평일 매일 | 11-16 "Higher Rates Hit the Fiscal Side…" |
+| **Morgan Stanley Ideas** (+ Thoughts on the Market 전문) | 주 2~3회 | 11-12 아시아 전력 붐 / 11-11 중간선거와 AI 빌드아웃 |
+| **BlackRock BII** 주간·분기 | 주 1회 + 분기 | 11-16 "AI: looking beyond the buildout" / Q4 아웃룩 09-15 |
+| **JPMorganChase Insights** | 주 1회 | 10-26 M&A 4대 변수 |
+| **Oaktree Howard Marks 메모** | 분기 | 11-11 "A Layman Thinks About AI" |
+| **Bridgewater Research** | 월~분기 | 10-14 CIO 글로벌 아웃룩 |
+| **Berkshire 주주서한** | 연 1회 | 1977~2022 링크 전부 |
+| **Motley Fool** 어닝콜 | 실적시즌 | 11-16 AIRJ Q3 전문(오퍼레이터~Q&A) |
+| **EarningsCalls.dev** | 실적시즌 | 11-16 TSN Q4 — 애널리스트 실명 Q&A |
+| **StockAnalysis.com** 트랜스크립트 | 실적시즌 | 11-16 IMDX Q3 — BTIG·Needham·Stephens 질문 원문 |
+| **Gloom.sh** | 실적시즌 | 요약+가이던스+"애널리스트가 압박한 지점" |
+
+### ⚠️ 페이월은 아니지만 [B] 브라우저 렌더링이 필요한 곳
+
+- **J.P. Morgan Asset Management** Market Updates(`notes-on-the-week-ahead` 등): 수집기로는 제목만, 브라우저로는 전문. 접속 시 "Korea → redirect?" 창이 뜨니 **"No, stay on the US site"**를 먼저 눌러야 한다. (11-17 "The Technology Threat" 전문 확인)
+- **Goldman Sachs Insights**: 기사 본문은 [A]로 오지만 **목록 페이지는 [B]**. `top-of-mind`도 [B].
+
+### ❌ 탈락/보류
+
+`lettersandinterviews.com`(500) · `acquirersmultiple.com`(스크리너·멤버제) · `valueinvestingworld.com`(2020년 유료 전환) · Pershing Square 분기레터(404/타임아웃) · GMO Research Library(빈 응답·미확인) · SumZero(포스팅 또는 유료). **다시 긁지 말 것.**
+
+### 📌 Wrecker 쪽 정기 브리핑 등록 완료
+
+- 「🌍 글로벌 IB·기관 리서치 및 헤지펀드 브리핑」 **매주 월·목 19:00 KST** 스케줄 등록(2026-11-17). 편입: Apollo · MS Ideas · BlackRock BII · Oaktree · Bridgewater · VIC 신규 공개분.
+
+### 🙏 Tech 쪽에서 반영해 줄 것
+
+1. 위 표를 **수집 파이프라인 소스 목록**으로 쓰고, [A]/[B]를 구분해 라우팅해 달라. [B]를 [A]처럼 돌리면 "빈 페이지"를 성공으로 오인한다.
+2. **차트 안에만 있는 수치는 텍스트로 안 온다** — Apollo·BIS류는 본문 문장에 적힌 값만 인용.
+3. 어닝콜 대량 수집이 필요해지면 **EarningsCalls.dev API**(월 $39.99~, 무료 티어·MCP 제공)가 가장 잘 맞는다. 유료 전환은 Hunter 승인 사항이라 Wrecker가 임의로 결제하지 않았다.
+4. **전문 저장 금지** — 공개 저장소에는 요약·링크·발행일만. 원문 전문은 노트북 로컬에만 둬 달라(Apollo 등은 본문에 재배포 금지 문구가 있다).
+
+- **STATUS**: `DONE` — 소스 검증 + 문서 + 스케줄 등록 완료. Tech는 파이프라인 반영만.
+- 올리기 전 개인정보 점검: 이름·전화번호·주소·계정·이메일·비밀번호 없음. 공개 URL과 발행물 제목만 있다.
