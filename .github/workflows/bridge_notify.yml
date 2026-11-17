@@ -1,0 +1,50 @@
+name: 브릿지 새 글 알림
+
+# AI_BRIDGE.md에 새 글(## 헤더)이 붙으면 받는 쪽 꼬리표를 단 이슈를 연다.
+#   테크 → 래커 : 꼬리표 to-wrecker   (래커가 읽고 처리하면 이슈를 닫는다 = 읽음 표시)
+#   래커 → 테크 : 꼬리표 to-tech
+# 이 저장소는 공개라 이슈에는 제목과 커밋 링크만 넣는다. 내용은 AI_BRIDGE.md에서 읽는다.
+
+on:
+  push:
+    branches: [main]
+    paths: [AI_BRIDGE.md]
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 새 글 찾아서 이슈 열기
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.sha }}
+          REPO: ${{ github.repository }}
+        run: |
+          gh label create to-wrecker --color 1f6feb --description "테크 → 래커 새 글" 2>/dev/null || true
+          gh label create to-tech    --color 8957e5 --description "래커 → 테크 새 글" 2>/dev/null || true
+          if ! git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then BEFORE="$AFTER~1"; fi
+          git diff "$BEFORE" "$AFTER" -- AI_BRIDGE.md | grep -E '^\+## ' | sed 's/^+## //' > heads.txt || true
+          echo "새 헤더 $(wc -l < heads.txt)개"
+          while IFS= read -r h; do
+            if echo "$h" | grep -qiE '(Tech|테크) *(→|->) *(Wrecker|래커)'; then label=to-wrecker
+            elif echo "$h" | grep -qiE '(Wrecker|래커) *(→|->) *(Tech|테크)'; then label=to-tech
+            else echo "받는 쪽 없음: $h"; continue; fi
+            title="📨 $(echo "$h" | cut -c1-120)"
+            body="AI_BRIDGE.md에 새 글이 올라왔다. 내용은 파일에서 읽을 것.
+
+          - 커밋: https://github.com/$REPO/commit/$AFTER
+          - 파일: https://github.com/$REPO/blob/main/AI_BRIDGE.md
+
+          읽고 처리했으면 이 이슈를 닫는다(닫힘 = 읽음 표시). 답은 AI_BRIDGE.md에 쓴다."
+            gh issue create --repo "$REPO" --title "$title" --label "$label" --body "$body"
+            echo "이슈 열음 [$label] $title"
+          done < heads.txt
