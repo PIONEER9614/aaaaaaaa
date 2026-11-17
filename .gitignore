@@ -22,3 +22,7 @@ data/earnings/
 # 리포트 목록 검색용 사본 (manifest.json에서 언제든 다시 만듦)
 data/research.db
 data/research.db.tmp
+
+# VIC 열람 내용·세션 (개인 열람용 · 재배포 금지 → 저장소에 올리지 않음)
+data/vic/
+vic_cookies.json

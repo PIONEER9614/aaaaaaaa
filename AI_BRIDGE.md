@@ -1291,3 +1291,35 @@ Hunter 지시로 **비공개 저장소 `PIONEER9614/ai-bridge-private`**를 만�
 ## 📚 2026-11-17 VIC 10건 **원문 전문** 한국어 정리 — Wrecker → Tech
 
 위 인계(§"VIC 최신 공개 아이디어 10선")의 "본문 미확인" 항목은 해소됐다. 10건 원문 전체를 읽고 종목별 ①기본정보 ②핵심 한 줄 ③논리·사업구조(원문 수치 포함) ④목표주가·밸류에이션 ⑤촉매·리스크로 정리해 **`docs/vic_2026-11-17_digest.md`** 에 올렸다(롱 4 / 숏 6, 수치는 원문 게시 시점 값 그대로).
+
+---
+
+## 📥 2026-11-17 VIC 2년치 원문 수집 설계서 — Wrecker → Tech (STATUS: HOLD)
+
+**요청** — Hunter가 VIC 최근 2년치(약 2,000건) 원문 아카이브를 원해서, 클라우드 브라우저 대신 노트북 Tech가 시간 간격을 두고 배치 수집하는 안이 나왔다. 설계서는 **`docs/vic_2yr_collector_spec.md`** (같은 커밋).
+
+**결론: 실행 보류.** 사이트가 자동 수집을 직접 금지한다. 원문 그대로:
+
+- `robots.txt`(11-17 조회): `User-agent: *` / `Disallow: /` — 예외 경로 없음.
+- 약관(Last updated 2018-10-08): *"You shall not engage in, or assist others in engaging in, **any bulk or automated downloading of information on VIC**, including without limitation scraping data/information, using crawlers, or retrieving information using algorithms or other automatic methods."* 라이선스도 *"strictly for your personal, non-commercial use"*, Content 조항은 *"may not … reproduce …, create derivative works from, distribute … in whole or in part"*.
+- 같은 기준을 KRED(robots.txt 금지 경로 미수집) 때 이미 적용했다. 2,000건 무인 배치로 생기는 계정 리스크는 Hunter에게 남으므로, 내 판단으로 실행안을 확정하지 않고 세 층으로 나눠 설계서만 만들었다.
+
+**설계서 구성**
+
+- **§3 A안(지금 가능)**: 사람 속도 열람 + 로컬 저장. 11-17 10건 정리가 이 방식이었다.
+- **§4 B안(권장)**: VIC에 개인 연구용 아카이브 허가 문의. **영문 편지 초안 포함, 발송 안 함**(Hunter 결정).
+- **§5 C안(허가 후)**: Tech가 바로 구현할 2단계 설계 — 인증 분리(`~/.claude-code-secrets/.env` 또는 쿠키 재사용), 1단계 인덱스 → 2단계 원문, 체크포인트/재개, 요청 5~10초 랜덤·50건마다 60~120초 휴식, 429 백오프·403 즉시 중단, `data/vic/` 저장 규격, `vic_db.py`(research_db.py와 같은 인터페이스), 검증 5단계, 하루 150건이면 14일.
+
+**확인한 사실(설계서 §2)**
+
+- Hunter VIC 계정은 유료 회원이 아니라 **45일 지연 열람 계정**: *"There are 124 investment ideas you are not eligible to view … limited to viewing ideas that are 45 days old."* → 124건/45일 ≈ 2.7건/일 → **2년 ≈ 약 2,000건**(산술 추정).
+- `/ideas`: 날짜 헤딩(`Friday, Oct 2, 2026`) + 항목(`티커 • 가격 • $시총`, `BY 작성자`, `Short Idea`/`Reactivate`, Punch Line 200자) + **`Load More Ideas`는 JS**(URL 페이지네이션 아님) + `Go to Date`(MM/DD/YYYY). 필터 드롭다운이 id `dropdownMenu1`을 **중복 사용** → id 셀렉터 금지, 텍스트 기준으로.
+- `/ideas/atoz`: 2000~2026 **연도 필터가 있는 전체 인덱스**. 링크는 `/idea/<회사슬러그>/<10자리 숫자ID>`. 슬러그에 HTML 엔티티가 섞여 불안정 → **숫자 ID가 키**.
+- 로그인 설문 모달(static backdrop·ESC 불가·3지선다 제출, 답이 계정에 기록됨) → **재로그인 반복 금지, 쿠키 재사용**이 설계 원칙.
+
+**Tech가 지금 할 일** — 코드 작성도, 실행도 하지 말 것. 위 약관 조항이 실행의 전제를 막고 있다. Hunter가 ①문의 편지 발송 ②A안 축소 운영 ③C안 코드만 사전 준비 중 하나를 고르면 그때 움직인다. **GitHub Actions에는 절대 올리지 말 것**(공개 로그·자격증명·클라우드 IP·실패 재시도가 요청 폭주로 보임).
+
+**저장·보안** — `.gitignore`에 `data/vic/`, `vic_cookies.json` 추가했다. 공개 저장소에는 이 설계서와 (원하면) 월별 집계만. 인덱스를 폰과 공유해야 하면 비공개 저장소 쪽으로.
+
+- **STATUS**: `HOLD` — Hunter 결정 대기
+- 올리기 전 개인정보 점검: 계정 아이디·비밀번호·이메일·실명·연락처 없음. 사람 표기는 `Hunter`만.
