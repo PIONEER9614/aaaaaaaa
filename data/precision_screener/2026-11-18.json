@@ -1,0 +1,5263 @@
+[
+ {
+  "market": "KR",
+  "as_of": "2026-11-17",
+  "stance": "Correction — In Cash",
+  "distribution_days": 5,
+  "follow_through": false,
+  "exposure": 0.0,
+  "funnel": {
+   "전체": 2722,
+   "트렌드": 23,
+   "셋업": 6,
+   "실적": 3,
+   "패턴추가": 1
+  },
+  "trend_summary": {
+   "index_trend": "bearish",
+   "vix": null,
+   "stage2_pct": 4.8,
+   "aligned_pct": 2.3,
+   "sectors": [
+    [
+     "Technology",
+     8
+    ],
+    [
+     "업종 정보 없음",
+     6
+    ],
+    [
+     "Industrials",
+     4
+    ],
+    [
+     "Consumer Cyclical",
+     2
+    ],
+    [
+     "Financial Services",
+     1
+    ],
+    [
+     "Real Estate",
+     1
+    ],
+    [
+     "Consumer Staples",
+     1
+    ]
+   ],
+   "industries": [
+    [
+     "업종 정보 없음",
+     6
+    ],
+    [
+     "Semiconductors",
+     2
+    ],
+    [
+     "Software - Infrastructure",
+     2
+    ],
+    [
+     "Information Technology Services",
+     2
+    ],
+    [
+     "Engineering & Construction",
+     1
+    ],
+    [
+     "Electronics & Computer Distribution",
+     1
+    ],
+    [
+     "Insurance - Property & Casualty",
+     1
+    ],
+    [
+     "Auto Parts",
+     1
+    ],
+    [
+     "Tools & Accessories",
+     1
+    ],
+    [
+     "Airlines",
+     1
+    ]
+   ],
+   "rs_top": [
+    [
+     "지니언스",
+     "263860.KS",
+     99.0,
+     "Software - Infrastructure"
+    ],
+    [
+     "삼성E&A",
+     "028050.KS",
+     99.0,
+     "Engineering & Construction"
+    ],
+    [
+     "피델릭스",
+     "032580.KS",
+     99.0,
+     "업종 정보 없음"
+    ],
+    [
+     "한진칼",
+     "180640.KS",
+     99.0,
+     "Real Estate Services"
+    ],
+    [
+     "유니퀘스트",
+     "077500.KS",
+     98.0,
+     "Electronics & Computer Distribution"
+    ],
+    [
+     "타이거일렉",
+     "219130.KS",
+     98.0,
+     "업종 정보 없음"
+    ],
+    [
+     "아스플로",
+     "159010.KS",
+     98.0,
+     "Tools & Accessories"
+    ],
+    [
+     "티에프이",
+     "425420.KS",
+     98.0,
+     "Semiconductors"
+    ],
+    [
+     "대한항공",
+     "003490.KS",
+     98.0,
+     "Airlines"
+    ],
+    [
+     "가비아",
+     "079940.KS",
+     98.0,
+     "업종 정보 없음"
+    ]
+   ],
+   "group_rank_top": [
+    [
+     1,
+     "Comml Svcs-Leasing"
+    ],
+    [
+     2,
+     "Banks"
+    ],
+    [
+     3,
+     "Insurance-Brokers"
+    ],
+    [
+     4,
+     "Insurance-Diversified"
+    ],
+    [
+     5,
+     "Banks-Super Regional"
+    ],
+    [
+     6,
+     "Food-Confectionery"
+    ],
+    [
+     7,
+     "Transportation-Airline"
+    ],
+    [
+     8,
+     "Retail-Super/Mini Mkts"
+    ],
+    [
+     9,
+     "Chemicals-Agricultural"
+    ],
+    [
+     10,
+     "Oil&Gas-Intl Expl&Prod"
+    ]
+   ],
+   "prev": {
+    "date": "2026-11-17",
+    "trend": 24
+   }
+  },
+  "picks": [
+   {
+    "symbol": "000400.KS",
+    "name": "롯데손해보험",
+    "price": 2480.0,
+    "pivot": 2575.0,
+    "buy_limit": 2703.75,
+    "stop": 2381.88,
+    "catalysts": [],
+    "pivot_dist": -3.495145631067964,
+    "pattern": "3c",
+    "rs": 97.0,
+    "industry": "Insurance - Property & Casualty",
+    "group_rank": 3,
+    "next_earnings": null,
+    "inst_pct": 0.4,
+    "shares_change_pct": 0.0,
+    "last_bar": "2026-11-18",
+    "checks": [
+     {
+      "name": "트렌드 템플릿(일봉 재계산)",
+      "status": "통과",
+      "value": "고점 -24.2%, 저점 +57.7%"
+     },
+     {
+      "name": "200일선 상승 기간",
+      "status": "주의",
+      "value": "67거래일"
+     },
+     {
+      "name": "베이스 횟수(근사)",
+      "status": "통과",
+      "value": "2번째"
+     },
+     {
+      "name": "베이스 전 상승 30%",
+      "status": "통과",
+      "value": "118.7%"
+     },
+     {
+      "name": "패턴 3c",
+      "status": "통과",
+      "value": "앞선 상승 +80%, 조정 20%, 컵 위치 0.38, 최근 폭 4.3%"
+     },
+     {
+      "name": "마지막 수축 거래량",
+      "status": "통과",
+      "value": "50일 평균의 0.92배"
+     },
+     {
+      "name": "피봇 위치(+5% 이내)",
+      "status": "통과",
+      "value": "-3.5%"
+     },
+     {
+      "name": "RS 라인 신고가",
+      "status": "주의",
+      "value": "RS 97.0"
+     },
+     {
+      "name": "기관 10곳 이상",
+      "status": "통과",
+      "value": "10곳, 2026-11-17 10곳에서 +0"
+     },
+     {
+      "name": "수급",
+      "status": "확인불가",
+      "value": ""
+     },
+     {
+      "name": "분기 EPS +25%",
+      "status": "탈락",
+      "value": "-96.5%"
+     },
+     {
+      "name": "매출 +25% 또는 가속",
+      "status": "탈락",
+      "value": "-2.5%"
+     },
+     {
+      "name": "ROE 17%",
+      "status": "탈락",
+      "value": "-1.8%"
+     },
+     {
+      "name": "세전이익률 18%",
+      "status": "탈락",
+      "value": "2.5%"
+     },
+     {
+      "name": "연 EPS 3년 성장",
+      "status": "탈락",
+      "value": "[914.0, 68.0, 158.0]"
+     },
+     {
+      "name": "Code 33",
+      "status": "확인불가",
+      "value": "분기 5개"
+     }
+    ],
+    "tally": {
+     "통과": 7,
+     "주의": 2,
+     "탈락": 5,
+     "확인불가": 2
+    }
+   },
+   {
+    "symbol": "051160.KS",
+    "name": "지어소프트",
+    "price": 13770.0,
+    "pivot": 13410.0,
+    "buy_limit": 14080.5,
+    "stop": 12404.25,
+    "catalysts": [],
+    "pivot_dist": 2.684563758389262,
+    "pattern": "cup_with_handle",
+    "rs": 96.0,
+    "industry": "Information Technology Services",
+    "group_rank": 44,
+    "next_earnings": null,
+    "inst_pct": 13.1,
+    "shares_change_pct": -7.2,
+    "last_bar": "2026-11-18",
+    "checks": [
+     {
+      "name": "트렌드 템플릿(일봉 재계산)",
+      "status": "통과",
+      "value": "고점 -2.2%, 저점 +148.0%"
+     },
+     {
+      "name": "200일선 상승 기간",
+      "status": "주의",
+      "value": "73거래일"
+     },
+     {
+      "name": "베이스 횟수(근사)",
+      "status": "주의",
+      "value": "3번째"
+     },
+     {
+      "name": "베이스 전 상승 30%",
+      "status": "통과",
+      "value": "146.8%"
+     },
+     {
+      "name": "베이스 길이",
+      "status": "통과",
+      "value": "20.0주 (cup_with_handle)"
+     },
+     {
+      "name": "변동성 수축",
+      "status": "주의",
+      "value": "[22.1]"
+     },
+     {
+      "name": "마지막 수축 거래량",
+      "status": "통과",
+      "value": "50일 평균의 0.4배"
+     },
+     {
+      "name": "핸들 위치(상단 절반, 15% 이내)",
+      "status": "통과",
+      "value": "위치 0.7, 깊이 4.6%"
+     },
+     {
+      "name": "컵 깊이·길이",
+      "status": "통과",
+      "value": "23.1618%, 20.0주"
+     },
+     {
+      "name": "피봇 위치(+5% 이내)",
+      "status": "통과",
+      "value": "2.7%"
+     },
+     {
+      "name": "돌파일 거래량 +50%",
+      "status": "주의",
+      "value": "0.22배"
+     },
+     {
+      "name": "RS 라인 신고가",
+      "status": "통과",
+      "value": "RS 96.0"
+     },
+     {
+      "name": "기관 10곳 이상",
+      "status": "탈락",
+      "value": "9곳, 2026-11-17 9곳에서 +0"
+     },
+     {
+      "name": "수급",
+      "status": "확인불가",
+      "value": ""
+     },
+     {
+      "name": "분기 EPS +25%",
+      "status": "통과",
+      "value": "90.6%"
+     },
+     {
+      "name": "매출 +25% 또는 가속",
+      "status": "탈락",
+      "value": "-7.0%"
+     },
+     {
+      "name": "ROE 17%",
+      "status": "탈락",
+      "value": "10.1%"
+     },
+     {
+      "name": "세전이익률 18%",
+      "status": "탈락",
+      "value": "4.2%"
+     },
+     {
+      "name": "연 EPS 3년 성장",
+      "status": "탈락",
+      "value": "[683.0, 1188.0, 915.0]"
+     },
+     {
+      "name": "Code 33",
+      "status": "탈락",
+      "value": "이익 [12.3, 65.3, 112.7] 매출 [4.1, -7.0, -8.8] 이익률 [6.1, 5.2, 5.6]"
+     }
+    ],
+    "tally": {
+     "통과": 9,
+     "주의": 4,
+     "탈락": 6,
+     "확인불가": 1
+    }
+   },
+   {
+    "symbol": "004100.KS",
+    "name": "태양금속",
+    "price": 3140.0,
+    "pivot": 3240.0,
+    "buy_limit": 3402.0,
+    "stop": 2997.0,
+    "catalysts": [],
+    "pivot_dist": -3.0864197530864197,
+    "pattern": "cup_with_handle",
+    "rs": 97.0,
+    "industry": "Auto Parts",
+    "group_rank": 69,
+    "next_earnings": null,
+    "inst_pct": 0.6,
+    "shares_change_pct": 0.0,
+    "last_bar": "2026-11-18",
+    "checks": [
+     {
+      "name": "트렌드 템플릿(일봉 재계산)",
+      "status": "통과",
+      "value": "고점 -15.3%, 저점 +57.6%"
+     },
+     {
+      "name": "200일선 상승 기간",
+      "status": "통과",
+      "value": "173거래일"
+     },
+     {
+      "name": "베이스 횟수(근사)",
+      "status": "통과",
+      "value": "0번째"
+     },
+     {
+      "name": "베이스 전 상승 30%",
+      "status": "통과",
+      "value": "73.0%"
+     },
+     {
+      "name": "베이스 길이",
+      "status": "주의",
+      "value": "60.0주 (cup_with_handle)"
+     },
+     {
+      "name": "변동성 수축",
+      "status": "통과",
+      "value": "[43.3, 23.0, 6.9]"
+     },
+     {
+      "name": "마지막 수축 거래량",
+      "status": "주의",
+      "value": "50일 평균의 1.84배"
+     },
+     {
+      "name": "핸들 위치(상단 절반, 15% 이내)",
+      "status": "탈락",
+      "value": "위치 0.36, 깊이 19.8%"
+     },
+     {
+      "name": "컵 깊이·길이",
+      "status": "통과",
+      "value": "18.3682%, 60.0주"
+     },
+     {
+      "name": "피봇 위치(+5% 이내)",
+      "status": "통과",
+      "value": "-3.1%"
+     },
+     {
+      "name": "RS 라인 신고가",
+      "status": "주의",
+      "value": "RS 97.0"
+     },
+     {
+      "name": "기관 10곳 이상",
+      "status": "탈락",
+      "value": "5곳, 2026-11-17 5곳에서 +0"
+     },
+     {
+      "name": "수급",
+      "status": "확인불가",
+      "value": ""
+     },
+     {
+      "name": "분기 EPS +25%",
+      "status": "탈락",
+      "value": "11.7%"
+     },
+     {
+      "name": "매출 +25% 또는 가속",
+      "status": "탈락",
+      "value": "1.5%"
+     },
+     {
+      "name": "ROE 17%",
+      "status": "탈락",
+      "value": "12.4%"
+     },
+     {
+      "name": "세전이익률 18%",
+      "status": "탈락",
+      "value": "1.1%"
+     },
+     {
+      "name": "연 EPS 3년 성장",
+      "status": "통과",
+      "value": "[1.0, 66.0, 94.0]"
+     },
+     {
+      "name": "Code 33",
+      "status": "탈락",
+      "value": "이익 [-1263.2, 10.8, -1342.0] 매출 [-2.2, 1.5, 0.2] 이익률 [2.5, 3.5, -3.5]"
+     }
+    ],
+    "tally": {
+     "통과": 8,
+     "주의": 3,
+     "탈락": 7,
+     "확인불가": 1
+    }
+   },
+   {
+    "symbol": "033780.KS",
+    "name": "KT&G",
+    "price": 181400.0,
+    "pivot": 189000.0,
+    "buy_limit": 198450.0,
+    "stop": 174825.0,
+    "catalysts": [
+     "공시: 기업가치제고계획(자율공시)",
+     "공시: 연결재무제표기준영업(잠정)실적(공정공시)",
+     "리포트: 26.08.07 DS투자증권 아낌없이 주는 담배",
+     "리포트: 26.08.07 한화투자증권 실적도 좋고, 환원도 좋다",
+     "리포트: 26.08.07 교보증권 전 사업 부문 호실적"
+    ],
+    "pivot_dist": -4.021164021164021,
+    "pattern": "cup_with_handle",
+    "rs": 93.0,
+    "industry": "Tobacco",
+    "group_rank": null,
+    "next_earnings": "2027-02-04",
+    "inst_pct": 67.1,
+    "shares_change_pct": -3.8,
+    "last_bar": "2026-11-18",
+    "checks": [
+     {
+      "name": "트렌드 템플릿(일봉 재계산)",
+      "status": "통과",
+      "value": "고점 -8.8%, 저점 +42.2%"
+     },
+     {
+      "name": "200일선 상승 기간",
+      "status": "통과",
+      "value": "282거래일"
+     },
+     {
+      "name": "베이스 횟수(근사)",
+      "status": "탈락",
+      "value": "4번째"
+     },
+     {
+      "name": "베이스 전 상승 30%",
+      "status": "통과",
+      "value": "64.6%"
+     },
+     {
+      "name": "베이스 길이",
+      "status": "주의",
+      "value": "38.0주 (cup_with_handle)"
+     },
+     {
+      "name": "변동성 수축",
+      "status": "주의",
+      "value": "[15.2]"
+     },
+     {
+      "name": "마지막 수축 거래량",
+      "status": "주의",
+      "value": "50일 평균의 1.61배"
+     },
+     {
+      "name": "핸들 위치(상단 절반, 15% 이내)",
+      "status": "탈락",
+      "value": "위치 0.45, 깊이 11.5%"
+     },
+     {
+      "name": "컵 깊이·길이",
+      "status": "주의",
+      "value": "10.3799%, 38.0주"
+     },
+     {
+      "name": "피봇 위치(+5% 이내)",
+      "status": "통과",
+      "value": "-4.0%"
+     },
+     {
+      "name": "RS 라인 신고가",
+      "status": "주의",
+      "value": "RS 93.0"
+     },
+     {
+      "name": "기관 10곳 이상",
+      "status": "통과",
+      "value": "218곳, 2026-11-17 218곳에서 +0"
+     },
+     {
+      "name": "수급",
+      "status": "확인불가",
+      "value": ""
+     },
+     {
+      "name": "분기 EPS +25%",
+      "status": "탈락",
+      "value": "-73.8%"
+     },
+     {
+      "name": "매출 +25% 또는 가속",
+      "status": "탈락",
+      "value": "4.3%"
+     },
+     {
+      "name": "ROE 17%",
+      "status": "탈락",
+      "value": "15.2%"
+     },
+     {
+      "name": "세전이익률 18%",
+      "status": "통과",
+      "value": "22.1%"
+     },
+     {
+      "name": "연 EPS 3년 성장",
+      "status": "탈락",
+      "value": "[7843.0, 10455.0, 10220.0]"
+     },
+     {
+      "name": "Code 33",
+      "status": "탈락",
+      "value": "이익 [46.6, 152.3, -75.1] 매출 [14.3, 9.9, 4.3] 이익률 [22.2, 21.3, 5.5]"
+     }
+    ],
+    "tally": {
+     "통과": 6,
+     "주의": 5,
+     "탈락": 7,
+     "확인불가": 1
+    }
+   }
+  ]
+ },
+ {
+  "market": "US",
+  "as_of": "2026-11-16",
+  "stance": "Correction — In Cash",
+  "distribution_days": 8,
+  "follow_through": false,
+  "exposure": 24.0,
+  "funnel": {
+   "전체": 10050,
+   "트렌드": 199,
+   "셋업": 54,
+   "실적": 15,
+   "패턴추가": 3
+  },
+  "trend_summary": {
+   "index_trend": "neutral",
+   "vix": 22.90999984741211,
+   "stage2_pct": 7.2,
+   "aligned_pct": 6.4,
+   "sectors": [
+    [
+     "Healthcare",
+     57
+    ],
+    [
+     "Technology",
+     27
+    ],
+    [
+     "Consumer Cyclical",
+     27
+    ],
+    [
+     "Financial",
+     23
+    ],
+    [
+     "Industrials",
+     20
+    ],
+    [
+     "Consumer Defensive",
+     17
+    ],
+    [
+     "Real Estate",
+     9
+    ],
+    [
+     "Communication Services",
+     9
+    ]
+   ],
+   "industries": [
+    [
+     "Medical-Biomed/Biotech",
+     14
+    ],
+    [
+     "Finance-Property REIT",
+     9
+    ],
+    [
+     "Computer Sftwr-Enterprse",
+     7
+    ],
+    [
+     "Insurance-Prop/Cas/Titl",
+     6
+    ],
+    [
+     "Medical-Hospitals",
+     5
+    ],
+    [
+     "Beverages-Non-Alcoholic",
+     5
+    ],
+    [
+     "Medical-Research Eqp/Svc",
+     5
+    ],
+    [
+     "Medical-Products",
+     5
+    ],
+    [
+     "Medical-Outpnt/Hm Care",
+     4
+    ],
+    [
+     "Computer Sftwr-Database",
+     4
+    ]
+   ],
+   "rs_top": [
+    [
+     "Braze Inc",
+     "BRZE",
+     99.0,
+     "Computer Sftwr-Enterprse"
+    ],
+    [
+     "Kodiak Sciences Inc",
+     "KOD",
+     99.0,
+     "Medical-Biomed/Biotech"
+    ],
+    [
+     "Hinge Health Inc",
+     "HNGE",
+     98.0,
+     "Computer Sftwr-Medical"
+    ],
+    [
+     "Genmab ADR",
+     "GMAB",
+     98.0,
+     "Medical-Biomed/Biotech"
+    ],
+    [
+     "Magnite Inc",
+     "MGNI",
+     98.0,
+     "Computer Sftwr-Enterprse"
+    ],
+    [
+     "BBB Foods Inc",
+     "TBBB",
+     98.0,
+     "Retail-Major Disc Chains"
+    ],
+    [
+     "Xometry Inc",
+     "XMTR",
+     98.0,
+     "Machinery-Mtl Hdlg/Autmn"
+    ],
+    [
+     "Schrodinger Inc",
+     "SDGR",
+     98.0,
+     "Medical-Research Eqp/Svc"
+    ],
+    [
+     "Surgery Partners Inc",
+     "SGRY",
+     98.0,
+     "Medical-Hospitals"
+    ],
+    [
+     "Caredx Inc",
+     "CDNA",
+     98.0,
+     "Medical-Products"
+    ]
+   ],
+   "group_rank_top": [
+    [
+     1,
+     "Soap & Clng Preparatns"
+    ],
+    [
+     2,
+     "Retail-Major Disc Chains"
+    ],
+    [
+     3,
+     "Insurance-Diversified"
+    ],
+    [
+     4,
+     "Retail-Discount&Variety"
+    ],
+    [
+     5,
+     "Transportation-Rail"
+    ],
+    [
+     6,
+     "Bldg-Hand Tools"
+    ],
+    [
+     7,
+     "Medical-Diversified"
+    ],
+    [
+     8,
+     "Insurance-Acc & Health"
+    ],
+    [
+     9,
+     "Leisure-Lodging"
+    ],
+    [
+     10,
+     "Office Supplies Mfg"
+    ]
+   ],
+   "prev": {
+    "date": "2026-11-17",
+    "trend": 196
+   }
+  },
+  "picks": [
+   {
+    "symbol": "SLDE",
+    "name": "Slide Insurance Holdings Inc",
+    "price": 26.040000915527344,
+    "pivot": 25.100000381469727,
+    "buy_limit": 26.36,
+    "stop": 23.22,
+    "catalysts": [
+     "뉴스: Slide: 3 Key Takeaways for Long-Term Investors",
+     "뉴스: Slide Insurance Holdings (SLDE) Entered Texas And Rhode Island Insurance Markets",
+     "뉴스: Slide Insurance Holdings (SLDE) Stock Could Be Below Fair Value After A 60% Run"
+    ],
+    "pivot_dist": 3.7450219911214826,
+    "pattern": "cup_with_handle",
+    "rs": 88.0,
+    "industry": "Insurance - Property & Casualty",
+    "group_rank": 33,
+    "next_earnings": "2026-10-28",
+    "inst_pct": 56.3,
+    "shares_change_pct": -0.8,
+    "last_bar": "2026-11-17",
+    "checks": [
+     {
+      "name": "트렌드 템플릿(일봉 재계산)",
+      "status": "통과",
+      "value": "고점 -8.8%, 저점 +76.5%"
+     },
+     {
+      "name": "200일선 상승 기간",
+      "status": "통과",
+      "value": "125거래일"
+     },
+     {
+      "name": "베이스 횟수(근사)",
+      "status": "탈락",
+      "value": "4번째"
+     },
+     {
+      "name": "베이스 전 상승 30%",
+      "status": "통과",
+      "value": "70.7%"
+     },
+     {
+      "name": "업종 순위",
+      "status": "통과",
+      "value": "33위"
+     },
+     {
+      "name": "베이스 길이",
+      "status": "통과",
+      "value": "13.0주 (cup_with_handle)"
+     },
+     {
+      "name": "변동성 수축",
+      "status": "주의",
+      "value": "[16.8]"
+     },
+     {
+      "name": "마지막 수축 거래량",
+      "status": "주의",
+      "value": "50일 평균의 1.13배"
+     },
+     {
+      "name": "핸들 위치(상단 절반, 15% 이내)",
+      "status": "탈락",
+      "value": "위치 0.41, 깊이 11.3%"
+     },
+     {
+      "name": "컵 깊이·길이",
+      "status": "통과",
+      "value": "20.6743%, 13.0주"
+     },
+     {
+      "name": "피봇 위치(+5% 이내)",
+      "status": "통과",
+      "value": "3.7%"
+     },
+     {
+      "name": "돌파일 거래량 +50%",
+      "status": "주의",
+      "value": "0.65배"
+     },
+     {
+      "name": "RS 라인 신고가",
+      "status": "주의",
+      "value": "RS 88.0"
+     },
+     {
+      "name": "기관 10곳 이상",
+      "status": "통과",
+      "value": "335곳, 2026-11-17 337곳에서 -2"
+     },
+     {
+      "name": "기관 수 증가",
+      "status": "주의",
+      "value": "-2곳"
+     },
+     {
+      "name": "분기 EPS +25%",
+      "status": "통과",
+      "value": "38.0%"
+     },
+     {
+      "name": "매출 +25% 또는 가속",
+      "status": "통과",
+      "value": "35.9%"
+     },
+     {
+      "name": "ROE 17%",
+      "status": "통과",
+      "value": "51.4%"
+     },
+     {
+      "name": "세전이익률 18%",
+      "status": "통과",
+      "value": "51.0%"
+     },
+     {
+      "name": "연 EPS 3년 성장",
+      "status": "통과",
+      "value": "[0.7, 1.61, 3.36]"
+     },
+     {
+      "name": "Code 33",
+      "status": "탈락",
+      "value": "이익 [50.8, 92.4, 24.5] 매출 [38.2, 47.9, 35.9] 이익률 [35.8, 34.9, 38.3]"
+     }
+    ],
+    "tally": {
+     "통과": 13,
+     "주의": 5,
+     "탈락": 3,
+     "확인불가": 0
+    }
+   },
+   {
+    "symbol": "ECPG",
+    "name": "Encore Capital Group Inc",
+    "price": 106.23999786376953,
+    "pivot": 104.0,
+    "buy_limit": 109.2,
+    "stop": 96.2,
+    "catalysts": [
+     "뉴스: High-debt stocks: ten non-financial names that pass a leverage screen",
+     "뉴스: HLI to Acquire Vicente & Partners to Expand Consumer Advisory",
+     "뉴스: Best Momentum Stocks to Buy for November 9th"
+    ],
+    "pivot_dist": 2.1538440997783956,
+    "pattern": "cup_with_handle",
+    "rs": 91.0,
+    "industry": "Credit Services",
+    "group_rank": 119,
+    "next_earnings": "2026-11-05",
+    "inst_pct": 106.3,
+    "shares_change_pct": -8.5,
+    "last_bar": "2026-11-17",
+    "checks": [
+     {
+      "name": "트렌드 템플릿(일봉 재계산)",
+      "status": "통과",
+      "value": "고점 -17.4%, 저점 +120.6%"
+     },
+     {
+      "name": "200일선 상승 기간",
+      "status": "통과",
+      "value": "244거래일"
+     },
+     {
+      "name": "베이스 횟수(근사)",
+      "status": "탈락",
+      "value": "5번째"
+     },
+     {
+      "name": "베이스 전 상승 30%",
+      "status": "통과",
+      "value": "63.0%"
+     },
+     {
+      "name": "업종 순위",
+      "status": "주의",
+      "value": "119위"
+     },
+     {
+      "name": "베이스 길이",
+      "status": "통과",
+      "value": "8.0주 (cup_with_handle)"
+     },
+     {
+      "name": "변동성 수축",
+      "status": "통과",
+      "value": "[9.5, 5.8]"
+     },
+     {
+      "name": "마지막 수축 거래량",
+      "status": "통과",
+      "value": "50일 평균의 0.83배"
+     },
+     {
+      "name": "핸들 위치(상단 절반, 15% 이내)",
+      "status": "탈락",
+      "value": "위치 -0.0, 깊이 10.8%"
+     },
+     {
+      "name": "컵 깊이·길이",
+      "status": "통과",
+      "value": "16.861%, 8.0주"
+     },
+     {
+      "name": "피봇 위치(+5% 이내)",
+      "status": "통과",
+      "value": "2.2%"
+     },
+     {
+      "name": "돌파일 거래량 +50%",
+      "status": "주의",
+      "value": "0.74배"
+     },
+     {
+      "name": "RS 라인 신고가",
+      "status": "주의",
+      "value": "RS 91.0"
+     },
+     {
+      "name": "기관 10곳 이상",
+      "status": "통과",
+      "value": "410곳, 증감은 다음 실행부터"
+     },
+     {
+      "name": "분기 EPS +25%",
+      "status": "통과",
+      "value": "75.7%"
+     },
+     {
+      "name": "매출 +25% 또는 가속",
+      "status": "탈락",
+      "value": "18.3%"
+     },
+     {
+      "name": "ROE 17%",
+      "status": "통과",
+      "value": "34.5%"
+     },
+     {
+      "name": "세전이익률 18%",
+      "status": "통과",
+      "value": "19.0%"
+     },
+     {
+      "name": "연 EPS 3년 성장",
+      "status": "통과",
+      "value": "[-8.72, -5.83, 10.91]"
+     },
+     {
+      "name": "Code 33",
+      "status": "확인불가",
+      "value": "이익률 100% 초과, 일회성 이익 의심"
+     }
+    ],
+    "tally": {
+     "통과": 13,
+     "주의": 3,
+     "탈락": 3,
+     "확인불가": 1
+    }
+   },
+   {
+    "symbol": "AMGN",
+    "name": "AMGEN Inc",
+    "price": 462.32000732421875,
+    "pivot": 445.81500244140625,
+    "buy_limit": 468.11,
+    "stop": 412.38,
+    "catalysts": [
+     "뉴스: Can Regeneron Stock Hit $1,400?",
+     "뉴스: What iShares Biotechnology ETF (IBB) Bought: Gilead Leads on Nov. 13",
+     "뉴스: Was Eli Lilly Stock's 45% Run Visible Early?"
+    ],
+    "pivot_dist": 3.702209390089281,
+    "pattern": "cup_with_handle",
+    "rs": 90.0,
+    "industry": "Drug Manufacturers - General",
+    "group_rank": 159,
+    "next_earnings": "2027-02-03",
+    "inst_pct": 84.7,
+    "shares_change_pct": 0.3,
+    "last_bar": "2026-11-17",
+    "checks": [
+     {
+      "name": "트렌드 템플릿(일봉 재계산)",
+      "status": "통과",
+      "value": "고점 -5.4%, 저점 +49.6%"
+     },
+     {
+      "name": "200일선 상승 기간",
+      "status": "통과",
+      "value": "292거래일"
+     },
+     {
+      "name": "베이스 횟수(근사)",
+      "status": "통과",
+      "value": "2번째"
+     },
+     {
+      "name": "베이스 전 상승 30%",
+      "status": "통과",
+      "value": "60.9%"
+     },
+     {
+      "name": "업종 순위",
+      "status": "주의",
+      "value": "159위"
+     },
+     {
+      "name": "베이스 길이",
+      "status": "통과",
+      "value": "25.0주 (cup_with_handle)"
+     },
+     {
+      "name": "변동성 수축",
+      "status": "주의",
+      "value": "[]"
+     },
+     {
+      "name": "핸들 위치(상단 절반, 15% 이내)",
+      "status": "탈락",
+      "value": "위치 0.43, 깊이 16.0%"
+     },
+     {
+      "name": "컵 깊이·길이",
+      "status": "통과",
+      "value": "18.0838%, 25.0주"
+     },
+     {
+      "name": "피봇 위치(+5% 이내)",
+      "status": "통과",
+      "value": "3.7%"
+     },
+     {
+      "name": "돌파일 거래량 +50%",
+      "status": "주의",
+      "value": "0.66배"
+     },
+     {
+      "name": "RS 라인 신고가",
+      "status": "주의",
+      "value": "RS 90.0"
+     },
+     {
+      "name": "기관 10곳 이상",
+      "status": "통과",
+      "value": "4155곳, 2026-11-17 4140곳에서 +15"
+     },
+     {
+      "name": "분기 EPS +25%",
+      "status": "주의",
+      "value": "19.4%"
+     },
+     {
+      "name": "매출 +25% 또는 가속",
+      "status": "탈락",
+      "value": "8.5%"
+     },
+     {
+      "name": "ROE 17%",
+      "status": "통과",
+      "value": "78.4%"
+     },
+     {
+      "name": "세전이익률 18%",
+      "status": "통과",
+      "value": "24.4%"
+     },
+     {
+      "name": "연 EPS 3년 성장",
+      "status": "탈락",
+      "value": "[12.49, 7.56, 14.23]"
+     },
+     {
+      "name": "Code 33",
+      "status": "탈락",
+      "value": "이익 [5.1, 65.9, 20.1] 매출 [5.8, 9.5, 8.5] 이익률 [21.1, 23.6, 37.3]"
+     }
+    ],
+    "tally": {
+     "통과": 10,
+     "주의": 5,
+     "탈락": 4,
+     "확인불가": 0
+    }
+   },
+   {
+    "symbol": "CRBG",
+    "name": "Corebridge Financial Inc",
+    "price": 35.709999084472656,
+    "pivot": 35.474998474121094,
+    "buy_limit": 37.25,
+    "stop": 32.81,
+    "catalysts": [
+     "뉴스: Group 1 Automotive and 4 More Stocks See Action From Activist Investors",
+     "뉴스: Corebridge Financial: 3 Key Takeaways for Long-Term Investors",
+     "뉴스: Corebridge Financial (CRBG) Stock Price Trails Q3 Earnings Rebound"
+    ],
+    "pivot_dist": 0.6624400858621452,
+    "pattern": "cup_with_handle",
+    "rs": 85.0,
+    "industry": "Asset Management",
+    "group_rank": 43,
+    "next_earnings": "2026-11-03",
+    "inst_pct": 114.2,
+    "shares_change_pct": -11.6,
+    "last_bar": "2026-11-17",
+    "checks": [
+     {
+      "name": "트렌드 템플릿(일봉 재계산)",
+      "status": "통과",
+      "value": "고점 -4.8%, 저점 +60.7%"
+     },
+     {
+      "name": "200일선 상승 기간",
+      "status": "주의",
+      "value": "80거래일"
+     },
+     {
+      "name": "베이스 횟수(근사)",
+      "status": "통과",
+      "value": "0번째"
+     },
+     {
+      "name": "베이스 전 상승 30%",
+      "status": "통과",
+      "value": "55.9%"
+     },
+     {
+      "name": "업종 순위",
+      "status": "주의",
+      "value": "43위"
+     },
+     {
+      "name": "베이스 길이",
+      "status": "주의",
+      "value": "34.0주 (cup_with_handle)"
+     },
+     {
+      "name": "변동성 수축",
+      "status": "통과",
+      "value": "[9.1, 6.4]"
+     },
+     {
+      "name": "마지막 수축 거래량",
+      "status": "통과",
+      "value": "50일 평균의 0.6배"
+     },
+     {
+      "name": "핸들 위치(상단 절반, 15% 이내)",
+      "status": "통과",
+      "value": "위치 0.7, 깊이 9.1%"
+     },
+     {
+      "name": "컵 깊이·길이",
+      "status": "통과",
+      "value": "32.5122%, 34.0주"
+     },
+     {
+      "name": "피봇 위치(+5% 이내)",
+      "status": "통과",
+      "value": "0.7%"
+     },
+     {
+      "name": "돌파일 거래량 +50%",
+      "status": "주의",
+      "value": "0.41배"
+     },
+     {
+      "name": "RS 라인 신고가",
+      "status": "통과",
+      "value": "RS 85.0"
+     },
+     {
+      "name": "기관 10곳 이상",
+      "status": "통과",
+      "value": "683곳, 2026-11-17 688곳에서 -5"
+     },
+     {
+      "name": "기관 수 증가",
+      "status": "주의",
+      "value": "-5곳"
+     },
+     {
+      "name": "분기 EPS +25%",
+      "status": "통과",
+      "value": "1092.6%"
+     },
+     {
+      "name": "매출 +25% 또는 가속",
+      "status": "탈락",
+      "value": "20.8%"
+     },
+     {
+      "name": "ROE 17%",
+      "status": "통과",
+      "value": "20.1%"
+     },
+     {
+      "name": "세전이익률 18%",
+      "status": "탈락",
+      "value": "-3.0%"
+     },
+     {
+      "name": "연 EPS 3년 성장",
+      "status": "탈락",
+      "value": "[1.71, 3.72, -0.68]"
+     },
+     {
+      "name": "Code 33",
+      "status": "탈락",
+      "value": "이익 [-280.8, -62.5, 900.0] 매출 [11.0, 43.6, 13.8] 이익률 [-1.3, 0.1, 23.4]"
+     }
+    ],
+    "tally": {
+     "통과": 12,
+     "주의": 5,
+     "탈락": 4,
+     "확인불가": 0
+    }
+   },
+   {
+    "symbol": "CAKE",
+    "name": "Cheesecake Factory Inc",
+    "price": 109.7300033569336,
+    "pivot": 113.66999816894531,
+    "buy_limit": 119.35,
+    "stop": 105.14,
+    "catalysts": [
+     "뉴스: CAKE's Younger Guest Appeal: Can It Sustain Brand Relevance?",
+     "뉴스: Avantis U.S. Small Cap Value ETF (AVUV) Sells $36.8 Million of CAKE on Nov. 12",
+     "뉴스: Baron Small Cap Fund Exited The Cheesecake Factory (CAKE) Following YTD Rally"
+    ],
+    "pivot_dist": -1.5043539298127961,
+    "pattern": "3c",
+    "rs": 88.0,
+    "industry": "Restaurants",
+    "group_rank": 57,
+    "next_earnings": "2026-10-28",
+    "inst_pct": 101.0,
+    "shares_change_pct": -3.3,
+    "last_bar": "2026-11-17",
+    "checks": [
+     {
+      "name": "트렌드 템플릿(일봉 재계산)",
+      "status": "통과",
+      "value": "고점 -5.4%, 저점 +163.9%"
+     },
+     {
+      "name": "200일선 상승 기간",
+      "status": "통과",
+      "value": "123거래일"
+     },
+     {
+      "name": "베이스 횟수(근사)",
+      "status": "탈락",
+      "value": "4번째"
+     },
+     {
+      "name": "베이스 전 상승 30%",
+      "status": "통과",
+      "value": "185.6%"
+     },
+     {
+      "name": "업종 순위",
+      "status": "주의",
+      "value": "57위"
+     },
+     {
+      "name": "패턴 3c",
+      "status": "통과",
+      "value": "앞선 상승 +177%, 조정 18%, 컵 위치 0.70, 최근 폭 7.3%"
+     },
+     {
+      "name": "마지막 수축 거래량",
+      "status": "통과",
+      "value": "50일 평균의 0.91배"
+     },
+     {
+      "name": "피봇 위치(+5% 이내)",
+      "status": "통과",
+      "value": "-1.5%"
+     },
+     {
+      "name": "RS 라인 신고가",
+      "status": "주의",
+      "value": "RS 88.0"
+     },
+     {
+      "name": "기관 10곳 이상",
+      "status": "통과",
+      "value": "511곳, 2026-11-17 498곳에서 +13"
+     },
+     {
+      "name": "분기 EPS +25%",
+      "status": "통과",
+      "value": "80.3%"
+     },
+     {
+      "name": "매출 +25% 또는 가속",
+      "status": "탈락",
+      "value": "13.9%"
+     },
+     {
+      "name": "ROE 17%",
+      "status": "통과",
+      "value": "41.6%"
+     },
+     {
+      "name": "세전이익률 18%",
+      "status": "탈락",
+      "value": "4.3%"
+     },
+     {
+      "name": "연 EPS 3년 성장",
+      "status": "탈락",
+      "value": "[2.07, 3.2, 3.06]"
+     },
+     {
+      "name": "Code 33",
+      "status": "탈락",
+      "value": "이익 [50.4, 24.8, 92.2] 매출 [5.6, 7.7, 13.9] 이익률 [5.1, 6.6, 5.9]"
+     }
+    ],
+    "tally": {
+     "통과": 9,
+     "주의": 2,
+     "탈락": 5,
+     "확인불가": 0
+    }
+   },
+   {
+    "symbol": "USFD",
+    "name": "US Foods Holding Corp",
+    "price": 108.19000244140625,
+    "pivot": 110.0,
+    "buy_limit": 115.5,
+    "stop": 101.75,
+    "catalysts": [
+     "뉴스: Why Cooler Inflation Is the Real US Debt Risk",
+     "뉴스: iShares Core S&P Mid-Cap (IJH) Sells ATI and TechnipFMC on Nov. 12",
+     "뉴스: What State Street SPDR S&P MidCap 400 ETF (MDY) Sold: TechnipFMC Leads on Nov. 11"
+    ],
+    "pivot_dist": -1.6454523259943181,
+    "pattern": "cup_with_handle",
+    "rs": 84.0,
+    "industry": "Food Distribution",
+    "group_rank": 62,
+    "next_earnings": "2026-11-05",
+    "inst_pct": 112.1,
+    "shares_change_pct": -4.3,
+    "last_bar": "2026-11-17",
+    "checks": [
+     {
+      "name": "트렌드 템플릿(일봉 재계산)",
+      "status": "통과",
+      "value": "고점 -4.9%, 저점 +53.2%"
+     },
+     {
+      "name": "200일선 상승 기간",
+      "status": "통과",
+      "value": "121거래일"
+     },
+     {
+      "name": "베이스 횟수(근사)",
+      "status": "통과",
+      "value": "2번째"
+     },
+     {
+      "name": "베이스 전 상승 30%",
+      "status": "통과",
+      "value": "61.1%"
+     },
+     {
+      "name": "업종 순위",
+      "status": "주의",
+      "value": "62위"
+     },
+     {
+      "name": "베이스 길이",
+      "status": "주의",
+      "value": "47.0주 (cup_with_handle)"
+     },
+     {
+      "name": "변동성 수축",
+      "status": "통과",
+      "value": "[6.7, 4.2]"
+     },
+     {
+      "name": "마지막 수축 거래량",
+      "status": "통과",
+      "value": "50일 평균의 0.59배"
+     },
+     {
+      "name": "핸들 위치(상단 절반, 15% 이내)",
+      "status": "탈락",
+      "value": "위치 0.42, 깊이 18.0%"
+     },
+     {
+      "name": "컵 깊이·길이",
+      "status": "주의",
+      "value": "12.9988%, 47.0주"
+     },
+     {
+      "name": "피봇 위치(+5% 이내)",
+      "status": "통과",
+      "value": "-1.6%"
+     },
+     {
+      "name": "RS 라인 신고가",
+      "status": "주의",
+      "value": "RS 84.0"
+     },
+     {
+      "name": "기관 10곳 이상",
+      "status": "통과",
+      "value": "916곳, 2026-11-17 916곳에서 +0"
+     },
+     {
+      "name": "분기 EPS +25%",
+      "status": "통과",
+      "value": "49.3%"
+     },
+     {
+      "name": "매출 +25% 또는 가속",
+      "status": "탈락",
+      "value": "2.1%"
+     },
+     {
+      "name": "ROE 17%",
+      "status": "통과",
+      "value": "18.0%"
+     },
+     {
+      "name": "세전이익률 18%",
+      "status": "탈락",
+      "value": "2.3%"
+     },
+     {
+      "name": "연 EPS 3년 성장",
+      "status": "탈락",
+      "value": "[2.02, 2.02, 2.94]"
+     },
+     {
+      "name": "Code 33",
+      "status": "탈락",
+      "value": "이익 [0.9, 22.8, 42.5] 매출 [2.8, 4.5, 2.1] 이익률 [1.2, 2.6, 2.1]"
+     }
+    ],
+    "tally": {
+     "통과": 10,
+     "주의": 4,
+     "탈락": 5,
+     "확인불가": 0
+    }
+   },
+   {
+    "symbol": "NATL",
+    "name": "NCR Atleos Corp",
+    "price": 48.20000076293945,
+    "pivot": 47.93000030517578,
+    "buy_limit": 50.33,
+    "stop": 44.34,
+    "catalysts": [
+     "뉴스: Will AllTM Launch Change NCR Atleos Stock Narrative",
+     "뉴스: What Could Target (TGT) Gain From Surcharge Free ATMs In 2,000 Stores?",
+     "뉴스: NCR Atleos, First Citizens lock arms"
+    ],
+    "pivot_dist": 0.5633224620165829,
+    "pattern": "cup_with_handle",
+    "rs": 80.0,
+    "industry": "Software - Application",
+    "group_rank": 138,
+    "next_earnings": "2026-11-04",
+    "inst_pct": 101.4,
+    "shares_change_pct": 1.4,
+    "last_bar": "2026-11-17",
+    "checks": [
+     {
+      "name": "트렌드 템플릿(일봉 재계산)",
+      "status": "통과",
+      "value": "고점 -1.7%, 저점 +43.4%"
+     },
+     {
+      "name": "200일선 상승 기간",
+      "status": "통과",
+      "value": "297거래일"
+     },
+     {
+      "name": "베이스 횟수(근사)",
+      "status": "탈락",
+      "value": "4번째"
+     },
+     {
+      "name": "베이스 전 상승 30%",
+      "status": "통과",
+      "value": "45.9%"
+     },
+     {
+      "name": "업종 순위",
+      "status": "주의",
+      "value": "138위"
+     },
+     {
+      "name": "베이스 길이",
+      "status": "주의",
+      "value": "33.0주 (cup_with_handle)"
+     },
+     {
+      "name": "변동성 수축",
+      "status": "통과",
+      "value": "[4.9, 3.7]"
+     },
+     {
+      "name": "마지막 수축 거래량",
+      "status": "통과",
+      "value": "50일 평균의 0.61배"
+     },
+     {
+      "name": "핸들 위치(상단 절반, 15% 이내)",
+      "status": "탈락",
+      "value": "위치 0.41, 깊이 6.7%"
+     },
+     {
+      "name": "컵 깊이·길이",
+      "status": "통과",
+      "value": "18.3178%, 33.0주"
+     },
+     {
+      "name": "피봇 위치(+5% 이내)",
+      "status": "통과",
+      "value": "0.6%"
+     },
+     {
+      "name": "돌파일 거래량 +50%",
+      "status": "주의",
+      "value": "0.42배"
+     },
+     {
+      "name": "RS 라인 신고가",
+      "status": "주의",
+      "value": "RS 80.0"
+     },
+     {
+      "name": "기관 10곳 이상",
+      "status": "통과",
+      "value": "458곳, 증감은 다음 실행부터"
+     },
+     {
+      "name": "분기 EPS +25%",
+      "status": "통과",
+      "value": "273.5%"
+     },
+     {
+      "name": "매출 +25% 또는 가속",
+      "status": "탈락",
+      "value": "-2.0%"
+     },
+     {
+      "name": "ROE 17%",
+      "status": "통과",
+      "value": "60.2%"
+     },
+     {
+      "name": "세전이익률 18%",
+      "status": "탈락",
+      "value": "4.3%"
+     },
+     {
+      "name": "연 EPS 3년 성장",
+      "status": "통과",
+      "value": "[-2.12, 1.08, 2.14]"
+     },
+     {
+      "name": "Code 33",
+      "status": "탈락",
+      "value": "이익 [57.1, 66.7, 273.1] 매출 [6.5, 0.1, -2.0] 이익률 [2.1, 5.9, 8.8]"
+     }
+    ],
+    "tally": {
+     "통과": 11,
+     "주의": 4,
+     "탈락": 5,
+     "확인불가": 0
+    }
+   },
+   {
+    "symbol": "HQY",
+    "name": "Healthequity Inc",
+    "price": 104.58000183105469,
+    "pivot": 106.27999877929688,
+    "buy_limit": 111.59,
+    "stop": 98.31,
+    "catalysts": [
+     "뉴스: Aytu BioPharma, Inc. (AYTU) Reports Q1 Loss, Beats Revenue Estimates",
+     "뉴스: Prime Medicine, Inc. (PRME) Reports Q3 Loss, Lags Revenue Estimates",
+     "뉴스: Reasons to Add HealthEquity Stock to Your Portfolio for Now"
+    ],
+    "pivot_dist": -1.5995455097552593,
+    "pattern": "cup_with_handle",
+    "rs": 85.0,
+    "industry": "Health Information Services",
+    "group_rank": 19,
+    "next_earnings": "2026-12-02",
+    "inst_pct": 110.0,
+    "shares_change_pct": -1.8,
+    "last_bar": "2026-11-17",
+    "checks": [
+     {
+      "name": "트렌드 템플릿(일봉 재계산)",
+      "status": "통과",
+      "value": "고점 -7.6%, 저점 +40.0%"
+     },
+     {
+      "name": "200일선 상승 기간",
+      "status": "주의",
+      "value": "21거래일"
+     },
+     {
+      "name": "베이스 횟수(근사)",
+      "status": "통과",
+      "value": "0번째"
+     },
+     {
+      "name": "베이스 전 상승 30%",
+      "status": "통과",
+      "value": "47.0%"
+     },
+     {
+      "name": "업종 순위",
+      "status": "통과",
+      "value": "19위"
+     },
+     {
+      "name": "베이스 길이",
+      "status": "통과",
+      "value": "11.0주 (cup_with_handle)"
+     },
+     {
+      "name": "변동성 수축",
+      "status": "통과",
+      "value": "[8.8, 4.0, 3.1]"
+     },
+     {
+      "name": "마지막 수축 거래량",
+      "status": "통과",
+      "value": "50일 평균의 0.87배"
+     },
+     {
+      "name": "핸들 위치(상단 절반, 15% 이내)",
+      "status": "탈락",
+      "value": "위치 0.0, 깊이 19.1%"
+     },
+     {
+      "name": "컵 깊이·길이",
+      "status": "주의",
+      "value": "12.5263%, 11.0주"
+     },
+     {
+      "name": "피봇 위치(+5% 이내)",
+      "status": "통과",
+      "value": "-1.6%"
+     },
+     {
+      "name": "RS 라인 신고가",
+      "status": "주의",
+      "value": "RS 85.0"
+     },
+     {
+      "name": "기관 10곳 이상",
+      "status": "통과",
+      "value": "699곳, 2026-11-17 702곳에서 -3"
+     },
+     {
+      "name": "기관 수 증가",
+      "status": "주의",
+      "value": "-3곳"
+     },
+     {
+      "name": "실적 발표 임박",
+      "status": "주의",
+      "value": "2026-12-02"
+     },
+     {
+      "name": "분기 EPS +25%",
+      "status": "탈락",
+      "value": "14.7%"
+     },
+     {
+      "name": "매출 +25% 또는 가속",
+      "status": "탈락",
+      "value": "7.6%"
+     },
+     {
+      "name": "ROE 17%",
+      "status": "탈락",
+      "value": "11.4%"
+     },
+     {
+      "name": "세전이익률 18%",
+      "status": "통과",
+      "value": "21.1%"
+     },
+     {
+      "name": "연 EPS 3년 성장",
+      "status": "통과",
+      "value": "[0.64, 1.09, 2.46]"
+     },
+     {
+      "name": "Code 33",
+      "status": "탈락",
+      "value": "이익 [88.7, 28.8, 9.7] 매출 [7.3, 7.2, 7.6] 이익률 [14.9, 19.6, 18.7]"
+     }
+    ],
+    "tally": {
+     "통과": 11,
+     "주의": 5,
+     "탈락": 5,
+     "확인불가": 0
+    }
+   },
+   {
+    "symbol": "HAE",
+    "name": "Haemonetics Corp",
+    "price": 121.33999633789062,
+    "pivot": 120.5,
+    "buy_limit": 126.53,
+    "stop": 111.46,
+    "catalysts": [
+     "뉴스: Roblox downgraded, Palo Alto upgraded: Wall Street's top analyst calls",
+     "뉴스: Looking For Stocks To Buy In The IBD 50? You May Be Disappointed.",
+     "뉴스: HAE Q3 CY2026 deep dive: plasma growth and new product launches drive momentum"
+    ],
+    "pivot_dist": 0.6970923965897302,
+    "pattern": "cup_with_handle",
+    "rs": 94.0,
+    "industry": "Medical Devices",
+    "group_rank": 78,
+    "next_earnings": "2027-02-04",
+    "inst_pct": 108.8,
+    "shares_change_pct": -6.1,
+    "last_bar": "2026-11-17",
+    "checks": [
+     {
+      "name": "트렌드 템플릿(일봉 재계산)",
+      "status": "통과",
+      "value": "고점 -8.4%, 저점 +137.1%"
+     },
+     {
+      "name": "200일선 상승 기간",
+      "status": "통과",
+      "value": "121거래일"
+     },
+     {
+      "name": "베이스 횟수(근사)",
+      "status": "통과",
+      "value": "2번째"
+     },
+     {
+      "name": "베이스 전 상승 30%",
+      "status": "통과",
+      "value": "158.8%"
+     },
+     {
+      "name": "업종 순위",
+      "status": "주의",
+      "value": "78위"
+     },
+     {
+      "name": "베이스 길이",
+      "status": "통과",
+      "value": "18.0주 (cup_with_handle)"
+     },
+     {
+      "name": "변동성 수축",
+      "status": "주의",
+      "value": "[11.5]"
+     },
+     {
+      "name": "마지막 수축 거래량",
+      "status": "주의",
+      "value": "50일 평균의 1.56배"
+     },
+     {
+      "name": "핸들 위치(상단 절반, 15% 이내)",
+      "status": "통과",
+      "value": "위치 0.73, 깊이 4.2%"
+     },
+     {
+      "name": "컵 깊이·길이",
+      "status": "통과",
+      "value": "18.7639%, 18.0주"
+     },
+     {
+      "name": "피봇 위치(+5% 이내)",
+      "status": "통과",
+      "value": "0.7%"
+     },
+     {
+      "name": "돌파일 거래량 +50%",
+      "status": "주의",
+      "value": "0.54배"
+     },
+     {
+      "name": "RS 라인 신고가",
+      "status": "주의",
+      "value": "RS 94.0"
+     },
+     {
+      "name": "기관 10곳 이상",
+      "status": "통과",
+      "value": "505곳, 2026-11-17 491곳에서 +14"
+     },
+     {
+      "name": "분기 EPS +25%",
+      "status": "주의",
+      "value": "23.5%"
+     },
+     {
+      "name": "매출 +25% 또는 가속",
+      "status": "탈락",
+      "value": "9.3%"
+     },
+     {
+      "name": "ROE 17%",
+      "status": "탈락",
+      "value": "11.9%"
+     },
+     {
+      "name": "세전이익률 18%",
+      "status": "탈락",
+      "value": "9.6%"
+     },
+     {
+      "name": "연 EPS 3년 성장",
+      "status": "탈락",
+      "value": "[2.29, 3.31, 2.05]"
+     },
+     {
+      "name": "Code 33",
+      "status": "탈락",
+      "value": "이익 [19.3, -3.0, 19.7] 매출 [4.8, 5.6, 9.3] 이익률 [-33.9, 9.7, 12.9]"
+     }
+    ],
+    "tally": {
+     "통과": 9,
+     "주의": 6,
+     "탈락": 5,
+     "확인불가": 0
+    }
+   },
+   {
+    "symbol": "AMG",
+    "name": "Affiliated Managers Group Inc",
+    "price": 387.6000061035156,
+    "pivot": 374.7200012207031,
+    "buy_limit": 393.46,
+    "stop": 346.62,
+    "catalysts": [
+     "뉴스: Affiliated Managers Group (AMG) is a Great Momentum Stock: Should You Buy?",
+     "뉴스: Affiliated Managers (AMG) – Among the Names Most Likely to Benefit From Rate Hikes",
+     "뉴스: Are Finance Stocks Lagging  Amalgamated Financial (AMAL) This Year?"
+    ],
+    "pivot_dist": 3.4372344259324485,
+    "pattern": "cup_with_handle",
+    "rs": 86.0,
+    "industry": "Asset Management",
+    "group_rank": 112,
+    "next_earnings": "2026-11-09",
+    "inst_pct": 101.7,
+    "shares_change_pct": -8.8,
+    "last_bar": "2026-11-17",
+    "checks": [
+     {
+      "name": "트렌드 템플릿(일봉 재계산)",
+      "status": "통과",
+      "value": "고점 -5.2%, 저점 +57.2%"
+     },
+     {
+      "name": "200일선 상승 기간",
+      "status": "통과",
+      "value": "297거래일"
+     },
+     {
+      "name": "베이스 횟수(근사)",
+      "status": "탈락",
+      "value": "5번째"
+     },
+     {
+      "name": "베이스 전 상승 30%",
+      "status": "통과",
+      "value": "70.9%"
+     },
+     {
+      "name": "업종 순위",
+      "status": "주의",
+      "value": "112위"
+     },
+     {
+      "name": "베이스 길이",
+      "status": "주의",
+      "value": "28.0주 (cup_with_handle)"
+     },
+     {
+      "name": "변동성 수축",
+      "status": "주의",
+      "value": "[13.0]"
+     },
+     {
+      "name": "마지막 수축 거래량",
+      "status": "주의",
+      "value": "50일 평균의 1.17배"
+     },
+     {
+      "name": "핸들 위치(상단 절반, 15% 이내)",
+      "status": "통과",
+      "value": "위치 0.54, 깊이 9.3%"
+     },
+     {
+      "name": "컵 깊이·길이",
+      "status": "통과",
+      "value": "23.8204%, 28.0주"
+     },
+     {
+      "name": "피봇 위치(+5% 이내)",
+      "status": "통과",
+      "value": "3.4%"
+     },
+     {
+      "name": "돌파일 거래량 +50%",
+      "status": "주의",
+      "value": "0.6배"
+     },
+     {
+      "name": "RS 라인 신고가",
+      "status": "주의",
+      "value": "RS 86.0"
+     },
+     {
+      "name": "기관 10곳 이상",
+      "status": "통과",
+      "value": "764곳, 증감은 다음 실행부터"
+     },
+     {
+      "name": "분기 EPS +25%",
+      "status": "탈락",
+      "value": "-3.3%"
+     },
+     {
+      "name": "매출 +25% 또는 가속",
+      "status": "탈락",
+      "value": "12.7%"
+     },
+     {
+      "name": "ROE 17%",
+      "status": "통과",
+      "value": "23.6%"
+     },
+     {
+      "name": "세전이익률 18%",
+      "status": "통과",
+      "value": "57.2%"
+     },
+     {
+      "name": "연 EPS 3년 성장",
+      "status": "탈락",
+      "value": "[17.42, 15.13, 22.74]"
+     },
+     {
+      "name": "Code 33",
+      "status": "탈락",
+      "value": "이익 [52.5, 120.5, -18.4] 매출 [9.7, 29.9, 12.7] 이익률 [20.3, 29.0, 29.1]"
+     }
+    ],
+    "tally": {
+     "통과": 9,
+     "주의": 6,
+     "탈락": 5,
+     "확인불가": 0
+    }
+   },
+   {
+    "symbol": "VAC",
+    "name": "Marriott Vacations Worldwide Corp",
+    "price": 117.41000366210938,
+    "pivot": 120.44999694824219,
+    "buy_limit": 126.47,
+    "stop": 111.42,
+    "catalysts": [
+     "뉴스: Marriott Vacations Worldwide (VAC) Stock Still Looks Reasonable As Shares Jumped 165%",
+     "뉴스: Marriott Vacations Worldwide (VAC) Returned To Profit, Is The Stock Still Trading At A Discount?",
+     "뉴스: Ski Passes and Timeshare Weeks: $90,000 Across These 3 Vacation Stocks Pays $3,438 a Year"
+    ],
+    "pivot_dist": -5.006225763449368,
+    "pattern": "3c",
+    "rs": 92.0,
+    "industry": "Resorts & Casinos",
+    "group_rank": 64,
+    "next_earnings": "2026-11-04",
+    "inst_pct": 89.9,
+    "shares_change_pct": -2.2,
+    "last_bar": "2026-11-17",
+    "checks": [
+     {
+      "name": "트렌드 템플릿(일봉 재계산)",
+      "status": "통과",
+      "value": "고점 -12.2%, 저점 +168.1%"
+     },
+     {
+      "name": "200일선 상승 기간",
+      "status": "통과",
+      "value": "125거래일"
+     },
+     {
+      "name": "베이스 횟수(근사)",
+      "status": "탈락",
+      "value": "4번째"
+     },
+     {
+      "name": "베이스 전 상승 30%",
+      "status": "통과",
+      "value": "164.2%"
+     },
+     {
+      "name": "업종 순위",
+      "status": "주의",
+      "value": "64위"
+     },
+     {
+      "name": "패턴 3c",
+      "status": "통과",
+      "value": "앞선 상승 +205%, 조정 26%, 컵 위치 0.53, 최근 폭 7.4%"
+     },
+     {
+      "name": "마지막 수축 거래량",
+      "status": "통과",
+      "value": "50일 평균의 0.77배"
+     },
+     {
+      "name": "피봇 위치(+5% 이내)",
+      "status": "통과",
+      "value": "-5.0%"
+     },
+     {
+      "name": "RS 라인 신고가",
+      "status": "주의",
+      "value": "RS 92.0"
+     },
+     {
+      "name": "기관 10곳 이상",
+      "status": "통과",
+      "value": "525곳, 증감은 다음 실행부터"
+     },
+     {
+      "name": "분기 EPS +25%",
+      "status": "확인불가",
+      "value": ""
+     },
+     {
+      "name": "매출 +25% 또는 가속",
+      "status": "탈락",
+      "value": "8.2%"
+     },
+     {
+      "name": "ROE 17%",
+      "status": "탈락",
+      "value": "-10.9%"
+     },
+     {
+      "name": "세전이익률 18%",
+      "status": "탈락",
+      "value": "-5.9%"
+     },
+     {
+      "name": "연 EPS 3년 성장",
+      "status": "탈락",
+      "value": "[6.28, 5.61, -8.84]"
+     },
+     {
+      "name": "Code 33",
+      "status": "통과",
+      "value": "이익 [-962.0, -60.7, 11.6] 매출 [4.8, 6.2, 8.4] 이익률 [1.9, 6.3, 6.4]"
+     }
+    ],
+    "tally": {
+     "통과": 8,
+     "주의": 2,
+     "탈락": 5,
+     "확인불가": 1
+    }
+   },
+   {
+    "symbol": "TD",
+    "name": "Toronto Dominion Bank",
+    "price": 121.76000213623047,
+    "pivot": 120.7699966430664,
+    "buy_limit": 126.81,
+    "stop": 111.71,
+    "catalysts": [
+     "뉴스: Toronto-Dominion Bank (TSX:TD) Adds In App Transfers, Is The Stock Still Undervalued?",
+     "뉴스: Canada Proposes Stablecoin Rules Banning Yield Payments",
+     "뉴스: 3 Canadian Bank Stocks Facing A Bank Of Canada Rate Reset"
+    ],
+    "pivot_dist": 0.819744572892559,
+    "pattern": "cup_with_handle",
+    "rs": 80.0,
+    "industry": "Banks - Diversified",
+    "group_rank": 53,
+    "next_earnings": "2026-12-03",
+    "inst_pct": 57.4,
+    "shares_change_pct": -3.5,
+    "last_bar": "2026-11-17",
+    "checks": [
+     {
+      "name": "트렌드 템플릿(일봉 재계산)",
+      "status": "탈락",
+      "value": "고점 -7.1%, 저점 +51.8%"
+     },
+     {
+      "name": "200일선 상승 기간",
+      "status": "통과",
+      "value": "297거래일"
+     },
+     {
+      "name": "베이스 횟수(근사)",
+      "status": "통과",
+      "value": "1번째"
+     },
+     {
+      "name": "베이스 전 상승 30%",
+      "status": "통과",
+      "value": "44.5%"
+     },
+     {
+      "name": "업종 순위",
+      "status": "주의",
+      "value": "53위"
+     },
+     {
+      "name": "베이스 길이",
+      "status": "통과",
+      "value": "20.0주 (cup_with_handle)"
+     },
+     {
+      "name": "변동성 수축",
+      "status": "주의",
+      "value": "[7.6]"
+     },
+     {
+      "name": "마지막 수축 거래량",
+      "status": "통과",
+      "value": "50일 평균의 0.78배"
+     },
+     {
+      "name": "핸들 위치(상단 절반, 15% 이내)",
+      "status": "탈락",
+      "value": "위치 0.0, 깊이 7.4%"
+     },
+     {
+      "name": "컵 깊이·길이",
+      "status": "주의",
+      "value": "8.8041%, 20.0주"
+     },
+     {
+      "name": "피봇 위치(+5% 이내)",
+      "status": "통과",
+      "value": "0.8%"
+     },
+     {
+      "name": "돌파일 거래량 +50%",
+      "status": "주의",
+      "value": "0.53배"
+     },
+     {
+      "name": "RS 라인 신고가",
+      "status": "주의",
+      "value": "RS 80.0"
+     },
+     {
+      "name": "기관 10곳 이상",
+      "status": "통과",
+      "value": "1362곳, 2026-11-17 1357곳에서 +5"
+     },
+     {
+      "name": "분기 EPS +25%",
+      "status": "통과",
+      "value": "45.0%"
+     },
+     {
+      "name": "매출 +25% 또는 가속",
+      "status": "탈락",
+      "value": "8.4%"
+     },
+     {
+      "name": "ROE 17%",
+      "status": "탈락",
+      "value": "12.8%"
+     },
+     {
+      "name": "세전이익률 18%",
+      "status": "통과",
+      "value": "38.6%"
+     },
+     {
+      "name": "연 EPS 3년 성장",
+      "status": "탈락",
+      "value": "[5.52, 4.72, 11.56]"
+     },
+     {
+      "name": "Code 33",
+      "status": "확인불가",
+      "value": "분기 5개"
+     }
+    ],
+    "tally": {
+     "통과": 9,
+     "주의": 5,
+     "탈락": 5,
+     "확인불가": 1
+    }
+   },
+   {
+    "symbol": "HMC",
+    "name": "Honda Motor ADR",
+    "price": 34.29999923706055,
+    "pivot": 32.77000045776367,
+    "buy_limit": 34.41,
+    "stop": 30.31,
+    "catalysts": [
+     "뉴스: What Does Honda Motor (TSE:7267) Need To Answer In This US Probe?",
+     "뉴스: Penske Automotive Stock: Is PAG a Buy, Hold or Sell Right Now?",
+     "뉴스: Sector Update: Consumer Stocks Mixed Late Afternoon"
+    ],
+    "pivot_dist": 4.668900695527444,
+    "pattern": "cup_with_handle",
+    "rs": 80.0,
+    "industry": "Auto Manufacturers",
+    "group_rank": 182,
+    "next_earnings": "2027-02-10",
+    "inst_pct": 3.7,
+    "shares_change_pct": -10.4,
+    "last_bar": "2026-11-17",
+    "checks": [
+     {
+      "name": "트렌드 템플릿(일봉 재계산)",
+      "status": "통과",
+      "value": "고점 -8.3%, 저점 +45.5%"
+     },
+     {
+      "name": "200일선 상승 기간",
+      "status": "주의",
+      "value": "64거래일"
+     },
+     {
+      "name": "베이스 횟수(근사)",
+      "status": "통과",
+      "value": "0번째"
+     },
+     {
+      "name": "베이스 전 상승 30%",
+      "status": "탈락",
+      "value": "17.7%"
+     },
+     {
+      "name": "업종 순위",
+      "status": "주의",
+      "value": "182위"
+     },
+     {
+      "name": "베이스 길이",
+      "status": "주의",
+      "value": "35.0주 (cup_with_handle)"
+     },
+     {
+      "name": "변동성 수축",
+      "status": "통과",
+      "value": "[7.2, 5.7]"
+     },
+     {
+      "name": "마지막 수축 거래량",
+      "status": "주의",
+      "value": "50일 평균의 1.07배"
+     },
+     {
+      "name": "핸들 위치(상단 절반, 15% 이내)",
+      "status": "통과",
+      "value": "위치 0.78, 깊이 4.8%"
+     },
+     {
+      "name": "컵 깊이·길이",
+      "status": "통과",
+      "value": "25.6714%, 35.0주"
+     },
+     {
+      "name": "피봇 위치(+5% 이내)",
+      "status": "통과",
+      "value": "4.7%"
+     },
+     {
+      "name": "돌파일 거래량 +50%",
+      "status": "주의",
+      "value": "0.55배"
+     },
+     {
+      "name": "RS 라인 신고가",
+      "status": "주의",
+      "value": "RS 80.0"
+     },
+     {
+      "name": "기관 10곳 이상",
+      "status": "통과",
+      "value": "465곳, 증감은 다음 실행부터"
+     },
+     {
+      "name": "분기 EPS +25%",
+      "status": "통과",
+      "value": "147.5%"
+     },
+     {
+      "name": "매출 +25% 또는 가속",
+      "status": "탈락",
+      "value": "12.9%"
+     },
+     {
+      "name": "ROE 17%",
+      "status": "탈락",
+      "value": "-1.2%"
+     },
+     {
+      "name": "세전이익률 18%",
+      "status": "탈락",
+      "value": "-1.9%"
+     },
+     {
+      "name": "연 EPS 3년 성장",
+      "status": "탈락",
+      "value": "[677.64, 536.79, -318.18]"
+     },
+     {
+      "name": "Code 33",
+      "status": "확인불가",
+      "value": "분기 5개"
+     }
+    ],
+    "tally": {
+     "통과": 8,
+     "주의": 6,
+     "탈락": 5,
+     "확인불가": 1
+    }
+   },
+   {
+    "symbol": "DAL",
+    "name": "Delta Air Lines Inc",
+    "price": 86.5999984741211,
+    "pivot": 92.5199966430664,
+    "buy_limit": 97.15,
+    "stop": 85.58,
+    "catalysts": [
+     "뉴스: Amex Platinum's $600 hotel credit now comes with a catch starting in 2027",
+     "뉴스: Hyatt and Delta's new partnership lets elites double-dip on points and miles",
+     "뉴스: Berkshire Reveals a $689 Million Popular Tech Stock Bet"
+    ],
+    "pivot_dist": -8.884558894895523,
+    "pattern": "3c",
+    "rs": 88.0,
+    "industry": "Airlines",
+    "group_rank": 35,
+    "next_earnings": "2027-01-13",
+    "inst_pct": 78.5,
+    "shares_change_pct": 1.0,
+    "last_bar": "2026-11-17",
+    "checks": [
+     {
+      "name": "트렌드 템플릿(일봉 재계산)",
+      "status": "통과",
+      "value": "고점 -11.4%, 저점 +54.2%"
+     },
+     {
+      "name": "200일선 상승 기간",
+      "status": "통과",
+      "value": "241거래일"
+     },
+     {
+      "name": "베이스 횟수(근사)",
+      "status": "통과",
+      "value": "0번째"
+     },
+     {
+      "name": "베이스 전 상승 30%",
+      "status": "통과",
+      "value": "113.8%"
+     },
+     {
+      "name": "업종 순위",
+      "status": "통과",
+      "value": "35위"
+     },
+     {
+      "name": "패턴 3c",
+      "status": "통과",
+      "value": "앞선 상승 +82%, 조정 22%, 컵 위치 0.48, 최근 폭 8.9%"
+     },
+     {
+      "name": "마지막 수축 거래량",
+      "status": "통과",
+      "value": "50일 평균의 0.74배"
+     },
+     {
+      "name": "피봇 위치(+5% 이내)",
+      "status": "통과",
+      "value": "-8.9%"
+     },
+     {
+      "name": "RS 라인 신고가",
+      "status": "주의",
+      "value": "RS 88.0"
+     },
+     {
+      "name": "기관 10곳 이상",
+      "status": "통과",
+      "value": "1949곳, 2026-11-17 1948곳에서 +1"
+     },
+     {
+      "name": "분기 EPS +25%",
+      "status": "탈락",
+      "value": "-47.0%"
+     },
+     {
+      "name": "매출 +25% 또는 가속",
+      "status": "탈락",
+      "value": "21.1%"
+     },
+     {
+      "name": "ROE 17%",
+      "status": "탈락",
+      "value": "15.9%"
+     },
+     {
+      "name": "세전이익률 18%",
+      "status": "탈락",
+      "value": "9.8%"
+     },
+     {
+      "name": "연 EPS 3년 성장",
+      "status": "탈락",
+      "value": "[7.17, 5.33, 7.66]"
+     },
+     {
+      "name": "Code 33",
+      "status": "탈락",
+      "value": "이익 [-220.4, -24.7, -46.6] 매출 [12.9, 18.7, 21.1] 이익률 [-1.8, 8.1, 3.7]"
+     }
+    ],
+    "tally": {
+     "통과": 9,
+     "주의": 1,
+     "탈락": 6,
+     "확인불가": 0
+    }
+   },
+   {
+    "symbol": "ELV",
+    "name": "Elevance Health Inc",
+    "price": 446.2799987792969,
+    "pivot": 442.25,
+    "buy_limit": 464.36,
+    "stop": 409.08,
+    "catalysts": [
+     "뉴스: What Sent Molina Stock Higher?",
+     "뉴스: Does Molina Healthcare Stock's Run Make Any Sense?",
+     "뉴스: Avantis U.S. Large Cap Value ETF (AVLV) Buys $18.4 Million More ELV on Nov. 13"
+    ],
+    "pivot_dist": 0.9112490173650367,
+    "pattern": "cup_with_handle",
+    "rs": 87.0,
+    "industry": "Healthcare Plans",
+    "group_rank": 16,
+    "next_earnings": "2027-01-28",
+    "inst_pct": 94.1,
+    "shares_change_pct": -3.0,
+    "last_bar": "2026-11-17",
+    "checks": [
+     {
+      "name": "트렌드 템플릿(일봉 재계산)",
+      "status": "통과",
+      "value": "고점 -3.7%, 저점 +60.2%"
+     },
+     {
+      "name": "200일선 상승 기간",
+      "status": "통과",
+      "value": "142거래일"
+     },
+     {
+      "name": "베이스 횟수(근사)",
+      "status": "주의",
+      "value": "3번째"
+     },
+     {
+      "name": "베이스 전 상승 30%",
+      "status": "통과",
+      "value": "68.9%"
+     },
+     {
+      "name": "업종 순위",
+      "status": "통과",
+      "value": "16위"
+     },
+     {
+      "name": "베이스 길이",
+      "status": "주의",
+      "value": "54.0주 (cup_with_handle)"
+     },
+     {
+      "name": "변동성 수축",
+      "status": "통과",
+      "value": "[9.7, 7.1, 3.5]"
+     },
+     {
+      "name": "마지막 수축 거래량",
+      "status": "주의",
+      "value": "50일 평균의 1.3배"
+     },
+     {
+      "name": "핸들 위치(상단 절반, 15% 이내)",
+      "status": "통과",
+      "value": "위치 0.76, 깊이 8.0%"
+     },
+     {
+      "name": "컵 깊이·길이",
+      "status": "통과",
+      "value": "24.6745%, 54.0주"
+     },
+     {
+      "name": "피봇 위치(+5% 이내)",
+      "status": "통과",
+      "value": "0.9%"
+     },
+     {
+      "name": "돌파일 거래량 +50%",
+      "status": "통과",
+      "value": "1.71배"
+     },
+     {
+      "name": "RS 라인 신고가",
+      "status": "통과",
+      "value": "RS 87.0"
+     },
+     {
+      "name": "기관 10곳 이상",
+      "status": "통과",
+      "value": "2203곳, 2026-11-09 2204곳에서 -1"
+     },
+     {
+      "name": "기관 수 증가",
+      "status": "주의",
+      "value": "-1곳"
+     },
+     {
+      "name": "분기 EPS +25%",
+      "status": "탈락",
+      "value": "17.9%"
+     },
+     {
+      "name": "매출 +25% 또는 가속",
+      "status": "탈락",
+      "value": "1.4%"
+     },
+     {
+      "name": "ROE 17%",
+      "status": "탈락",
+      "value": "11.5%"
+     },
+     {
+      "name": "세전이익률 18%",
+      "status": "탈락",
+      "value": "3.4%"
+     },
+     {
+      "name": "연 EPS 3년 성장",
+      "status": "탈락",
+      "value": "[25.22, 25.68, 25.21]"
+     },
+     {
+      "name": "Code 33",
+      "status": "탈락",
+      "value": "이익 [-19.2, -16.1, 14.8] 매출 [2.6, 1.4, 1.4] 이익률 [3.5, 2.9, 2.7]"
+     }
+    ],
+    "tally": {
+     "통과": 11,
+     "주의": 4,
+     "탈락": 6,
+     "확인불가": 0
+    }
+   },
+   {
+    "symbol": "ASH",
+    "name": "Ashland Inc",
+    "price": 75.56999969482422,
+    "pivot": 73.61499786376953,
+    "buy_limit": 77.3,
+    "stop": 68.09,
+    "catalysts": [
+     "뉴스: Is Buying the NVIDIA Dip a Mistake? 3 Value Stocks Offer a Different Path Forward",
+     "뉴스: ASH Q4 Earnings Miss Estimates Despite Strong Segment Growth",
+     "뉴스: Here’s Why Ashland (ASH) is Targeted by Activist Investors for an Outright Sale"
+    ],
+    "pivot_dist": 2.6557113194142525,
+    "pattern": "cup_with_handle",
+    "rs": 88.0,
+    "industry": "Specialty Chemicals",
+    "group_rank": 127,
+    "next_earnings": "2027-02-02",
+    "inst_pct": 118.8,
+    "shares_change_pct": -2.1,
+    "last_bar": "2026-11-17",
+    "checks": [
+     {
+      "name": "트렌드 템플릿(일봉 재계산)",
+      "status": "통과",
+      "value": "고점 -6.7%, 저점 +58.8%"
+     },
+     {
+      "name": "200일선 상승 기간",
+      "status": "통과",
+      "value": "231거래일"
+     },
+     {
+      "name": "베이스 횟수(근사)",
+      "status": "통과",
+      "value": "1번째"
+     },
+     {
+      "name": "베이스 전 상승 30%",
+      "status": "통과",
+      "value": "79.7%"
+     },
+     {
+      "name": "업종 순위",
+      "status": "주의",
+      "value": "127위"
+     },
+     {
+      "name": "베이스 길이",
+      "status": "주의",
+      "value": "56.0주 (cup_with_handle)"
+     },
+     {
+      "name": "변동성 수축",
+      "status": "통과",
+      "value": "[13.9, 4.6]"
+     },
+     {
+      "name": "마지막 수축 거래량",
+      "status": "주의",
+      "value": "50일 평균의 1.14배"
+     },
+     {
+      "name": "핸들 위치(상단 절반, 15% 이내)",
+      "status": "통과",
+      "value": "위치 0.67, 깊이 9.0%"
+     },
+     {
+      "name": "컵 깊이·길이",
+      "status": "통과",
+      "value": "16.4863%, 56.0주"
+     },
+     {
+      "name": "피봇 위치(+5% 이내)",
+      "status": "통과",
+      "value": "2.7%"
+     },
+     {
+      "name": "돌파일 거래량 +50%",
+      "status": "주의",
+      "value": "1.04배"
+     },
+     {
+      "name": "RS 라인 신고가",
+      "status": "주의",
+      "value": "RS 88.0"
+     },
+     {
+      "name": "기관 10곳 이상",
+      "status": "통과",
+      "value": "501곳, 2026-11-17 495곳에서 +6"
+     },
+     {
+      "name": "분기 EPS +25%",
+      "status": "탈락",
+      "value": "-150.3%"
+     },
+     {
+      "name": "매출 +25% 또는 가속",
+      "status": "탈락",
+      "value": "7.3%"
+     },
+     {
+      "name": "ROE 17%",
+      "status": "탈락",
+      "value": "1.3%"
+     },
+     {
+      "name": "세전이익률 18%",
+      "status": "탈락",
+      "value": "-44.4%"
+     },
+     {
+      "name": "연 EPS 3년 성장",
+      "status": "탈락",
+      "value": "[3.36, -18.23, 0.09]"
+     },
+     {
+      "name": "Code 33",
+      "status": "탈락",
+      "value": "이익 [-12466.7, 82.4, -48.4] 매출 [-4.7, 0.6, 7.3] 이익률 [-3.1, 3.3, 3.2]"
+     }
+    ],
+    "tally": {
+     "통과": 9,
+     "주의": 5,
+     "탈락": 6,
+     "확인불가": 0
+    }
+   },
+   {
+    "symbol": "GSAT",
+    "name": "Globalstar Inc",
+    "price": 85.95999908447266,
+    "pivot": 84.02999877929688,
+    "buy_limit": 88.23,
+    "stop": 77.73,
+    "catalysts": [
+     "뉴스: What Explains The Move In AST SpaceMobile Stock?",
+     "뉴스: Can AST SpaceMobile Stock Double From Here?",
+     "뉴스: Does The Move In AST SpaceMobile Stock Change Anything?"
+    ],
+    "pivot_dist": 2.29679915888716,
+    "pattern": "cup_with_handle",
+    "rs": 82.0,
+    "industry": "Telecom Services",
+    "group_rank": 102,
+    "next_earnings": "2026-11-05",
+    "inst_pct": 30.1,
+    "shares_change_pct": 1.3,
+    "last_bar": "2026-11-17",
+    "checks": [
+     {
+      "name": "트렌드 템플릿(일봉 재계산)",
+      "status": "통과",
+      "value": "고점 -0.5%, 저점 +61.2%"
+     },
+     {
+      "name": "200일선 상승 기간",
+      "status": "통과",
+      "value": "297거래일"
+     },
+     {
+      "name": "베이스 횟수(근사)",
+      "status": "탈락",
+      "value": "8번째"
+     },
+     {
+      "name": "베이스 전 상승 30%",
+      "status": "통과",
+      "value": "189.9%"
+     },
+     {
+      "name": "업종 순위",
+      "status": "주의",
+      "value": "102위"
+     },
+     {
+      "name": "베이스 길이",
+      "status": "주의",
+      "value": "34.0주 (cup_with_handle)"
+     },
+     {
+      "name": "변동성 수축",
+      "status": "주의",
+      "value": "[3.3]"
+     },
+     {
+      "name": "마지막 수축 거래량",
+      "status": "주의",
+      "value": "50일 평균의 2.15배"
+     },
+     {
+      "name": "핸들 위치(상단 절반, 15% 이내)",
+      "status": "통과",
+      "value": "위치 0.87, 깊이 3.6%"
+     },
+     {
+      "name": "컵 깊이·길이",
+      "status": "통과",
+      "value": "28.3253%, 34.0주"
+     },
+     {
+      "name": "피봇 위치(+5% 이내)",
+      "status": "통과",
+      "value": "2.3%"
+     },
+     {
+      "name": "돌파일 거래량 +50%",
+      "status": "주의",
+      "value": "1.22배"
+     },
+     {
+      "name": "RS 라인 신고가",
+      "status": "주의",
+      "value": "RS 82.0"
+     },
+     {
+      "name": "기관 10곳 이상",
+      "status": "통과",
+      "value": "414곳, 2026-11-17 416곳에서 -2"
+     },
+     {
+      "name": "기관 수 증가",
+      "status": "주의",
+      "value": "-2곳"
+     },
+     {
+      "name": "분기 EPS +25%",
+      "status": "확인불가",
+      "value": ""
+     },
+     {
+      "name": "매출 +25% 또는 가속",
+      "status": "탈락",
+      "value": "-4.0%"
+     },
+     {
+      "name": "ROE 17%",
+      "status": "탈락",
+      "value": "-21.4%"
+     },
+     {
+      "name": "세전이익률 18%",
+      "status": "탈락",
+      "value": "-1.0%"
+     },
+     {
+      "name": "연 EPS 3년 성장",
+      "status": "탈락",
+      "value": "[-0.3, -0.59, -0.15]"
+     },
+     {
+      "name": "Code 33",
+      "status": "탈락",
+      "value": "이익 [-89.0, -238.2, -1538.7] 매출 [16.7, -3.5, -4.0] 이익률 [-24.9, -41.0, -22.1]"
+     }
+    ],
+    "tally": {
+     "통과": 7,
+     "주의": 7,
+     "탈락": 6,
+     "확인불가": 1
+    }
+   },
+   {
+    "symbol": "HST",
+    "name": "Host Hotels & Resorts Inc",
+    "price": 25.719999313354492,
+    "pivot": 25.170000076293945,
+    "buy_limit": 26.43,
+    "stop": 23.28,
+    "catalysts": [
+     "뉴스: 5 High ROE Stocks to Buy as NVIDIA, Unstable Oil Prices Sway Markets",
+     "뉴스: Summit Hotel Properties, Inc. (INN) Hits Fresh High: Is There Still Room to Run?",
+     "뉴스: HST vs. PSA: Which Stock Is the Better Value Option?"
+    ],
+    "pivot_dist": 2.1851380031522405,
+    "pattern": "cup_with_handle",
+    "rs": 92.0,
+    "industry": "REIT - Hotel & Motel",
+    "group_rank": 69,
+    "next_earnings": "2026-11-05",
+    "inst_pct": 106.0,
+    "shares_change_pct": -1.6,
+    "last_bar": "2026-11-17",
+    "checks": [
+     {
+      "name": "트렌드 템플릿(일봉 재계산)",
+      "status": "통과",
+      "value": "고점 -2.2%, 저점 +64.9%"
+     },
+     {
+      "name": "200일선 상승 기간",
+      "status": "통과",
+      "value": "258거래일"
+     },
+     {
+      "name": "베이스 횟수(근사)",
+      "status": "주의",
+      "value": "3번째"
+     },
+     {
+      "name": "베이스 전 상승 30%",
+      "status": "통과",
+      "value": "65.9%"
+     },
+     {
+      "name": "업종 순위",
+      "status": "주의",
+      "value": "69위"
+     },
+     {
+      "name": "베이스 길이",
+      "status": "통과",
+      "value": "22.0주 (cup_with_handle)"
+     },
+     {
+      "name": "변동성 수축",
+      "status": "주의",
+      "value": "[7.1]"
+     },
+     {
+      "name": "마지막 수축 거래량",
+      "status": "주의",
+      "value": "50일 평균의 1.61배"
+     },
+     {
+      "name": "핸들 위치(상단 절반, 15% 이내)",
+      "status": "탈락",
+      "value": "위치 0.0, 깊이 15.3%"
+     },
+     {
+      "name": "컵 깊이·길이",
+      "status": "주의",
+      "value": "12.7933%, 22.0주"
+     },
+     {
+      "name": "피봇 위치(+5% 이내)",
+      "status": "통과",
+      "value": "2.2%"
+     },
+     {
+      "name": "돌파일 거래량 +50%",
+      "status": "주의",
+      "value": "0.77배"
+     },
+     {
+      "name": "RS 라인 신고가",
+      "status": "주의",
+      "value": "RS 92.0"
+     },
+     {
+      "name": "기관 10곳 이상",
+      "status": "통과",
+      "value": "1084곳, 2026-11-17 1086곳에서 -2"
+     },
+     {
+      "name": "기관 수 증가",
+      "status": "주의",
+      "value": "-2곳"
+     },
+     {
+      "name": "분기 EPS +25%",
+      "status": "탈락",
+      "value": "-56.5%"
+     },
+     {
+      "name": "매출 +25% 또는 가속",
+      "status": "탈락",
+      "value": "1.2%"
+     },
+     {
+      "name": "ROE 17%",
+      "status": "탈락",
+      "value": "14.2%"
+     },
+     {
+      "name": "세전이익률 18%",
+      "status": "탈락",
+      "value": "13.4%"
+     },
+     {
+      "name": "연 EPS 3년 성장",
+      "status": "탈락",
+      "value": "[1.04, 0.99, 1.1]"
+     },
+     {
+      "name": "Code 33",
+      "status": "탈락",
+      "value": "이익 [99.2, 7.2, -56.5] 매출 [3.2, 3.4, 1.2] 이익률 [30.0, 14.5, 5.2]"
+     }
+    ],
+    "tally": {
+     "통과": 6,
+     "주의": 8,
+     "탈락": 7,
+     "확인불가": 0
+    }
+   }
+  ]
+ },
+ {
+  "market": "JP",
+  "as_of": "2026-11-17",
+  "stance": "Correction — In Cash",
+  "distribution_days": 8,
+  "follow_through": false,
+  "exposure": 11.6,
+  "funnel": {
+   "전체": 3686,
+   "트렌드": 72,
+   "셋업": 18,
+   "실적": 4,
+   "패턴추가": 1
+  },
+  "trend_summary": {
+   "index_trend": "neutral",
+   "vix": null,
+   "stage2_pct": 8.9,
+   "aligned_pct": 7.4,
+   "sectors": [
+    [
+     "IT & SERVICES, OTHERS",
+     17
+    ],
+    [
+     "Consumer Cyclical",
+     14
+    ],
+    [
+     "Consumer Defensive",
+     9
+    ],
+    [
+     "Technology",
+     5
+    ],
+    [
+     "Communication Services",
+     4
+    ],
+    [
+     "RAW MATERIALS & CHEMICALS",
+     4
+    ],
+    [
+     "PHARMACEUTICAL",
+     3
+    ],
+    [
+     "Financial Services",
+     2
+    ]
+   ],
+   "industries": [
+    [
+     "Finance-Invest Bnk/Bkrs",
+     11
+    ],
+    [
+     "Information & Communication",
+     10
+    ],
+    [
+     "Services",
+     6
+    ],
+    [
+     "Electronic-Parts",
+     5
+    ],
+    [
+     "Finance-Investment Mgmt",
+     4
+    ],
+    [
+     "Hsehold/Office Furniture",
+     4
+    ],
+    [
+     "Chemicals",
+     4
+    ],
+    [
+     "Food-Meat Products",
+     3
+    ],
+    [
+     "Pharmaceutical",
+     3
+    ],
+    [
+     "Energy-Coal",
+     2
+    ]
+   ],
+   "rs_top": [
+    [
+     "タカラトミー",
+     "7867.T",
+     99.0,
+     "Finance-Invest Bnk/Bkrs"
+    ],
+    [
+     "エアトリ",
+     "6191.T",
+     99.0,
+     "Services"
+    ],
+    [
+     "ベイカレント",
+     "6532.T",
+     99.0,
+     "Finance-Invest Bnk/Bkrs"
+    ],
+    [
+     "ハピネット",
+     "7552.T",
+     99.0,
+     "Finance-Investment Mgmt"
+    ],
+    [
+     "ネクセラファーマ",
+     "4565.T",
+     99.0,
+     "Energy-Coal"
+    ],
+    [
+     "オンコリスバイオファーマ",
+     "4588.T",
+     99.0,
+     "Pharmaceutical"
+    ],
+    [
+     "丸千代山岡家",
+     "3399.T",
+     99.0,
+     "Hsehold/Office Furniture"
+    ],
+    [
+     "グローバルセキュリティエキスパート",
+     "4417.T",
+     99.0,
+     "Information & Communication"
+    ],
+    [
+     "フォスター電機",
+     "6794.T",
+     98.0,
+     "Finance-Invest Bnk/Bkrs"
+    ],
+    [
+     "東京海上ホールディングス",
+     "8766.T",
+     98.0,
+     "Finance-Invest Bnk/Bkrs"
+    ]
+   ],
+   "group_rank_top": [
+    [
+     1,
+     "Air Transportation"
+    ],
+    [
+     2,
+     "Banks-West/Southwest"
+    ],
+    [
+     3,
+     "Transportation-Truck"
+    ],
+    [
+     4,
+     "Funeral Svcs & Rel"
+    ],
+    [
+     5,
+     "Food-Dairy Products"
+    ],
+    [
+     6,
+     "Food-Grain & Related"
+    ],
+    [
+     7,
+     "Food-Misc Preparation"
+    ],
+    [
+     8,
+     "Computer Sftwr-Edu/Media"
+    ],
+    [
+     9,
+     "Beverages-Alcoholic"
+    ],
+    [
+     10,
+     "Food-Meat Products"
+    ]
+   ],
+   "prev": {
+    "date": "2026-11-17",
+    "trend": 72
+   }
+  },
+  "picks": [
+   {
+    "symbol": "4417.T",
+    "name": "グローバルセキュリティエキスパート",
+    "price": 8480.0,
+    "pivot": 8490.0,
+    "buy_limit": 8914.5,
+    "stop": 7853.25,
+    "catalysts": [
+     "뉴스: 3 Asian Stocks Estimated To Be Trading At Up To 42.8% Below Intrinsic Value",
+     "뉴스: 3 Asian Stocks Estimated To Be Up To 37.3% Below Intrinsic Value",
+     "뉴스: April 2026's Global Stocks That May Be Trading Below Estimated Value"
+    ],
+    "pivot_dist": -0.11778563015312216,
+    "pattern": "power_play",
+    "rs": 99.0,
+    "industry": "Software - Infrastructure",
+    "group_rank": 61,
+    "next_earnings": null,
+    "inst_pct": 16.1,
+    "shares_change_pct": 0.3,
+    "last_bar": "2026-11-18",
+    "checks": [
+     {
+      "name": "트렌드 템플릿(일봉 재계산)",
+      "status": "통과",
+      "value": "고점 -2.3%, 저점 +290.2%"
+     },
+     {
+      "name": "200일선 상승 기간",
+      "status": "통과",
+      "value": "95거래일"
+     },
+     {
+      "name": "베이스 횟수(근사)",
+      "status": "탈락",
+      "value": "4번째"
+     },
+     {
+      "name": "베이스 전 상승 30%",
+      "status": "통과",
+      "value": "261.2%"
+     },
+     {
+      "name": "조정장 방어",
+      "status": "통과",
+      "value": "시장 조정에도 버팀"
+     },
+     {
+      "name": "업종 순위",
+      "status": "주의",
+      "value": "61위"
+     },
+     {
+      "name": "패턴 power_play",
+      "status": "통과",
+      "value": "8주 내 +111%, 조정 14%, 14일 횡보, 최근 폭 0.2%"
+     },
+     {
+      "name": "마지막 수축 거래량",
+      "status": "주의",
+      "value": "50일 평균의 1.11배"
+     },
+     {
+      "name": "피봇 위치(+5% 이내)",
+      "status": "통과",
+      "value": "-0.1%"
+     },
+     {
+      "name": "RS 라인 신고가",
+      "status": "주의",
+      "value": "RS 99.0"
+     },
+     {
+      "name": "기관 10곳 이상",
+      "status": "통과",
+      "value": "19곳, 2026-11-17 19곳에서 +0"
+     },
+     {
+      "name": "분기 EPS +25%",
+      "status": "주의",
+      "value": "0.2%"
+     },
+     {
+      "name": "매출 +25% 또는 가속",
+      "status": "주의",
+      "value": "23.9%"
+     },
+     {
+      "name": "ROE 17%",
+      "status": "통과",
+      "value": "45.5%"
+     },
+     {
+      "name": "세전이익률 18%",
+      "status": "통과",
+      "value": "20.1%"
+     },
+     {
+      "name": "연 EPS 3년 성장",
+      "status": "주의",
+      "value": "[51.67, 67.03, 67.03]"
+     },
+     {
+      "name": "Code 33",
+      "status": "확인불가",
+      "value": "분기 5개"
+     }
+    ],
+    "tally": {
+     "통과": 9,
+     "주의": 6,
+     "탈락": 1,
+     "확인불가": 1
+    }
+   },
+   {
+    "symbol": "8725.T",
+    "name": "ＭＳ＆ＡＤインシュアランスグループホールディングス",
+    "price": 5202.0,
+    "pivot": 5190.0,
+    "buy_limit": 5449.5,
+    "stop": 4800.75,
+    "catalysts": [
+     "뉴스: MS&AD Insurance Group Holdings (TSE:8725) Highlights Its US Business, Is The Upside Already Priced In?",
+     "뉴스: Assessing MS&AD Insurance Group Holdings (TSE:8725) Valuation After Recent Share Price Momentum",
+     "뉴스: MS&AD Insurance Group Holdings Inc (MSADF) Full Year 2026 Earnings Call Highlights: Record ..."
+    ],
+    "pivot_dist": 0.23121387283236997,
+    "pattern": "cup_with_handle",
+    "rs": 93.0,
+    "industry": "Insurance - Property & Casualty",
+    "group_rank": 46,
+    "next_earnings": "2026-11-19",
+    "inst_pct": 49.8,
+    "shares_change_pct": -4.0,
+    "last_bar": "2026-11-18",
+    "checks": [
+     {
+      "name": "트렌드 템플릿(일봉 재계산)",
+      "status": "통과",
+      "value": "고점 -4.9%, 저점 +70.9%"
+     },
+     {
+      "name": "200일선 상승 기간",
+      "status": "통과",
+      "value": "251거래일"
+     },
+     {
+      "name": "베이스 횟수(근사)",
+      "status": "통과",
+      "value": "2번째"
+     },
+     {
+      "name": "베이스 전 상승 30%",
+      "status": "통과",
+      "value": "128.6%"
+     },
+     {
+      "name": "업종 순위",
+      "status": "주의",
+      "value": "46위"
+     },
+     {
+      "name": "베이스 길이",
+      "status": "주의",
+      "value": "55.0주 (cup_with_handle)"
+     },
+     {
+      "name": "변동성 수축",
+      "status": "주의",
+      "value": "[5.3]"
+     },
+     {
+      "name": "마지막 수축 거래량",
+      "status": "통과",
+      "value": "50일 평균의 0.49배"
+     },
+     {
+      "name": "핸들 위치(상단 절반, 15% 이내)",
+      "status": "통과",
+      "value": "위치 0.73, 깊이 8.6%"
+     },
+     {
+      "name": "컵 깊이·길이",
+      "status": "주의",
+      "value": "14.9425%, 55.0주"
+     },
+     {
+      "name": "피봇 위치(+5% 이내)",
+      "status": "통과",
+      "value": "0.2%"
+     },
+     {
+      "name": "돌파일 거래량 +50%",
+      "status": "주의",
+      "value": "0.59배"
+     },
+     {
+      "name": "RS 라인 신고가",
+      "status": "주의",
+      "value": "RS 93.0"
+     },
+     {
+      "name": "기관 10곳 이상",
+      "status": "통과",
+      "value": "411곳, 2026-11-17 411곳에서 +0"
+     },
+     {
+      "name": "실적 발표 임박",
+      "status": "주의",
+      "value": "2026-11-19"
+     },
+     {
+      "name": "분기 EPS +25%",
+      "status": "통과",
+      "value": "39.2%"
+     },
+     {
+      "name": "매출 +25% 또는 가속",
+      "status": "통과",
+      "value": "32.0%"
+     },
+     {
+      "name": "ROE 17%",
+      "status": "탈락",
+      "value": "16.1%"
+     },
+     {
+      "name": "세전이익률 18%",
+      "status": "탈락",
+      "value": "7.0%"
+     },
+     {
+      "name": "연 EPS 3년 성장",
+      "status": "통과",
+      "value": "[77.26, 193.33, 528.8]"
+     },
+     {
+      "name": "Code 33",
+      "status": "확인불가",
+      "value": "분기 5개"
+     }
+    ],
+    "tally": {
+     "통과": 11,
+     "주의": 7,
+     "탈락": 2,
+     "확인불가": 1
+    }
+   },
+   {
+    "symbol": "9069.T",
+    "name": "センコーグループホールディングス",
+    "price": 2446.0,
+    "pivot": 2422.0,
+    "buy_limit": 2543.1,
+    "stop": 2240.35,
+    "catalysts": [
+     "뉴스: SENKO Group Holdings (TSE:9069) Stock Looks Reasonable On Cash Flow Views"
+    ],
+    "pivot_dist": 0.990916597853014,
+    "pattern": "cup_with_handle",
+    "rs": 92.0,
+    "industry": "Integrated Freight & Logistics",
+    "group_rank": 11,
+    "next_earnings": "2027-02-11",
+    "inst_pct": 34.7,
+    "shares_change_pct": -1.9,
+    "last_bar": "2026-11-18",
+    "checks": [
+     {
+      "name": "트렌드 템플릿(일봉 재계산)",
+      "status": "통과",
+      "value": "고점 -6.1%, 저점 +45.1%"
+     },
+     {
+      "name": "200일선 상승 기간",
+      "status": "통과",
+      "value": "85거래일"
+     },
+     {
+      "name": "베이스 횟수(근사)",
+      "status": "통과",
+      "value": "0번째"
+     },
+     {
+      "name": "베이스 전 상승 30%",
+      "status": "통과",
+      "value": "54.4%"
+     },
+     {
+      "name": "조정장 방어",
+      "status": "통과",
+      "value": "시장 조정에도 버팀"
+     },
+     {
+      "name": "업종 순위",
+      "status": "통과",
+      "value": "11위"
+     },
+     {
+      "name": "베이스 길이",
+      "status": "통과",
+      "value": "16.0주 (cup_with_handle)"
+     },
+     {
+      "name": "변동성 수축",
+      "status": "주의",
+      "value": "[6.6]"
+     },
+     {
+      "name": "마지막 수축 거래량",
+      "status": "통과",
+      "value": "50일 평균의 0.91배"
+     },
+     {
+      "name": "핸들 위치(상단 절반, 15% 이내)",
+      "status": "탈락",
+      "value": "위치 0.4, 깊이 6.4%"
+     },
+     {
+      "name": "컵 깊이·길이",
+      "status": "통과",
+      "value": "20.979%, 16.0주"
+     },
+     {
+      "name": "피봇 위치(+5% 이내)",
+      "status": "통과",
+      "value": "1.0%"
+     },
+     {
+      "name": "돌파일 거래량 +50%",
+      "status": "주의",
+      "value": "1.1배"
+     },
+     {
+      "name": "RS 라인 신고가",
+      "status": "통과",
+      "value": "RS 92.0"
+     },
+     {
+      "name": "기관 10곳 이상",
+      "status": "통과",
+      "value": "85곳, 2026-11-17 84곳에서 +1"
+     },
+     {
+      "name": "분기 EPS +25%",
+      "status": "통과",
+      "value": "30.6%"
+     },
+     {
+      "name": "매출 +25% 또는 가속",
+      "status": "탈락",
+      "value": "15.3%"
+     },
+     {
+      "name": "ROE 17%",
+      "status": "탈락",
+      "value": "13.5%"
+     },
+     {
+      "name": "세전이익률 18%",
+      "status": "탈락",
+      "value": "3.5%"
+     },
+     {
+      "name": "연 EPS 3년 성장",
+      "status": "통과",
+      "value": "[94.08, 109.17, 113.24]"
+     },
+     {
+      "name": "Code 33",
+      "status": "확인불가",
+      "value": "분기 5개"
+     }
+    ],
+    "tally": {
+     "통과": 14,
+     "주의": 2,
+     "탈락": 4,
+     "확인불가": 1
+    }
+   },
+   {
+    "symbol": "8630.T",
+    "name": "ＳＯＭＰＯホールディングス",
+    "price": 7152.0,
+    "pivot": 6958.0,
+    "buy_limit": 7305.9,
+    "stop": 6436.15,
+    "catalysts": [
+     "뉴스: Is Sompo Holdings (TSE:8630) Still Below Fair Value on Earnings?",
+     "뉴스: Sompo Holdings Inc's Dividend Analysis",
+     "뉴스: Toyota backs Tier IV in level 4 autonomous vehicle push"
+    ],
+    "pivot_dist": 2.788157516527738,
+    "pattern": "cup_with_handle",
+    "rs": 92.0,
+    "industry": "Insurance - Property & Casualty",
+    "group_rank": 22,
+    "next_earnings": "2026-11-19",
+    "inst_pct": 44.1,
+    "shares_change_pct": -5.1,
+    "last_bar": "2026-11-18",
+    "checks": [
+     {
+      "name": "트렌드 템플릿(일봉 재계산)",
+      "status": "통과",
+      "value": "고점 -5.6%, 저점 +60.7%"
+     },
+     {
+      "name": "200일선 상승 기간",
+      "status": "통과",
+      "value": "283거래일"
+     },
+     {
+      "name": "베이스 횟수(근사)",
+      "status": "탈락",
+      "value": "5번째"
+     },
+     {
+      "name": "베이스 전 상승 30%",
+      "status": "통과",
+      "value": "87.7%"
+     },
+     {
+      "name": "조정장 방어",
+      "status": "통과",
+      "value": "시장 조정에도 버팀"
+     },
+     {
+      "name": "업종 순위",
+      "status": "통과",
+      "value": "22위"
+     },
+     {
+      "name": "베이스 길이",
+      "status": "주의",
+      "value": "41.0주 (cup_with_handle)"
+     },
+     {
+      "name": "변동성 수축",
+      "status": "주의",
+      "value": "[9.0]"
+     },
+     {
+      "name": "마지막 수축 거래량",
+      "status": "주의",
+      "value": "50일 평균의 1.51배"
+     },
+     {
+      "name": "핸들 위치(상단 절반, 15% 이내)",
+      "status": "통과",
+      "value": "위치 0.6, 깊이 7.1%"
+     },
+     {
+      "name": "컵 깊이·길이",
+      "status": "주의",
+      "value": "8.4645%, 41.0주"
+     },
+     {
+      "name": "피봇 위치(+5% 이내)",
+      "status": "통과",
+      "value": "2.8%"
+     },
+     {
+      "name": "돌파일 거래량 +50%",
+      "status": "주의",
+      "value": "1.06배"
+     },
+     {
+      "name": "RS 라인 신고가",
+      "status": "주의",
+      "value": "RS 92.0"
+     },
+     {
+      "name": "기관 10곳 이상",
+      "status": "통과",
+      "value": "420곳, 2026-11-16 422곳에서 -2"
+     },
+     {
+      "name": "기관 수 증가",
+      "status": "주의",
+      "value": "-2곳"
+     },
+     {
+      "name": "실적 발표 임박",
+      "status": "주의",
+      "value": "2026-11-19"
+     },
+     {
+      "name": "분기 EPS +25%",
+      "status": "통과",
+      "value": "59.0%"
+     },
+     {
+      "name": "매출 +25% 또는 가속",
+      "status": "통과",
+      "value": "26.8%"
+     },
+     {
+      "name": "ROE 17%",
+      "status": "탈락",
+      "value": "14.4%"
+     },
+     {
+      "name": "세전이익률 18%",
+      "status": "탈락",
+      "value": "6.3%"
+     },
+     {
+      "name": "연 EPS 3년 성장",
+      "status": "탈락",
+      "value": "[421.28, 250.9, 701.03]"
+     },
+     {
+      "name": "Code 33",
+      "status": "확인불가",
+      "value": "분기 5개"
+     }
+    ],
+    "tally": {
+     "통과": 10,
+     "주의": 8,
+     "탈락": 4,
+     "확인불가": 1
+    }
+   },
+   {
+    "symbol": "6460.T",
+    "name": "セガサミーホールディングス",
+    "price": 3441.0,
+    "pivot": 3473.0,
+    "buy_limit": 3646.65,
+    "stop": 3212.53,
+    "catalysts": [
+     "뉴스: 3 Japanese Founder Led Stocks With Up To 31% Earnings Growth",
+     "뉴스: 3 Japanese Founder Led Stocks To Own In October 2026"
+    ],
+    "pivot_dist": -0.9213936078318457,
+    "pattern": "cup_with_handle",
+    "rs": 95.0,
+    "industry": "Electronic Gaming & Multimedia",
+    "group_rank": 38,
+    "next_earnings": "2026-11-06",
+    "inst_pct": 32.7,
+    "shares_change_pct": -5.2,
+    "last_bar": "2026-11-18",
+    "checks": [
+     {
+      "name": "트렌드 템플릿(일봉 재계산)",
+      "status": "통과",
+      "value": "고점 -2.3%, 저점 +66.4%"
+     },
+     {
+      "name": "200일선 상승 기간",
+      "status": "주의",
+      "value": "56거래일"
+     },
+     {
+      "name": "베이스 횟수(근사)",
+      "status": "통과",
+      "value": "1번째"
+     },
+     {
+      "name": "베이스 전 상승 30%",
+      "status": "통과",
+      "value": "58.6%"
+     },
+     {
+      "name": "조정장 방어",
+      "status": "통과",
+      "value": "시장 조정에도 버팀"
+     },
+     {
+      "name": "업종 순위",
+      "status": "통과",
+      "value": "38위"
+     },
+     {
+      "name": "베이스 길이",
+      "status": "통과",
+      "value": "25.0주 (cup_with_handle)"
+     },
+     {
+      "name": "변동성 수축",
+      "status": "통과",
+      "value": "[9.9, 5.0, 3.4]"
+     },
+     {
+      "name": "마지막 수축 거래량",
+      "status": "통과",
+      "value": "50일 평균의 0.73배"
+     },
+     {
+      "name": "핸들 위치(상단 절반, 15% 이내)",
+      "status": "통과",
+      "value": "위치 0.76, 깊이 9.0%"
+     },
+     {
+      "name": "컵 깊이·길이",
+      "status": "통과",
+      "value": "18.8915%, 25.0주"
+     },
+     {
+      "name": "피봇 위치(+5% 이내)",
+      "status": "통과",
+      "value": "-0.9%"
+     },
+     {
+      "name": "RS 라인 신고가",
+      "status": "통과",
+      "value": "RS 95.0"
+     },
+     {
+      "name": "기관 10곳 이상",
+      "status": "통과",
+      "value": "136곳, 2026-11-17 136곳에서 +0"
+     },
+     {
+      "name": "분기 EPS +25%",
+      "status": "확인불가",
+      "value": ""
+     },
+     {
+      "name": "매출 +25% 또는 가속",
+      "status": "탈락",
+      "value": "-2.1%"
+     },
+     {
+      "name": "ROE 17%",
+      "status": "탈락",
+      "value": "0.7%"
+     },
+     {
+      "name": "세전이익률 18%",
+      "status": "탈락",
+      "value": "-0.8%"
+     },
+     {
+      "name": "연 EPS 3년 성장",
+      "status": "탈락",
+      "value": "[149.98, 209.02, -27.36]"
+     },
+     {
+      "name": "Code 33",
+      "status": "확인불가",
+      "value": "분기 5개"
+     }
+    ],
+    "tally": {
+     "통과": 13,
+     "주의": 1,
+     "탈락": 4,
+     "확인불가": 2
+    }
+   }
+  ]
+ },
+ {
+  "market": "CN",
+  "as_of": "2026-11-17",
+  "stance": "Correction — In Cash",
+  "distribution_days": 9,
+  "follow_through": false,
+  "exposure": 0.0,
+  "funnel": {
+   "전체": 5925,
+   "트렌드": 23,
+   "셋업": 8,
+   "실적": 8,
+   "패턴추가": 0
+  },
+  "trend_summary": {
+   "index_trend": "bearish",
+   "vix": null,
+   "stage2_pct": 2.1,
+   "aligned_pct": 1.1,
+   "sectors": [
+    [
+     "Other",
+     23
+    ]
+   ],
+   "industries": [
+    [
+     "Banks-Foreign",
+     4
+    ],
+    [
+     "Banks-Super Regional",
+     3
+    ],
+    [
+     "Transportation-Ship",
+     3
+    ],
+    [
+     "Transportation-Logistics",
+     2
+    ],
+    [
+     "Media-Periodicals",
+     1
+    ],
+    [
+     "Utility-Electric Power",
+     1
+    ],
+    [
+     "Electronic-Parts",
+     1
+    ],
+    [
+     "Banks-Southeast",
+     1
+    ],
+    [
+     "Energy-Coal",
+     1
+    ],
+    [
+     "Beverages-Alcoholic",
+     1
+    ]
+   ],
+   "rs_top": [
+    [
+     "大晟文化",
+     "600892.SS",
+     99.0,
+     "Media-Periodicals"
+    ],
+    [
+     "九阳股份",
+     "002242.SZ",
+     99.0,
+     "Retail-Home Furnishings"
+    ],
+    [
+     "宝新能源",
+     "000690.SZ",
+     98.0,
+     "Utility-Electric Power"
+    ],
+    [
+     "江苏银行",
+     "600919.SS",
+     98.0,
+     "Banks-Southeast"
+    ],
+    [
+     "工商银行",
+     "601398.SS",
+     98.0,
+     "Banks-Foreign"
+    ],
+    [
+     "建设银行",
+     "601939.SS",
+     98.0,
+     "Banks-Foreign"
+    ],
+    [
+     "成都银行",
+     "601838.SS",
+     98.0,
+     "Banks-Super Regional"
+    ],
+    [
+     "天康生物",
+     "002100.SZ",
+     98.0,
+     "Food-Packaged"
+    ],
+    [
+     "罗莱生活",
+     "002293.SZ",
+     98.0,
+     "Medical-Products"
+    ],
+    [
+     "风语筑",
+     "603466.SS",
+     98.0,
+     "Media-Newspapers"
+    ]
+   ],
+   "group_rank_top": [
+    [
+     1,
+     "Banks-Super Regional"
+    ],
+    [
+     2,
+     "Insurance-Life"
+    ],
+    [
+     3,
+     "Media-Periodicals"
+    ],
+    [
+     4,
+     "Transportation-Airline"
+    ],
+    [
+     5,
+     "Media-Radio/Tv"
+    ],
+    [
+     6,
+     "Media-Diversified"
+    ],
+    [
+     7,
+     "Transportation-Logistics"
+    ],
+    [
+     8,
+     "Utility-Gas Distribution"
+    ],
+    [
+     9,
+     "Finance-Invest Bnk/Bkrs"
+    ],
+    [
+     10,
+     "Retail-Department Stores"
+    ]
+   ],
+   "prev": {
+    "date": "2026-11-17",
+    "trend": 25
+   }
+  },
+  "picks": [
+   {
+    "symbol": "603893.SS",
+    "name": "瑞芯微",
+    "price": 204.96,
+    "pivot": 221.5,
+    "buy_limit": 232.58,
+    "stop": 204.89,
+    "catalysts": [],
+    "pivot_dist": -7.467268623024827,
+    "pattern": "cup_with_handle",
+    "rs": 95.0,
+    "industry": "Semiconductors",
+    "group_rank": 92,
+    "next_earnings": null,
+    "inst_pct": 5.9,
+    "shares_change_pct": 0.5,
+    "last_bar": "2026-11-18",
+    "checks": [
+     {
+      "name": "트렌드 템플릿(일봉 재계산)",
+      "status": "탈락",
+      "value": "고점 -17.8%, 저점 +34.9%"
+     },
+     {
+      "name": "200일선 상승 기간",
+      "status": "주의",
+      "value": "52거래일"
+     },
+     {
+      "name": "베이스 횟수(근사)",
+      "status": "통과",
+      "value": "0번째"
+     },
+     {
+      "name": "베이스 전 상승 30%",
+      "status": "통과",
+      "value": "64.0%"
+     },
+     {
+      "name": "조정장 방어",
+      "status": "통과",
+      "value": "시장 조정에도 버팀"
+     },
+     {
+      "name": "업종 순위",
+      "status": "주의",
+      "value": "92위"
+     },
+     {
+      "name": "베이스 길이",
+      "status": "주의",
+      "value": "41.0주 (cup_with_handle)"
+     },
+     {
+      "name": "변동성 수축",
+      "status": "주의",
+      "value": "[18.0]"
+     },
+     {
+      "name": "마지막 수축 거래량",
+      "status": "주의",
+      "value": "50일 평균의 1.11배"
+     },
+     {
+      "name": "핸들 위치(상단 절반, 15% 이내)",
+      "status": "탈락",
+      "value": "위치 0.16, 깊이 28.1%"
+     },
+     {
+      "name": "컵 깊이·길이",
+      "status": "통과",
+      "value": "24.5826%, 41.0주"
+     },
+     {
+      "name": "피봇 위치(+5% 이내)",
+      "status": "통과",
+      "value": "-7.5%"
+     },
+     {
+      "name": "RS 라인 신고가",
+      "status": "주의",
+      "value": "RS 95.0"
+     },
+     {
+      "name": "기관 10곳 이상",
+      "status": "통과",
+      "value": "213곳, 증감은 다음 실행부터"
+     },
+     {
+      "name": "분기 EPS +25%",
+      "status": "통과",
+      "value": "56.0%"
+     },
+     {
+      "name": "매출 +25% 또는 가속",
+      "status": "통과",
+      "value": "43.9%"
+     },
+     {
+      "name": "ROE 17%",
+      "status": "통과",
+      "value": "32.8%"
+     },
+     {
+      "name": "세전이익률 18%",
+      "status": "통과",
+      "value": "25.4%"
+     },
+     {
+      "name": "연 EPS 3년 성장",
+      "status": "통과",
+      "value": "[0.32, 1.42, 2.46]"
+     },
+     {
+      "name": "Code 33",
+      "status": "확인불가",
+      "value": "분기 5개"
+     }
+    ],
+    "tally": {
+     "통과": 11,
+     "주의": 6,
+     "탈락": 2,
+     "확인불가": 1
+    }
+   },
+   {
+    "symbol": "601225.SS",
+    "name": "陕西煤业",
+    "price": 27.69,
+    "pivot": 28.15,
+    "buy_limit": 29.56,
+    "stop": 26.04,
+    "catalysts": [],
+    "pivot_dist": -1.6341030195381787,
+    "pattern": "cup_with_handle",
+    "rs": 96.0,
+    "industry": "Thermal Coal",
+    "group_rank": 17,
+    "next_earnings": null,
+    "inst_pct": 9.4,
+    "shares_change_pct": 0.0,
+    "last_bar": "2026-11-18",
+    "checks": [
+     {
+      "name": "트렌드 템플릿(일봉 재계산)",
+      "status": "통과",
+      "value": "고점 -2.2%, 저점 +41.5%"
+     },
+     {
+      "name": "200일선 상승 기간",
+      "status": "통과",
+      "value": "95거래일"
+     },
+     {
+      "name": "베이스 횟수(근사)",
+      "status": "통과",
+      "value": "2번째"
+     },
+     {
+      "name": "베이스 전 상승 30%",
+      "status": "통과",
+      "value": "51.3%"
+     },
+     {
+      "name": "업종 순위",
+      "status": "통과",
+      "value": "17위"
+     },
+     {
+      "name": "베이스 길이",
+      "status": "주의",
+      "value": "30.0주 (cup_with_handle)"
+     },
+     {
+      "name": "변동성 수축",
+      "status": "주의",
+      "value": "[11.6]"
+     },
+     {
+      "name": "마지막 수축 거래량",
+      "status": "주의",
+      "value": "50일 평균의 1.08배"
+     },
+     {
+      "name": "핸들 위치(상단 절반, 15% 이내)",
+      "status": "통과",
+      "value": "위치 0.61, 깊이 10.4%"
+     },
+     {
+      "name": "컵 깊이·길이",
+      "status": "통과",
+      "value": "28.3465%, 30.0주"
+     },
+     {
+      "name": "피봇 위치(+5% 이내)",
+      "status": "통과",
+      "value": "-1.6%"
+     },
+     {
+      "name": "RS 라인 신고가",
+      "status": "주의",
+      "value": "RS 96.0"
+     },
+     {
+      "name": "기관 10곳 이상",
+      "status": "통과",
+      "value": "235곳, 증감은 다음 실행부터"
+     },
+     {
+      "name": "분기 EPS +25%",
+      "status": "탈락",
+      "value": "-12.4%"
+     },
+     {
+      "name": "매출 +25% 또는 가속",
+      "status": "탈락",
+      "value": "5.6%"
+     },
+     {
+      "name": "ROE 17%",
+      "status": "통과",
+      "value": "22.7%"
+     },
+     {
+      "name": "세전이익률 18%",
+      "status": "통과",
+      "value": "20.4%"
+     },
+     {
+      "name": "연 EPS 3년 성장",
+      "status": "탈락",
+      "value": "[2.38, 2.31, 1.73]"
+     },
+     {
+      "name": "Code 33",
+      "status": "확인불가",
+      "value": "분기 5개"
+     }
+    ],
+    "tally": {
+     "통과": 11,
+     "주의": 4,
+     "탈락": 3,
+     "확인불가": 1
+    }
+   },
+   {
+    "symbol": "601919.SS",
+    "name": "中远海控",
+    "price": 17.41,
+    "pivot": 17.23,
+    "buy_limit": 18.09,
+    "stop": 15.94,
+    "catalysts": [
+     "뉴스: Cosco profit rockets 81% as ocean freight revenue climbs in Q3",
+     "뉴스: COSCO SHIPPING Holdings (SEHK:1919) Stock Looks Reasonable After A 246% Five Year Run",
+     "뉴스: OOCL revenue up 45.1% on trans-Pacific surge"
+    ],
+    "pivot_dist": 1.0446894950667422,
+    "pattern": "cup_with_handle",
+    "rs": 97.0,
+    "industry": "Marine Shipping",
+    "group_rank": 30,
+    "next_earnings": null,
+    "inst_pct": 4.2,
+    "shares_change_pct": -3.3,
+    "last_bar": "2026-11-18",
+    "checks": [
+     {
+      "name": "트렌드 템플릿(일봉 재계산)",
+      "status": "통과",
+      "value": "고점 -3.4%, 저점 +38.1%"
+     },
+     {
+      "name": "200일선 상승 기간",
+      "status": "통과",
+      "value": "85거래일"
+     },
+     {
+      "name": "베이스 횟수(근사)",
+      "status": "통과",
+      "value": "0번째"
+     },
+     {
+      "name": "베이스 전 상승 30%",
+      "status": "통과",
+      "value": "42.9%"
+     },
+     {
+      "name": "조정장 방어",
+      "status": "통과",
+      "value": "시장 조정에도 버팀"
+     },
+     {
+      "name": "업종 순위",
+      "status": "통과",
+      "value": "30위"
+     },
+     {
+      "name": "베이스 길이",
+      "status": "통과",
+      "value": "12.0주 (cup_with_handle)"
+     },
+     {
+      "name": "변동성 수축",
+      "status": "주의",
+      "value": "[7.7]"
+     },
+     {
+      "name": "마지막 수축 거래량",
+      "status": "주의",
+      "value": "50일 평균의 1.3배"
+     },
+     {
+      "name": "핸들 위치(상단 절반, 15% 이내)",
+      "status": "탈락",
+      "value": "위치 0.2, 깊이 10.3%"
+     },
+     {
+      "name": "컵 깊이·길이",
+      "status": "주의",
+      "value": "13.9474%, 12.0주"
+     },
+     {
+      "name": "피봇 위치(+5% 이내)",
+      "status": "통과",
+      "value": "1.0%"
+     },
+     {
+      "name": "돌파일 거래량 +50%",
+      "status": "주의",
+      "value": "1.03배"
+     },
+     {
+      "name": "RS 라인 신고가",
+      "status": "주의",
+      "value": "RS 97.0"
+     },
+     {
+      "name": "기관 10곳 이상",
+      "status": "통과",
+      "value": "229곳, 2026-11-09 228곳에서 +1"
+     },
+     {
+      "name": "분기 EPS +25%",
+      "status": "확인불가",
+      "value": ""
+     },
+     {
+      "name": "매출 +25% 또는 가속",
+      "status": "확인불가",
+      "value": ""
+     },
+     {
+      "name": "ROE 17%",
+      "status": "탈락",
+      "value": "13.6%"
+     },
+     {
+      "name": "세전이익률 18%",
+      "status": "통과",
+      "value": "19.1%"
+     },
+     {
+      "name": "연 EPS 3년 성장",
+      "status": "탈락",
+      "value": "[1.48, 3.08, 1.98]"
+     },
+     {
+      "name": "Code 33",
+      "status": "확인불가",
+      "value": "분기 2개"
+     }
+    ],
+    "tally": {
+     "통과": 10,
+     "주의": 5,
+     "탈락": 3,
+     "확인불가": 3
+    }
+   },
+   {
+    "symbol": "601998.SS",
+    "name": "中信银行",
+    "price": 9.49,
+    "pivot": 9.35,
+    "buy_limit": 9.82,
+    "stop": 8.65,
+    "catalysts": [
+     "뉴스: Should Value Investors Buy China CITIC Bank (CHCJY) Stock?",
+     "뉴스: China CITIC Bank (CHCJY) Upgraded to Buy: What Does It Mean for the Stock?",
+     "뉴스: Are Investors Undervaluing Bank of Communications (BCMXY) Right Now?"
+    ],
+    "pivot_dist": 1.4973262032085624,
+    "pattern": "three_weeks_tight",
+    "rs": 97.0,
+    "industry": "Banks - Regional",
+    "group_rank": 1,
+    "next_earnings": null,
+    "inst_pct": 6.6,
+    "shares_change_pct": 2.3,
+    "last_bar": "2026-11-18",
+    "checks": [
+     {
+      "name": "트렌드 템플릿(일봉 재계산)",
+      "status": "통과",
+      "value": "고점 -0.3%, 저점 +39.4%"
+     },
+     {
+      "name": "200일선 상승 기간",
+      "status": "주의",
+      "value": "81거래일"
+     },
+     {
+      "name": "베이스 횟수(근사)",
+      "status": "통과",
+      "value": "0번째"
+     },
+     {
+      "name": "베이스 전 상승 30%",
+      "status": "통과",
+      "value": "39.9%"
+     },
+     {
+      "name": "조정장 방어",
+      "status": "통과",
+      "value": "시장 조정에도 버팀"
+     },
+     {
+      "name": "업종 순위",
+      "status": "통과",
+      "value": "1위"
+     },
+     {
+      "name": "베이스 길이",
+      "status": "통과",
+      "value": "7.0주 (three_weeks_tight)"
+     },
+     {
+      "name": "변동성 수축",
+      "status": "주의",
+      "value": "[7.3]"
+     },
+     {
+      "name": "마지막 수축 거래량",
+      "status": "주의",
+      "value": "50일 평균의 1.02배"
+     },
+     {
+      "name": "피봇 위치(+5% 이내)",
+      "status": "통과",
+      "value": "1.5%"
+     },
+     {
+      "name": "돌파일 거래량 +50%",
+      "status": "주의",
+      "value": "1.05배"
+     },
+     {
+      "name": "RS 라인 신고가",
+      "status": "통과",
+      "value": "RS 97.0"
+     },
+     {
+      "name": "기관 10곳 이상",
+      "status": "통과",
+      "value": "216곳, 2026-11-17 216곳에서 +0"
+     },
+     {
+      "name": "분기 EPS +25%",
+      "status": "탈락",
+      "value": "0.0%"
+     },
+     {
+      "name": "매출 +25% 또는 가속",
+      "status": "탈락",
+      "value": "3.9%"
+     },
+     {
+      "name": "ROE 17%",
+      "status": "탈락",
+      "value": "8.4%"
+     },
+     {
+      "name": "세전이익률 18%",
+      "status": "통과",
+      "value": "39.7%"
+     },
+     {
+      "name": "연 EPS 3년 성장",
+      "status": "탈락",
+      "value": "[1.14, 1.2, 1.2]"
+     },
+     {
+      "name": "Code 33",
+      "status": "확인불가",
+      "value": "분기 5개"
+     }
+    ],
+    "tally": {
+     "통과": 10,
+     "주의": 4,
+     "탈락": 4,
+     "확인불가": 1
+    }
+   },
+   {
+    "symbol": "603713.SS",
+    "name": "密尔克卫",
+    "price": 68.01,
+    "pivot": 69.88,
+    "buy_limit": 73.37,
+    "stop": 64.64,
+    "catalysts": [],
+    "pivot_dist": -2.6760160274756593,
+    "pattern": "cup_with_handle",
+    "rs": 97.0,
+    "industry": "Integrated Freight & Logistics",
+    "group_rank": 7,
+    "next_earnings": null,
+    "inst_pct": 19.5,
+    "shares_change_pct": -1.6,
+    "last_bar": "2026-11-18",
+    "checks": [
+     {
+      "name": "트렌드 템플릿(일봉 재계산)",
+      "status": "통과",
+      "value": "고점 -19.3%, 저점 +38.6%"
+     },
+     {
+      "name": "200일선 상승 기간",
+      "status": "주의",
+      "value": "68거래일"
+     },
+     {
+      "name": "베이스 횟수(근사)",
+      "status": "통과",
+      "value": "0번째"
+     },
+     {
+      "name": "베이스 전 상승 30%",
+      "status": "통과",
+      "value": "71.7%"
+     },
+     {
+      "name": "조정장 방어",
+      "status": "통과",
+      "value": "시장 조정에도 버팀"
+     },
+     {
+      "name": "업종 순위",
+      "status": "통과",
+      "value": "7위"
+     },
+     {
+      "name": "베이스 길이",
+      "status": "통과",
+      "value": "18.0주 (cup_with_handle)"
+     },
+     {
+      "name": "변동성 수축",
+      "status": "통과",
+      "value": "[32.5, 10.3]"
+     },
+     {
+      "name": "마지막 수축 거래량",
+      "status": "통과",
+      "value": "50일 평균의 0.94배"
+     },
+     {
+      "name": "핸들 위치(상단 절반, 15% 이내)",
+      "status": "탈락",
+      "value": "위치 0.0, 깊이 18.9%"
+     },
+     {
+      "name": "컵 깊이·길이",
+      "status": "통과",
+      "value": "21.1163%, 18.0주"
+     },
+     {
+      "name": "피봇 위치(+5% 이내)",
+      "status": "통과",
+      "value": "-2.7%"
+     },
+     {
+      "name": "RS 라인 신고가",
+      "status": "주의",
+      "value": "RS 97.0"
+     },
+     {
+      "name": "기관 10곳 이상",
+      "status": "통과",
+      "value": "68곳, 2026-11-17 68곳에서 +0"
+     },
+     {
+      "name": "분기 EPS +25%",
+      "status": "탈락",
+      "value": "10.2%"
+     },
+     {
+      "name": "매출 +25% 또는 가속",
+      "status": "탈락",
+      "value": "14.4%"
+     },
+     {
+      "name": "ROE 17%",
+      "status": "탈락",
+      "value": "14.0%"
+     },
+     {
+      "name": "세전이익률 18%",
+      "status": "탈락",
+      "value": "7.0%"
+     },
+     {
+      "name": "연 EPS 3년 성장",
+      "status": "통과",
+      "value": "[2.54, 3.26, 3.8]"
+     },
+     {
+      "name": "Code 33",
+      "status": "확인불가",
+      "value": "분기 5개"
+     }
+    ],
+    "tally": {
+     "통과": 12,
+     "주의": 2,
+     "탈락": 5,
+     "확인불가": 1
+    }
+   },
+   {
+    "symbol": "000690.SZ",
+    "name": "宝新能源",
+    "price": 5.83,
+    "pivot": 5.65,
+    "buy_limit": 5.93,
+    "stop": 5.23,
+    "catalysts": [
+     "뉴스: Undiscovered Gems in Asia to Explore This March 2026"
+    ],
+    "pivot_dist": 3.185840707964597,
+    "pattern": "cup_with_handle",
+    "rs": 98.0,
+    "industry": "Utilities - Independent Power Producers",
+    "group_rank": 38,
+    "next_earnings": null,
+    "inst_pct": 5.9,
+    "shares_change_pct": 0.0,
+    "last_bar": "2026-11-18",
+    "checks": [
+     {
+      "name": "트렌드 템플릿(일봉 재계산)",
+      "status": "통과",
+      "value": "고점 -8.9%, 저점 +44.9%"
+     },
+     {
+      "name": "200일선 상승 기간",
+      "status": "통과",
+      "value": "282거래일"
+     },
+     {
+      "name": "베이스 횟수(근사)",
+      "status": "통과",
+      "value": "1번째"
+     },
+     {
+      "name": "베이스 전 상승 30%",
+      "status": "통과",
+      "value": "83.6%"
+     },
+     {
+      "name": "조정장 방어",
+      "status": "통과",
+      "value": "시장 조정에도 버팀"
+     },
+     {
+      "name": "업종 순위",
+      "status": "통과",
+      "value": "38위"
+     },
+     {
+      "name": "베이스 길이",
+      "status": "주의",
+      "value": "58.0주 (cup_with_handle)"
+     },
+     {
+      "name": "변동성 수축",
+      "status": "통과",
+      "value": "[30.5, 4.8]"
+     },
+     {
+      "name": "마지막 수축 거래량",
+      "status": "통과",
+      "value": "50일 평균의 0.75배"
+     },
+     {
+      "name": "핸들 위치(상단 절반, 15% 이내)",
+      "status": "탈락",
+      "value": "위치 0.45, 깊이 9.7%"
+     },
+     {
+      "name": "컵 깊이·길이",
+      "status": "주의",
+      "value": "14.6939%, 58.0주"
+     },
+     {
+      "name": "피봇 위치(+5% 이내)",
+      "status": "통과",
+      "value": "3.2%"
+     },
+     {
+      "name": "돌파일 거래량 +50%",
+      "status": "주의",
+      "value": "1.03배"
+     },
+     {
+      "name": "RS 라인 신고가",
+      "status": "통과",
+      "value": "RS 98.0"
+     },
+     {
+      "name": "기관 10곳 이상",
+      "status": "통과",
+      "value": "63곳, 2026-11-17 63곳에서 +0"
+     },
+     {
+      "name": "분기 EPS +25%",
+      "status": "탈락",
+      "value": "0.0%"
+     },
+     {
+      "name": "매출 +25% 또는 가속",
+      "status": "탈락",
+      "value": "-12.7%"
+     },
+     {
+      "name": "ROE 17%",
+      "status": "탈락",
+      "value": "7.5%"
+     },
+     {
+      "name": "세전이익률 18%",
+      "status": "탈락",
+      "value": "11.8%"
+     },
+     {
+      "name": "연 EPS 3년 성장",
+      "status": "탈락",
+      "value": "[0.08, 0.41, 0.32]"
+     },
+     {
+      "name": "Code 33",
+      "status": "확인불가",
+      "value": "분기 5개"
+     }
+    ],
+    "tally": {
+     "통과": 11,
+     "주의": 3,
+     "탈락": 6,
+     "확인불가": 1
+    }
+   },
+   {
+    "symbol": "002100.SZ",
+    "name": "天康生物",
+    "price": 8.54,
+    "pivot": 8.17,
+    "buy_limit": 8.58,
+    "stop": 7.56,
+    "catalysts": [],
+    "pivot_dist": 4.5287637698898315,
+    "pattern": "cup_with_handle",
+    "rs": 98.0,
+    "industry": "Packaged Foods",
+    "group_rank": 12,
+    "next_earnings": null,
+    "inst_pct": 14.3,
+    "shares_change_pct": 0.0,
+    "last_bar": "2026-11-18",
+    "checks": [
+     {
+      "name": "트렌드 템플릿(일봉 재계산)",
+      "status": "통과",
+      "value": "고점 -4.9%, 저점 +47.5%"
+     },
+     {
+      "name": "200일선 상승 기간",
+      "status": "주의",
+      "value": "52거래일"
+     },
+     {
+      "name": "베이스 횟수(근사)",
+      "status": "통과",
+      "value": "1번째"
+     },
+     {
+      "name": "베이스 전 상승 30%",
+      "status": "탈락",
+      "value": "27.4%"
+     },
+     {
+      "name": "조정장 방어",
+      "status": "통과",
+      "value": "시장 조정에도 버팀"
+     },
+     {
+      "name": "업종 순위",
+      "status": "통과",
+      "value": "12위"
+     },
+     {
+      "name": "베이스 길이",
+      "status": "통과",
+      "value": "21.0주 (cup_with_handle)"
+     },
+     {
+      "name": "변동성 수축",
+      "status": "통과",
+      "value": "[16.5, 10.1]"
+     },
+     {
+      "name": "마지막 수축 거래량",
+      "status": "주의",
+      "value": "50일 평균의 1.06배"
+     },
+     {
+      "name": "핸들 위치(상단 절반, 15% 이내)",
+      "status": "통과",
+      "value": "위치 0.51, 깊이 12.9%"
+     },
+     {
+      "name": "컵 깊이·길이",
+      "status": "통과",
+      "value": "33.3333%, 21.0주"
+     },
+     {
+      "name": "피봇 위치(+5% 이내)",
+      "status": "통과",
+      "value": "4.5%"
+     },
+     {
+      "name": "돌파일 거래량 +50%",
+      "status": "주의",
+      "value": "0.85배"
+     },
+     {
+      "name": "RS 라인 신고가",
+      "status": "주의",
+      "value": "RS 98.0"
+     },
+     {
+      "name": "기관 10곳 이상",
+      "status": "통과",
+      "value": "49곳, 증감은 다음 실행부터"
+     },
+     {
+      "name": "분기 EPS +25%",
+      "status": "탈락",
+      "value": "-209.1%"
+     },
+     {
+      "name": "매출 +25% 또는 가속",
+      "status": "탈락",
+      "value": "-5.5%"
+     },
+     {
+      "name": "ROE 17%",
+      "status": "탈락",
+      "value": "-9.9%"
+     },
+     {
+      "name": "세전이익률 18%",
+      "status": "탈락",
+      "value": "1.9%"
+     },
+     {
+      "name": "연 EPS 3년 성장",
+      "status": "탈락",
+      "value": "[-1.01, 0.44, 0.15]"
+     },
+     {
+      "name": "Code 33",
+      "status": "확인불가",
+      "value": "분기 5개"
+     }
+    ],
+    "tally": {
+     "통과": 10,
+     "주의": 4,
+     "탈락": 6,
+     "확인불가": 1
+    }
+   },
+   {
+    "symbol": "603466.SS",
+    "name": "风语筑",
+    "price": 14.01,
+    "pivot": 13.37,
+    "buy_limit": 14.04,
+    "stop": 12.37,
+    "catalysts": [],
+    "pivot_dist": 4.786836200448771,
+    "pattern": "cup_with_handle",
+    "rs": 98.0,
+    "industry": "Advertising Agencies",
+    "group_rank": 25,
+    "next_earnings": null,
+    "inst_pct": 0.9,
+    "shares_change_pct": 0.0,
+    "last_bar": "2026-11-18",
+    "checks": [
+     {
+      "name": "트렌드 템플릿(일봉 재계산)",
+      "status": "탈락",
+      "value": "고점 -26.4%, 저점 +55.2%"
+     },
+     {
+      "name": "200일선 상승 기간",
+      "status": "주의",
+      "value": "73거래일"
+     },
+     {
+      "name": "베이스 횟수(근사)",
+      "status": "주의",
+      "value": "3번째"
+     },
+     {
+      "name": "베이스 전 상승 30%",
+      "status": "통과",
+      "value": "122.5%"
+     },
+     {
+      "name": "조정장 방어",
+      "status": "통과",
+      "value": "시장 조정에도 버팀"
+     },
+     {
+      "name": "업종 순위",
+      "status": "통과",
+      "value": "25위"
+     },
+     {
+      "name": "베이스 길이",
+      "status": "주의",
+      "value": "57.0주 (cup_with_handle)"
+     },
+     {
+      "name": "변동성 수축",
+      "status": "주의",
+      "value": "[30.5]"
+     },
+     {
+      "name": "마지막 수축 거래량",
+      "status": "주의",
+      "value": "50일 평균의 1.25배"
+     },
+     {
+      "name": "핸들 위치(상단 절반, 15% 이내)",
+      "status": "탈락",
+      "value": "위치 0.3, 깊이 18.6%"
+     },
+     {
+      "name": "컵 깊이·길이",
+      "status": "통과",
+      "value": "23.5088%, 57.0주"
+     },
+     {
+      "name": "피봇 위치(+5% 이내)",
+      "status": "통과",
+      "value": "4.8%"
+     },
+     {
+      "name": "돌파일 거래량 +50%",
+      "status": "주의",
+      "value": "0.89배"
+     },
+     {
+      "name": "RS 라인 신고가",
+      "status": "주의",
+      "value": "RS 98.0"
+     },
+     {
+      "name": "기관 10곳 이상",
+      "status": "통과",
+      "value": "14곳, 2026-11-09 14곳에서 +0"
+     },
+     {
+      "name": "분기 EPS +25%",
+      "status": "탈락",
+      "value": "0.0%"
+     },
+     {
+      "name": "매출 +25% 또는 가속",
+      "status": "탈락",
+      "value": "19.2%"
+     },
+     {
+      "name": "ROE 17%",
+      "status": "탈락",
+      "value": "-0.1%"
+     },
+     {
+      "name": "세전이익률 18%",
+      "status": "탈락",
+      "value": "-1.8%"
+     },
+     {
+      "name": "연 EPS 3년 성장",
+      "status": "탈락",
+      "value": "[0.47, -0.23, -0.03]"
+     },
+     {
+      "name": "Code 33",
+      "status": "확인불가",
+      "value": "분기 5개"
+     }
+    ],
+    "tally": {
+     "통과": 6,
+     "주의": 7,
+     "탈락": 7,
+     "확인불가": 1
+    }
+   }
+  ]
+ }
+]
