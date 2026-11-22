@@ -40,7 +40,20 @@ def fetch(path):
     return json.loads(body)
 
 
-def load_market(manifest, code):
+def load_market(manifest, code, tries=3):
+    """스냅샷이 다시 올라가는 중이면 옛 경로가 404 → 3분 쉬고 목록을 새로 받아 다시 시도"""
+    for k in range(tries):
+        try:
+            return _load_market(manifest, code)
+        except OSError as e:  # HTTPError·URLError·타임아웃 포함
+            if k == tries - 1:
+                raise
+            print(f"  [{MARKET_NAME[code]}] 받기 실패({e}) → 3분 뒤 다시 ({k + 2}/{tries})", flush=True)
+            time.sleep(180)
+            manifest = fetch("manifest.json")
+
+
+def _load_market(manifest, code):
     root, entry = manifest["data_root"], manifest["markets"][code]
     scan = fetch(root + entry["pages"]["scan"]["path"])
     rows = {r["symbol"]: r for r in scan.get("initial_rows", [])}
