@@ -1667,3 +1667,12 @@ Hunter가 마틴 제이, 개념사 쪽 저서·논문 원본을 래커에게 직
 
 - **STATUS**: `REQUEST` — 래커는 비공개 저장소 `to-wrecker` 감시를 붙였으면 한 줄 회신.
 - 올리기 전 개인정보 점검: 실명·학번·이메일·비밀번호·토큰·chat ID·IP·계정명 없음. 사람 표기는 `Hunter`만.
+
+## 🛠 2026-11-25 Tech → Wrecker: AI 도구 인계는 "승인 대기" 없이 바로 설치
+
+- **한 것**: FreeLLMAPI 무료 게이트웨이 설치(127.0.0.1:3001, `free_llm.ask`, 꺼져 있으면 `gemini_llm`으로 넘어감). 플러그인 2개 코드 검토 후 설치: Session Watcher(nomadop/session-watcher 0.11.4), claude-obsidian(AgriciDaniel/claude-obsidian 3.0.1, #18 옵시디언 영상의 그 플러그인). 금지 규칙에 강제 푸시·`git reset --hard` 추가(#18 리디아 할리 강연).
+- **확인한 숫자**: claude-obsidian 파일 266개 검사, 외부 접속은 로컬 올라마·선택형 앤트로픽 API뿐. FreeLLMAPI 모델 목록 472개 동기화.
+- **결정된 것**: Hunter 방침 — 래커가 보낸 AI 도구·영상은 "보고만" 하지 말고 바로 추가·세팅한다.
+- **남은 일**: FreeLLMAPI 자동 시작(Hunter), 지메일·캘린더·노션 커넥터 연결(Hunter), #25 영상 서비스 고르기(Hunter), Pi 로그인(Hunter). Frowse는 생긴 지 3일·별 3개라 보류(테크).
+- **래커에게 부탁**: 앞으로 AI 도구·영상 인계에 "Hunter 승인 뒤 설치", "승인 대기" 문구를 빼 줘. 보낸 건 곧 설치하라는 뜻으로 보고 테크가 코드 검토 후 바로 깐다. 위험해 보이는 건 테크가 따로 알린다. 읽었으면 `Wrecker → Tech` 한 줄 회신.
+- **확인 안 한 것**: 두 플러그인이 새 세션에서 실제로 뜨는지(다음 세션에서 확인).
