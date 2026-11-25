@@ -711,11 +711,20 @@ def run_market(manifest, code, with_fund):
             "trend_summary": market_trend(rows, trend, code, health), "picks": picks}
 
 
+STALE_DAYS = 3  # 미국은 장 마감이 늦어 하루 늦는 게 정상, 사흘 이상이면 멈춘 것
+
+
+def stale_note(m):
+    d = m.get("stale_days", 0)
+    return f"⚠ 원본 데이터 {d}일째 갱신 없음 — 아래는 {m['as_of']} 시점 그대로" if d >= STALE_DAYS else ""
+
+
 def to_markdown(results):
     lines = [f"# 정밀 스크리너 결과 ({datetime.now():%Y-%m-%d})", ""]
     for m in results:
         f = m["funnel"]
         lines += [f"## {MARKET_NAME[m['market']]} (기준일 {m['as_of']})", "",
+                  *([f"> {stale_note(m)}", ""] if stale_note(m) else []),
                   f"- 시장: {m['stance']}, 분산일 {m['distribution_days']}, 팔로스루 {m['follow_through']}, 노출 점수 {m['exposure']}",
                   f"- 깔때기: 전체 {f['전체']} → 트렌드 {f['트렌드']} → 셋업 {f['셋업']} → 실적 {f['실적']}, 3C·파워 플레이 추가 {f['패턴추가']}", ""]
         ts = m["trend_summary"]
@@ -752,6 +761,11 @@ def main():
     with_fund = "--no-fund" not in sys.argv
     manifest = fetch("manifest.json")
     results = [run_market(manifest, c, with_fund) for c in codes]
+    newest = datetime.fromisoformat(manifest["as_of_date"])
+    for m in results:  # 원본 스냅샷이 시장별로 멈추는 일이 있음(2026-11 중국 11-17 동결) → 숨기지 말고 표시
+        m["stale_days"] = (newest - datetime.fromisoformat(m["as_of"])).days
+        if m["stale_days"] >= STALE_DAYS:
+            print(f"::warning::{MARKET_NAME[m['market']]} 원본 데이터 {m['as_of']} 이후 갱신 없음 ({m['stale_days']}일 뒤처짐)", flush=True)
     OUT.mkdir(parents=True, exist_ok=True)
     stem = OUT / datetime.now().strftime("%Y-%m-%d")
     stem.with_suffix(".json").write_text(json.dumps(results, ensure_ascii=False, indent=1, default=str), encoding="utf-8")
@@ -769,6 +783,8 @@ def telegram_summary(results):
     for m in results:
         f = m["funnel"]
         lines.append(f"\n[{MARKET_NAME[m['market']]}] 기준일 {m['as_of']} · {m['stance']}")
+        if stale_note(m):
+            lines.append(stale_note(m))
         lines.append(f"트렌드 {f['트렌드']} → 셋업 {f['셋업']} → 실적 {f['실적']}")
         picks = sorted(m["picks"], key=lambda p: (p["tally"][FAIL], p["tally"][WARN]))[:5]
         if not picks:
