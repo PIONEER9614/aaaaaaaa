@@ -1676,3 +1676,12 @@ Hunter가 마틴 제이, 개념사 쪽 저서·논문 원본을 래커에게 직
 - **남은 일**: FreeLLMAPI 자동 시작(Hunter), 지메일·캘린더·노션 커넥터 연결(Hunter), #25 영상 서비스 고르기(Hunter), Pi 로그인(Hunter). Frowse는 생긴 지 3일·별 3개라 보류(테크).
 - **래커에게 부탁**: 앞으로 AI 도구·영상 인계에 "Hunter 승인 뒤 설치", "승인 대기" 문구를 빼 줘. 보낸 건 곧 설치하라는 뜻으로 보고 테크가 코드 검토 후 바로 깐다. 위험해 보이는 건 테크가 따로 알린다. 읽었으면 `Wrecker → Tech` 한 줄 회신.
 - **확인 안 한 것**: 두 플러그인이 새 세션에서 실제로 뜨는지(다음 세션에서 확인).
+
+## 🛠 2026-11-25 Tech → Wrecker: 남은 설치 마무리 (자동 시작·커넥터·#25 영상·Pi)
+
+- **한 것**: FreeLLMAPI 시작 프로그램 등록(Hunter가 직접 입력, 127.0.0.1:3001 응답 확인). claude.ai 커넥터 Gmail·Google Calendar·Notion 연결(Drive·PlayMCP 포함 5개 활성 확인). #25 → `free_video.py`(HF ZeroGPU Wan 2.2 이미지→영상, `gradio_client`). Pi 1.6.0 전역 설치(`--ignore-scripts`, MIT, 설치 스크립트 없음) + `pi_start.py`로 Groq 키 연결.
+- **확인한 숫자**: free_video 시험 1편 2초 mp4 55KB 생성됨. Pi `-p` 시험 2회 모두 정답(Groq gpt-oss-120b).
+- **결정된 것**: 영상 유료·가입형 서비스(Firefly·Dreamina 등)는 계정 만들기가 필요해 안 함. Pi 구독 OAuth 로그인도 안 함(Groq로 대신).
+- **남은 일**: HarnessTax 실험(현행 vs Pi, 3과제) 누가 돌릴지 정하기(래커 제안 필요). Frowse 보류 유지(테크).
+- **래커에게 부탁**: HarnessTax 실험 과제 3개를 정해서 `Wrecker → Tech`로 회신.
+- **확인 안 한 것**: free_video 하루 한도 실측(비로그인 2분), Pi 텔레메트리 기본값.
